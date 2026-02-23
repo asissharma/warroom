@@ -1,0 +1,57 @@
+﻿Focus Area | Topics | Subtopics | Sub-subtopics
+Python Mastery & Secure Coding | Core Python | Syntax & Semantics | Data types, Operators, Loops, Conditionals
+ |  | Functions & Modules | Scope, Decorators, Generators, Context Managers
+ |  | Exception Handling | Custom Exceptions, Logging
+ | Advanced Python | Metaclasses, Introspection | __init__, __new__, type(), dir()
+ |  | Async Python | asyncio, await, Event Loops
+ | Secure Coding | Input Validation | Sanitization, Injection Prevention
+ |  | Secure Libraries | pycryptodome, passlib, requests security
+Data Structures & Scalable Algorithms | DS Fundamentals | Arrays, Linked Lists, Stacks, Queues | Operations, Complexity
+ |  | Trees & Graphs | Binary, AVL, Red-Black, Traversals, Graph Search (BFS/DFS)
+ | Algorithms | Sorting & Searching | Quick, Merge, Heap, Binary Search, Interpolation
+ |  | Advanced Algorithms | Dynamic Programming, Greedy, Backtracking
+ | Scalability | Complexity Analysis | Big-O, Space-Time Tradeoffs
+OOP & Robust Design | Principles | SOLID, DRY, KISS | Practical Examples
+ | Design Patterns | Creational, Structural, Behavioral | Singleton, Observer, Factory
+ | Robust Design | Error Handling, Logging, Modularization | Layered Architecture, Dependency Injection
+Concurrent & Scalable Execution | Threading & Multiprocessing | Threads, Locks, Queues | GIL Implications, Race Conditions
+ | Async & Event-Driven | AsyncIO, Event Loops, Non-blocking I/O | Network & File Operations
+ | Distributed Systems | Message Queues, Pub/Sub | Kafka, RabbitMQ, Celery
+Databases: SQL & Scalability | SQL Fundamentals | CRUD, Joins, Indexing | Normalization, Transactions
+ | Scalability | Partitioning, Sharding, Replication | Read/Write Optimization
+NoSQL & Robust Data Handling | Types | Document, Key-Value, Column | MongoDB, Redis, Cassandra
+ | Performance | Caching, Indexing, Query Optimization | Consistency Models, CAP Theorem
+Data Manipulation & Scalability | Pandas & Numpy | Data Cleaning, Aggregation | Vectorization, Masking
+ | Big Data | Spark, Dask, Parallel Processing | Lazy Evaluation, Memory Management
+JavaScript & Scalable React | JS Fundamentals | ES6+, Closures, Promises | Event Loop, Async Patterns
+ | React | Functional & Class Components | Hooks, Context API, Router, State Management
+ | Scalability | Code Splitting, Lazy Loading | SSR, Client-Side Caching
+Node.js & Secure AI Integration | Node Fundamentals | Event Loop, Async I/O | Streams, Buffers
+ | APIs | REST, GraphQL, WebSockets | Security Headers, JWT, Rate Limiting
+ | AI Integration | TensorFlow.js, ONNX Runtime | Model Loading, Inference Security
+Web & Network Security | Protocols | HTTP/HTTPS, TCP/IP, WebSockets | TLS, Handshake, Certificates
+ | Threats | XSS, CSRF, SQLi | Mitigation, CSP, Input Validation
+ | Security Practices | WAF, IDS/IPS, Logging | Pen-testing, OWASP Top 10
+Cryptography & Robust Systems | Crypto Basics | Symmetric & Asymmetric | AES, RSA, ECC
+ | Secure Systems | Hashing, HMAC, Key Management | PKI, Certificates, Randomness
+Cybersecurity for AI | Threats | Model Inversion, Data Poisoning | Adversarial Inputs
+ | Defenses | Differential Privacy, Federated Learning | Secure Training & Deployment
+Embedded Systems & RTOS | Microcontrollers | ARM, ESP32, STM32 | GPIO, Timers, Interrupts
+ | RTOS | FreeRTOS, Task Scheduling | Semaphores, Mutex, Queues
+TinyML & Secure Edge AI | TinyML | TensorFlow Lite, Edge Models | Quantization, Model Optimization
+ | Edge Security | Secure Boot, OTA Updates | Encrypted Models, Attestation
+Advanced AI: RL & GANs | RL | Q-Learning, Policy Gradients | Multi-Agent, Exploration vs Exploitation
+ | GANs | DCGAN, CycleGAN, StyleGAN | Training Stability, Mode Collapse
+Advanced AI: XAI & Adversarial | Explainability | SHAP, LIME | Feature Importance, Model Transparency
+ | Adversarial AI | FGSM, PGD | Attack & Defense, Robust Training
+NLP & Integrated Systems | NLP Basics | Tokenization, Embeddings | Transformers, BERT, GPT
+ | Applications | Summarization, NER, Chatbots | Multi-modal Integration
+MLOps: Scaling & Robustness | Pipelines | Data Versioning, CI/CD | Kubeflow, MLflow, Airflow
+ | Monitoring | Model Drift, Logging | Metrics, Retraining, A/B Testing
+Secure AI Deployment | Containerization | Docker, Kubernetes | RBAC, Secrets Management
+ | Serving Models | REST, gRPC, TorchServe | HTTPS, Rate Limiting, Logging
+Incident Response & Trends | AI Security Incidents | Model Exploits, Data Breaches | Case Studies
+ | Cybersecurity Trends | Zero-Trust, Cloud Security | Threat Intelligence, SOC Ops
+Advanced AI Projects | Capstone | RL Game Agent, GAN Art, TinyML Devices | End-to-End Security & Scaling
+Career Prep & Continuous Learning | Soft Skills | Communication, Problem Solving | Interview Prep, Project Presentation
+ | Lifelong Learning | Papers, Communities | ArXiv, GitHub, Kaggle Competitions
