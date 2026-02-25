@@ -1,0 +1,4225 @@
+[
+  {
+    "day": 1,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Advanced Development Environment Setup",
+      "category": "CLI & Automation",
+      "doneMeans": "A working implementation that demonstrates automate entire dev environment in one command."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Data types",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 0,
+    "basicSkill": "Critical\n  thinking",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 2,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Cross-Platform System Monitor",
+      "category": "CLI & Automation",
+      "doneMeans": "A working implementation that demonstrates monitor cpu, memory, disk across linux/mac/windows."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Operators",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 3,
+    "basicSkill": "Analytical\n  thinking",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 3,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Intelligent Log Aggregator",
+      "category": "CLI & Automation",
+      "doneMeans": "A working implementation that demonstrates parse logs from multiple services, detect patterns, trigger alerts."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Loops",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 6,
+    "basicSkill": "Decision\u2011making",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 4,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Deployment Automation Pipeline",
+      "category": "CLI & Automation",
+      "doneMeans": "A working implementation that demonstrates one-command deploy with automatic rollback on failure."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Conditionals",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 9,
+    "basicSkill": "Working\n  (short\u2011term) memory",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 5,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "CLI Task Scheduler with Cron++",
+      "category": "CLI & Automation",
+      "doneMeans": "A working implementation that demonstrates schedule tasks with dependencies, retries, and notifications."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Data types",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 12,
+    "basicSkill": "Long\u2011term\n  memory retention",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 6,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Automated Code Review Bot",
+      "category": "Git & Collaboration",
+      "doneMeans": "A working implementation that demonstrates automatically review prs for style, security, performance."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Operators",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 15,
+    "basicSkill": "Attention\n  span & cognitive control",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 7,
+    "phase": "Foundation",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 8,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Team Productivity Dashboard",
+      "category": "Git & Collaboration",
+      "doneMeans": "A working implementation that demonstrates track velocity, pr turnaround, code churn across teams."
+    },
+    "spineArea": {
+      "area": "Python Mastery & Secure Coding",
+      "topicToday": "Conditionals",
+      "microtaskToday": "Implement a basic prototype for Data types if applicable"
+    },
+    "questionTheme": "Security",
+    "questionOffset": 18,
+    "basicSkill": "Creativity\n  & originality",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 9,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Merge Conflict Resolution Assistant",
+      "category": "Git & Collaboration",
+      "doneMeans": "A working implementation that demonstrates guide developers through conflicts with context and suggestions."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Scope",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 0,
+    "basicSkill": "Problem\u2011solving",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 10,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Monorepo Management Tool",
+      "category": "Git & Collaboration",
+      "doneMeans": "A working implementation that demonstrates manage multiple projects with dependency tracking."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Decorators",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 3,
+    "basicSkill": "Metacognitive\n  regulation",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 11,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Advanced Promise Scheduler",
+      "category": "JavaScript Core",
+      "doneMeans": "A working implementation that demonstrates execute promises with rate limiting, priority, and retry logic."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Generators",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 6,
+    "basicSkill": "Self\u2011regulated\n  learning skills",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 12,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Event Loop Visualizer",
+      "category": "JavaScript Core",
+      "doneMeans": "A working implementation that demonstrates interactive visualization of js event loop execution."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Context Managers",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 9,
+    "basicSkill": "Empathy\n  & social cognition",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 13,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Memory Leak Detector",
+      "category": "JavaScript Core",
+      "doneMeans": "A working implementation that demonstrates automatically detect and report memory leaks in node apps."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Scope",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 12,
+    "basicSkill": "Moral\n  reasoning & ethical decision\u2011making",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 14,
+    "phase": "Foundation",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 15,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Module Bundler Mini",
+      "category": "JavaScript Core",
+      "doneMeans": "A working implementation that demonstrates simple bundler supporting es6 modules and tree-shaking."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Generators",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 15,
+    "basicSkill": "Prospective\n  memory & time management",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 16,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Production HTTP Server",
+      "category": "Backend Basics",
+      "doneMeans": "A working implementation that demonstrates http server with clustering, health checks, and metrics."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Context Managers",
+      "microtaskToday": "Implement a basic prototype for Scope if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 18,
+    "basicSkill": "Digital\n  literacy & source evaluation",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 17,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "RESTful API with OpenAPI",
+      "category": "Backend Basics",
+      "doneMeans": "A working implementation that demonstrates fully documented rest api with auto-generated client sdks."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Custom Exceptions",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 21,
+    "basicSkill": "Cognitive\n  flexibility",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 18,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Advanced JWT Authentication",
+      "category": "Backend Basics",
+      "doneMeans": "A working implementation that demonstrates secure auth with access/refresh tokens and revocation."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Logging",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 24,
+    "basicSkill": "Communication",
+    "payable": {
+      "name": "Sales Negotiation Mastery",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 19,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "API Gateway with Rate Limiting",
+      "category": "Backend Basics",
+      "doneMeans": "A working implementation that demonstrates gateway with per-user limits, quota management, and analytics."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Custom Exceptions",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 27,
+    "basicSkill": "Active\n  listening",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 20,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Distributed Request Tracing",
+      "category": "Backend Basics",
+      "doneMeans": "A working implementation that demonstrates trace requests across services with timing and errors."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Logging",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 30,
+    "basicSkill": "Clear\n  articulation",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 21,
+    "phase": "Foundation",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 22,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "CQRS Implementation",
+      "category": "Backend Advanced",
+      "doneMeans": "A working implementation that demonstrates separate read and write paths for scalability."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Logging",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 33,
+    "basicSkill": "Eye\n  contact",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 23,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "GraphQL Federation Gateway",
+      "category": "Backend Advanced",
+      "doneMeans": "A working implementation that demonstrates unified graphql api across multiple services."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Custom Exceptions",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 36,
+    "basicSkill": "Assertive\n  handshake",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 24,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Background Job System",
+      "category": "Backend Advanced",
+      "doneMeans": "A working implementation that demonstrates robust background processing with monitoring."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Logging",
+      "microtaskToday": "Implement a basic prototype for Custom Exceptions if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 39,
+    "basicSkill": "Leadership",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 25,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Webhook Management System",
+      "category": "Backend Advanced",
+      "doneMeans": "A working implementation that demonstrates reliable webhook delivery with subscriber management."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "__init__",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 42,
+    "basicSkill": "Vision\u2011setting",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 26,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Advanced Connection Pooling",
+      "category": "Databases",
+      "doneMeans": "A working implementation that demonstrates optimized pooling for high-concurrency workloads."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "__new__",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 45,
+    "basicSkill": "Delegation\n  & empowerment",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 27,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Query Performance Analyzer",
+      "category": "Databases",
+      "doneMeans": "A working implementation that demonstrates automatically detect and fix slow queries."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "type()",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 48,
+    "basicSkill": "Accountability\n  enforcement",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 28,
+    "phase": "Foundation",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 29,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Database Replication Manager",
+      "category": "Databases",
+      "doneMeans": "A working implementation that demonstrates automated replication with health checks and failover."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "__init__",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 51,
+    "basicSkill": "Inspiring\n  followership",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 30,
+    "phase": "Foundation",
+    "reviewDay": false,
+    "checkpointDay": true,
+    "project": {
+      "name": "Time-Series Database",
+      "category": "Databases",
+      "doneMeans": "A working implementation that demonstrates custom time-series db for metrics and logs."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "__new__",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 54,
+    "basicSkill": "Emotional\n  Intelligence",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": {
+      "phaseCompleted": "Foundation",
+      "projectsRange": "D1\u2013D30",
+      "selfAssessQuestions": [
+        "What can you build today that you couldn't 30 days ago?",
+        "What still feels like theory with no hands-on proof?",
+        "What did you compress or skip that will hurt you later?"
+      ],
+      "recoveryPath": {
+        "cut": [
+          "specific things that can be deferred"
+        ],
+        "keepNomatterWhat": [
+          "non-negotiable core items"
+        ],
+        "minimumViable": "one sentence describing the compressed path"
+      }
+    }
+  },
+  {
+    "day": 31,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Consistent Hashing Ring",
+      "category": "Distributed Systems",
+      "doneMeans": "A working implementation that demonstrates distribute data across nodes with minimal rebalancing."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "type()",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 57,
+    "basicSkill": "Self\u2011awareness",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 32,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Leader Election System",
+      "category": "Distributed Systems",
+      "doneMeans": "A working implementation that demonstrates elect leader in distributed system with fault tolerance."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "dir()",
+      "microtaskToday": "Implement a basic prototype for __init__ if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 60,
+    "basicSkill": "Self\u2011regulation",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 33,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Distributed Lock Manager",
+      "category": "Distributed Systems",
+      "doneMeans": "A working implementation that demonstrates coordinate access to shared resources across nodes."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "asyncio",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 63,
+    "basicSkill": "Rapport\n  building",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 34,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Message Queue from Scratch",
+      "category": "Distributed Systems",
+      "doneMeans": "A working implementation that demonstrates build kafka-like message queue with guarantees."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "await",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 66,
+    "basicSkill": "Emotional\n  resilience",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 35,
+    "phase": "Distributed",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 36,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Metrics Collection Pipeline",
+      "category": "Observability",
+      "doneMeans": "A working implementation that demonstrates collect and aggregate metrics from 1000s of services."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "asyncio",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 69,
+    "basicSkill": "Logical\n  reasoning",
+    "payable": {
+      "name": "Human Nature",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 37,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Distributed Tracing System",
+      "category": "Observability",
+      "doneMeans": "A working implementation that demonstrates full distributed tracing with dependency graphs."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "await",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 72,
+    "basicSkill": "Bias\n  detection",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 38,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Log Aggregation Platform",
+      "category": "Observability",
+      "doneMeans": "A working implementation that demonstrates centralized logging for distributed systems."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Event Loops",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 75,
+    "basicSkill": "Question\n  framing",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 39,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "SLO Tracking & Alerting",
+      "category": "Observability",
+      "doneMeans": "A working implementation that demonstrates track reliability targets and alert on violations."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "asyncio",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 78,
+    "basicSkill": "Scenario\n  analysis",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 40,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Custom APM System",
+      "category": "Observability",
+      "doneMeans": "A working implementation that demonstrates track application performance in production."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "await",
+      "microtaskToday": "Implement a basic prototype for asyncio if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 81,
+    "basicSkill": "Risk\n  assessment",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 41,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Load Testing Framework",
+      "category": "Performance",
+      "doneMeans": "A working implementation that demonstrates generate millions of requests to find breaking points."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Sanitization",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 84,
+    "basicSkill": "Cost\u2011benefit\n  analysis",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 42,
+    "phase": "Distributed",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 43,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Backpressure Handler",
+      "category": "Performance",
+      "doneMeans": "A working implementation that demonstrates prevent system overload with backpressure mechanisms."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Sanitization",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 87,
+    "basicSkill": "Intuition\n  calibration",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 44,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Resource Usage Profiler",
+      "category": "Performance",
+      "doneMeans": "A working implementation that demonstrates continuous profiling in production."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Injection Prevention",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 90,
+    "basicSkill": "Contingency\n  planning",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 45,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Cache Optimization System",
+      "category": "Performance",
+      "doneMeans": "A working implementation that demonstrates intelligent caching with optimal hit rates."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Sanitization",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 93,
+    "basicSkill": "Negotiation",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 46,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Circuit Breaker Implementation",
+      "category": "Resilience",
+      "doneMeans": "A working implementation that demonstrates prevent cascading failures with circuit breakers."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Injection Prevention",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 96,
+    "basicSkill": "Persuasion\n  techniques",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 47,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Retry & Timeout Manager",
+      "category": "Resilience",
+      "doneMeans": "A working implementation that demonstrates intelligent retries without overwhelming downstream."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Sanitization",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 99,
+    "basicSkill": "Concession\n  crafting",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 48,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Chaos Engineering Platform",
+      "category": "Resilience",
+      "doneMeans": "A working implementation that demonstrates test system resilience by injecting failures."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Injection Prevention",
+      "microtaskToday": "Implement a basic prototype for Sanitization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 102,
+    "basicSkill": "BATNA\n  development",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 49,
+    "phase": "Distributed",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 50,
+    "phase": "Distributed",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Bulkhead Pattern Isolation",
+      "category": "Resilience",
+      "doneMeans": "A working implementation that demonstrates isolate failures to prevent total system collapse."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "passlib",
+      "microtaskToday": "Implement a basic prototype for pycryptodome if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 105,
+    "basicSkill": "Networking",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 51,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Multi-Stage Docker Builds",
+      "category": "Containers",
+      "doneMeans": "A working implementation that demonstrates minimal production images with security best practices."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "requests security",
+      "microtaskToday": "Implement a basic prototype for pycryptodome if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 108,
+    "basicSkill": "Elevator\u2011pitch\n  mastery",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 52,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Container Security Scanner",
+      "category": "Containers",
+      "doneMeans": "A working implementation that demonstrates scan images for cves and policy violations."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "pycryptodome",
+      "microtaskToday": "Implement a basic prototype for pycryptodome if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 111,
+    "basicSkill": "Value\u2011first\n  outreach",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 53,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Private Container Registry",
+      "category": "Containers",
+      "doneMeans": "A working implementation that demonstrates self-hosted registry with authentication."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "passlib",
+      "microtaskToday": "Implement a basic prototype for pycryptodome if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 114,
+    "basicSkill": "Follow\u2011up\n  discipline",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 54,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Container Orchestration Mini",
+      "category": "Containers",
+      "doneMeans": "A working implementation that demonstrates simple container orchestrator understanding fundamentals."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "requests security",
+      "microtaskToday": "Implement a basic prototype for pycryptodome if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 117,
+    "basicSkill": "Strategic\n  introductions",
+    "payable": {
+      "name": "Emotional Intelligence",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 55,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Image Build Optimization",
+      "category": "Containers",
+      "doneMeans": "A working implementation that demonstrates speed up image builds by 10x."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "pycryptodome",
+      "microtaskToday": "Implement a basic prototype for pycryptodome if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 120,
+    "basicSkill": "Relationship\n  nurturing",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 56,
+    "phase": "Cloud",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 57,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "HPA with Custom Metrics",
+      "category": "Kubernetes",
+      "doneMeans": "A working implementation that demonstrates scale based on application-specific metrics."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Operations",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 123,
+    "basicSkill": "Prioritization\n  (Eisenhower Matrix)",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 58,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "GitOps Deployment Pipeline",
+      "category": "Kubernetes",
+      "doneMeans": "A working implementation that demonstrates automated deployments from git with rollback."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Complexity",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 126,
+    "basicSkill": "Task\n  batching & deep\u2011work",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 59,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Service Mesh Implementation",
+      "category": "Kubernetes",
+      "doneMeans": "A working implementation that demonstrates advanced service-to-service communication."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Operations",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 129,
+    "basicSkill": "Scheduling\n  with buffers",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 60,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": true,
+    "project": {
+      "name": "K8s Backup & Disaster Recovery",
+      "category": "Kubernetes",
+      "doneMeans": "A working implementation that demonstrates complete cluster backup and recovery solution."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Complexity",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 132,
+    "basicSkill": "Deadline\n  adherence",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": {
+      "phaseCompleted": "Cloud",
+      "projectsRange": "D31\u2013D60",
+      "selfAssessQuestions": [
+        "What can you build today that you couldn't 30 days ago?",
+        "What still feels like theory with no hands-on proof?",
+        "What did you compress or skip that will hurt you later?"
+      ],
+      "recoveryPath": {
+        "cut": [
+          "specific things that can be deferred"
+        ],
+        "keepNomatterWhat": [
+          "non-negotiable core items"
+        ],
+        "minimumViable": "one sentence describing the compressed path"
+      }
+    }
+  },
+  {
+    "day": 61,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Multi-Cloud Abstraction Layer",
+      "category": "Cloud Platforms",
+      "doneMeans": "A working implementation that demonstrates write once, deploy to aws/gcp/azure."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Operations",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 135,
+    "basicSkill": "Personal\n  Branding",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 62,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Cloud Cost Optimizer",
+      "category": "Cloud Platforms",
+      "doneMeans": "A working implementation that demonstrates automatically optimize cloud spending."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Complexity",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 138,
+    "basicSkill": "Professional\n  attire & grooming",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 63,
+    "phase": "Cloud",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 64,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Cloud Resource Manager",
+      "category": "Cloud Platforms",
+      "doneMeans": "A working implementation that demonstrates track and manage cloud resources at scale."
+    },
+    "spineArea": {
+      "area": "Data Structures & Scalable Algorithms",
+      "topicToday": "Complexity",
+      "microtaskToday": "Implement a basic prototype for Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 141,
+    "basicSkill": "Signature\n  introduction",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 65,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Hybrid Cloud Bridge",
+      "category": "Cloud Platforms",
+      "doneMeans": "A working implementation that demonstrates seamlessly connect on-premises and cloud."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Binary",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 144,
+    "basicSkill": "Online\n  presence",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 66,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Terraform Module Library",
+      "category": "IaC",
+      "doneMeans": "A working implementation that demonstrates reusable infrastructure components."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "AVL",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 147,
+    "basicSkill": "Thought\u2011leadership\n  content",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 67,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "State Management System",
+      "category": "IaC",
+      "doneMeans": "A working implementation that demonstrates manage terraform state at enterprise scale."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Red-Black",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 150,
+    "basicSkill": "Learning\n  Agility",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 68,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Infrastructure Testing Framework",
+      "category": "IaC",
+      "doneMeans": "A working implementation that demonstrates test infrastructure before deployment."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Traversals",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 153,
+    "basicSkill": "Metacognitive\n  reflection",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 69,
+    "phase": "Cloud",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Policy as Code Engine",
+      "category": "IaC",
+      "doneMeans": "A working implementation that demonstrates enforce policies on infrastructure changes."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Graph Search (BFS/DFS)",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 156,
+    "basicSkill": "Rapid\n  skill acquisition",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 70,
+    "phase": "Cloud",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 71,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Input Sanitization Engine",
+      "category": "App Security",
+      "doneMeans": "A working implementation that demonstrates prevent injection attacks with comprehensive sanitization."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "AVL",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 159,
+    "basicSkill": "Experimentation\n  mindset",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 72,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "OAuth2 Provider Implementation",
+      "category": "App Security",
+      "doneMeans": "A working implementation that demonstrates build complete oauth2 authorization server."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Red-Black",
+      "microtaskToday": "Implement a basic prototype for Binary if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 162,
+    "basicSkill": "Unlearning\n  bad habits",
+    "payable": {
+      "name": "Critical Thinking",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 73,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "CSRF & Clickjacking Protection",
+      "category": "App Security",
+      "doneMeans": "A working implementation that demonstrates comprehensive protection against web attacks."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Quick",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 165,
+    "basicSkill": "Divergent\n  thinking",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 74,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "API Security Gateway",
+      "category": "App Security",
+      "doneMeans": "A working implementation that demonstrates comprehensive api protection layer."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Merge",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 168,
+    "basicSkill": "Idea\n  synthesis",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 75,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Secret Scanning Tool",
+      "category": "App Security",
+      "doneMeans": "A working implementation that demonstrates detect secrets in code before commit."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Heap",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 171,
+    "basicSkill": "Conceptual\n  blending",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 76,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Zero-Trust Network Gateway",
+      "category": "Infra Security",
+      "doneMeans": "A working implementation that demonstrates zero-trust access to internal resources."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Binary Search",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 174,
+    "basicSkill": "Rapid\n  prototyping",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 77,
+    "phase": "Security",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 78,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Secrets Management Vault",
+      "category": "Infra Security",
+      "doneMeans": "A working implementation that demonstrates hashicorp vault-like secrets management."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Quick",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 177,
+    "basicSkill": "Resilience\n  & Stress Management",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 79,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Security Monitoring & SIEM",
+      "category": "Infra Security",
+      "doneMeans": "A working implementation that demonstrates detect security threats in real-time."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Merge",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 180,
+    "basicSkill": "Stress\u2011response\n  recognition",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 80,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Network Security Scanner",
+      "category": "Infra Security",
+      "doneMeans": "A working implementation that demonstrates automated security assessment of infrastructure."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Heap",
+      "microtaskToday": "Implement a basic prototype for Quick if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 183,
+    "basicSkill": "Recovery\n  rituals (sleep, meditation)",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 81,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "GDPR Compliance Toolkit",
+      "category": "Compliance",
+      "doneMeans": "A working implementation that demonstrates automate gdpr compliance requirements."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Dynamic Programming",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 186,
+    "basicSkill": "Adaptability\n  to change",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 82,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Audit Log System",
+      "category": "Compliance",
+      "doneMeans": "A working implementation that demonstrates immutable audit trail for compliance."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Greedy",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 189,
+    "basicSkill": "Persistence\n  through setbacks",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 83,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Policy Engine & Enforcement",
+      "category": "Compliance",
+      "doneMeans": "A working implementation that demonstrates centralized policy management and enforcement."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Backtracking",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 192,
+    "basicSkill": "Growth\u2011mindset\n  reinforcement",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 84,
+    "phase": "Security",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 85,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Data Classification System",
+      "category": "Compliance",
+      "doneMeans": "A working implementation that demonstrates automatically classify and protect sensitive data."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Greedy",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 195,
+    "basicSkill": "Storytelling\n  framework",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 86,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "End-to-End Encryption System",
+      "category": "Cryptography",
+      "doneMeans": "A working implementation that demonstrates whatsapp-style e2e encryption."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Backtracking",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 198,
+    "basicSkill": "Social\u2011proof\n  deployment",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 87,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Key Management Service",
+      "category": "Cryptography",
+      "doneMeans": "A working implementation that demonstrates enterprise key lifecycle management."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Dynamic Programming",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 201,
+    "basicSkill": "Authority\n  signaling",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 88,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Digital Signature System",
+      "category": "Cryptography",
+      "doneMeans": "A working implementation that demonstrates document signing with non-repudiation."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Greedy",
+      "microtaskToday": "Implement a basic prototype for Dynamic Programming if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 204,
+    "basicSkill": "Reciprocity\n  leverage",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 89,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Zero-Knowledge Proof System",
+      "category": "Cryptography",
+      "doneMeans": "A working implementation that demonstrates prove knowledge without revealing data."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Big-O",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 207,
+    "basicSkill": "Scarcity\n  & urgency cues",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 90,
+    "phase": "Security",
+    "reviewDay": false,
+    "checkpointDay": true,
+    "project": {
+      "name": "Homomorphic Encryption POC",
+      "category": "Cryptography",
+      "doneMeans": "A working implementation that demonstrates process data without decryption."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Space-Time Tradeoffs",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 210,
+    "basicSkill": "Public\n  Speaking",
+    "payable": {
+      "name": "Effective Communication",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": {
+      "phaseCompleted": "Security",
+      "projectsRange": "D61\u2013D90",
+      "selfAssessQuestions": [
+        "What can you build today that you couldn't 30 days ago?",
+        "What still feels like theory with no hands-on proof?",
+        "What did you compress or skip that will hurt you later?"
+      ],
+      "recoveryPath": {
+        "cut": [
+          "specific things that can be deferred"
+        ],
+        "keepNomatterWhat": [
+          "non-negotiable core items"
+        ],
+        "minimumViable": "one sentence describing the compressed path"
+      }
+    }
+  },
+  {
+    "day": 91,
+    "phase": "ML/AI",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 92,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Model Registry & Versioning",
+      "category": "MLOps",
+      "doneMeans": "A working implementation that demonstrates centralized model management."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Space-Time Tradeoffs",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 213,
+    "basicSkill": "Vocal\n  variety & pacing",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 93,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Feature Store",
+      "category": "MLOps",
+      "doneMeans": "A working implementation that demonstrates online/offline feature management."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Big-O",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 216,
+    "basicSkill": "Audience\n  engagement",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 94,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Model Serving Infrastructure",
+      "category": "MLOps",
+      "doneMeans": "A working implementation that demonstrates serve models at 10k+ rps."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Space-Time Tradeoffs",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 219,
+    "basicSkill": "Structured\n  messaging (opening, body, close)",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 95,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Model Monitoring System",
+      "category": "MLOps",
+      "doneMeans": "A working implementation that demonstrates monitor models in production."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Big-O",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 222,
+    "basicSkill": "Handling\n  Q&A with confidence",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 96,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Recommendation Engine",
+      "category": "AI Apps",
+      "doneMeans": "A working implementation that demonstrates netflix-style recommendation system."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Space-Time Tradeoffs",
+      "microtaskToday": "Implement a basic prototype for Big-O if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 225,
+    "basicSkill": "Writing\n  & Documentation",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 97,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "NLP Processing Pipeline",
+      "category": "AI Apps",
+      "doneMeans": "A working implementation that demonstrates production nlp pipeline with multiple models."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 228,
+    "basicSkill": "Clarity\n  and brevity",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 98,
+    "phase": "ML/AI",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 99,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "RAG Pipeline",
+      "category": "AI Apps",
+      "doneMeans": "A working implementation that demonstrates chatgpt-style document qa system."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 231,
+    "basicSkill": "Tone\u2011matching\n  for audience",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 100,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "AI Content Moderation",
+      "category": "AI Apps",
+      "doneMeans": "A working implementation that demonstrates automatic content moderation."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 234,
+    "basicSkill": "Concise\n  email etiquette",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 101,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Real-Time Feature Engineering",
+      "category": "Advanced ML",
+      "doneMeans": "A working implementation that demonstrates sub-10ms feature computation for inference."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 237,
+    "basicSkill": "Argument\n  scaffolding",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 102,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Model Ensemble System",
+      "category": "Advanced ML",
+      "doneMeans": "A working implementation that demonstrates combine multiple models for better predictions."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 240,
+    "basicSkill": "Analytical\n  & Quantitative Skills",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 103,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "A/B Testing Platform for ML",
+      "category": "Advanced ML",
+      "doneMeans": "A working implementation that demonstrates test model variants in production."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 243,
+    "basicSkill": "Data\n  interpretation",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 104,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Federated Learning System",
+      "category": "Advanced ML",
+      "doneMeans": "A working implementation that demonstrates train models without centralizing data."
+    },
+    "spineArea": {
+      "area": "OOP & Robust Design",
+      "topicToday": "Practical Examples",
+      "microtaskToday": "Implement a basic prototype for Practical Examples if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 246,
+    "basicSkill": "Basic\n  statistics (mean, variance)",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 105,
+    "phase": "ML/AI",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 106,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Adversarial Defense System",
+      "category": "ML Security",
+      "doneMeans": "A working implementation that demonstrates protect models from adversarial examples."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Observer",
+      "microtaskToday": "Implement a basic prototype for Singleton if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 249,
+    "basicSkill": "Trend\u2011spotting",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 107,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Model Fairness Auditing",
+      "category": "ML Security",
+      "doneMeans": "A working implementation that demonstrates ensure ml fairness and detect bias."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Factory",
+      "microtaskToday": "Implement a basic prototype for Singleton if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 252,
+    "basicSkill": "Hypothesis\n  testing",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 108,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Differential Privacy for ML",
+      "category": "ML Security",
+      "doneMeans": "A working implementation that demonstrates train models with privacy guarantees."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Singleton",
+      "microtaskToday": "Implement a basic prototype for Singleton if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 255,
+    "basicSkill": "Financial\n  Literacy",
+    "payable": {
+      "name": "Time Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 109,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Model Explainability Tools",
+      "category": "ML Security",
+      "doneMeans": "A working implementation that demonstrates explain model predictions for stakeholders."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Observer",
+      "microtaskToday": "Implement a basic prototype for Singleton if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 258,
+    "basicSkill": "Budget\n  creation",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 110,
+    "phase": "ML/AI",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Data Poisoning Detection",
+      "category": "ML Security",
+      "doneMeans": "A working implementation that demonstrates detect malicious training data."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Factory",
+      "microtaskToday": "Implement a basic prototype for Singleton if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 261,
+    "basicSkill": "Cash\u2011flow\n  forecasting",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 111,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Advanced Code Splitting",
+      "category": "React Perf",
+      "doneMeans": "A working implementation that demonstrates reduce initial bundle size by 80%."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Singleton",
+      "microtaskToday": "Implement a basic prototype for Singleton if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 264,
+    "basicSkill": "ROI\n  calculation",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 112,
+    "phase": "Advanced Frontend",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 113,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "React Server Components",
+      "category": "React Perf",
+      "doneMeans": "A working implementation that demonstrates next-gen react rendering."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Layered Architecture",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 267,
+    "basicSkill": "Basic\n  accounting principles",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 114,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "State Management Optimizer",
+      "category": "React Perf",
+      "doneMeans": "A working implementation that demonstrates prevent unnecessary re-renders."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Dependency Injection",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 270,
+    "basicSkill": "Cultural\n  & Social Intelligence",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 115,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "React Performance Profiler",
+      "category": "React Perf",
+      "doneMeans": "A working implementation that demonstrates automatically detect react performance issues."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Layered Architecture",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 273,
+    "basicSkill": "Cross\u2011cultural\n  awareness",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 116,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "WebSocket Gateway with Load Balancing",
+      "category": "Real-Time",
+      "doneMeans": "A working implementation that demonstrates scale websockets to millions of connections."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Dependency Injection",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 276,
+    "basicSkill": "Language\n  etiquette",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 117,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Presence & Typing Indicators",
+      "category": "Real-Time",
+      "doneMeans": "A working implementation that demonstrates build slack-style presence system."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Layered Architecture",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 279,
+    "basicSkill": "Norm\u2011reading\n  in new contexts",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 118,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Collaborative Editing Engine",
+      "category": "Real-Time",
+      "doneMeans": "A working implementation that demonstrates google docs-style collaboration."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Dependency Injection",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 282,
+    "basicSkill": "Inclusive\n  communication",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 119,
+    "phase": "Advanced Frontend",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 120,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": true,
+    "project": {
+      "name": "Real-Time Notification System",
+      "category": "Real-Time",
+      "doneMeans": "A working implementation that demonstrates cross-platform notification delivery."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Dependency Injection",
+      "microtaskToday": "Implement a basic prototype for Layered Architecture if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 285,
+    "basicSkill": "Critical\n  thinking",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": {
+      "phaseCompleted": "Advanced Frontend",
+      "projectsRange": "D91\u2013D120",
+      "selfAssessQuestions": [
+        "What can you build today that you couldn't 30 days ago?",
+        "What still feels like theory with no hands-on proof?",
+        "What did you compress or skip that will hurt you later?"
+      ],
+      "recoveryPath": {
+        "cut": [
+          "specific things that can be deferred"
+        ],
+        "keepNomatterWhat": [
+          "non-negotiable core items"
+        ],
+        "minimumViable": "one sentence describing the compressed path"
+      }
+    }
+  },
+  {
+    "day": 121,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Service Worker Architecture",
+      "category": "PWA",
+      "doneMeans": "A working implementation that demonstrates full offline-first pwa."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "GIL Implications",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 288,
+    "basicSkill": "Analytical\n  thinking",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 122,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Background Sync System",
+      "category": "PWA",
+      "doneMeans": "A working implementation that demonstrates sync data when connection returns."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "Race Conditions",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 291,
+    "basicSkill": "Decision\u2011making",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 123,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Push Notification Engine",
+      "category": "PWA",
+      "doneMeans": "A working implementation that demonstrates targeted push notifications."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "GIL Implications",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 294,
+    "basicSkill": "Working\n  (short\u2011term) memory",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 124,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "App Installation Manager",
+      "category": "PWA",
+      "doneMeans": "A working implementation that demonstrates optimize pwa installation flow."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "Race Conditions",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 297,
+    "basicSkill": "Long\u2011term\n  memory retention",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 125,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "PWA Performance Monitor",
+      "category": "PWA",
+      "doneMeans": "A working implementation that demonstrates monitor pwa health in production."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "GIL Implications",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 300,
+    "basicSkill": "Attention\n  span & cognitive control",
+    "payable": {
+      "name": "Problem Solving",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 126,
+    "phase": "Advanced Frontend",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 127,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Image Optimization Pipeline",
+      "category": "Web Perf",
+      "doneMeans": "A working implementation that demonstrates automatically optimize all images."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "GIL Implications",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 303,
+    "basicSkill": "Creativity\n  & originality",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 128,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Critical CSS Extractor",
+      "category": "Web Perf",
+      "doneMeans": "A working implementation that demonstrates instant first paint."
+    },
+    "spineArea": {
+      "area": "Concurrent & Scalable Execution",
+      "topicToday": "Race Conditions",
+      "microtaskToday": "Implement a basic prototype for GIL Implications if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 306,
+    "basicSkill": "Problem\u2011solving",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 129,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Performance Budget Enforcer",
+      "category": "Web Perf",
+      "doneMeans": "A working implementation that demonstrates prevent performance regressions."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 309,
+    "basicSkill": "Metacognitive\n  regulation",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 130,
+    "phase": "Advanced Frontend",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Resource Loading Optimizer",
+      "category": "Web Perf",
+      "doneMeans": "A working implementation that demonstrates optimize resource loading strategy."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 312,
+    "basicSkill": "Self\u2011regulated\n  learning skills",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 131,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Event Bus Implementation",
+      "category": "Event-Driven",
+      "doneMeans": "A working implementation that demonstrates build enterprise event bus."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 315,
+    "basicSkill": "Empathy\n  & social cognition",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 132,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Event Sourcing System",
+      "category": "Event-Driven",
+      "doneMeans": "A working implementation that demonstrates implement event sourcing pattern."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 318,
+    "basicSkill": "Moral\n  reasoning & ethical decision\u2011making",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 133,
+    "phase": "Mastery",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 134,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "CQRS with Event Sourcing",
+      "category": "Event-Driven",
+      "doneMeans": "A working implementation that demonstrates complete cqrs+es implementation."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 321,
+    "basicSkill": "Prospective\n  memory & time management",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 135,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Event-Driven Microservices",
+      "category": "Event-Driven",
+      "doneMeans": "A working implementation that demonstrates microservices with event choreography."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 324,
+    "basicSkill": "Digital\n  literacy & source evaluation",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 136,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "GraphQL Federation Gateway",
+      "category": "API Design",
+      "doneMeans": "A working implementation that demonstrates unified graphql across services."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Network & File Operations",
+      "microtaskToday": "Implement a basic prototype for Network & File Operations if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 327,
+    "basicSkill": "Cognitive\n  flexibility",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 137,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Real-Time GraphQL Subscriptions",
+      "category": "API Design",
+      "doneMeans": "A working implementation that demonstrates live data updates via graphql."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Kafka",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 330,
+    "basicSkill": "Communication",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 138,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "API Versioning Strategy",
+      "category": "API Design",
+      "doneMeans": "A working implementation that demonstrates evolve apis without breaking clients."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "RabbitMQ",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 333,
+    "basicSkill": "Active\n  listening",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 139,
+    "phase": "Mastery",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "API Rate Limiting & Quotas",
+      "category": "API Design",
+      "doneMeans": "A working implementation that demonstrates fair api usage policies."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Celery",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 336,
+    "basicSkill": "Clear\n  articulation",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 140,
+    "phase": "Mastery",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 141,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Project Architecture & Planning",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates design complete saas architecture."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "RabbitMQ",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 339,
+    "basicSkill": "Eye\n  contact",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 142,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Authentication & Authorization",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates complete auth system with tenant isolation."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Celery",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 342,
+    "basicSkill": "Assertive\n  handshake",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 143,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Core Business Logic & APIs",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates production-ready api layer."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Kafka",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 345,
+    "basicSkill": "Leadership",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 144,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Real-Time Features",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates live collaboration and updates."
+    },
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "RabbitMQ",
+      "microtaskToday": "Implement a basic prototype for Kafka if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 348,
+    "basicSkill": "Vision\u2011setting",
+    "payable": {
+      "name": "Creativity and Innovation",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 145,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Frontend Application",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates production-quality user interface."
+    },
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Normalization",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 351,
+    "basicSkill": "Delegation\n  & empowerment",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 146,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Observability Stack",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates complete production monitoring."
+    },
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Transactions",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 354,
+    "basicSkill": "Accountability\n  enforcement",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 147,
+    "phase": "Capstone",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 148,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "CI/CD & Infrastructure",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates automated deployment pipeline."
+    },
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Transactions",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 357,
+    "basicSkill": "Inspiring\n  followership",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 149,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": {
+      "name": "Performance Optimization",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates optimize for production scale."
+    },
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Normalization",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 360,
+    "basicSkill": "Emotional\n  Intelligence",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 150,
+    "phase": "Capstone",
+    "reviewDay": false,
+    "checkpointDay": true,
+    "project": {
+      "name": "Documentation & Launch",
+      "category": "Full Stack",
+      "doneMeans": "A working implementation that demonstrates complete production-ready saas."
+    },
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Transactions",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 363,
+    "basicSkill": "Self\u2011awareness",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": {
+      "phaseCompleted": "Capstone",
+      "projectsRange": "D121\u2013D150",
+      "selfAssessQuestions": [
+        "What can you build today that you couldn't 30 days ago?",
+        "What still feels like theory with no hands-on proof?",
+        "What did you compress or skip that will hurt you later?"
+      ],
+      "recoveryPath": {
+        "cut": [
+          "specific things that can be deferred"
+        ],
+        "keepNomatterWhat": [
+          "non-negotiable core items"
+        ],
+        "minimumViable": "one sentence describing the compressed path"
+      }
+    }
+  },
+  {
+    "day": 151,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Normalization",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 366,
+    "basicSkill": "Self\u2011regulation",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 152,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "Databases: SQL & Scalability",
+      "topicToday": "Transactions",
+      "microtaskToday": "Implement a basic prototype for Normalization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 369,
+    "basicSkill": "Rapport\n  building",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 153,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 372,
+    "basicSkill": "Emotional\n  resilience",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 154,
+    "phase": "Integration",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 155,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 375,
+    "basicSkill": "Logical\n  reasoning",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 156,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 378,
+    "basicSkill": "Bias\n  detection",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 157,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 381,
+    "basicSkill": "Question\n  framing",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 158,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 384,
+    "basicSkill": "Scenario\n  analysis",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 159,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 387,
+    "basicSkill": "Risk\n  assessment",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 160,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Read/Write Optimization",
+      "microtaskToday": "Implement a basic prototype for Read/Write Optimization if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 390,
+    "basicSkill": "Cost\u2011benefit\n  analysis",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 161,
+    "phase": "Integration",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 162,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "NoSQL & Robust Data Handling",
+      "topicToday": "Redis",
+      "microtaskToday": "Implement a basic prototype for MongoDB if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 393,
+    "basicSkill": "Intuition\n  calibration",
+    "payable": {
+      "name": "Mental Resilience",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 163,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "NoSQL & Robust Data Handling",
+      "topicToday": "Cassandra",
+      "microtaskToday": "Implement a basic prototype for MongoDB if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 396,
+    "basicSkill": "Contingency\n  planning",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 164,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "NoSQL & Robust Data Handling",
+      "topicToday": "MongoDB",
+      "microtaskToday": "Implement a basic prototype for MongoDB if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 399,
+    "basicSkill": "Negotiation",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 165,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "NoSQL & Robust Data Handling",
+      "topicToday": "Redis",
+      "microtaskToday": "Implement a basic prototype for MongoDB if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 402,
+    "basicSkill": "Persuasion\n  techniques",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 166,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "NoSQL & Robust Data Handling",
+      "topicToday": "Cassandra",
+      "microtaskToday": "Implement a basic prototype for MongoDB if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 405,
+    "basicSkill": "Concession\n  crafting",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 167,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "NoSQL & Robust Data Handling",
+      "topicToday": "MongoDB",
+      "microtaskToday": "Implement a basic prototype for MongoDB if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 408,
+    "basicSkill": "BATNA\n  development",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 168,
+    "phase": "Integration",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 169,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Consistency Models",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 411,
+    "basicSkill": "Networking",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 170,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "CAP Theorem",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 414,
+    "basicSkill": "Elevator\u2011pitch\n  mastery",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 171,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Consistency Models",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 417,
+    "basicSkill": "Value\u2011first\n  outreach",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 172,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "CAP Theorem",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 420,
+    "basicSkill": "Follow\u2011up\n  discipline",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 173,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Consistency Models",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 423,
+    "basicSkill": "Strategic\n  introductions",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 174,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "CAP Theorem",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 426,
+    "basicSkill": "Relationship\n  nurturing",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 175,
+    "phase": "Integration",
+    "reviewDay": true,
+    "checkpointDay": false,
+    "reviewNote": "Look at projects from this week. Fix the weakest one. Answer your 3 hardest questions cold. Write 3 honest sentences about what is stronger and what is still pretend.",
+    "project": null,
+    "spineArea": null,
+    "questionTheme": null,
+    "questionOffset": null,
+    "basicSkill": null,
+    "payable": null,
+    "checkpointNote": null
+  },
+  {
+    "day": 176,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "CAP Theorem",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 429,
+    "basicSkill": "Prioritization\n  (Eisenhower Matrix)",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 177,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Consistency Models",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 432,
+    "basicSkill": "Task\n  batching & deep\u2011work",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 178,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "CAP Theorem",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 435,
+    "basicSkill": "Scheduling\n  with buffers",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 179,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": false,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "Consistency Models",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 438,
+    "basicSkill": "Deadline\n  adherence",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": null
+  },
+  {
+    "day": 180,
+    "phase": "Integration",
+    "reviewDay": false,
+    "checkpointDay": true,
+    "project": null,
+    "spineArea": {
+      "area": "nan",
+      "topicToday": "CAP Theorem",
+      "microtaskToday": "Implement a basic prototype for Consistency Models if applicable"
+    },
+    "questionTheme": "System Design",
+    "questionOffset": 441,
+    "basicSkill": "Personal\n  Branding",
+    "payable": {
+      "name": "Money Management",
+      "book": "Industry standard book 1",
+      "dailyTask": "Read 10 pages or practice one micro-exercise."
+    },
+    "checkpointNote": {
+      "phaseCompleted": "Integration",
+      "projectsRange": "D151\u2013D180",
+      "selfAssessQuestions": [
+        "What can you build today that you couldn't 30 days ago?",
+        "What still feels like theory with no hands-on proof?",
+        "What did you compress or skip that will hurt you later?"
+      ],
+      "recoveryPath": {
+        "cut": [
+          "specific things that can be deferred"
+        ],
+        "keepNomatterWhat": [
+          "non-negotiable core items"
+        ],
+        "minimumViable": "one sentence describing the compressed path"
+      }
+    }
+  }
+]

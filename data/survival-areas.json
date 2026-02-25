@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1,
+    "area": "System Design",
+    "why": "AI can write a function \u2014 it cannot decide Kafka vs RabbitMQ for your throughput",
+    "topics": [
+      "CAP theorem, consistency models, partitioning",
+      "Message queues: Kafka, RabbitMQ, SQS decision criteria",
+      "Database selection: SQL vs NoSQL vs time-series",
+      "Caching: write-through, write-back, cache-aside, invalidation",
+      "Load balancing, rate limiting, circuit breaker patterns"
+    ],
+    "resources": [
+      "Designing Data-Intensive Applications \u2014 Kleppmann",
+      "System Design Primer (GitHub \u2014 free)",
+      "Google SRE Book (free online)"
+    ]
+  },
+  {
+    "id": 2,
+    "area": "Model Training & Fine-Tuning Basics",
+    "why": "You don't need a PhD in ML, but you must know how to adapt existing models to new data.",
+    "topics": [
+      "Transfer learning",
+      "LoRA and QLoRA",
+      "HuggingFace basics",
+      "Data prep"
+    ],
+    "resources": [
+      "Fast.ai course",
+      "HuggingFace NLP course"
+    ]
+  },
+  {
+    "id": 3,
+    "area": "Distributed Tracing & Observability",
+    "why": "When a microservice fails in production, AI can't figure out which of the 50 services caused it\u2014you have to.",
+    "topics": [
+      "OpenTelemetry",
+      "Prometheus & Grafana",
+      "Log aggregation (ELK)",
+      "Distributed tracing (Jaeger)"
+    ],
+    "resources": [
+      "Datadog tutorials",
+      "OpenTelemetry docs"
+    ]
+  },
+  {
+    "id": 4,
+    "area": "Advanced Security & Cryptography",
+    "why": "AI writes insecure code constantly. You need to verify its outputs and architect secure systems.",
+    "topics": [
+      "OAuth2/OIDC",
+      "JWTs and session management",
+      "Encryption at rest/transit",
+      "Zero-trust architecture"
+    ],
+    "resources": [
+      "OWASP Top 10",
+      "Crypto101"
+    ]
+  },
+  {
+    "id": 5,
+    "area": "Cloud Infrastructure & FinOps",
+    "why": "AI can deploy code but it will happily spin up $10,000/month of resources. You need to optimize.",
+    "topics": [
+      "Terraform/IaC",
+      "AWS/GCP cost optimization",
+      "Serverless vs Containers",
+      "Autoscaling policies"
+    ],
+    "resources": [
+      "AWS Well-Architected Framework"
+    ]
+  },
+  {
+    "id": 6,
+    "area": "High-Performance Data Engineering",
+    "why": "Data pipelines are the backbone of modern apps. You need to move TBs of data efficiently.",
+    "topics": [
+      "Batch vs Stream processing",
+      "Apache Spark/Flink",
+      "Data warehouses (Snowflake/BigQuery)",
+      "ETL/ELT"
+    ],
+    "resources": [
+      "Data Engineering Cookbook"
+    ]
+  },
+  {
+    "id": 7,
+    "area": "Developer Productivity Automation",
+    "why": "You must build the tools that orchestrate AI agents for your team's workflow.",
+    "topics": [
+      "CI/CD pipelines (GitHub Actions)",
+      "Custom CLI tools",
+      "Agentic orchestration",
+      "Code review automation"
+    ],
+    "resources": [
+      "GitHub Actions docs"
+    ]
+  }
+]

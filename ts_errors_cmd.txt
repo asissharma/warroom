@@ -1,0 +1,18 @@
+src/components/views/AnalyticsView.tsx(2,39): error TS2305: Module '"@/data/learningData"' has no exported member 'SKILLS'.
+src/components/views/VaultView.tsx(65,98): error TS2339: Property 'title' does not exist on type '{ id: string; type: string; focusArea: string; text: string; difficulty: number; weight: number; category: string; phase: string; timeEst: number; }'.
+src/components/views/VaultView.tsx(74,121): error TS2339: Property 'q' does not exist on type '{ id: string; type: string; text: string; difficulty: number; weight: number; category: string; phase: string; timeEst: number; }'.
+src/components/views/VaultView.tsx(82,26): error TS2304: Cannot find name 'SKILLS'.
+src/components/views/VaultView.tsx(82,40): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/components/views/VaultView.tsx(82,74): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/components/views/VaultView.tsx(82,77): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/components/views/VaultView.tsx(89,26): error TS2304: Cannot find name 'SKILLS'.
+src/components/views/VaultView.tsx(89,40): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/components/views/VaultView.tsx(89,74): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/components/views/VaultView.tsx(89,77): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/components/views/VaultView.tsx(90,45): error TS2552: Cannot find name 'SKILLS'. Did you mean 'pSkills'?
+src/components/views/VaultView.tsx(90,59): error TS7006: Parameter 'sk' implicitly has an 'any' type.
+src/hooks/useLearningOS.ts(2,39): error TS2305: Module '"@/data/learningData"' has no exported member 'SKILLS'.
+src/hooks/useLearningOS.ts(192,67): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/hooks/useLearningOS.ts(193,41): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/hooks/useLearningOS.ts(199,71): error TS7006: Parameter 's' implicitly has an 'any' type.
+src/hooks/useLearningOS.ts(200,41): error TS7006: Parameter 's' implicitly has an 'any' type.

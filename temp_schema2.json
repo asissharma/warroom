@@ -1,0 +1,14 @@
+{
+  "columns": [
+    "Focus Area",
+    "Topics",
+    "Subtopics",
+    "Sub-subtopics"
+  ],
+  "row1": {
+    "Focus Area": "Python Mastery & Secure Coding",
+    "Topics": "Core Python",
+    "Subtopics": "Syntax & Semantics",
+    "Sub-subtopics": "Data types, Operators, Loops, Conditionals"
+  }
+}

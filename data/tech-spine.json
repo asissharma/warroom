@@ -1,0 +1,347 @@
+[
+  {
+    "id": 1,
+    "area": "Python Mastery & Secure Coding",
+    "phase": "Foundation",
+    "weekStart": 1,
+    "weekEnd": 2,
+    "topics": [
+      "Data types",
+      "Operators",
+      "Loops",
+      "Conditionals"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Data types if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 2,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 2,
+    "weekEnd": 3,
+    "topics": [
+      "Scope",
+      "Decorators",
+      "Generators",
+      "Context Managers"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Scope if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 3,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 3,
+    "weekEnd": 4,
+    "topics": [
+      "Custom Exceptions",
+      "Logging"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Custom Exceptions if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 4,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 4,
+    "weekEnd": 5,
+    "topics": [
+      "__init__",
+      "__new__",
+      "type()",
+      "dir()"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for __init__ if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 5,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 5,
+    "weekEnd": 6,
+    "topics": [
+      "asyncio",
+      "await",
+      "Event Loops"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for asyncio if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 6,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 6,
+    "weekEnd": 7,
+    "topics": [
+      "Sanitization",
+      "Injection Prevention"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Sanitization if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 7,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 7,
+    "weekEnd": 8,
+    "topics": [
+      "pycryptodome",
+      "passlib",
+      "requests security"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for pycryptodome if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 8,
+    "area": "Data Structures & Scalable Algorithms",
+    "phase": "Foundation",
+    "weekStart": 8,
+    "weekEnd": 9,
+    "topics": [
+      "Operations",
+      "Complexity"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Operations if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 9,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 9,
+    "weekEnd": 10,
+    "topics": [
+      "Binary",
+      "AVL",
+      "Red-Black",
+      "Traversals",
+      "Graph Search (BFS/DFS)"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Binary if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 10,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 10,
+    "weekEnd": 11,
+    "topics": [
+      "Quick",
+      "Merge",
+      "Heap",
+      "Binary Search",
+      "Interpolation"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Quick if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 11,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 11,
+    "weekEnd": 12,
+    "topics": [
+      "Dynamic Programming",
+      "Greedy",
+      "Backtracking"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Dynamic Programming if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 12,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 12,
+    "weekEnd": 13,
+    "topics": [
+      "Big-O",
+      "Space-Time Tradeoffs"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Big-O if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 13,
+    "area": "OOP & Robust Design",
+    "phase": "Distributed",
+    "weekStart": 13,
+    "weekEnd": 14,
+    "topics": [
+      "Practical Examples"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Practical Examples if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 14,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 14,
+    "weekEnd": 15,
+    "topics": [
+      "Singleton",
+      "Observer",
+      "Factory"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Singleton if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 15,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 15,
+    "weekEnd": 16,
+    "topics": [
+      "Layered Architecture",
+      "Dependency Injection"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Layered Architecture if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 16,
+    "area": "Concurrent & Scalable Execution",
+    "phase": "Distributed",
+    "weekStart": 16,
+    "weekEnd": 17,
+    "topics": [
+      "GIL Implications",
+      "Race Conditions"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for GIL Implications if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 17,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 17,
+    "weekEnd": 18,
+    "topics": [
+      "Network & File Operations"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Network & File Operations if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 18,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 18,
+    "weekEnd": 19,
+    "topics": [
+      "Kafka",
+      "RabbitMQ",
+      "Celery"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Kafka if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 19,
+    "area": "Databases: SQL & Scalability",
+    "phase": "Distributed",
+    "weekStart": 19,
+    "weekEnd": 20,
+    "topics": [
+      "Normalization",
+      "Transactions"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Normalization if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 20,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 20,
+    "weekEnd": 21,
+    "topics": [
+      "Read/Write Optimization"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Read/Write Optimization if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 21,
+    "area": "NoSQL & Robust Data Handling",
+    "phase": "Distributed",
+    "weekStart": 21,
+    "weekEnd": 22,
+    "topics": [
+      "MongoDB",
+      "Redis",
+      "Cassandra"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for MongoDB if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 22,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 22,
+    "weekEnd": 23,
+    "topics": [
+      "Consistency Models",
+      "CAP Theorem"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Consistency Models if applicable"
+    ],
+    "resource": "Official Documentation"
+  }
+]

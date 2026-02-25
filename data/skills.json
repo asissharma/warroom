@@ -1,0 +1,215 @@
+{
+  "basic": [
+    "Critical\n  thinking",
+    "Analytical\n  thinking",
+    "Decision\u2011making",
+    "Working\n  (short\u2011term) memory",
+    "Long\u2011term\n  memory retention",
+    "Attention\n  span & cognitive control",
+    "Executive\n  function",
+    "Creativity\n  & originality",
+    "Problem\u2011solving",
+    "Metacognitive\n  regulation",
+    "Self\u2011regulated\n  learning skills",
+    "Empathy\n  & social cognition",
+    "Moral\n  reasoning & ethical decision\u2011making",
+    "Emotional\n  regulation & self\u2011esteem",
+    "Prospective\n  memory & time management",
+    "Digital\n  literacy & source evaluation",
+    "Cognitive\n  flexibility",
+    "Communication",
+    "Active\n  listening",
+    "Clear\n  articulation",
+    "Body\u2011language\n  alignment",
+    "Eye\n  contact",
+    "Assertive\n  handshake",
+    "Leadership",
+    "Vision\u2011setting",
+    "Delegation\n  & empowerment",
+    "Accountability\n  enforcement",
+    "Conflict\n  resolution",
+    "Inspiring\n  followership",
+    "Emotional\n  Intelligence",
+    "Self\u2011awareness",
+    "Self\u2011regulation",
+    "Rapport\n  building",
+    "Emotional\n  resilience",
+    "Problem\n  identification",
+    "Logical\n  reasoning",
+    "Bias\n  detection",
+    "Question\n  framing",
+    "Scenario\n  analysis",
+    "Risk\n  assessment",
+    "Cost\u2011benefit\n  analysis",
+    "Decisiveness\n  under pressure",
+    "Intuition\n  calibration",
+    "Contingency\n  planning",
+    "Negotiation",
+    "Persuasion\n  techniques",
+    "Concession\n  crafting",
+    "BATNA\n  development",
+    "Closing\n  & commitment",
+    "Networking",
+    "Elevator\u2011pitch\n  mastery",
+    "Value\u2011first\n  outreach",
+    "Follow\u2011up\n  discipline",
+    "Strategic\n  introductions",
+    "Relationship\n  nurturing",
+    "Time\n  Management",
+    "Prioritization\n  (Eisenhower Matrix)",
+    "Task\n  batching & deep\u2011work",
+    "Scheduling\n  with buffers",
+    "Deadline\n  adherence",
+    "Personal\n  Branding",
+    "Professional\n  attire & grooming",
+    "Confident\n  posture",
+    "Signature\n  introduction",
+    "Online\n  presence",
+    "Thought\u2011leadership\n  content",
+    "Learning\n  Agility",
+    "Metacognitive\n  reflection",
+    "Rapid\n  skill acquisition",
+    "Feedback\n  solicitation & integration",
+    "Experimentation\n  mindset",
+    "Unlearning\n  bad habits",
+    "Divergent\n  thinking",
+    "Idea\n  synthesis",
+    "Conceptual\n  blending",
+    "Rapid\n  prototyping",
+    "\u201cYes,\n  and\u2026\u201d improvisation",
+    "Resilience\n  & Stress Management",
+    "Stress\u2011response\n  recognition",
+    "Recovery\n  rituals (sleep, meditation)",
+    "Adaptability\n  to change",
+    "Persistence\n  through setbacks",
+    "Growth\u2011mindset\n  reinforcement",
+    "Influence\n  & Persuasion",
+    "Storytelling\n  framework",
+    "Social\u2011proof\n  deployment",
+    "Authority\n  signaling",
+    "Reciprocity\n  leverage",
+    "Scarcity\n  & urgency cues",
+    "Public\n  Speaking",
+    "Stage\n  presence & poise",
+    "Vocal\n  variety & pacing",
+    "Audience\n  engagement",
+    "Structured\n  messaging (opening, body, close)",
+    "Handling\n  Q&A with confidence",
+    "Writing\n  & Documentation",
+    "Clarity\n  and brevity",
+    "Structured\n  narrative (Pyramid Principle)",
+    "Tone\u2011matching\n  for audience",
+    "Concise\n  email etiquette",
+    "Argument\n  scaffolding",
+    "Analytical\n  & Quantitative Skills",
+    "Data\n  interpretation",
+    "Basic\n  statistics (mean, variance)",
+    "Spreadsheet\n  modeling",
+    "Trend\u2011spotting",
+    "Hypothesis\n  testing",
+    "Financial\n  Literacy",
+    "Budget\n  creation",
+    "Cash\u2011flow\n  forecasting",
+    "ROI\n  calculation",
+    "Break\u2011even\n  analysis",
+    "Basic\n  accounting principles",
+    "Cultural\n  & Social Intelligence",
+    "Cross\u2011cultural\n  awareness",
+    "Language\n  etiquette",
+    "Norm\u2011reading\n  in new contexts",
+    "Inclusive\n  communication",
+    "Adaptive\n  behavior"
+  ],
+  "payable": [
+    {
+      "name": "Sales Negotiation Mastery",
+      "dayStart": 1,
+      "dayEnd": 18,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Human Nature",
+      "dayStart": 19,
+      "dayEnd": 36,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Emotional Intelligence",
+      "dayStart": 37,
+      "dayEnd": 54,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Critical Thinking",
+      "dayStart": 55,
+      "dayEnd": 72,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Effective Communication",
+      "dayStart": 73,
+      "dayEnd": 90,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Time Management",
+      "dayStart": 91,
+      "dayEnd": 108,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "dayStart": 109,
+      "dayEnd": 126,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Creativity and Innovation",
+      "dayStart": 127,
+      "dayEnd": 144,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Mental Resilience",
+      "dayStart": 145,
+      "dayEnd": 162,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Money Management",
+      "dayStart": 163,
+      "dayEnd": 180,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    }
+  ]
+}

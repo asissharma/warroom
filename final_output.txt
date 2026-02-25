@@ -1,0 +1,2293 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE 1: data/projects.json
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```json
+[
+  {
+    "day": 1,
+    "phase": "Foundation",
+    "category": "CLI & Automation",
+    "name": "Advanced Development Environment Setup",
+    "doneMeans": "A working implementation that demonstrates automate entire dev environment in one command."
+  },
+  {
+    "day": 2,
+    "phase": "Foundation",
+    "category": "CLI & Automation",
+    "name": "Cross-Platform System Monitor",
+    "doneMeans": "A working implementation that demonstrates monitor cpu, memory, disk across linux/mac/windows."
+  },
+  {
+    "day": 3,
+    "phase": "Foundation",
+    "category": "CLI & Automation",
+    "name": "Intelligent Log Aggregator",
+    "doneMeans": "A working implementation that demonstrates parse logs from multiple services, detect patterns, trigger alerts."
+  },
+  {
+    "day": 4,
+    "phase": "Foundation",
+    "category": "CLI & Automation",
+    "name": "Deployment Automation Pipeline",
+    "doneMeans": "A working implementation that demonstrates one-command deploy with automatic rollback on failure."
+  },
+  {
+    "day": 5,
+    "phase": "Foundation",
+    "category": "CLI & Automation",
+    "name": "CLI Task Scheduler with Cron++",
+    "doneMeans": "A working implementation that demonstrates schedule tasks with dependencies, retries, and notifications."
+  },
+  {
+    "day": 6,
+    "phase": "Foundation",
+    "category": "Git & Collaboration",
+    "name": "Automated Code Review Bot",
+    "doneMeans": "A working implementation that demonstrates automatically review prs for style, security, performance."
+  },
+  {
+    "day": 7,
+    "phase": "Foundation",
+    "category": "Git & Collaboration",
+    "name": "Intelligent Release Note Generator",
+    "doneMeans": "A working implementation that demonstrates generate release notes from commits with categorization."
+  },
+  {
+    "day": 8,
+    "phase": "Foundation",
+    "category": "Git & Collaboration",
+    "name": "Team Productivity Dashboard",
+    "doneMeans": "A working implementation that demonstrates track velocity, pr turnaround, code churn across teams."
+  },
+  {
+    "day": 9,
+    "phase": "Foundation",
+    "category": "Git & Collaboration",
+    "name": "Merge Conflict Resolution Assistant",
+    "doneMeans": "A working implementation that demonstrates guide developers through conflicts with context and suggestions."
+  },
+  {
+    "day": 10,
+    "phase": "Foundation",
+    "category": "Git & Collaboration",
+    "name": "Monorepo Management Tool",
+    "doneMeans": "A working implementation that demonstrates manage multiple projects with dependency tracking."
+  },
+  {
+    "day": 11,
+    "phase": "Foundation",
+    "category": "JavaScript Core",
+    "name": "Advanced Promise Scheduler",
+    "doneMeans": "A working implementation that demonstrates execute promises with rate limiting, priority, and retry logic."
+  },
+  {
+    "day": 12,
+    "phase": "Foundation",
+    "category": "JavaScript Core",
+    "name": "Event Loop Visualizer",
+    "doneMeans": "A working implementation that demonstrates interactive visualization of js event loop execution."
+  },
+  {
+    "day": 13,
+    "phase": "Foundation",
+    "category": "JavaScript Core",
+    "name": "Memory Leak Detector",
+    "doneMeans": "A working implementation that demonstrates automatically detect and report memory leaks in node apps."
+  },
+  {
+    "day": 14,
+    "phase": "Foundation",
+    "category": "JavaScript Core",
+    "name": "Custom Reactive System",
+    "doneMeans": "A working implementation that demonstrates build react-like reactivity from scratch."
+  },
+  {
+    "day": 15,
+    "phase": "Foundation",
+    "category": "JavaScript Core",
+    "name": "Module Bundler Mini",
+    "doneMeans": "A working implementation that demonstrates simple bundler supporting es6 modules and tree-shaking."
+  },
+  {
+    "day": 16,
+    "phase": "Foundation",
+    "category": "Backend Basics",
+    "name": "Production HTTP Server",
+    "doneMeans": "A working implementation that demonstrates http server with clustering, health checks, and metrics."
+  },
+  {
+    "day": 17,
+    "phase": "Foundation",
+    "category": "Backend Basics",
+    "name": "RESTful API with OpenAPI",
+    "doneMeans": "A working implementation that demonstrates fully documented rest api with auto-generated client sdks."
+  },
+  {
+    "day": 18,
+    "phase": "Foundation",
+    "category": "Backend Basics",
+    "name": "Advanced JWT Authentication",
+    "doneMeans": "A working implementation that demonstrates secure auth with access/refresh tokens and revocation."
+  },
+  {
+    "day": 19,
+    "phase": "Foundation",
+    "category": "Backend Basics",
+    "name": "API Gateway with Rate Limiting",
+    "doneMeans": "A working implementation that demonstrates gateway with per-user limits, quota management, and analytics."
+  },
+  {
+    "day": 20,
+    "phase": "Foundation",
+    "category": "Backend Basics",
+    "name": "Distributed Request Tracing",
+    "doneMeans": "A working implementation that demonstrates trace requests across services with timing and errors."
+  },
+  {
+    "day": 21,
+    "phase": "Foundation",
+    "category": "Backend Advanced",
+    "name": "Event-Driven Microservices",
+    "doneMeans": "A working implementation that demonstrates microservices communicating via events with compensation."
+  },
+  {
+    "day": 22,
+    "phase": "Foundation",
+    "category": "Backend Advanced",
+    "name": "CQRS Implementation",
+    "doneMeans": "A working implementation that demonstrates separate read and write paths for scalability."
+  },
+  {
+    "day": 23,
+    "phase": "Foundation",
+    "category": "Backend Advanced",
+    "name": "GraphQL Federation Gateway",
+    "doneMeans": "A working implementation that demonstrates unified graphql api across multiple services."
+  },
+  {
+    "day": 24,
+    "phase": "Foundation",
+    "category": "Backend Advanced",
+    "name": "Background Job System",
+    "doneMeans": "A working implementation that demonstrates robust background processing with monitoring."
+  },
+  {
+    "day": 25,
+    "phase": "Foundation",
+    "category": "Backend Advanced",
+    "name": "Webhook Management System",
+    "doneMeans": "A working implementation that demonstrates reliable webhook delivery with subscriber management."
+  },
+  {
+    "day": 26,
+    "phase": "Foundation",
+    "category": "Databases",
+    "name": "Advanced Connection Pooling",
+    "doneMeans": "A working implementation that demonstrates optimized pooling for high-concurrency workloads."
+  },
+  {
+    "day": 27,
+    "phase": "Foundation",
+    "category": "Databases",
+    "name": "Query Performance Analyzer",
+    "doneMeans": "A working implementation that demonstrates automatically detect and fix slow queries."
+  },
+  {
+    "day": 28,
+    "phase": "Foundation",
+    "category": "Databases",
+    "name": "Multi-Tenant Architecture",
+    "doneMeans": "A working implementation that demonstrates secure multi-tenant data isolation strategies."
+  },
+  {
+    "day": 29,
+    "phase": "Foundation",
+    "category": "Databases",
+    "name": "Database Replication Manager",
+    "doneMeans": "A working implementation that demonstrates automated replication with health checks and failover."
+  },
+  {
+    "day": 30,
+    "phase": "Foundation",
+    "category": "Databases",
+    "name": "Time-Series Database",
+    "doneMeans": "A working implementation that demonstrates custom time-series db for metrics and logs."
+  },
+  {
+    "day": 31,
+    "phase": "Distributed",
+    "category": "Distributed Systems",
+    "name": "Consistent Hashing Ring",
+    "doneMeans": "A working implementation that demonstrates distribute data across nodes with minimal rebalancing."
+  },
+  {
+    "day": 32,
+    "phase": "Distributed",
+    "category": "Distributed Systems",
+    "name": "Leader Election System",
+    "doneMeans": "A working implementation that demonstrates elect leader in distributed system with fault tolerance."
+  },
+  {
+    "day": 33,
+    "phase": "Distributed",
+    "category": "Distributed Systems",
+    "name": "Distributed Lock Manager",
+    "doneMeans": "A working implementation that demonstrates coordinate access to shared resources across nodes."
+  },
+  {
+    "day": 34,
+    "phase": "Distributed",
+    "category": "Distributed Systems",
+    "name": "Message Queue from Scratch",
+    "doneMeans": "A working implementation that demonstrates build kafka-like message queue with guarantees."
+  },
+  {
+    "day": 35,
+    "phase": "Distributed",
+    "category": "Distributed Systems",
+    "name": "Distributed Rate Limiter",
+    "doneMeans": "A working implementation that demonstrates rate limiting across multiple servers."
+  },
+  {
+    "day": 36,
+    "phase": "Distributed",
+    "category": "Observability",
+    "name": "Metrics Collection Pipeline",
+    "doneMeans": "A working implementation that demonstrates collect and aggregate metrics from 1000s of services."
+  },
+  {
+    "day": 37,
+    "phase": "Distributed",
+    "category": "Observability",
+    "name": "Distributed Tracing System",
+    "doneMeans": "A working implementation that demonstrates full distributed tracing with dependency graphs."
+  },
+  {
+    "day": 38,
+    "phase": "Distributed",
+    "category": "Observability",
+    "name": "Log Aggregation Platform",
+    "doneMeans": "A working implementation that demonstrates centralized logging for distributed systems."
+  },
+  {
+    "day": 39,
+    "phase": "Distributed",
+    "category": "Observability",
+    "name": "SLO Tracking & Alerting",
+    "doneMeans": "A working implementation that demonstrates track reliability targets and alert on violations."
+  },
+  {
+    "day": 40,
+    "phase": "Distributed",
+    "category": "Observability",
+    "name": "Custom APM System",
+    "doneMeans": "A working implementation that demonstrates track application performance in production."
+  },
+  {
+    "day": 41,
+    "phase": "Distributed",
+    "category": "Performance",
+    "name": "Load Testing Framework",
+    "doneMeans": "A working implementation that demonstrates generate millions of requests to find breaking points."
+  },
+  {
+    "day": 42,
+    "phase": "Distributed",
+    "category": "Performance",
+    "name": "Tail Latency Analyzer",
+    "doneMeans": "A working implementation that demonstrates identify sources of tail latency in production."
+  },
+  {
+    "day": 43,
+    "phase": "Distributed",
+    "category": "Performance",
+    "name": "Backpressure Handler",
+    "doneMeans": "A working implementation that demonstrates prevent system overload with backpressure mechanisms."
+  },
+  {
+    "day": 44,
+    "phase": "Distributed",
+    "category": "Performance",
+    "name": "Resource Usage Profiler",
+    "doneMeans": "A working implementation that demonstrates continuous profiling in production."
+  },
+  {
+    "day": 45,
+    "phase": "Distributed",
+    "category": "Performance",
+    "name": "Cache Optimization System",
+    "doneMeans": "A working implementation that demonstrates intelligent caching with optimal hit rates."
+  },
+  {
+    "day": 46,
+    "phase": "Distributed",
+    "category": "Resilience",
+    "name": "Circuit Breaker Implementation",
+    "doneMeans": "A working implementation that demonstrates prevent cascading failures with circuit breakers."
+  },
+  {
+    "day": 47,
+    "phase": "Distributed",
+    "category": "Resilience",
+    "name": "Retry & Timeout Manager",
+    "doneMeans": "A working implementation that demonstrates intelligent retries without overwhelming downstream."
+  },
+  {
+    "day": 48,
+    "phase": "Distributed",
+    "category": "Resilience",
+    "name": "Chaos Engineering Platform",
+    "doneMeans": "A working implementation that demonstrates test system resilience by injecting failures."
+  },
+  {
+    "day": 49,
+    "phase": "Distributed",
+    "category": "Resilience",
+    "name": "Disaster Recovery System",
+    "doneMeans": "A working implementation that demonstrates automated disaster recovery with testing."
+  },
+  {
+    "day": 50,
+    "phase": "Distributed",
+    "category": "Resilience",
+    "name": "Bulkhead Pattern Isolation",
+    "doneMeans": "A working implementation that demonstrates isolate failures to prevent total system collapse."
+  },
+  {
+    "day": 51,
+    "phase": "Cloud",
+    "category": "Containers",
+    "name": "Multi-Stage Docker Builds",
+    "doneMeans": "A working implementation that demonstrates minimal production images with security best practices."
+  },
+  {
+    "day": 52,
+    "phase": "Cloud",
+    "category": "Containers",
+    "name": "Container Security Scanner",
+    "doneMeans": "A working implementation that demonstrates scan images for cves and policy violations."
+  },
+  {
+    "day": 53,
+    "phase": "Cloud",
+    "category": "Containers",
+    "name": "Private Container Registry",
+    "doneMeans": "A working implementation that demonstrates self-hosted registry with authentication."
+  },
+  {
+    "day": 54,
+    "phase": "Cloud",
+    "category": "Containers",
+    "name": "Container Orchestration Mini",
+    "doneMeans": "A working implementation that demonstrates simple container orchestrator understanding fundamentals."
+  },
+  {
+    "day": 55,
+    "phase": "Cloud",
+    "category": "Containers",
+    "name": "Image Build Optimization",
+    "doneMeans": "A working implementation that demonstrates speed up image builds by 10x."
+  },
+  {
+    "day": 56,
+    "phase": "Cloud",
+    "category": "Kubernetes",
+    "name": "Custom K8s Operator",
+    "doneMeans": "A working implementation that demonstrates build operator to manage custom resources."
+  },
+  {
+    "day": 57,
+    "phase": "Cloud",
+    "category": "Kubernetes",
+    "name": "HPA with Custom Metrics",
+    "doneMeans": "A working implementation that demonstrates scale based on application-specific metrics."
+  },
+  {
+    "day": 58,
+    "phase": "Cloud",
+    "category": "Kubernetes",
+    "name": "GitOps Deployment Pipeline",
+    "doneMeans": "A working implementation that demonstrates automated deployments from git with rollback."
+  },
+  {
+    "day": 59,
+    "phase": "Cloud",
+    "category": "Kubernetes",
+    "name": "Service Mesh Implementation",
+    "doneMeans": "A working implementation that demonstrates advanced service-to-service communication."
+  },
+  {
+    "day": 60,
+    "phase": "Cloud",
+    "category": "Kubernetes",
+    "name": "K8s Backup & Disaster Recovery",
+    "doneMeans": "A working implementation that demonstrates complete cluster backup and recovery solution."
+  },
+  {
+    "day": 61,
+    "phase": "Cloud",
+    "category": "Cloud Platforms",
+    "name": "Multi-Cloud Abstraction Layer",
+    "doneMeans": "A working implementation that demonstrates write once, deploy to aws/gcp/azure."
+  },
+  {
+    "day": 62,
+    "phase": "Cloud",
+    "category": "Cloud Platforms",
+    "name": "Cloud Cost Optimizer",
+    "doneMeans": "A working implementation that demonstrates automatically optimize cloud spending."
+  },
+  {
+    "day": 63,
+    "phase": "Cloud",
+    "category": "Cloud Platforms",
+    "name": "Serverless Framework",
+    "doneMeans": "A working implementation that demonstrates deploy serverless apps with monitoring."
+  },
+  {
+    "day": 64,
+    "phase": "Cloud",
+    "category": "Cloud Platforms",
+    "name": "Cloud Resource Manager",
+    "doneMeans": "A working implementation that demonstrates track and manage cloud resources at scale."
+  },
+  {
+    "day": 65,
+    "phase": "Cloud",
+    "category": "Cloud Platforms",
+    "name": "Hybrid Cloud Bridge",
+    "doneMeans": "A working implementation that demonstrates seamlessly connect on-premises and cloud."
+  },
+  {
+    "day": 66,
+    "phase": "Cloud",
+    "category": "IaC",
+    "name": "Terraform Module Library",
+    "doneMeans": "A working implementation that demonstrates reusable infrastructure components."
+  },
+  {
+    "day": 67,
+    "phase": "Cloud",
+    "category": "IaC",
+    "name": "State Management System",
+    "doneMeans": "A working implementation that demonstrates manage terraform state at enterprise scale."
+  },
+  {
+    "day": 68,
+    "phase": "Cloud",
+    "category": "IaC",
+    "name": "Infrastructure Testing Framework",
+    "doneMeans": "A working implementation that demonstrates test infrastructure before deployment."
+  },
+  {
+    "day": 69,
+    "phase": "Cloud",
+    "category": "IaC",
+    "name": "Policy as Code Engine",
+    "doneMeans": "A working implementation that demonstrates enforce policies on infrastructure changes."
+  },
+  {
+    "day": 70,
+    "phase": "Cloud",
+    "category": "IaC",
+    "name": "Infrastructure CI/CD Pipeline",
+    "doneMeans": "A working implementation that demonstrates full ci/cd for infrastructure changes."
+  },
+  {
+    "day": 71,
+    "phase": "Security",
+    "category": "App Security",
+    "name": "Input Sanitization Engine",
+    "doneMeans": "A working implementation that demonstrates prevent injection attacks with comprehensive sanitization."
+  },
+  {
+    "day": 72,
+    "phase": "Security",
+    "category": "App Security",
+    "name": "OAuth2 Provider Implementation",
+    "doneMeans": "A working implementation that demonstrates build complete oauth2 authorization server."
+  },
+  {
+    "day": 73,
+    "phase": "Security",
+    "category": "App Security",
+    "name": "CSRF & Clickjacking Protection",
+    "doneMeans": "A working implementation that demonstrates comprehensive protection against web attacks."
+  },
+  {
+    "day": 74,
+    "phase": "Security",
+    "category": "App Security",
+    "name": "API Security Gateway",
+    "doneMeans": "A working implementation that demonstrates comprehensive api protection layer."
+  },
+  {
+    "day": 75,
+    "phase": "Security",
+    "category": "App Security",
+    "name": "Secret Scanning Tool",
+    "doneMeans": "A working implementation that demonstrates detect secrets in code before commit."
+  },
+  {
+    "day": 76,
+    "phase": "Security",
+    "category": "Infra Security",
+    "name": "Zero-Trust Network Gateway",
+    "doneMeans": "A working implementation that demonstrates zero-trust access to internal resources."
+  },
+  {
+    "day": 77,
+    "phase": "Security",
+    "category": "Infra Security",
+    "name": "Vulnerability Management System",
+    "doneMeans": "A working implementation that demonstrates track and remediate vulnerabilities across infrastructure."
+  },
+  {
+    "day": 78,
+    "phase": "Security",
+    "category": "Infra Security",
+    "name": "Secrets Management Vault",
+    "doneMeans": "A working implementation that demonstrates hashicorp vault-like secrets management."
+  },
+  {
+    "day": 79,
+    "phase": "Security",
+    "category": "Infra Security",
+    "name": "Security Monitoring & SIEM",
+    "doneMeans": "A working implementation that demonstrates detect security threats in real-time."
+  },
+  {
+    "day": 80,
+    "phase": "Security",
+    "category": "Infra Security",
+    "name": "Network Security Scanner",
+    "doneMeans": "A working implementation that demonstrates automated security assessment of infrastructure."
+  },
+  {
+    "day": 81,
+    "phase": "Security",
+    "category": "Compliance",
+    "name": "GDPR Compliance Toolkit",
+    "doneMeans": "A working implementation that demonstrates automate gdpr compliance requirements."
+  },
+  {
+    "day": 82,
+    "phase": "Security",
+    "category": "Compliance",
+    "name": "Audit Log System",
+    "doneMeans": "A working implementation that demonstrates immutable audit trail for compliance."
+  },
+  {
+    "day": 83,
+    "phase": "Security",
+    "category": "Compliance",
+    "name": "Policy Engine & Enforcement",
+    "doneMeans": "A working implementation that demonstrates centralized policy management and enforcement."
+  },
+  {
+    "day": 84,
+    "phase": "Security",
+    "category": "Compliance",
+    "name": "Compliance Reporting Dashboard",
+    "doneMeans": "A working implementation that demonstrates automated compliance report generation."
+  },
+  {
+    "day": 85,
+    "phase": "Security",
+    "category": "Compliance",
+    "name": "Data Classification System",
+    "doneMeans": "A working implementation that demonstrates automatically classify and protect sensitive data."
+  },
+  {
+    "day": 86,
+    "phase": "Security",
+    "category": "Cryptography",
+    "name": "End-to-End Encryption System",
+    "doneMeans": "A working implementation that demonstrates whatsapp-style e2e encryption."
+  },
+  {
+    "day": 87,
+    "phase": "Security",
+    "category": "Cryptography",
+    "name": "Key Management Service",
+    "doneMeans": "A working implementation that demonstrates enterprise key lifecycle management."
+  },
+  {
+    "day": 88,
+    "phase": "Security",
+    "category": "Cryptography",
+    "name": "Digital Signature System",
+    "doneMeans": "A working implementation that demonstrates document signing with non-repudiation."
+  },
+  {
+    "day": 89,
+    "phase": "Security",
+    "category": "Cryptography",
+    "name": "Zero-Knowledge Proof System",
+    "doneMeans": "A working implementation that demonstrates prove knowledge without revealing data."
+  },
+  {
+    "day": 90,
+    "phase": "Security",
+    "category": "Cryptography",
+    "name": "Homomorphic Encryption POC",
+    "doneMeans": "A working implementation that demonstrates process data without decryption."
+  },
+  {
+    "day": 91,
+    "phase": "ML/AI",
+    "category": "MLOps",
+    "name": "ML Training Pipeline",
+    "doneMeans": "A working implementation that demonstrates reproducible ml training with mlflow."
+  },
+  {
+    "day": 92,
+    "phase": "ML/AI",
+    "category": "MLOps",
+    "name": "Model Registry & Versioning",
+    "doneMeans": "A working implementation that demonstrates centralized model management."
+  },
+  {
+    "day": 93,
+    "phase": "ML/AI",
+    "category": "MLOps",
+    "name": "Feature Store",
+    "doneMeans": "A working implementation that demonstrates online/offline feature management."
+  },
+  {
+    "day": 94,
+    "phase": "ML/AI",
+    "category": "MLOps",
+    "name": "Model Serving Infrastructure",
+    "doneMeans": "A working implementation that demonstrates serve models at 10k+ rps."
+  },
+  {
+    "day": 95,
+    "phase": "ML/AI",
+    "category": "MLOps",
+    "name": "Model Monitoring System",
+    "doneMeans": "A working implementation that demonstrates monitor models in production."
+  },
+  {
+    "day": 96,
+    "phase": "ML/AI",
+    "category": "AI Apps",
+    "name": "Recommendation Engine",
+    "doneMeans": "A working implementation that demonstrates netflix-style recommendation system."
+  },
+  {
+    "day": 97,
+    "phase": "ML/AI",
+    "category": "AI Apps",
+    "name": "NLP Processing Pipeline",
+    "doneMeans": "A working implementation that demonstrates production nlp pipeline with multiple models."
+  },
+  {
+    "day": 98,
+    "phase": "ML/AI",
+    "category": "AI Apps",
+    "name": "Vector Search System",
+    "doneMeans": "A working implementation that demonstrates build semantic search like google."
+  },
+  {
+    "day": 99,
+    "phase": "ML/AI",
+    "category": "AI Apps",
+    "name": "RAG Pipeline",
+    "doneMeans": "A working implementation that demonstrates chatgpt-style document qa system."
+  },
+  {
+    "day": 100,
+    "phase": "ML/AI",
+    "category": "AI Apps",
+    "name": "AI Content Moderation",
+    "doneMeans": "A working implementation that demonstrates automatic content moderation."
+  },
+  {
+    "day": 101,
+    "phase": "ML/AI",
+    "category": "Advanced ML",
+    "name": "Real-Time Feature Engineering",
+    "doneMeans": "A working implementation that demonstrates sub-10ms feature computation for inference."
+  },
+  {
+    "day": 102,
+    "phase": "ML/AI",
+    "category": "Advanced ML",
+    "name": "Model Ensemble System",
+    "doneMeans": "A working implementation that demonstrates combine multiple models for better predictions."
+  },
+  {
+    "day": 103,
+    "phase": "ML/AI",
+    "category": "Advanced ML",
+    "name": "A/B Testing Platform for ML",
+    "doneMeans": "A working implementation that demonstrates test model variants in production."
+  },
+  {
+    "day": 104,
+    "phase": "ML/AI",
+    "category": "Advanced ML",
+    "name": "Federated Learning System",
+    "doneMeans": "A working implementation that demonstrates train models without centralizing data."
+  },
+  {
+    "day": 105,
+    "phase": "ML/AI",
+    "category": "Advanced ML",
+    "name": "AutoML Pipeline",
+    "doneMeans": "A working implementation that demonstrates automatically optimize ml models."
+  },
+  {
+    "day": 106,
+    "phase": "ML/AI",
+    "category": "ML Security",
+    "name": "Adversarial Defense System",
+    "doneMeans": "A working implementation that demonstrates protect models from adversarial examples."
+  },
+  {
+    "day": 107,
+    "phase": "ML/AI",
+    "category": "ML Security",
+    "name": "Model Fairness Auditing",
+    "doneMeans": "A working implementation that demonstrates ensure ml fairness and detect bias."
+  },
+  {
+    "day": 108,
+    "phase": "ML/AI",
+    "category": "ML Security",
+    "name": "Differential Privacy for ML",
+    "doneMeans": "A working implementation that demonstrates train models with privacy guarantees."
+  },
+  {
+    "day": 109,
+    "phase": "ML/AI",
+    "category": "ML Security",
+    "name": "Model Explainability Tools",
+    "doneMeans": "A working implementation that demonstrates explain model predictions for stakeholders."
+  },
+  {
+    "day": 110,
+    "phase": "ML/AI",
+    "category": "ML Security",
+    "name": "Data Poisoning Detection",
+    "doneMeans": "A working implementation that demonstrates detect malicious training data."
+  },
+  {
+    "day": 111,
+    "phase": "Advanced Frontend",
+    "category": "React Perf",
+    "name": "Advanced Code Splitting",
+    "doneMeans": "A working implementation that demonstrates reduce initial bundle size by 80%."
+  },
+  {
+    "day": 112,
+    "phase": "Advanced Frontend",
+    "category": "React Perf",
+    "name": "Virtual Scrolling System",
+    "doneMeans": "A working implementation that demonstrates render 100k items smoothly."
+  },
+  {
+    "day": 113,
+    "phase": "Advanced Frontend",
+    "category": "React Perf",
+    "name": "React Server Components",
+    "doneMeans": "A working implementation that demonstrates next-gen react rendering."
+  },
+  {
+    "day": 114,
+    "phase": "Advanced Frontend",
+    "category": "React Perf",
+    "name": "State Management Optimizer",
+    "doneMeans": "A working implementation that demonstrates prevent unnecessary re-renders."
+  },
+  {
+    "day": 115,
+    "phase": "Advanced Frontend",
+    "category": "React Perf",
+    "name": "React Performance Profiler",
+    "doneMeans": "A working implementation that demonstrates automatically detect react performance issues."
+  },
+  {
+    "day": 116,
+    "phase": "Advanced Frontend",
+    "category": "Real-Time",
+    "name": "WebSocket Gateway with Load Balancing",
+    "doneMeans": "A working implementation that demonstrates scale websockets to millions of connections."
+  },
+  {
+    "day": 117,
+    "phase": "Advanced Frontend",
+    "category": "Real-Time",
+    "name": "Presence & Typing Indicators",
+    "doneMeans": "A working implementation that demonstrates build slack-style presence system."
+  },
+  {
+    "day": 118,
+    "phase": "Advanced Frontend",
+    "category": "Real-Time",
+    "name": "Collaborative Editing Engine",
+    "doneMeans": "A working implementation that demonstrates google docs-style collaboration."
+  },
+  {
+    "day": 119,
+    "phase": "Advanced Frontend",
+    "category": "Real-Time",
+    "name": "Live Cursor Tracking",
+    "doneMeans": "A working implementation that demonstrates real-time cursor positions for collaboration."
+  },
+  {
+    "day": 120,
+    "phase": "Advanced Frontend",
+    "category": "Real-Time",
+    "name": "Real-Time Notification System",
+    "doneMeans": "A working implementation that demonstrates cross-platform notification delivery."
+  },
+  {
+    "day": 121,
+    "phase": "Advanced Frontend",
+    "category": "PWA",
+    "name": "Service Worker Architecture",
+    "doneMeans": "A working implementation that demonstrates full offline-first pwa."
+  },
+  {
+    "day": 122,
+    "phase": "Advanced Frontend",
+    "category": "PWA",
+    "name": "Background Sync System",
+    "doneMeans": "A working implementation that demonstrates sync data when connection returns."
+  },
+  {
+    "day": 123,
+    "phase": "Advanced Frontend",
+    "category": "PWA",
+    "name": "Push Notification Engine",
+    "doneMeans": "A working implementation that demonstrates targeted push notifications."
+  },
+  {
+    "day": 124,
+    "phase": "Advanced Frontend",
+    "category": "PWA",
+    "name": "App Installation Manager",
+    "doneMeans": "A working implementation that demonstrates optimize pwa installation flow."
+  },
+  {
+    "day": 125,
+    "phase": "Advanced Frontend",
+    "category": "PWA",
+    "name": "PWA Performance Monitor",
+    "doneMeans": "A working implementation that demonstrates monitor pwa health in production."
+  },
+  {
+    "day": 126,
+    "phase": "Advanced Frontend",
+    "category": "Web Perf",
+    "name": "Core Web Vitals Optimizer",
+    "doneMeans": "A working implementation that demonstrates perfect lighthouse scores."
+  },
+  {
+    "day": 127,
+    "phase": "Advanced Frontend",
+    "category": "Web Perf",
+    "name": "Image Optimization Pipeline",
+    "doneMeans": "A working implementation that demonstrates automatically optimize all images."
+  },
+  {
+    "day": 128,
+    "phase": "Advanced Frontend",
+    "category": "Web Perf",
+    "name": "Critical CSS Extractor",
+    "doneMeans": "A working implementation that demonstrates instant first paint."
+  },
+  {
+    "day": 129,
+    "phase": "Advanced Frontend",
+    "category": "Web Perf",
+    "name": "Performance Budget Enforcer",
+    "doneMeans": "A working implementation that demonstrates prevent performance regressions."
+  },
+  {
+    "day": 130,
+    "phase": "Advanced Frontend",
+    "category": "Web Perf",
+    "name": "Resource Loading Optimizer",
+    "doneMeans": "A working implementation that demonstrates optimize resource loading strategy."
+  },
+  {
+    "day": 131,
+    "phase": "Mastery",
+    "category": "Event-Driven",
+    "name": "Event Bus Implementation",
+    "doneMeans": "A working implementation that demonstrates build enterprise event bus."
+  },
+  {
+    "day": 132,
+    "phase": "Mastery",
+    "category": "Event-Driven",
+    "name": "Event Sourcing System",
+    "doneMeans": "A working implementation that demonstrates implement event sourcing pattern."
+  },
+  {
+    "day": 133,
+    "phase": "Mastery",
+    "category": "Event-Driven",
+    "name": "Stream Processing Pipeline",
+    "doneMeans": "A working implementation that demonstrates real-time data processing."
+  },
+  {
+    "day": 134,
+    "phase": "Mastery",
+    "category": "Event-Driven",
+    "name": "CQRS with Event Sourcing",
+    "doneMeans": "A working implementation that demonstrates complete cqrs+es implementation."
+  },
+  {
+    "day": 135,
+    "phase": "Mastery",
+    "category": "Event-Driven",
+    "name": "Event-Driven Microservices",
+    "doneMeans": "A working implementation that demonstrates microservices with event choreography."
+  },
+  {
+    "day": 136,
+    "phase": "Mastery",
+    "category": "API Design",
+    "name": "GraphQL Federation Gateway",
+    "doneMeans": "A working implementation that demonstrates unified graphql across services."
+  },
+  {
+    "day": 137,
+    "phase": "Mastery",
+    "category": "API Design",
+    "name": "Real-Time GraphQL Subscriptions",
+    "doneMeans": "A working implementation that demonstrates live data updates via graphql."
+  },
+  {
+    "day": 138,
+    "phase": "Mastery",
+    "category": "API Design",
+    "name": "API Versioning Strategy",
+    "doneMeans": "A working implementation that demonstrates evolve apis without breaking clients."
+  },
+  {
+    "day": 139,
+    "phase": "Mastery",
+    "category": "API Design",
+    "name": "API Rate Limiting & Quotas",
+    "doneMeans": "A working implementation that demonstrates fair api usage policies."
+  },
+  {
+    "day": 140,
+    "phase": "Mastery",
+    "category": "API Design",
+    "name": "API Analytics Platform",
+    "doneMeans": "A working implementation that demonstrates understand api usage patterns."
+  },
+  {
+    "day": 141,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Project Architecture & Planning",
+    "doneMeans": "A working implementation that demonstrates design complete saas architecture."
+  },
+  {
+    "day": 142,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Authentication & Authorization",
+    "doneMeans": "A working implementation that demonstrates complete auth system with tenant isolation."
+  },
+  {
+    "day": 143,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Core Business Logic & APIs",
+    "doneMeans": "A working implementation that demonstrates production-ready api layer."
+  },
+  {
+    "day": 144,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Real-Time Features",
+    "doneMeans": "A working implementation that demonstrates live collaboration and updates."
+  },
+  {
+    "day": 145,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Frontend Application",
+    "doneMeans": "A working implementation that demonstrates production-quality user interface."
+  },
+  {
+    "day": 146,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Observability Stack",
+    "doneMeans": "A working implementation that demonstrates complete production monitoring."
+  },
+  {
+    "day": 147,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Security Hardening",
+    "doneMeans": "A working implementation that demonstrates production-grade security."
+  },
+  {
+    "day": 148,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "CI/CD & Infrastructure",
+    "doneMeans": "A working implementation that demonstrates automated deployment pipeline."
+  },
+  {
+    "day": 149,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Performance Optimization",
+    "doneMeans": "A working implementation that demonstrates optimize for production scale."
+  },
+  {
+    "day": 150,
+    "phase": "Capstone",
+    "category": "Full Stack",
+    "name": "Documentation & Launch",
+    "doneMeans": "A working implementation that demonstrates complete production-ready saas."
+  }
+]
+```
+✓ projects.json: 150 items extracted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE 2: data/tech-spine.json
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```json
+[
+  {
+    "id": 1,
+    "area": "Python Mastery & Secure Coding",
+    "phase": "Foundation",
+    "weekStart": 1,
+    "weekEnd": 2,
+    "topics": [
+      "Data types",
+      "Operators",
+      "Loops",
+      "Conditionals"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Data types if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 2,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 2,
+    "weekEnd": 3,
+    "topics": [
+      "Scope",
+      "Decorators",
+      "Generators",
+      "Context Managers"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Scope if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 3,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 3,
+    "weekEnd": 4,
+    "topics": [
+      "Custom Exceptions",
+      "Logging"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Custom Exceptions if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 4,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 4,
+    "weekEnd": 5,
+    "topics": [
+      "__init__",
+      "__new__",
+      "type()",
+      "dir()"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for __init__ if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 5,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 5,
+    "weekEnd": 6,
+    "topics": [
+      "asyncio",
+      "await",
+      "Event Loops"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for asyncio if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 6,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 6,
+    "weekEnd": 7,
+    "topics": [
+      "Sanitization",
+      "Injection Prevention"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Sanitization if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 7,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 7,
+    "weekEnd": 8,
+    "topics": [
+      "pycryptodome",
+      "passlib",
+      "requests security"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for pycryptodome if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 8,
+    "area": "Data Structures & Scalable Algorithms",
+    "phase": "Foundation",
+    "weekStart": 8,
+    "weekEnd": 9,
+    "topics": [
+      "Operations",
+      "Complexity"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Operations if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 9,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 9,
+    "weekEnd": 10,
+    "topics": [
+      "Binary",
+      "AVL",
+      "Red-Black",
+      "Traversals",
+      "Graph Search (BFS/DFS)"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Binary if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 10,
+    "area": "nan",
+    "phase": "Foundation",
+    "weekStart": 10,
+    "weekEnd": 11,
+    "topics": [
+      "Quick",
+      "Merge",
+      "Heap",
+      "Binary Search",
+      "Interpolation"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Quick if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 11,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 11,
+    "weekEnd": 12,
+    "topics": [
+      "Dynamic Programming",
+      "Greedy",
+      "Backtracking"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Dynamic Programming if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 12,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 12,
+    "weekEnd": 13,
+    "topics": [
+      "Big-O",
+      "Space-Time Tradeoffs"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Big-O if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 13,
+    "area": "OOP & Robust Design",
+    "phase": "Distributed",
+    "weekStart": 13,
+    "weekEnd": 14,
+    "topics": [
+      "Practical Examples"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Practical Examples if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 14,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 14,
+    "weekEnd": 15,
+    "topics": [
+      "Singleton",
+      "Observer",
+      "Factory"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Singleton if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 15,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 15,
+    "weekEnd": 16,
+    "topics": [
+      "Layered Architecture",
+      "Dependency Injection"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Layered Architecture if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 16,
+    "area": "Concurrent & Scalable Execution",
+    "phase": "Distributed",
+    "weekStart": 16,
+    "weekEnd": 17,
+    "topics": [
+      "GIL Implications",
+      "Race Conditions"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for GIL Implications if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 17,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 17,
+    "weekEnd": 18,
+    "topics": [
+      "Network & File Operations"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Network & File Operations if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 18,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 18,
+    "weekEnd": 19,
+    "topics": [
+      "Kafka",
+      "RabbitMQ",
+      "Celery"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Kafka if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 19,
+    "area": "Databases: SQL & Scalability",
+    "phase": "Distributed",
+    "weekStart": 19,
+    "weekEnd": 20,
+    "topics": [
+      "Normalization",
+      "Transactions"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Normalization if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 20,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 20,
+    "weekEnd": 21,
+    "topics": [
+      "Read/Write Optimization"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Read/Write Optimization if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 21,
+    "area": "NoSQL & Robust Data Handling",
+    "phase": "Distributed",
+    "weekStart": 21,
+    "weekEnd": 22,
+    "topics": [
+      "MongoDB",
+      "Redis",
+      "Cassandra"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for MongoDB if applicable"
+    ],
+    "resource": "Official Documentation"
+  },
+  {
+    "id": 22,
+    "area": "nan",
+    "phase": "Distributed",
+    "weekStart": 22,
+    "weekEnd": 23,
+    "topics": [
+      "Consistency Models",
+      "CAP Theorem"
+    ],
+    "microtasks": [
+      "Implement a basic prototype for Consistency Models if applicable"
+    ],
+    "resource": "Official Documentation"
+  }
+]
+```
+✓ tech-spine.json: 22 items extracted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE 3: data/skills.json
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```json
+{
+  "basic": [
+    "Critical\n  thinking",
+    "Analytical\n  thinking",
+    "Decision\u2011making",
+    "Working\n  (short\u2011term) memory",
+    "Long\u2011term\n  memory retention",
+    "Attention\n  span & cognitive control",
+    "Executive\n  function",
+    "Creativity\n  & originality",
+    "Problem\u2011solving",
+    "Metacognitive\n  regulation",
+    "Self\u2011regulated\n  learning skills",
+    "Empathy\n  & social cognition",
+    "Moral\n  reasoning & ethical decision\u2011making",
+    "Emotional\n  regulation & self\u2011esteem",
+    "Prospective\n  memory & time management",
+    "Digital\n  literacy & source evaluation",
+    "Cognitive\n  flexibility",
+    "Communication",
+    "Active\n  listening",
+    "Clear\n  articulation",
+    "Body\u2011language\n  alignment",
+    "Eye\n  contact",
+    "Assertive\n  handshake",
+    "Leadership",
+    "Vision\u2011setting",
+    "Delegation\n  & empowerment",
+    "Accountability\n  enforcement",
+    "Conflict\n  resolution",
+    "Inspiring\n  followership",
+    "Emotional\n  Intelligence",
+    "Self\u2011awareness",
+    "Self\u2011regulation",
+    "Rapport\n  building",
+    "Emotional\n  resilience",
+    "Problem\n  identification",
+    "Logical\n  reasoning",
+    "Bias\n  detection",
+    "Question\n  framing",
+    "Scenario\n  analysis",
+    "Risk\n  assessment",
+    "Cost\u2011benefit\n  analysis",
+    "Decisiveness\n  under pressure",
+    "Intuition\n  calibration",
+    "Contingency\n  planning",
+    "Negotiation",
+    "Persuasion\n  techniques",
+    "Concession\n  crafting",
+    "BATNA\n  development",
+    "Closing\n  & commitment",
+    "Networking",
+    "Elevator\u2011pitch\n  mastery",
+    "Value\u2011first\n  outreach",
+    "Follow\u2011up\n  discipline",
+    "Strategic\n  introductions",
+    "Relationship\n  nurturing",
+    "Time\n  Management",
+    "Prioritization\n  (Eisenhower Matrix)",
+    "Task\n  batching & deep\u2011work",
+    "Scheduling\n  with buffers",
+    "Deadline\n  adherence",
+    "Personal\n  Branding",
+    "Professional\n  attire & grooming",
+    "Confident\n  posture",
+    "Signature\n  introduction",
+    "Online\n  presence",
+    "Thought\u2011leadership\n  content",
+    "Learning\n  Agility",
+    "Metacognitive\n  reflection",
+    "Rapid\n  skill acquisition",
+    "Feedback\n  solicitation & integration",
+    "Experimentation\n  mindset",
+    "Unlearning\n  bad habits",
+    "Divergent\n  thinking",
+    "Idea\n  synthesis",
+    "Conceptual\n  blending",
+    "Rapid\n  prototyping",
+    "\u201cYes,\n  and\u2026\u201d improvisation",
+    "Resilience\n  & Stress Management",
+    "Stress\u2011response\n  recognition",
+    "Recovery\n  rituals (sleep, meditation)",
+    "Adaptability\n  to change",
+    "Persistence\n  through setbacks",
+    "Growth\u2011mindset\n  reinforcement",
+    "Influence\n  & Persuasion",
+    "Storytelling\n  framework",
+    "Social\u2011proof\n  deployment",
+    "Authority\n  signaling",
+    "Reciprocity\n  leverage",
+    "Scarcity\n  & urgency cues",
+    "Public\n  Speaking",
+    "Stage\n  presence & poise",
+    "Vocal\n  variety & pacing",
+    "Audience\n  engagement",
+    "Structured\n  messaging (opening, body, close)",
+    "Handling\n  Q&A with confidence",
+    "Writing\n  & Documentation",
+    "Clarity\n  and brevity",
+    "Structured\n  narrative (Pyramid Principle)",
+    "Tone\u2011matching\n  for audience",
+    "Concise\n  email etiquette",
+    "Argument\n  scaffolding",
+    "Analytical\n  & Quantitative Skills",
+    "Data\n  interpretation",
+    "Basic\n  statistics (mean, variance)",
+    "Spreadsheet\n  modeling",
+    "Trend\u2011spotting",
+    "Hypothesis\n  testing",
+    "Financial\n  Literacy",
+    "Budget\n  creation",
+    "Cash\u2011flow\n  forecasting",
+    "ROI\n  calculation",
+    "Break\u2011even\n  analysis",
+    "Basic\n  accounting principles",
+    "Cultural\n  & Social Intelligence",
+    "Cross\u2011cultural\n  awareness",
+    "Language\n  etiquette",
+    "Norm\u2011reading\n  in new contexts",
+    "Inclusive\n  communication",
+    "Adaptive\n  behavior"
+  ],
+  "payable": [
+    {
+      "name": "Sales Negotiation Mastery",
+      "dayStart": 1,
+      "dayEnd": 18,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Human Nature",
+      "dayStart": 19,
+      "dayEnd": 36,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Emotional Intelligence",
+      "dayStart": 37,
+      "dayEnd": 54,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Critical Thinking",
+      "dayStart": 55,
+      "dayEnd": 72,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Effective Communication",
+      "dayStart": 73,
+      "dayEnd": 90,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Time Management",
+      "dayStart": 91,
+      "dayEnd": 108,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "dayStart": 109,
+      "dayEnd": 126,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Creativity and Innovation",
+      "dayStart": 127,
+      "dayEnd": 144,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Mental Resilience",
+      "dayStart": 145,
+      "dayEnd": 162,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    },
+    {
+      "name": "Money Management",
+      "dayStart": 163,
+      "dayEnd": 180,
+      "coreBooks": [
+        "Industry standard book 1",
+        "Industry standard book 2"
+      ]
+    }
+  ]
+}
+```
+✓ skills.json: 119 basic, 10 payable items extracted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE 4: data/courses.json
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```json
+[
+  {
+    "name": "Course 1",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://apiacademy.co/api-certification/Gravitee.io",
+    "weekRecommended": 1
+  },
+  {
+    "name": "Course 2",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://aws.amazon.com/training/restart/AWS",
+    "weekRecommended": 2
+  },
+  {
+    "name": "Course 3",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://eggplantsoftware.com/training/AWS",
+    "weekRecommended": 3
+  },
+  {
+    "name": "Course 4",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.cloudskillsboost.google/paths/118Cloud",
+    "weekRecommended": 4
+  },
+  {
+    "name": "Course 5",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://developer.android.com/courses",
+    "weekRecommended": 5
+  },
+  {
+    "name": "Course 6",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.netacad.com/courses/programming/essentials-in-c/Programming",
+    "weekRecommended": 6
+  },
+  {
+    "name": "Course 7",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.elastic.co/training/free",
+    "weekRecommended": 7
+  },
+  {
+    "name": "Course 8",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.vmware.com/Kubernetes",
+    "weekRecommended": 8
+  },
+  {
+    "name": "Course 9",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://university.cpanel.net",
+    "weekRecommended": 9
+  },
+  {
+    "name": "Course 10",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://skills.github.com",
+    "weekRecommended": 10
+  },
+  {
+    "name": "Course 11",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1044Postman",
+    "weekRecommended": 11
+  },
+  {
+    "name": "Course 12",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://stepik.org/catalog",
+    "weekRecommended": 12
+  },
+  {
+    "name": "Course 13",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.oracle.com/ols/learning-path/java-explorer/79726/Programming",
+    "weekRecommended": 13
+  },
+  {
+    "name": "Course 14",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://cognitiveclass.ai/courses/natural-language-processing-with-python/Reinforcement",
+    "weekRecommended": 14
+  },
+  {
+    "name": "Course 15",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://university.zerto.com",
+    "weekRecommended": 15
+  },
+  {
+    "name": "Course 16",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.arubanetworks.com/support-services/training-services/Data",
+    "weekRecommended": 16
+  },
+  {
+    "name": "Course 17",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://academy.tigera.io",
+    "weekRecommended": 17
+  },
+  {
+    "name": "Course 18",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.databricks.com/resources/learn/training/generative-ai-fundamentals",
+    "weekRecommended": 18
+  },
+  {
+    "name": "Course 19",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://aviatrix.teachable.com/p/aviatrix-certified-engineer-ace-multicloud-networking-associate",
+    "weekRecommended": 19
+  },
+  {
+    "name": "Course 20",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://cognitiveclass.ai",
+    "weekRecommended": 20
+  },
+  {
+    "name": "Course 21",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.bitdegree.org/free-certifications-online",
+    "weekRecommended": 21
+  },
+  {
+    "name": "Course 22",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.freecodecamp.org/learn/data-visualization/AI",
+    "weekRecommended": 22
+  },
+  {
+    "name": "Course 23",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://gravitee.getlearnworlds.com/course/event-native-api-management-fundamentals",
+    "weekRecommended": 23
+  },
+  {
+    "name": "Course 24",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.microsoft.com/en-us/training/paths/get-started-ai-fundamentals/Generative",
+    "weekRecommended": 24
+  },
+  {
+    "name": "Course 25",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://standard.cbu.cloudbees.com",
+    "weekRecommended": 25
+  },
+  {
+    "name": "Course 26",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://cognitiveclass.ai/courses/python-for-data-science",
+    "weekRecommended": 26
+  },
+  {
+    "name": "Course 27",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity",
+    "weekRecommended": 1
+  },
+  {
+    "name": "Course 28",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.snyk.io",
+    "weekRecommended": 2
+  },
+  {
+    "name": "Course 29",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.microsoft.com/en-us/training/powerplatform/",
+    "weekRecommended": 3
+  },
+  {
+    "name": "Course 30",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.microsoft.com/en-us/training/paths/rust-first-steps/Data",
+    "weekRecommended": 4
+  },
+  {
+    "name": "Course 31",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learningportal.juniper.net/juniper/user_activity_info.aspx?id=11478Huawei",
+    "weekRecommended": 5
+  },
+  {
+    "name": "Course 32",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://training.linuxfoundation.org/training/developing-secure-software-lfd121/Cloud",
+    "weekRecommended": 6
+  },
+  {
+    "name": "Course 33",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://training.linuxfoundation.org/resources/?_sft_content_type=free-course/Monitoring",
+    "weekRecommended": 7
+  },
+  {
+    "name": "Course 34",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.redhat.com/en/services/training/do092-cloud-native-architecture/Game",
+    "weekRecommended": 8
+  },
+  {
+    "name": "Course 35",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.jetbrains.com/academy/Cloud",
+    "weekRecommended": 9
+  },
+  {
+    "name": "Course 36",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://skillsbuild.org",
+    "weekRecommended": 10
+  },
+  {
+    "name": "Course 37",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://huggingface.co/learn/deep-rl-course/Cybersecurity",
+    "weekRecommended": 11
+  },
+  {
+    "name": "Course 38",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.udacity.com",
+    "weekRecommended": 12
+  },
+  {
+    "name": "Course 39",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://university.plesk.com",
+    "weekRecommended": 13
+  },
+  {
+    "name": "Course 40",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://developers.google.com/apis/Backend",
+    "weekRecommended": 14
+  },
+  {
+    "name": "Course 41",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://training.linuxfoundation.org/resources/?_sft_content_type=free-course",
+    "weekRecommended": 15
+  },
+  {
+    "name": "Course 42",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.cloudskillsboost.google/paths/16SQLIBM",
+    "weekRecommended": 16
+  },
+  {
+    "name": "Course 43",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.netacad.com/courses/programming/javascript-essentials-1/Programming",
+    "weekRecommended": 17
+  },
+  {
+    "name": "Course 44",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.udemy.com/courses/free/c",
+    "weekRecommended": 18
+  },
+  {
+    "name": "Course 45",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.microsoft.com/en-us/training/challenges",
+    "weekRecommended": 19
+  },
+  {
+    "name": "Course 46",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.lakesidesoftware.com/learning",
+    "weekRecommended": 20
+  },
+  {
+    "name": "Course 47",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/Docker",
+    "weekRecommended": 21
+  },
+  {
+    "name": "Course 48",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.pluralsight.com/partners/microsoft/azure",
+    "weekRecommended": 22
+  },
+  {
+    "name": "Course 49",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://testautomationu.applitools.com",
+    "weekRecommended": 23
+  },
+  {
+    "name": "Course 50",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://analytics.google.com/analytics/academy/SD-WANSilver",
+    "weekRecommended": 24
+  },
+  {
+    "name": "Course 51",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://education.oracle.com/oracle-cloud-infrastructure",
+    "weekRecommended": 25
+  },
+  {
+    "name": "Course 52",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://education.oracle.com/oracle-cloud-data-management-2023-foundations-associate/pexam_1Z0-1105-23Azure",
+    "weekRecommended": 26
+  },
+  {
+    "name": "Course 53",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://ilearningx.huawei.com/portal/courses",
+    "weekRecommended": 1
+  },
+  {
+    "name": "Course 54",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://cognitiveclass.ai/courses/docker-essentials",
+    "weekRecommended": 2
+  },
+  {
+    "name": "Course 55",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://developer.hashicorp.com/terraform/tutorials",
+    "weekRecommended": 3
+  },
+  {
+    "name": "Course 56",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.datadoghq.com",
+    "weekRecommended": 4
+  },
+  {
+    "name": "Course 57",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://learn.unity.com",
+    "weekRecommended": 5
+  },
+  {
+    "name": "Course 58",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://cognitiveclass.ai/courses/sql-data-science/Natural",
+    "weekRecommended": 6
+  },
+  {
+    "name": "Course 59",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://explore.skillbuilder.aws/learn/course/11458AWS",
+    "weekRecommended": 7
+  },
+  {
+    "name": "Course 60",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.coursera.org/specializations/alibabacloud",
+    "weekRecommended": 8
+  },
+  {
+    "name": "Course 61",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.freecodecamp.org",
+    "weekRecommended": 9
+  },
+  {
+    "name": "Course 62",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://jumpcloud.com/university/certifications/core",
+    "weekRecommended": 10
+  },
+  {
+    "name": "Course 63",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.cloudskillsboost.google/paths/15Dev",
+    "weekRecommended": 11
+  },
+  {
+    "name": "Course 64",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.cloudskillsboost.google",
+    "weekRecommended": 12
+  },
+  {
+    "name": "Course 65",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://codefresh.io/learn/gitops/Infrastructure",
+    "weekRecommended": 13
+  },
+  {
+    "name": "Course 66",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://aws.amazon.com/education/awseducate/Cloud",
+    "weekRecommended": 14
+  },
+  {
+    "name": "Course 67",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.sumologic.com/learn/certifications/Web",
+    "weekRecommended": 15
+  },
+  {
+    "name": "Course 68",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://academy.postman.com/path/postman-api-fundamentals-student-expert",
+    "weekRecommended": 16
+  },
+  {
+    "name": "Course 69",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://go.dev/learn",
+    "weekRecommended": 17
+  },
+  {
+    "name": "Course 70",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://owasp.org/www-project-top-ten/Linux",
+    "weekRecommended": 18
+  },
+  {
+    "name": "Course 71",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://opentelemetry.io/docs/API",
+    "weekRecommended": 19
+  },
+  {
+    "name": "Course 72",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.redhat.com/en/services/training/do007-ansible-automation-technical-overview/Programming",
+    "weekRecommended": 20
+  },
+  {
+    "name": "Course 73",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://education.oracle.com/oracle-cloud-infrastructure-2023-foundations-associate/pexam_1Z0-1085-23OCI",
+    "weekRecommended": 21
+  },
+  {
+    "name": "Course 74",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://www.freecodecamp.org/learn/machine-learning-with-python/Data",
+    "weekRecommended": 22
+  },
+  {
+    "name": "Course 75",
+    "provider": "Various",
+    "area": "Cloud/DevOps",
+    "url": "https://about.gitlab.com/learn/OCI",
+    "weekRecommended": 23
+  }
+]
+```
+✓ courses.json: 75 items extracted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE 5: data/survival-areas.json
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```json
+[
+  {
+    "id": 1,
+    "area": "System Design",
+    "why": "AI can write a function \u2014 it cannot decide Kafka vs RabbitMQ for your throughput",
+    "topics": [
+      "CAP theorem, consistency models, partitioning",
+      "Message queues: Kafka, RabbitMQ, SQS decision criteria",
+      "Database selection: SQL vs NoSQL vs time-series",
+      "Caching: write-through, write-back, cache-aside, invalidation",
+      "Load balancing, rate limiting, circuit breaker patterns"
+    ],
+    "resources": [
+      "Designing Data-Intensive Applications \u2014 Kleppmann",
+      "System Design Primer (GitHub \u2014 free)",
+      "Google SRE Book (free online)"
+    ]
+  },
+  {
+    "id": 2,
+    "area": "Model Training & Fine-Tuning Basics",
+    "why": "You don't need a PhD in ML, but you must know how to adapt existing models to new data.",
+    "topics": [
+      "Transfer learning",
+      "LoRA and QLoRA",
+      "HuggingFace basics",
+      "Data prep"
+    ],
+    "resources": [
+      "Fast.ai course",
+      "HuggingFace NLP course"
+    ]
+  },
+  {
+    "id": 3,
+    "area": "Distributed Tracing & Observability",
+    "why": "When a microservice fails in production, AI can't figure out which of the 50 services caused it\u2014you have to.",
+    "topics": [
+      "OpenTelemetry",
+      "Prometheus & Grafana",
+      "Log aggregation (ELK)",
+      "Distributed tracing (Jaeger)"
+    ],
+    "resources": [
+      "Datadog tutorials",
+      "OpenTelemetry docs"
+    ]
+  },
+  {
+    "id": 4,
+    "area": "Advanced Security & Cryptography",
+    "why": "AI writes insecure code constantly. You need to verify its outputs and architect secure systems.",
+    "topics": [
+      "OAuth2/OIDC",
+      "JWTs and session management",
+      "Encryption at rest/transit",
+      "Zero-trust architecture"
+    ],
+    "resources": [
+      "OWASP Top 10",
+      "Crypto101"
+    ]
+  },
+  {
+    "id": 5,
+    "area": "Cloud Infrastructure & FinOps",
+    "why": "AI can deploy code but it will happily spin up $10,000/month of resources. You need to optimize.",
+    "topics": [
+      "Terraform/IaC",
+      "AWS/GCP cost optimization",
+      "Serverless vs Containers",
+      "Autoscaling policies"
+    ],
+    "resources": [
+      "AWS Well-Architected Framework"
+    ]
+  },
+  {
+    "id": 6,
+    "area": "High-Performance Data Engineering",
+    "why": "Data pipelines are the backbone of modern apps. You need to move TBs of data efficiently.",
+    "topics": [
+      "Batch vs Stream processing",
+      "Apache Spark/Flink",
+      "Data warehouses (Snowflake/BigQuery)",
+      "ETL/ELT"
+    ],
+    "resources": [
+      "Data Engineering Cookbook"
+    ]
+  },
+  {
+    "id": 7,
+    "area": "Developer Productivity Automation",
+    "why": "You must build the tools that orchestrate AI agents for your team's workflow.",
+    "topics": [
+      "CI/CD pipelines (GitHub Actions)",
+      "Custom CLI tools",
+      "Agentic orchestration",
+      "Code review automation"
+    ],
+    "resources": [
+      "GitHub Actions docs"
+    ]
+  }
+]
+```
+✓ survival-areas.json: 7 items extracted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FINAL VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE                  | ITEMS | STATUS
+projects.json         | 150   | ✓
+tech-spine.json       | 22    | ✓
+skills.json           | 119 basic, 10 payable | ✓
+courses.json          | 75   | ✓
+survival-areas.json   | 7     | ✓
+
+PROMPT 1 COMPLETE. SAVE THESE 5 JSON FILES. READY FOR PROMPT 2.
