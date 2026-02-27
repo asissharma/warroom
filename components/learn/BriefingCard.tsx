@@ -1,7 +1,7 @@
 // ── FILE: components/learn/BriefingCard.tsx ──
 'use client';
-import { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronRight, Check } from 'lucide-react';
 import type { SurvivalArea } from '@/lib/types';
 
 interface Props {
@@ -17,6 +17,28 @@ const urgencyStyle: Record<string, { pill: string; label: string }> = {
 export default function BriefingCard({ area }: Props) {
     const [open, setOpen] = useState(false);
     const urgency = urgencyStyle[area.urgency] ?? urgencyStyle.MEDIUM;
+
+    const [studiedTopics, setStudiedTopics] = useState<boolean[]>([]);
+
+    useEffect(() => {
+        if (!area.topics) return;
+        const loaded = area.topics.map((_, i) =>
+            localStorage.getItem(`intel_topic_studied_${area.id}_${i}`) === 'true'
+        );
+        setStudiedTopics(loaded);
+    }, [area]);
+
+    const toggleTopic = (e: React.MouseEvent, index: number) => {
+        e.stopPropagation();
+        const next = [...studiedTopics];
+        next[index] = !next[index];
+        setStudiedTopics(next);
+        localStorage.setItem(`intel_topic_studied_${area.id}_${index}`, next[index].toString());
+    };
+
+    const studiedCount = studiedTopics.filter(Boolean).length;
+    const totalTopics = area.topics?.length || 0;
+    const isBriefed = totalTopics > 0 && studiedCount === totalTopics;
 
     // Normalise resources — the JSON has just strings, not objects
     const resources = area.resources?.map((r: unknown) =>
@@ -35,7 +57,14 @@ export default function BriefingCard({ area }: Props) {
                         {urgency.label}
                     </span>
                     <div>
-                        <div className="font-body font-semibold text-[15px] text-text">{area.area}</div>
+                        <div className="flex items-center gap-2 mb-0.5">
+                            <span className="font-body font-semibold text-[15px] text-text">{area.area}</span>
+                            {isBriefed ? (
+                                <span className="font-mono text-[9px] bg-success/10 text-success px-1.5 py-0.5 rounded tracking-wider border border-success/20">✓ BRIEFED</span>
+                            ) : (
+                                totalTopics > 0 && <span className="font-mono text-[9px] text-muted2">{studiedCount}/{totalTopics} studied</span>
+                            )}
+                        </div>
                         <div className="font-body text-[12px] text-muted2 mt-0.5 leading-relaxed">{area.why}</div>
                     </div>
                 </div>
@@ -60,12 +89,19 @@ export default function BriefingCard({ area }: Props) {
                         <div>
                             <div className="font-mono text-[9px] text-muted2 tracking-[2px] uppercase mb-2">TOPICS</div>
                             <div className="space-y-1">
-                                {area.topics.map((t, i) => (
-                                    <div key={i} className="flex items-baseline gap-2">
-                                        <span className="font-mono text-accent text-[11px]">→</span>
-                                        <span className="font-mono text-[12px] text-text/80">{t}</span>
-                                    </div>
-                                ))}
+                                {area.topics.map((t, i) => {
+                                    const isDone = studiedTopics[i];
+                                    return (
+                                        <div key={i} className="flex items-start gap-2 group/topic cursor-pointer p-1 -mx-1 hover:bg-white/5 rounded transition-colors" onClick={(e) => toggleTopic(e, i)}>
+                                            <div
+                                                className={`shrink-0 mt-1 w-3.5 h-3.5 rounded-[2px] border flex items-center justify-center transition-colors ${isDone ? 'bg-success border-success' : 'border-muted2 bg-transparent'}`}
+                                            >
+                                                {isDone && <Check className="w-3 h-3 text-black stroke-[3]" />}
+                                            </div>
+                                            <span className={`font-mono text-[12px] flex-1 ${isDone ? 'text-text/30 line-through transition-all' : 'text-text/80'}`}>{t}</span>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     )}

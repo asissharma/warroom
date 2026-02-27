@@ -14,8 +14,8 @@ export default function Nav() {
     ]
 
     return (
-        <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-            <div className="bg-surface/80 backdrop-blur-md border border-[rgba(255,255,255,0.055)] rounded-full p-[6px] flex items-center gap-1 shadow-2xl">
+        <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95vw] sm:w-auto max-w-[400px]">
+            <div className="bg-surface/80 backdrop-blur-md border border-[rgba(255,255,255,0.055)] rounded-full p-[6px] flex items-center justify-between gap-1 shadow-2xl overflow-x-auto no-scrollbar">
                 {links.map((link) => {
                     const isActive = pathname.startsWith(link.href)
                     const Icon = link.icon

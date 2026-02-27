@@ -141,7 +141,7 @@ export interface DayPayload {
     project: Project | null
     spineArea: SpineArea
     topicToday: string
-    microtaskToday: string
+    microtasksToday: string[]
     questions: Question[]
     basicSkill: BasicSkill
     payable: PayableSyllabus

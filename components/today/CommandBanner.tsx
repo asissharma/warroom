@@ -1,16 +1,24 @@
 export default function CommandBanner({ project, dayN, phase }: { project: any, dayN: number, phase: string }) {
     return (
-        <div className="bg-surface border border-border p-4 rounded-lg mb-8 flex justify-between items-center">
-            <div>
-                <h2 className="text-text max-w-[200px] text-lg font-mono tracking-tight uppercase">Day {dayN}</h2>
-                <div className="text-muted2 text-xs uppercase tracking-wider">{phase}</div>
-            </div>
-            {project && (
-                <div className="text-right">
-                    <div className="text-acid text-xs uppercase font-mono">Active Project</div>
-                    <div className="text-text font-body text-sm truncate">{project.name}</div>
+        <div className="bg-gradient-to-r from-acid/10 to-accent/5 border border-border border-l-[3px] border-l-[#c8ff00] p-4 rounded-lg mb-8 relative overflow-hidden">
+            {/* 2px top gradient strip */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#c8ff00] to-accent"></div>
+
+            <div className="flex justify-between items-center relative z-10">
+                <div>
+                    <h2 className="text-acid text-lg font-mono tracking-tight uppercase">▶ MISSION — DAY {dayN}</h2>
+                    <div className="text-muted2 text-xs uppercase tracking-wider">{phase}</div>
                 </div>
-            )}
+                {project && (
+                    <div className="text-right">
+                        <div className="text-text/70 text-xs uppercase font-mono">ACTIVE PROJECT</div>
+                        <div className="text-text font-bebas text-2xl truncate mt-1">{project.name}</div>
+                        {project.doneMeans && (
+                            <div className="text-muted2 text-[10px] font-mono mt-1">DONE: {project.doneMeans}</div>
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

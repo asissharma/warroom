@@ -61,8 +61,13 @@ export function getQuestionsForDay(
     const spine = getSpineForDay(dayN)
     const allQuestions = questionsData as Question[]
 
-    const pool = allQuestions.filter(q => q.theme === spine.questionTheme).sort((a, b) => a.id - b.id)
-    if (pool.length === 0) return []
+    // Try finding questions that match the theme exactly
+    let pool = allQuestions.filter(q => q.theme === spine.questionTheme).sort((a, b) => a.id - b.id)
+
+    // Fallback: If no questions match the specific theme (or "General"), use all questions as the pool
+    if (pool.length === 0) {
+        pool = allQuestions.sort((a, b) => a.id - b.id)
+    }
 
     const offset = (completedDaysCount * questionsPerDay) % pool.length
     const slice = pool.slice(offset, offset + questionsPerDay)
@@ -116,11 +121,18 @@ export function getTopicForDay(spine: SpineArea, dayN: number): string {
     return spine.topics[topicIndex]
 }
 
-export function getMicrotaskForDay(spine: SpineArea, dayN: number): string {
-    if (!spine.microtasks || spine.microtasks.length === 0) return "Process Review"
+export function getMicrotasksForDay(spine: SpineArea, dayN: number): string[] {
+    if (!spine.microtasks || spine.microtasks.length === 0) return ["Process Review"]
+
+    // Try to get 3 microtasks for variety, looping through the available ones
     const dayWithinArea = Math.max(0, dayN - spine.dayStart)
-    const taskIndex = dayWithinArea % spine.microtasks.length
-    return spine.microtasks[taskIndex]
+    const startIndex = (dayWithinArea * 3) % spine.microtasks.length
+    const result = []
+
+    for (let i = 0; i < 3; i++) {
+        result.push(spine.microtasks[(startIndex + i) % spine.microtasks.length])
+    }
+    return result
 }
 
 export function buildDayPayload(
@@ -142,7 +154,7 @@ export function buildDayPayload(
         project: getProjectForDay(dayN),
         spineArea: spine,
         topicToday: getTopicForDay(spine, dayN),
-        microtaskToday: getMicrotaskForDay(spine, dayN),
+        microtasksToday: getMicrotasksForDay(spine, dayN),
         questions: getQuestionsForDay(dayN, questionsPerDay, completedDaysCount),
         basicSkill: getBasicSkillForDay(dayN),
         payable: getPayableForDay(dayN),

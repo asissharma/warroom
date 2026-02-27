@@ -7,7 +7,8 @@ import { resolveCarryForward } from '@/lib/carryEngine'
 export async function POST(request: Request) {
     try {
         await connectDB()
-        const { userId = 'default', dayN, taskId, completed, carryId } = await request.json()
+        const body = await request.json()
+        const { userId = 'default', dayN, taskId, completed, carryId } = body
 
         if (!dayN || !taskId) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })

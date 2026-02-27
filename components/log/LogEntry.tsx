@@ -40,9 +40,6 @@ export default function LogEntry({ record }: Props) {
                     <span className={`font-mono text-[8px] px-1.5 py-0.5 rounded uppercase tracking-wider ${cfg.badgeClass}`}>
                         {record.type}
                     </span>
-                    {record.dayN > 0 && (
-                        <span className="font-mono text-[9px] text-muted2">Day {record.dayN}</span>
-                    )}
                     <span className="font-mono text-[9px] text-muted2">{timeAgo(record.createdAt)}</span>
                 </div>
             </div>

@@ -1,7 +1,40 @@
 // ── FILE: components/learn/SyllabusPanel.tsx ──
 'use client';
+import { useState, useEffect } from 'react';
 import type { PayableSyllabus } from '@/lib/types';
 import { ExternalLink } from 'lucide-react';
+
+function BookProgress({ syllabusName, bookTitle }: { syllabusName: string, bookTitle: string }) {
+    const key = `intel_book_progress_${syllabusName}_${bookTitle}`;
+    const [progress, setProgress] = useState(0);
+
+    useEffect(() => {
+        const stored = localStorage.getItem(key);
+        if (stored) setProgress(Number(stored));
+    }, [key]);
+
+    const increment = () => {
+        const next = progress >= 100 ? 0 : progress + 10;
+        setProgress(next);
+        localStorage.setItem(key, next.toString());
+    };
+
+    if (progress >= 100) {
+        return <span className="font-mono text-[10px] text-success cursor-pointer bg-success/10 px-1.5 py-0.5 rounded" onClick={increment}>✓ READ</span>;
+    }
+
+    const filledCount = Math.floor(progress / 10);
+    const bar = '█'.repeat(filledCount) + '░'.repeat(10 - filledCount);
+
+    return (
+        <span
+            onClick={increment}
+            className="font-mono text-[9px] text-muted2 hover:text-acid cursor-pointer transition-colors"
+        >
+            [{bar}] {progress}%
+        </span>
+    );
+}
 
 interface Props {
     syllabus: PayableSyllabus;
@@ -62,22 +95,25 @@ export default function SyllabusPanel({ syllabus, isActive, color, dayN, topicTo
                             <div className="h-px flex-1 bg-[rgba(255,255,255,0.055)]" />
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            {syllabus.books.map((book, i) => (
-                                <div key={i} className="bg-surface2 rounded-lg p-3">
-                                    <div className="flex items-start gap-2">
-                                        <span className={`font-mono text-[9px] px-1.5 py-0.5 rounded shrink-0 ${book.downloaded ? 'bg-success/20 text-success' : 'bg-muted/20 text-muted2'}`}>
-                                            {book.downloaded ? '✓ IN LIBRARY' : 'GET IT ↗'}
-                                        </span>
+                            {syllabus.books.map((book, i) => {
+                                return (
+                                    <div key={i} className="bg-surface2 rounded-lg p-3">
+                                        <div className="flex items-start gap-2 justify-between">
+                                            <span className={`font-mono text-[9px] px-1.5 py-0.5 rounded shrink-0 ${book.downloaded ? 'bg-success/20 text-success' : 'bg-muted/20 text-muted2'}`}>
+                                                {book.downloaded ? '✓ IN LIBRARY' : 'GET IT ↗'}
+                                            </span>
+                                            <BookProgress syllabusName={syllabus.name} bookTitle={book.title} />
+                                        </div>
+                                        <div className="font-body font-medium text-[12px] text-text mt-1">{book.title}</div>
+                                        {book.author && (
+                                            <div className="font-mono text-[10px] text-muted2">{book.author}</div>
+                                        )}
+                                        {book.coreChapter && (
+                                            <div className="font-mono text-[10px] text-muted2 mt-1 italic">Focus: {book.coreChapter}</div>
+                                        )}
                                     </div>
-                                    <div className="font-body font-medium text-[12px] text-text mt-1">{book.title}</div>
-                                    {book.author && (
-                                        <div className="font-mono text-[10px] text-muted2">{book.author}</div>
-                                    )}
-                                    {book.coreChapter && (
-                                        <div className="font-mono text-[10px] text-muted2 mt-1 italic">Focus: {book.coreChapter}</div>
-                                    )}
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 )}

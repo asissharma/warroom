@@ -1,6 +1,9 @@
 // ── FILE: components/learn/SkillGrid.tsx ──
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useStore } from '@/lib/store';
+import { getDayN } from '@/lib/dayEngine';
+import { Play, Check, X } from 'lucide-react';
 
 interface Skill {
     name: string;
@@ -38,6 +41,52 @@ function deriveCategory(name: string): string {
 export default function SkillGrid({ skills, todaySkillName }: Props) {
     const [search, setSearch] = useState('');
     const [catFilter, setCatFilter] = useState('ALL');
+
+    const startDate = useStore(s => s.startDate);
+    const dayN = getDayN(startDate ? new Date(startDate) : new Date());
+    const [doneToday, setDoneToday] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setDoneToday(localStorage.getItem(`intel_skill_done_${dayN}`) === 'true');
+        }
+    }, [dayN]);
+
+    const [practiceModalOpen, setPracticeModalOpen] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(300); // 5 mins
+    const [timerActive, setTimerActive] = useState(false);
+
+    useEffect(() => {
+        let interval: NodeJS.Timeout;
+        if (timerActive && timeLeft > 0) {
+            interval = setInterval(() => setTimeLeft(t => t - 1), 1000);
+        } else if (timerActive && timeLeft === 0) {
+            setTimerActive(false);
+            finishPractice();
+        }
+        return () => clearInterval(interval);
+    }, [timerActive, timeLeft]);
+
+    const startPractice = () => {
+        setPracticeModalOpen(true);
+        setTimeLeft(300);
+        setTimerActive(true);
+    };
+
+    const finishPractice = async () => {
+        setDoneToday(true);
+        localStorage.setItem(`intel_skill_done_${dayN}`, 'true');
+        setPracticeModalOpen(false);
+        try {
+            await fetch('/api/log', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dayN, text: `Practiced: ${todaySkillName}`, type: 'win' })
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
     const normalized = useMemo(() => skills.map(s => ({
         name: s.name.replace(/\\n\s*/g, ' ').replace(/\n\s*/g, ' ').trim(),
@@ -86,15 +135,22 @@ export default function SkillGrid({ skills, todaySkillName }: Props) {
                             className={`break-inside-avoid bg-surface2 rounded-lg p-3 border transition-all ${isToday ? 'border-acid' : 'border-[rgba(255,255,255,0.055)]'}`}
                         >
                             {/* Badge row */}
-                            <div className="flex gap-1.5 flex-wrap mb-1.5">
-                                {isToday && (
-                                    <span className="bg-acid text-bg font-mono text-[8px] px-1.5 py-0.5 rounded font-bold tracking-wider">
-                                        TODAY
+                            <div className="flex gap-1.5 flex-wrap mb-1.5 justify-between w-full items-start">
+                                <div className="flex gap-1.5 flex-wrap">
+                                    {isToday && (
+                                        <span className={`font-mono text-[8px] px-1.5 py-0.5 rounded font-bold tracking-wider ${doneToday ? 'bg-success/20 text-success' : 'bg-acid text-bg'}`}>
+                                            {doneToday ? 'DONE TODAY ✓' : 'TODAY'}
+                                        </span>
+                                    )}
+                                    <span className="bg-muted/30 text-muted2 font-mono text-[8px] px-1.5 py-0.5 rounded">
+                                        {skill.category}
                                     </span>
+                                </div>
+                                {isToday && !doneToday && (
+                                    <button onClick={startPractice} className="font-mono text-[9px] text-acid border border-acid/50 hover:bg-acid/10 px-1.5 py-0.5 rounded flex items-center gap-1 transition-colors mt-[1px]">
+                                        <Play className="w-2.5 h-2.5 fill-acid" /> PRACTICE
+                                    </button>
                                 )}
-                                <span className="bg-muted/30 text-muted2 font-mono text-[8px] px-1.5 py-0.5 rounded">
-                                    {skill.category}
-                                </span>
                             </div>
                             <div className="font-body font-medium text-[12px] text-text leading-snug">{skill.name}</div>
                             {skill.microPractice && (
@@ -109,6 +165,35 @@ export default function SkillGrid({ skills, todaySkillName }: Props) {
 
             {filtered.length === 0 && (
                 <div className="font-mono text-[11px] text-muted2 text-center py-8">No skills match your filter</div>
+            )}
+
+            {/* Practice Modal */}
+            {practiceModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md bg-black/60 font-body">
+                    <div className="bg-surface border border-acid/50 w-full max-w-md rounded-xl p-8 relative shadow-2xl text-center">
+                        <button onClick={() => { setPracticeModalOpen(false); setTimerActive(false); }} className="absolute top-4 right-4 text-muted2 hover:text-text transition-colors">
+                            <X className="w-5 h-5" />
+                        </button>
+
+                        <div className="font-mono text-[10px] text-acid tracking-[2px] uppercase mb-4">Deep Practice</div>
+                        <div className="font-bebas text-2xl text-text mb-4">{todaySkillName}</div>
+
+                        <div className="bg-s2 border border-border rounded p-4 mb-8 text-[13px] text-text/90 leading-relaxed italic block">
+                            "{filtered.find(s => s.name === todaySkillName)?.microPractice || 'Focus and practice this skill intensively for 5 minutes.'}"
+                        </div>
+
+                        <div className="font-mono text-5xl text-acid tracking-widest mb-8 drop-shadow-[0_0_10px_rgba(200,255,0,0.5)]">
+                            {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                        </div>
+
+                        <button
+                            onClick={() => { setTimerActive(false); finishPractice(); }}
+                            className="font-mono text-[10px] text-muted2 border border-border hover:text-text hover:bg-white/5 px-4 py-2 rounded transition-colors uppercase tracking-wider"
+                        >
+                            Finish Early & Log
+                        </button>
+                    </div>
+                </div>
             )}
         </div>
     );

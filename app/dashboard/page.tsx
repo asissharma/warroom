@@ -62,17 +62,43 @@ export default function DashboardPage() {
         return `${Math.round(h / 24)}d ago`;
     }
 
+    // Build last-14-days for streak visualization
+    const last14Dates = Array.from({ length: 14 }, (_, i) => {
+        const d = new Date();
+        d.setDate(d.getDate() - (13 - i));
+        return d.toISOString().split('T')[0];
+    });
+
     return (
         <div className="max-w-[760px] mx-auto px-4 pb-8 pt-6 content-z">
             <div className="font-bebas text-[36px] tracking-wide mb-6">DASHBOARD</div>
 
             {/* Section 1: Vital Stats */}
             <Section title="Vital Stats">
-                <div className="flex gap-3 flex-wrap sm:flex-nowrap">
-                    <StatCard label="STREAK" value={data.currentStreak} color="accent" subtitle="days" />
-                    <StatCard label="COMPLETED" value={data.totalDaysCompleted} color="success" subtitle="of 180 days" />
-                    <StatCard label="TASKS" value={data.totalTasksDone} color="acid" subtitle="total done" />
-                    <StatCard label="CARRIED" value={data.carryForwardCount} color="warning" subtitle="tasks pending" />
+                <div className="flex flex-col gap-4">
+                    <div className="flex gap-3 flex-wrap sm:flex-nowrap">
+                        <StatCard label="STREAK" value={data.currentStreak} color="accent" subtitle="days" />
+                        <StatCard label="COMPLETED" value={data.totalDaysCompleted} color="success" subtitle="of 180 days" />
+                        <StatCard label="TASKS" value={data.totalTasksDone} color="acid" subtitle="total done" />
+                        <StatCard label="CARRIED" value={data.carryForwardCount} color="warning" subtitle="tasks pending" />
+                    </div>
+
+                    <div className="flex items-center gap-1.5 mt-1 overflow-x-auto pb-1 hide-scrollbar">
+                        <span className="text-[10px] font-mono text-muted2 mr-2 uppercase shrink-0">Past 14 Days</span>
+                        {last14Dates.map((dateStr, i) => {
+                            const isToday = dateStr === todayStr;
+                            const dayRecord = data.completionHeatmap.find((h: any) => h.date === dateStr);
+                            const isComplete = dayRecord?.isComplete;
+
+                            return (
+                                <div
+                                    key={dateStr}
+                                    title={`${dateStr} ${isComplete ? 'Complete' : 'Missed'}`}
+                                    className={`w-4 h-6 rounded-[2px] shrink-0 ${isComplete ? 'bg-success' : 'bg-surface2'} ${isToday ? 'border border-acid bg-opacity-40' : ''}`}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
             </Section>
 
@@ -85,7 +111,7 @@ export default function DashboardPage() {
 
             {/* Section 3: Phase Progress */}
             <Section title="Phase Progress">
-                <PhaseArcs phases={data.phaseProgress} />
+                <PhaseArcs phases={data.phaseProgress} heatmap={data.completionHeatmap} />
             </Section>
 
             {/* Section 4: Skill Bars */}

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useStore } from '@/lib/store';
 import { useDay } from '@/hooks/useDay';
 import { getDayN, buildDayPayload } from '@/lib/dayEngine';
+import survivalAreasData from '@/data/survival-areas.json';
 import CommandBanner from '@/components/today/CommandBanner';
 import Timer from '@/components/today/Timer';
 import RingProgress from '@/components/today/RingProgress';
@@ -38,44 +39,100 @@ export default function Today() {
 
     const isDone = (id: string) => day.completedTaskIds.includes(id);
 
+    // Calculate dynamic RingProgress
+    // We count tasks dynamically based on what's rendered
+    let allTaskIds: string[] = [];
+    if (!day.isReviewDay) {
+        allTaskIds = [
+            `tech_micro_0_D${dayN}`,
+            `tech_micro_1_D${dayN}`,
+            `tech_micro_2_D${dayN}`,
+        ];
+        if (day.project) {
+            allTaskIds.push(`build_main_D${dayN}`, `build_commit_D${dayN}`, `build_reflect_D${dayN}`);
+        }
+        day.questions.forEach((q) => {
+            allTaskIds.push(`mastery_Q${q.id}_D${dayN}`);
+        });
+        if (day.payable) {
+            allTaskIds.push(`human_skill_D${dayN}`, `human_payable_D${dayN}`);
+        }
+    } else {
+        allTaskIds = [
+            `tech_review_1_D${dayN}`,
+            `tech_review_2_D${dayN}`,
+            `tech_review_D${dayN}`
+        ];
+    }
+
+    const totalCount = allTaskIds.length;
+    const completedCount = day.completedTaskIds.filter(id => allTaskIds.includes(id)).length;
+    const carriedCount = day.carriedTasks?.length || 0;
+    const allDone = totalCount > 0 && completedCount === totalCount;
+
     return (
         <div className="max-w-3xl mx-auto pb-24 px-4 pt-8">
             <div className="flex items-center space-x-4 mb-8">
                 <Timer />
                 <div className="bg-surface border border-border rounded-lg p-4 flex justify-center items-center shrink-0 w-[120px]">
-                    <RingProgress completed={day.completedTaskIds.length} total={12} />
+                    <RingProgress completed={completedCount} total={totalCount || 1} />
                 </div>
             </div>
             <CommandBanner project={day.project} dayN={dayN} phase={day.phase} />
 
-            <div className="font-mono text-[11px] text-muted2 mb-4">{dateStr}</div>
+            <div className="font-mono text-[11px] text-muted2 mb-4 flex justify-between items-center">
+                <span>{dateStr}</span>
+                <span>↻ {carriedCount} carried · ⚡ {completedCount}/{totalCount || 1} done · 🔥 Streak: 1</span>
+            </div>
 
             {!day.isReviewDay && (
                 <>
                     <TaskCard title="Tech Track" subtitle={day.spineArea?.area} dotColor="accent">
-                        <TaskItem isMission text={`Topic: ${day.topicToday}`} duration="30M" taskId={`tech_micro_0_D${dayN}`} completed={isDone(`tech_micro_0_D${dayN}`)} onToggle={toggleTask} />
-                        <TaskItem isMission text={`Task: ${day.microtaskToday}`} duration="45M" taskId={`tech_micro_1_D${dayN}`} completed={isDone(`tech_micro_1_D${dayN}`)} onToggle={toggleTask} />
-                        <TaskItem text={`Review: ${day.topicToday} — explain without notes`} taskId={`tech_micro_2_D${dayN}`} completed={isDone(`tech_micro_2_D${dayN}`)} onToggle={toggleTask} />
+                        <TaskItem
+                            isMission
+                            text={`Microtask 1: ${day.microtasksToday?.[0] || 'Review'}`}
+                            duration="30M"
+                            taskId={`tech_micro_0_D${dayN}`}
+                            completed={isDone(`tech_micro_0_D${dayN}`)}
+                            onToggle={toggleTask}
+                            expandedContent={<><div className="text-accent mb-1 font-mono text-[10px] uppercase">Topic: {day.topicToday}</div><div className="text-text/80">{survivalAreasData.find((a: any) => a.area === day.spineArea?.area)?.why || 'Fundamental building block for distributed systems.'}</div></>}
+                        />
+                        <TaskItem
+                            isMission
+                            text={`Microtask 2: ${day.microtasksToday?.[1] || 'Practice'}`}
+                            duration="45M"
+                            taskId={`tech_micro_1_D${dayN}`}
+                            completed={isDone(`tech_micro_1_D${dayN}`)}
+                            onToggle={toggleTask}
+                            expandedContent={<><div className="text-accent mb-1 font-mono text-[10px] uppercase">Topic: {day.topicToday}</div><div className="text-text/80">{survivalAreasData.find((a: any) => a.area === day.spineArea?.area)?.why || 'Fundamental building block for distributed systems.'}</div></>}
+                        />
+                        <TaskItem
+                            text={`Microtask 3 (Review): ${day.microtasksToday?.[2] || 'Explain concepts purely without notes'}`}
+                            taskId={`tech_micro_2_D${dayN}`}
+                            completed={isDone(`tech_micro_2_D${dayN}`)}
+                            onToggle={toggleTask}
+                            expandedContent={<><div className="text-accent mb-1 font-mono text-[10px] uppercase">Topic: {day.topicToday}</div><div className="text-text/80">{survivalAreasData.find((a: any) => a.area === day.spineArea?.area)?.why || 'Fundamental building block for distributed systems.'}</div></>}
+                        />
                     </TaskCard>
 
                     {day.project && (
                         <TaskCard title="Build Track" subtitle={day.project.category} dotColor="danger">
-                            <TaskItem isMission text={`Build: ${day.project.name} — ${day.project.doneMeans}`} duration="90M" taskId={`build_main_D${dayN}`} completed={isDone(`build_main_D${dayN}`)} onToggle={toggleTask} />
-                            <TaskItem text="git commit: explain what and why" taskId={`build_commit_D${dayN}`} completed={isDone(`build_commit_D${dayN}`)} onToggle={toggleTask} />
-                            <TaskItem text="Log the hardest part (one sentence)" taskId={`build_reflect_D${dayN}`} completed={isDone(`build_reflect_D${dayN}`)} onToggle={toggleTask} />
+                            <TaskItem isMission text={`Build: ${day.project.name} — ${day.project.doneMeans}`} duration="90M" taskId={`build_main_D${dayN}`} completed={isDone(`build_main_D${dayN}`)} onToggle={toggleTask} expandedContent={<div className="text-text/80 text-xs">Done Condition: {day.project.doneMeans}</div>} />
+                            <TaskItem text="git commit: explain what and why" taskId={`build_commit_D${dayN}`} completed={isDone(`build_commit_D${dayN}`)} onToggle={toggleTask} expandedContent={<div className="text-text/80 text-xs">Commit your daily progress to build a reliable history.</div>} />
+                            <TaskItem text="Log the hardest part (one sentence)" taskId={`build_reflect_D${dayN}`} completed={isDone(`build_reflect_D${dayN}`)} onToggle={toggleTask} expandedContent={<div className="text-text/80 text-xs">End-of-day reflections solidify learning and highlight architectural blind spots.</div>} />
                         </TaskCard>
                     )}
 
                     <TaskCard title="Mastery Gate" subtitle={`Theme: ${day.spineArea?.questionTheme || 'Any'}`} dotColor="info">
-                        {day.questions.map((q, i) => (
-                            <TaskItem key={i} isMission text={`Q${q.id}: ${q.question}`} taskId={`mastery_Q${q.id}_D${dayN}`} completed={isDone(`mastery_Q${q.id}_D${dayN}`)} onToggle={toggleTask} />
+                        {day.questions && day.questions.map((q, i) => (
+                            <TaskItem key={i} isMission text={`Q${q.id}: ${q.question}`} taskId={`mastery_Q${q.id}_D${dayN}`} completed={isDone(`mastery_Q${q.id}_D${dayN}`)} onToggle={toggleTask} expandedContent={<><span className="inline-block px-1.5 py-0.5 rounded bg-surface2 text-muted2 mr-2 mb-2 text-[10px] font-mono">Diff: {q.difficulty || 2}</span><span className="text-text/80 text-xs block">Theme: {q.theme}. Hint: Think about related concepts in {day.spineArea?.area}.</span></>} />
                         ))}
                     </TaskCard>
 
                     {day.payable && (
                         <TaskCard title="Human Track" subtitle={`${day.basicSkill?.name || 'Soft'} + ${day.payable.name}`} dotColor="success">
-                            <TaskItem isMission text={`Skill: ${day.basicSkill?.name} — 15 min focus`} duration="15M" taskId={`human_skill_D${dayN}`} completed={isDone(`human_skill_D${dayN}`)} onToggle={toggleTask} />
-                            <TaskItem isMission text={`Read: '${day.payable.books?.[0]?.title || 'Book'}' - weekly exercise`} duration="30M" taskId={`human_payable_D${dayN}`} completed={isDone(`human_payable_D${dayN}`)} onToggle={toggleTask} />
+                            <TaskItem isMission text={`Skill: ${day.basicSkill?.name} — 15 min focus`} duration="15M" taskId={`human_skill_D${dayN}`} completed={isDone(`human_skill_D${dayN}`)} onToggle={toggleTask} expandedContent={<div className="text-text/80 text-xs">{day.basicSkill?.microPractice}</div>} />
+                            <TaskItem isMission text={`Read: '${day.payable.books?.[0]?.title || 'Book'}' - weekly exercise`} duration="30M" taskId={`human_payable_D${dayN}`} completed={isDone(`human_payable_D${dayN}`)} onToggle={toggleTask} expandedContent={<div className="text-text/80 text-xs">Core Chapter focus: {day.payable.books?.[0]?.coreChapter || 'N/A'}. {day.payable.weeklyExercise}</div>} />
                         </TaskCard>
                     )}
                 </>
@@ -108,7 +165,7 @@ export default function Today() {
                 <TaskItem text="Write one entry in Log" />
                 <TaskItem text="Clear desk & close tabs" />
                 <div className="p-3">
-                    <MarkCompleteBtn dayN={dayN} />
+                    <MarkCompleteBtn dayN={dayN} allDone={allDone} />
                 </div>
             </TaskCard>
         </div>

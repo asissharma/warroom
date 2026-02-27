@@ -56,7 +56,7 @@ export function useDay(): UseDayReturn {
             const res = await fetch('/api/task', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ taskId, completed, carryId }),
+                body: JSON.stringify({ dayN: prev?.dayN, taskId, completed, carryId }),
             });
             if (!res.ok) throw new Error('Task toggle failed');
         } catch {
