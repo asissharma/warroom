@@ -1,48 +1,118 @@
-'use client';
-import { useState } from 'react';
+// ── FILE: app/learn/page.tsx ──
+import LearnNav from '@/components/learn/LearnNav';
+import SyllabusShelf from '@/components/learn/SyllabusShelf';
+import BriefingCard from '@/components/learn/BriefingCard';
+import SkillGrid from '@/components/learn/SkillGrid';
+import CourseGrid from '@/components/learn/CourseGrid';
+
+// Direct static JSON imports — no API calls needed for Learn tab
+import skillsData from '@/data/skills.json';
 import survivalAreas from '@/data/survival-areas.json';
-import courses from '@/data/courses.json';
-import SurvivalCard from '@/components/SurvivalCard';
-import CourseCard from '@/components/CourseCard';
+import coursesData from '@/data/courses.json';
 
-export default function Learn() {
-    const [filter, setFilter] = useState('ALL');
+// Map payable data to PayableSyllabus shape
+const syllabi = (skillsData.payable as Array<{
+    name: string; dayStart: number; dayEnd: number;
+    coreBooks?: string[];
+}>).map((s, i) => ({
+    id: i + 1,
+    name: s.name,
+    dayStart: s.dayStart,
+    dayEnd: s.dayEnd,
+    description: `Master ${s.name} through curated books, exercises, and daily practice.`,
+    books: (s.coreBooks ?? []).map((title, bi) => ({
+        title,
+        author: '',
+        downloaded: bi === 0,
+        coreChapter: 'Chapter 1',
+    })),
+    podcasts: [],
+    weeklyExercise: `Practice one ${s.name} scenario with a partner or in writing.`,
+    capstone: `Apply ${s.name} in a real situation this month.`,
+}));
 
-    const tags = ['ALL', 'ML/AI', 'Cloud', 'Security', 'Foundation', 'Data'];
+// Map basic skills strings to skill objects
+const basicSkills = (skillsData.basic as string[]).map((name, i) => ({
+    name: name.replace(/\\n\s*/g, ' ').replace(/\n\s*/g, ' ').trim(),
+    category: '',
+    microPractice: `Spend 5 minutes practicing ${name.split('\n')[0].trim()} actively today.`,
+}));
 
-    const filteredCourses = filter === 'ALL'
-        ? courses
-        : courses.filter((c: any) => c.area && c.area.toUpperCase().includes(filter.toUpperCase()));
+const DAY_N = 1; // Static — no API needed for learn tab
 
+export default function LearnPage() {
     return (
-        <div className="max-w-[760px] mx-auto px-4 pb-16">
-            <h1 className="font-display text-3xl tracking-wide mb-8">KNOWLEDGE BASE</h1>
+        <div className="content-z">
+            <LearnNav />
+            <div className="max-w-[760px] mx-auto px-4 pb-16">
 
-            <div className="mb-12">
-                <h2 className="font-mono text-[11px] text-accent uppercase tracking-widest mb-4">7 Survival Areas</h2>
-                <div>
-                    {survivalAreas.map((sa: any) => <SurvivalCard key={sa.id} item={sa} />)}
-                </div>
-            </div>
+                {/* SECTION A: CURRICULUM */}
+                <section id="curriculum" className="mb-14 scroll-mt-[110px]">
+                    <div className="mb-6">
+                        <div className="font-bebas text-[28px] tracking-wide text-text">CURRICULUM</div>
+                        <div className="font-mono text-[10px] text-muted2 tracking-[2px] uppercase mt-1">
+                            10 syllabi · one active at a time · 18 days each
+                        </div>
+                    </div>
+                    <SyllabusShelf syllabi={syllabi} dayN={DAY_N} />
+                </section>
 
-            <div>
-                <div className="flex justify-between items-center mb-4">
-                    <h2 className="font-mono text-[11px] text-acid uppercase tracking-widest">Free Courses Pipeline</h2>
-                    <div className="flex space-x-1 overflow-x-auto no-scrollbar">
-                        {tags.map(t => (
-                            <button
-                                key={t} onClick={() => setFilter(t)}
-                                className={`text-[9px] font-mono px-2 py-1 rounded transition-colors whitespace-nowrap ${filter === t ? 'bg-acid text-[#07070a]' : 'bg-surface text-muted2 border border-border hover:text-text'}`}>
-                                {t}
-                            </button>
+                {/* SECTION B: BRIEFINGS */}
+                <section id="briefings" className="mb-14 scroll-mt-[110px]">
+                    <div className="mb-6">
+                        <div className="font-bebas text-[28px] tracking-wide text-text">BRIEFINGS</div>
+                        <div className="font-mono text-[10px] text-muted2 tracking-[2px] uppercase mt-1">
+                            7 survival areas · what separates engineers from prompt engineers in 2025
+                        </div>
+                    </div>
+                    <div>
+                        {(survivalAreas as Array<{
+                            id: number; area: string; urgency?: string; why: string;
+                            topics: string[]; resources: unknown[]; spineConnection?: string;
+                        }>).map(sa => (
+                            <BriefingCard
+                                key={sa.id}
+                                area={{
+                                    id: sa.id,
+                                    area: sa.area,
+                                    urgency: (sa.urgency ?? 'MEDIUM') as 'CRITICAL' | 'HIGH' | 'MEDIUM',
+                                    why: sa.why,
+                                    topics: sa.topics,
+                                    resources: (sa.resources as unknown[]).map(r =>
+                                        typeof r === 'string'
+                                            ? { name: r, author: '', free: true, url: null }
+                                            : r as { name: string; author: string; free: boolean; url: string | null }
+                                    ),
+                                    spineConnection: sa.spineConnection ?? '',
+                                }}
+                            />
                         ))}
                     </div>
-                </div>
+                </section>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {filteredCourses.map((c: any, i: number) => <CourseCard key={i} course={c} />)}
-                </div>
+                {/* SECTION C: SKILLS */}
+                <section id="skills" className="mb-14 scroll-mt-[110px]">
+                    <div className="mb-6">
+                        <div className="font-bebas text-[28px] tracking-wide text-text">SKILLS</div>
+                        <div className="font-mono text-[10px] text-muted2 tracking-[2px] uppercase mt-1">
+                            100+ human skills · running quietly in the background, compounding daily
+                        </div>
+                    </div>
+                    <SkillGrid skills={basicSkills} />
+                </section>
+
+                {/* SECTION D: COURSES */}
+                <section id="courses" className="scroll-mt-[110px]">
+                    <div className="mb-6">
+                        <div className="font-bebas text-[28px] tracking-wide text-text">COURSES</div>
+                        <div className="font-mono text-[10px] text-muted2 tracking-[2px] uppercase mt-1">
+                            Free courses pipeline · curated by area
+                        </div>
+                    </div>
+                    <CourseGrid courses={coursesData as any[]} />
+                </section>
+
             </div>
         </div>
-    )
+    );
 }

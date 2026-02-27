@@ -1,3 +1,4 @@
+// ── FILE: tailwind.config.ts ──
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -10,7 +11,9 @@ const config: Config = {
             colors: {
                 bg: '#07070a',
                 surface: '#0f0f15',
-                s2: '#161620',
+                surface2: '#161620',
+                border: 'rgba(255,255,255,0.055)',
+                borderHi: 'rgba(255,255,255,0.13)',
                 accent: '#7c5cfc',
                 acid: '#c8ff00',
                 danger: '#ff3b4e',
@@ -20,13 +23,31 @@ const config: Config = {
                 text: '#eeeef5',
                 muted: '#3d3d55',
                 muted2: '#5c5c7a',
-                border: 'rgba(255,255,255,0.055)',
-                borderHi: 'rgba(255,255,255,0.13)'
             },
             fontFamily: {
-                display: ['Bebas Neue', 'sans-serif'],
+                bebas: ['Bebas Neue', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace'],
-                body: ['Outfit', 'sans-serif']
+                body: ['Outfit', 'sans-serif'],
+                display: ['Bebas Neue', 'sans-serif'],
+            },
+            animation: {
+                'slide-in-top': 'slideInTop 0.2s ease-out',
+                'fade-in': 'fadeIn 0.2s ease-out',
+                'pulse-dot': 'pulseDot 2s cubic-bezier(0.4,0,0.6,1) infinite',
+            },
+            keyframes: {
+                slideInTop: {
+                    '0%': { transform: 'translateY(-8px)', opacity: '0' },
+                    '100%': { transform: 'translateY(0)', opacity: '1' },
+                },
+                fadeIn: {
+                    '0%': { opacity: '0' },
+                    '100%': { opacity: '1' },
+                },
+                pulseDot: {
+                    '0%,100%': { opacity: '1' },
+                    '50%': { opacity: '0.4' },
+                }
             }
         },
     },

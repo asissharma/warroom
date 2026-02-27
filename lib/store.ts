@@ -1,6 +1,22 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { LogRecord, SkillBars } from './types'
+
+// Inline types — these are legacy; prefer the API-backed hooks (useSkills, useLog, etc.)
+interface LogRecord {
+    _id: string;
+    dayN: number;
+    text: string;
+    type: 'win' | 'skip' | 'key' | 'block';
+    createdAt: string;
+}
+
+interface SkillBars {
+    t: number;
+    b: number;
+    s: number;
+    m: number;
+    d: number;
+}
 
 interface State {
     startDate: string;
@@ -28,13 +44,11 @@ export const useStore = create<State>()(
             bars: { t: 0, b: 0, s: 0, m: 0, d: 0 },
             lvls: { t: 1, b: 1, s: 1, m: 1, d: 1 },
 
-            setStartDate: (d) => set({ startDate: d }),
+            setStartDate: (d: string) => set({ startDate: d }),
 
-            markDayDone: (date) => set((state) => {
+            markDayDone: (date: string) => set((state: State) => {
                 if (state.doneDays.includes(date)) return state;
                 let newStreak = state.streak;
-
-                // Simple streak logic: if yesterday was done, increment. Else if first day, set to 1. Otherwise reset to 1.
                 if (state.doneDays.length === 0) {
                     newStreak = 1;
                 } else {
@@ -42,44 +56,38 @@ export const useStore = create<State>()(
                     const lastDate = new Date(lastDateStr);
                     const currentDate = new Date(date);
                     const diffDays = Math.floor((currentDate.getTime() - lastDate.getTime()) / 86400000);
-
                     if (diffDays === 1) {
                         newStreak += 1;
                     } else if (diffDays > 1) {
-                        newStreak = 1; // streak broken
-                    } else {
-                        // Same day, streak unchanged
+                        newStreak = 1;
                     }
                 }
-
                 return {
                     doneDays: [...state.doneDays, date],
                     streak: newStreak
                 };
             }),
 
-            bumpSkill: (key, amount) => set((state) => {
+            bumpSkill: (key: keyof SkillBars, amount: number) => set((state: State) => {
                 let newBar = state.bars[key] + amount;
                 let newLvl = state.lvls[key];
-
                 if (newBar >= 100) {
                     newLvl += Math.floor(newBar / 100);
                     newBar = newBar % 100;
                 }
-
                 return {
                     bars: { ...state.bars, [key]: newBar },
                     lvls: { ...state.lvls, [key]: newLvl }
                 };
             }),
 
-            addRecord: (r) => set((state) => {
+            addRecord: (r: LogRecord) => set((state: State) => {
                 const newRecords = [r, ...state.records];
                 if (newRecords.length > 150) newRecords.pop();
                 return { records: newRecords };
             }),
 
-            incrementTasks: (by) => set((state) => ({ tasksDone: Math.max(0, state.tasksDone + by) }))
+            incrementTasks: (by: number) => set((state: State) => ({ tasksDone: Math.max(0, state.tasksDone + by) }))
         }),
         {
             name: 'intelosv4'

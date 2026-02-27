@@ -1,53 +1,61 @@
+// ── FILE: app/log/page.tsx ──
 'use client';
-import { useState } from 'react';
-import { useStore } from '@/lib/store';
-import LogEntry from '@/components/LogEntry';
+import { useLog, type LogType } from '@/hooks/useLog';
+import LogInput from '@/components/log/LogInput';
+import LogEntry from '@/components/log/LogEntry';
+import { Filter } from 'lucide-react';
 
-export default function Log() {
-    const records = useStore(s => s.records);
-    const addRecord = useStore(s => s.addRecord);
-    const [text, setText] = useState('');
-    const [type, setType] = useState<'win' | 'skip' | 'key' | 'block'>('key');
+const FILTER_OPTS: { value: LogType | 'all'; label: string }[] = [
+    { value: 'all', label: 'ALL' },
+    { value: 'win', label: '🏆 WIN' },
+    { value: 'skip', label: '⏭ SKIP' },
+    { value: 'key', label: '💡 KEY' },
+    { value: 'block', label: '🚧 BLOCK' },
+];
 
-    const submit = (e?: React.FormEvent) => {
-        e?.preventDefault();
-        if (!text.trim()) return;
-        addRecord({ id: Date.now().toString(), text, type, date: new Date().toLocaleString() });
-        setText('');
-    }
+export default function LogPage() {
+    const { records, loading, error, filter, setFilter, addLog } = useLog();
 
     return (
-        <div className="max-w-[680px] mx-auto px-4 pb-16 h-[calc(100vh-80px)] flex flex-col">
-            <h1 className="font-display text-3xl tracking-wide mb-6 shrink-0">OPERATIONAL LOG</h1>
+        <div className="max-w-[700px] mx-auto px-4 pb-8 pt-6 content-z">
+            <div className="flex items-baseline gap-3 mb-6">
+                <div className="font-bebas text-[36px] tracking-wide">OPERATIONAL LOG</div>
+                <div className="font-mono text-[10px] text-muted2 tracking-[2px]">{records.length} ENTRIES</div>
+            </div>
 
-            <form onSubmit={submit} className="bg-surface border border-border p-3 rounded-xl mb-6 flex flex-col sm:flex-row gap-3 shrink-0 focus-within:border-accent/50 transition-colors">
-                <div className="flex space-x-2">
-                    {['key', 'win', 'block', 'skip'].map(t => (
-                        <button key={t} type="button" onClick={() => setType(t as any)}
-                            className={`text-[10px] font-mono uppercase px-2 py-1 rounded border transition-colors ${type === t ? 'border-accent text-accent bg-accent/10' : 'border-transparent text-muted2 hover:bg-s2'}`}>
-                            {t}
+            {/* Input */}
+            <LogInput onAdd={addLog} />
+
+            {/* Filter row */}
+            <div className="flex items-center gap-2 mb-4">
+                <Filter size={12} className="text-muted2" />
+                <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
+                    {FILTER_OPTS.map(opt => (
+                        <button
+                            key={opt.value}
+                            onClick={() => setFilter(opt.value)}
+                            className={`px-2.5 py-1 font-mono text-[9px] rounded tracking-wider whitespace-nowrap transition-all ${filter === opt.value ? 'bg-accent text-white' : 'bg-surface2 text-muted2 border border-[rgba(255,255,255,0.055)] hover:text-text'}`}
+                        >
+                            {opt.label}
                         </button>
                     ))}
                 </div>
-                <div className="flex-1 flex space-x-2">
-                    <input
-                        type="text" value={text} onChange={(e) => setText(e.target.value)}
-                        placeholder="Log an observation, win, or blocker..."
-                        className="flex-1 bg-transparent border-none text-[13px] font-body text-text focus:outline-none placeholder:text-muted"
-                    />
-                    <button type="submit" className="bg-text text-bg hover:bg-white text-[11px] font-mono px-3 py-1.5 rounded-lg transition-colors font-bold tracking-wide">
-                        LOG
-                    </button>
-                </div>
-            </form>
+            </div>
 
-            <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar bg-surface border border-border rounded-xl">
-                {records.length === 0 ? (
-                    <div className="p-8 text-center text-[13px] text-muted2 font-mono italic">No logs found. Start typing above.</div>
+            {/* Log feed */}
+            <div className="bg-surface border border-[rgba(255,255,255,0.055)] rounded-lg overflow-hidden">
+                {loading ? (
+                    <div className="p-8 text-center font-mono text-[11px] text-muted2 animate-pulse">Loading log entries...</div>
+                ) : error ? (
+                    <div className="p-8 text-center font-mono text-[11px] text-danger">{error}</div>
+                ) : records.length === 0 ? (
+                    <div className="p-8 text-center font-mono text-[11px] text-muted2 italic">
+                        {filter === 'all' ? 'No logs yet. Start typing above.' : `No ${filter} entries found.`}
+                    </div>
                 ) : (
-                    records.map(r => <LogEntry key={r.id} record={r} />)
+                    records.map(r => <LogEntry key={r._id} record={r} />)
                 )}
             </div>
         </div>
-    )
+    );
 }

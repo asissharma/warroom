@@ -1,73 +1,164 @@
+// Core data types (matching your JSON files exactly)
+import type { Types } from 'mongoose'
+
 export interface Project {
-    day: number;
-    phase: string;
-    category: string;
-    name: string;
-    doneMeans: string;
+    day: number
+    phase: string
+    category: string
+    name: string
+    doneMeans: string
 }
 
 export interface SpineArea {
-    id: number;
-    area: string;
-    phase: string;
-    weekStart: number;
-    weekEnd: number;
-    topics: string[];
-    microtasks: string[];
-    resource: string;
+    id: number
+    area: string
+    phase: string
+    dayStart: number
+    dayEnd: number
+    questionTheme: string
+    topics: string[]
+    microtasks: string[]
+    resource: string
 }
 
 export interface Question {
-    id: number;
-    question: string;
-    theme: string;
+    id: number
+    question: string
+    theme: string
+    difficulty: 1 | 2 | 3
 }
 
-export interface CheckpointNote {
-    phaseCompleted: string;
-    projectsRange: string;
-    selfAssessQuestions: string[];
-    recoveryPath: {
-        cut: string[];
-        keepNoMatterWhat: string[];
-        minimumViable: string;
-    };
+export interface BasicSkill {
+    id: number
+    name: string
+    category: string
+    microPractice: string
 }
 
-export interface DayPlan {
-    day: number;
-    phase: string;
-    reviewDay: boolean;
-    checkpointDay: boolean;
-    project: Project | null;
-    spineArea: {
-        area: string;
-        topicToday: string;
-        microtaskToday: string;
-    } | null;
-    questionTheme: string | null;
-    questionOffset: number | null;
-    basicSkill: string | null;
-    payable: {
-        name: string;
-        book: string;
-        dailyTask: string;
-    } | null;
-    checkpointNote: CheckpointNote | null;
-    reviewNote?: string;
+export interface PayableBook {
+    title: string
+    author: string
+    downloaded: boolean
+    coreChapter: string
 }
 
-export interface LogRecord {
-    id: string;
-    text: string;
-    type: 'win' | 'skip' | 'key' | 'block';
-    date: string;
+export interface PayableSyllabus {
+    id: number
+    name: string
+    dayStart: number
+    dayEnd: number
+    description: string
+    books: PayableBook[]
+    podcasts: string[]
+    weeklyExercise: string
+    capstone: string
 }
 
-export interface SkillBars {
-    t: number;
-    b: number;
-    s: number;
-    m: number;
-    d: number;
+export interface SurvivalArea {
+    id: number
+    area: string
+    urgency: 'CRITICAL' | 'HIGH' | 'MEDIUM'
+    why: string
+    topics: string[]
+    resources: { name: string; author: string; free: boolean; url: string | null }[]
+    spineConnection: string
+}
+
+export interface Course {
+    id: number
+    name: string
+    provider: string
+    area: string
+    url: string
+    spineWeek: number
+    estimatedHours: number
+}
+
+// MongoDB document shapes
+export interface IUser {
+    userId: string
+    startDate: Date
+    streak: number
+    longestStreak: number
+    totalTasksDone: number
+    preferences: {
+        questionsPerDay: 8 | 9
+        timezone: string
+    }
+}
+
+export interface IDayRecord {
+    userId: string
+    dayN: number
+    date: Date
+    completedTaskIds: string[]
+    isComplete: boolean
+    completedAt?: Date
+}
+
+export interface ISkillProgress {
+    userId: string
+    barKey: 'python_algo_oop' | 'databases_concurrency' | 'js_node_security' | 'ml_ai_mlops' | 'build_output'
+    value: number
+    level: number
+    lastUpdated: Date
+}
+
+export interface ILogRecord {
+    userId: string
+    dayN: number
+    text: string
+    type: 'win' | 'skip' | 'key' | 'block'
+    createdAt: Date
+}
+
+export interface ICarryForward {
+    _id: Types.ObjectId
+    userId: string
+    fromDayN: number
+    toDayN: number
+    taskId: string
+    taskText: string
+    taskType: 'tech' | 'build' | 'mastery' | 'human'
+    resolved: boolean
+    resolvedAt?: Date
+}
+
+// API response shapes
+export interface CarryForwardTask {
+    _id: string
+    fromDayN: number
+    taskId: string
+    taskText: string
+    taskType: 'tech' | 'build' | 'mastery' | 'human'
+}
+
+export interface DayPayload {
+    dayN: number
+    phase: string
+    isReviewDay: boolean
+    isCheckpointDay: boolean
+    project: Project | null
+    spineArea: SpineArea
+    topicToday: string
+    microtaskToday: string
+    questions: Question[]
+    basicSkill: BasicSkill
+    payable: PayableSyllabus
+    carriedTasks: CarryForwardTask[]
+    completedTaskIds: string[]
+    dayComplete: boolean
+}
+
+export interface DashboardData {
+    totalDaysCompleted: number
+    currentStreak: number
+    longestStreak: number
+    totalTasksDone: number
+    carryForwardCount: number
+    avgTasksPerDay: number
+    completionHeatmap: { date: string; dayN: number; isComplete: boolean; taskCount: number }[]
+    phaseProgress: { phase: string; dayStart: number; dayEnd: number; daysCompleted: number; totalDays: number }[]
+    skillBars: Record<string, { value: number; level: number }>
+    recentLogs: { text: string; type: string; dayN: number; createdAt: string }[]
 }
