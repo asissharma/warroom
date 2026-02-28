@@ -50,18 +50,23 @@ export default function ConfigPage() {
     };
 
     return (
-        <div className="max-w-[700px] mx-auto px-4 pb-16 pt-6 content-z">
-            <div className="mb-6">
-                <div className="font-bebas text-[36px] tracking-wide" style={{ background: 'linear-gradient(90deg, #7c5cfc, #c8ff00)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    INTEL·OS CONFIG
+        <div className="h-[100dvh] overflow-y-auto scrollbar-thin content-z">
+            <div className="max-w-[700px] mx-auto px-4 pb-24 pt-6">
+                {/* ── HEADER ── */}
+                <div className="mb-8">
+                    <div className="font-bebas text-[36px] tracking-wide" style={{ background: 'linear-gradient(90deg, #4f46e5, #10b981)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                        INTEL·OS CONFIG
+                    </div>
+                    <div className="font-mono text-[11px] text-muted2 mt-1">Adjust only with intention.</div>
                 </div>
-                <div className="font-mono text-[11px] text-muted2 mt-1">Adjust only with intention.</div>
-            </div>
 
-            <MissionClock user={user as any} onUpdate={updateUser as any} />
-            <LoadPanel questionsPerDay={user.preferences.questionsPerDay} onUpdate={(qpd) => updateUser({ preferences: { ...user.preferences, questionsPerDay: qpd } } as any)} />
-            <ProgressSnapshot stats={stats} />
-            <DangerZone carryForwardCount={dashboardData.carryForwardCount} onClearCarry={handleClearCarry} onReset={handleReset} />
+                <div className="space-y-6">
+                    <MissionClock user={user as any} onUpdate={updateUser as any} />
+                    <LoadPanel questionsPerDay={user.preferences.questionsPerDay} onUpdate={(qpd) => updateUser({ preferences: { ...user.preferences, questionsPerDay: qpd } } as any)} />
+                    <ProgressSnapshot stats={stats} />
+                    <DangerZone carryForwardCount={dashboardData.carryForwardCount} onClearCarry={handleClearCarry} onReset={handleReset} />
+                </div>
+            </div>
         </div>
     );
 }

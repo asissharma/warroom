@@ -44,7 +44,7 @@ export default function LogPage() {
     const sortedDays = useMemo(() => Object.keys(grouped).map(Number).sort((a, b) => b - a), [grouped]);
 
     return (
-        <div className="max-w-[700px] mx-auto px-4 pb-8 pt-6 content-z">
+        <div className="max-w-[700px] mx-auto px-4 pb-24 pt-6 content-z">
             <div className="flex items-baseline gap-3 mb-6">
                 <div className="font-bebas text-[36px] tracking-wide">OPERATIONAL LOG</div>
                 <div className="font-mono text-[10px] text-muted2 tracking-[2px]">{records.length} ENTRIES</div>

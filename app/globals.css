@@ -4,9 +4,14 @@
 
 @layer base {
     body {
-        background-color: #07070a;
-        color: #eeeef5;
+        background-color: theme('colors.bg');
+        color: theme('colors.text');
         font-family: var(--font-outfit), sans-serif;
+    }
+
+    html {
+        overflow: hidden;
+        /* prevent outer page scroll — panels self-manage */
     }
 }
 
@@ -17,4 +22,35 @@
 
 .a-transition {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hide scrollbar visually but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar,
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Thin custom scrollbar for task panels */
+.scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(74, 78, 105, 0.15) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(74, 78, 105, 0.15);
+    border-radius: 99px;
 }

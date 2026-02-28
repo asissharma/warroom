@@ -18,14 +18,16 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" className={`${bebas.variable} ${outfit.variable} ${jbMono.variable} dark`}>
-            <body className="bg-bg text-text min-h-screen flex flex-col antialiased">
+        <html lang="en" className={`${bebas.variable} ${outfit.variable} ${jbMono.variable}`}>
+            <body className="bg-bg text-text h-[100dvh] overflow-hidden flex flex-col antialiased">
                 <Nav />
-                <main className="flex-1 overflow-x-hidden relative pb-24">
-                    <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at top, rgba(124, 92, 252, 0.05), transparent 40%)' }} />
-                    {children}
+                <main className="flex-1 overflow-hidden relative min-h-0">
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-surface/40 to-transparent" />
+                    <div className="relative z-10 h-full flex flex-col">
+                        {children}
+                    </div>
                 </main>
             </body>
-        </html>
+        </html >
     )
 }

@@ -9,20 +9,20 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                bg: '#07070a',
-                surface: '#0f0f15',
-                surface2: '#161620',
-                border: 'rgba(255,255,255,0.055)',
-                borderHi: 'rgba(255,255,255,0.13)',
-                accent: '#7c5cfc',
-                acid: '#c8ff00',
-                danger: '#ff3b4e',
-                success: '#00e5a0',
-                warning: '#ff8c00',
-                info: '#38bdf8',
-                text: '#eeeef5',
-                muted: '#3d3d55',
-                muted2: '#5c5c7a',
+                bg: '#faf9f6',      // Off-white/warm
+                surface: '#ffffff', // Pure white
+                surface2: '#f3f0f5',// Soft lavender-grey
+                border: 'rgba(74, 78, 105, 0.08)', // Softened dark semi-transparent colors
+                borderHi: 'rgba(74, 78, 105, 0.15)',// Slightly stronger border
+                accent: '#a2d2ff',  // Pastel blue
+                acid: '#ffc8dd',    // Pastel pink/action 
+                danger: '#ffadad',  // Pastel red
+                success: '#caffbf', // Pastel green
+                warning: '#fdffb6', // Pastel yellow
+                info: '#9bf6ff',    // Pastel cyan
+                text: '#4a4e69',    // Dark pastel slate/purple, softer than black
+                muted: '#9a8c98',   // Medium pastel grey
+                muted2: '#c9ada7',  // Light text
             },
             fontFamily: {
                 bebas: ['Bebas Neue', 'sans-serif'],

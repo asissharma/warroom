@@ -104,7 +104,7 @@ export default function ReflectionModal({
                         <button
                             onClick={handleSubmit}
                             disabled={!buildText.trim() || !hardText.trim() || submitting}
-                            className="w-full py-3 bg-acid text-black font-mono text-sm uppercase tracking-widest rounded hover:bg-[#b3e600] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                            className="w-full py-3 bg-acid text-black font-mono text-sm uppercase tracking-widest rounded hover:bg-acid/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                         >
                             {submitting ? <Loader2 className="w-5 h-5 animate-spin text-black" /> : 'CLOSE THE DAY →'}
                         </button>

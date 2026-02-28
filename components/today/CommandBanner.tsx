@@ -1,8 +1,8 @@
 export default function CommandBanner({ project, dayN, phase }: { project: any, dayN: number, phase: string }) {
     return (
-        <div className="bg-gradient-to-r from-acid/10 to-accent/5 border border-border border-l-[3px] border-l-[#c8ff00] p-4 rounded-lg mb-8 relative overflow-hidden">
+        <div className="bg-gradient-to-r from-acid/10 to-accent/10 border border-border border-l-[3px] border-l-acid p-3 rounded-lg relative overflow-hidden">
             {/* 2px top gradient strip */}
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#c8ff00] to-accent"></div>
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-acid to-accent"></div>
 
             <div className="flex justify-between items-center relative z-10">
                 <div>
