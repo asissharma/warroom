@@ -58,17 +58,26 @@ export function getQuestionsForDay(
     questionsPerDay: 8 | 9,
     completedDaysCount: number
 ): Question[] {
-    const spine = getSpineForDay(dayN)
     const allQuestions = questionsData as Question[]
 
-    // Try finding questions that match the theme exactly
-    let pool = allQuestions.filter(q => q.theme === spine.questionTheme).sort((a, b) => a.id - b.id)
+    // Sequence questions easy→hard across the 180-day program:
+    //   Day   1–60  → difficulty 1 (foundational)
+    //   Day  61–120 → difficulty 2 (applied / medium)
+    //   Day 121–180 → difficulty 3 (advanced / hard design)
+    const targetDifficulty: 1 | 2 | 3 =
+        dayN <= 60 ? 1 : dayN <= 120 ? 2 : 3
 
-    // Fallback: If no questions match the specific theme (or "General"), use all questions as the pool
+    let pool = allQuestions
+        .filter(q => q.difficulty === targetDifficulty)
+        .sort((a, b) => a.id - b.id)
+
+    // Safety fallback: if band is empty, use all questions
     if (pool.length === 0) {
         pool = allQuestions.sort((a, b) => a.id - b.id)
     }
 
+    // Rotate through the pool using completedDaysCount so questions
+    // advance each day and never repeat on the same day
     const offset = (completedDaysCount * questionsPerDay) % pool.length
     const slice = pool.slice(offset, offset + questionsPerDay)
 

@@ -18,7 +18,7 @@
   },
   {
     "id": 2,
-    "area": "nan",
+    "area": "Python Mastery & Secure Coding",
     "phase": "Foundation",
     "weekStart": 2,
     "weekEnd": 3,
@@ -35,7 +35,7 @@
   },
   {
     "id": 3,
-    "area": "nan",
+    "area": "Python Mastery & Secure Coding",
     "phase": "Foundation",
     "weekStart": 3,
     "weekEnd": 4,
@@ -50,7 +50,7 @@
   },
   {
     "id": 4,
-    "area": "nan",
+    "area": "Python Mastery & Secure Coding",
     "phase": "Foundation",
     "weekStart": 4,
     "weekEnd": 5,
@@ -67,7 +67,7 @@
   },
   {
     "id": 5,
-    "area": "nan",
+    "area": "Python Mastery & Secure Coding",
     "phase": "Foundation",
     "weekStart": 5,
     "weekEnd": 6,
@@ -83,7 +83,7 @@
   },
   {
     "id": 6,
-    "area": "nan",
+    "area": "Python Mastery & Secure Coding",
     "phase": "Foundation",
     "weekStart": 6,
     "weekEnd": 7,
@@ -98,7 +98,7 @@
   },
   {
     "id": 7,
-    "area": "nan",
+    "area": "Python Mastery & Secure Coding",
     "phase": "Foundation",
     "weekStart": 7,
     "weekEnd": 8,
@@ -129,7 +129,7 @@
   },
   {
     "id": 9,
-    "area": "nan",
+    "area": "Data Structures & Scalable Algorithms",
     "phase": "Foundation",
     "weekStart": 9,
     "weekEnd": 10,
@@ -147,7 +147,7 @@
   },
   {
     "id": 10,
-    "area": "nan",
+    "area": "Data Structures & Scalable Algorithms",
     "phase": "Foundation",
     "weekStart": 10,
     "weekEnd": 11,
@@ -165,7 +165,7 @@
   },
   {
     "id": 11,
-    "area": "nan",
+    "area": "Data Structures & Scalable Algorithms",
     "phase": "Distributed",
     "weekStart": 11,
     "weekEnd": 12,
@@ -181,7 +181,7 @@
   },
   {
     "id": 12,
-    "area": "nan",
+    "area": "Data Structures & Scalable Algorithms",
     "phase": "Distributed",
     "weekStart": 12,
     "weekEnd": 13,
@@ -210,7 +210,7 @@
   },
   {
     "id": 14,
-    "area": "nan",
+    "area": "OOP & Robust Design",
     "phase": "Distributed",
     "weekStart": 14,
     "weekEnd": 15,
@@ -226,7 +226,7 @@
   },
   {
     "id": 15,
-    "area": "nan",
+    "area": "OOP & Robust Design",
     "phase": "Distributed",
     "weekStart": 15,
     "weekEnd": 16,
@@ -256,7 +256,7 @@
   },
   {
     "id": 17,
-    "area": "nan",
+    "area": "Concurrent & Scalable Execution",
     "phase": "Distributed",
     "weekStart": 17,
     "weekEnd": 18,
@@ -270,7 +270,7 @@
   },
   {
     "id": 18,
-    "area": "nan",
+    "area": "Concurrent & Scalable Execution",
     "phase": "Distributed",
     "weekStart": 18,
     "weekEnd": 19,
@@ -301,7 +301,7 @@
   },
   {
     "id": 20,
-    "area": "nan",
+    "area": "Databases: SQL & Scalability",
     "phase": "Distributed",
     "weekStart": 20,
     "weekEnd": 21,
@@ -331,7 +331,7 @@
   },
   {
     "id": 22,
-    "area": "nan",
+    "area": "NoSQL & Robust Data Handling",
     "phase": "Distributed",
     "weekStart": 22,
     "weekEnd": 23,

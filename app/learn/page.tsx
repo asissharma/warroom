@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { useStore } from '@/lib/store';
+import { getDayN } from '@/lib/dayEngine';
 import SyllabusShelf from '@/components/learn/SyllabusShelf';
 import BriefingCard from '@/components/learn/BriefingCard';
 import SkillGrid from '@/components/learn/SkillGrid';
@@ -13,6 +15,7 @@ import coursesData from '@/data/courses.json';
 const syllabi = (skillsData.payable as Array<{
     name: string; dayStart: number; dayEnd: number;
     coreBooks?: string[];
+    microPractice?: string;
 }>).map((s, i) => ({
     id: i + 1,
     name: s.name,
@@ -26,18 +29,16 @@ const syllabi = (skillsData.payable as Array<{
         coreChapter: 'Chapter 1',
     })),
     podcasts: [],
-    weeklyExercise: `Practice one ${s.name} scenario with a partner or in writing.`,
+    weeklyExercise: (s as any).microPractice ?? `Practice one ${s.name} scenario with a partner or in writing.`,
     capstone: `Apply ${s.name} in a real situation this month.`,
 }));
 
-// Map basic skills strings to skill objects
+// Map basic skills strings to skill objects (data is already cleaned after patch)
 const basicSkills = (skillsData.basic as string[]).map((name) => ({
-    name: name.replace(/\\n\s*/g, ' ').replace(/\n\s*/g, ' ').trim(),
+    name: name.trim(),
     category: '',
-    microPractice: `Spend 5 minutes practicing ${name.split('\n')[0].trim()} actively today.`,
+    microPractice: `Spend 5 minutes actively practicing: ${name.trim()}.`,
 }));
-
-const DAY_N = 1;
 
 const TABS = [
     { id: 'curriculum', label: 'CURRICULUM', emoji: '📚' },
@@ -50,6 +51,8 @@ type TabId = typeof TABS[number]['id'];
 
 export default function LearnPage() {
     const [activeTab, setActiveTab] = useState<TabId>('curriculum');
+    const startDate = useStore(s => s.startDate);
+    const dayN = startDate ? getDayN(new Date(startDate)) : 1;
 
     return (
         /* ── Panel Shell ── full viewport, nothing outer-scrolls */
@@ -63,8 +66,8 @@ export default function LearnPage() {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`px-3 py-1.5 font-mono text-[10px] tracking-[2px] rounded-lg whitespace-nowrap transition-all flex items-center gap-1.5 ${activeTab === tab.id
-                                ? 'bg-accent text-white shadow-[0_0_12px_rgba(124,92,252,0.4)]'
-                                : 'text-muted2 hover:text-text hover:bg-surface2'
+                            ? 'bg-accent text-white shadow-[0_0_12px_rgba(124,92,252,0.4)]'
+                            : 'text-muted2 hover:text-text hover:bg-surface2'
                             }`}
                     >
                         <span className="hidden sm:block">{tab.emoji}</span>
@@ -86,7 +89,7 @@ export default function LearnPage() {
                                     10 syllabi · one active at a time · 18 days each
                                 </div>
                             </div>
-                            <SyllabusShelf syllabi={syllabi} dayN={DAY_N} />
+                            <SyllabusShelf syllabi={syllabi} dayN={dayN} />
                         </div>
                     </div>
                 )}

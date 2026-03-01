@@ -29,7 +29,7 @@ export async function createCarryForwardsFromDay(
 
     // Tech Tasks
     expectedTasks.push({ id: `tech_micro_0_D${dayN}`, text: `Read: ${payload.topicToday}`, type: 'tech' })
-    expectedTasks.push({ id: `tech_micro_1_D${dayN}`, text: `Code: ${payload.microtaskToday}`, type: 'tech' })
+    expectedTasks.push({ id: `tech_micro_1_D${dayN}`, text: `Code: ${payload.microtasksToday?.[0] ?? payload.topicToday}`, type: 'tech' })
     expectedTasks.push({ id: `tech_micro_2_D${dayN}`, text: `Document learnings`, type: 'tech' })
     if (payload.isReviewDay) {
         expectedTasks.push({ id: `tech_review_D${dayN}`, text: `Weekly Architecture Review`, type: 'tech' })

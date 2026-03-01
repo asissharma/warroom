@@ -7,6 +7,8 @@ import PhaseArcs from '@/components/dashboard/PhaseArcs';
 import SkillBars from '@/components/dashboard/SkillBars';
 import VelocityWidget from '@/components/dashboard/VelocityWidget';
 import { Trophy, Clock, Zap, AlertTriangle } from 'lucide-react';
+import { useStore } from '@/lib/store';
+import { getDayN } from '@/lib/dayEngine';
 
 function Skeleton() {
     return (
@@ -25,6 +27,7 @@ function Skeleton() {
 
 export default function DashboardPage() {
     const { data, loading, error } = useDashboard();
+    const startDate = useStore(s => s.startDate);
 
     if (loading) return <Skeleton />;
     if (error) return (
@@ -33,6 +36,8 @@ export default function DashboardPage() {
         </div>
     );
     if (!data) return null;
+
+    const currentDayN = startDate ? getDayN(new Date(startDate)) : 1;
 
     // Build last-7-days velocity data from heatmap
     const todayStr = new Date().toISOString().split('T')[0];
@@ -98,7 +103,7 @@ export default function DashboardPage() {
                                     })}
                                 </div>
                             </div>
-                            <Heatmap cells={data.completionHeatmap} />
+                            <Heatmap cells={data.completionHeatmap} currentDayN={currentDayN} />
                         </div>
 
                         {/* Phase Progress */}

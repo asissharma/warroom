@@ -1,527 +1,602 @@
 [
   {
-    "name": "Course 1",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://apiacademy.co/api-certification/Gravitee.io",
-    "weekRecommended": 1
-  },
-  {
-    "name": "Course 2",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://aws.amazon.com/training/restart/AWS",
-    "weekRecommended": 2
-  },
-  {
-    "name": "Course 3",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://eggplantsoftware.com/training/AWS",
-    "weekRecommended": 3
-  },
-  {
-    "name": "Course 4",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.cloudskillsboost.google/paths/118Cloud",
-    "weekRecommended": 4
-  },
-  {
-    "name": "Course 5",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://developer.android.com/courses",
+    "id": 1,
+    "name": "System Design Primer",
+    "provider": "donnemartin (GitHub)",
+    "area": "System Design",
+    "url": "https://github.com/donnemartin/system-design-primer",
     "weekRecommended": 5
   },
   {
-    "name": "Course 6",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.netacad.com/courses/programming/essentials-in-c/Programming",
+    "id": 2,
+    "name": "Grokking the System Design Interview",
+    "provider": "Educative",
+    "area": "System Design",
+    "url": "https://www.educative.io/courses/grokking-the-system-design-interview",
     "weekRecommended": 6
   },
   {
-    "name": "Course 7",
+    "id": 3,
+    "name": "MIT 6.824 Distributed Systems (Lectures)",
+    "provider": "MIT OpenCourseWare",
+    "area": "System Design",
+    "url": "https://pdos.csail.mit.edu/6.824/",
+    "weekRecommended": 7
+  },
+  {
+    "id": 4,
+    "name": "Python for Everybody",
+    "provider": "University of Michigan / Coursera",
+    "area": "Python",
+    "url": "https://www.coursera.org/specializations/python",
+    "weekRecommended": 1
+  },
+  {
+    "id": 5,
+    "name": "Real Python — Async IO in Python",
+    "provider": "Real Python",
+    "area": "Python",
+    "url": "https://realpython.com/async-io-python/",
+    "weekRecommended": 2
+  },
+  {
+    "id": 6,
+    "name": "Python Security (OWASP)",
+    "provider": "OWASP",
+    "area": "Python",
+    "url": "https://owasp.org/www-project-python-security/",
+    "weekRecommended": 3
+  },
+  {
+    "id": 7,
+    "name": "Algorithms Specialization",
+    "provider": "Stanford / Coursera",
+    "area": "Algorithms",
+    "url": "https://www.coursera.org/specializations/algorithms",
+    "weekRecommended": 9
+  },
+  {
+    "id": 8,
+    "name": "LeetCode Study Plan — Algorithm I",
+    "provider": "LeetCode",
+    "area": "Algorithms",
+    "url": "https://leetcode.com/study-plan/algorithm/",
+    "weekRecommended": 10
+  },
+  {
+    "id": 9,
+    "name": "Data Structures (UC San Diego)",
+    "provider": "UCSD / Coursera",
+    "area": "Algorithms",
+    "url": "https://www.coursera.org/learn/data-structures",
+    "weekRecommended": 9
+  },
+  {
+    "id": 10,
+    "name": "CMU 15-445 Database Systems (Lectures)",
+    "provider": "Carnegie Mellon",
+    "area": "Databases",
+    "url": "https://15445.courses.cs.cmu.edu/",
+    "weekRecommended": 20
+  },
+  {
+    "id": 11,
+    "name": "MongoDB University — M101JS",
+    "provider": "MongoDB",
+    "area": "Databases",
+    "url": "https://learn.mongodb.com/",
+    "weekRecommended": 21
+  },
+  {
+    "id": 12,
+    "name": "Redis University — RU101",
+    "provider": "Redis",
+    "area": "Databases",
+    "url": "https://university.redis.com/courses/ru101/",
+    "weekRecommended": 22
+  },
+  {
+    "id": 13,
+    "name": "Intro to SQL (Mode Analytics)",
+    "provider": "Mode",
+    "area": "Databases",
+    "url": "https://mode.com/sql-tutorial/",
+    "weekRecommended": 19
+  },
+  {
+    "id": 14,
+    "name": "Designing Data-Intensive Applications (Summary)",
+    "provider": "Book companion site",
+    "area": "Distributed Systems",
+    "url": "https://dataintensive.net/",
+    "weekRecommended": 5
+  },
+  {
+    "id": 15,
+    "name": "Kafka Fundamentals",
+    "provider": "Confluent",
+    "area": "Distributed Systems",
+    "url": "https://developer.confluent.io/courses/apache-kafka/events/",
+    "weekRecommended": 19
+  },
+  {
+    "id": 16,
+    "name": "Patterns of Distributed Systems",
+    "provider": "Martin Fowler Blog",
+    "area": "Distributed Systems",
+    "url": "https://martinfowler.com/articles/patterns-of-distributed-systems/",
+    "weekRecommended": 6
+  },
+  {
+    "id": 17,
+    "name": "AWS Cloud Practitioner Essentials",
+    "provider": "AWS Skill Builder",
+    "area": "Cloud",
+    "url": "https://explore.skillbuilder.aws/learn/course/134/aws-cloud-practitioner-essentials",
+    "weekRecommended": 8
+  },
+  {
+    "id": 18,
+    "name": "Google Cloud Associate Cloud Engineer Path",
+    "provider": "Google Cloud Skills Boost",
+    "area": "Cloud",
+    "url": "https://www.cloudskillsboost.google/paths/118",
+    "weekRecommended": 9
+  },
+  {
+    "id": 19,
+    "name": "HashiCorp Terraform Tutorials",
+    "provider": "HashiCorp",
+    "area": "Cloud",
+    "url": "https://developer.hashicorp.com/terraform/tutorials",
+    "weekRecommended": 10
+  },
+  {
+    "id": 20,
+    "name": "Docker & Kubernetes: The Practical Guide",
+    "provider": "Academind / Udemy",
+    "area": "Cloud",
+    "url": "https://www.udemy.com/course/docker-kubernetes-the-practical-guide/",
+    "weekRecommended": 8
+  },
+  {
+    "id": 21,
+    "name": "Introduction to Kubernetes (LFS158)",
+    "provider": "Linux Foundation",
+    "area": "Cloud",
+    "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/",
+    "weekRecommended": 9
+  },
+  {
+    "id": 22,
+    "name": "GitHub Actions — Official Docs",
+    "provider": "GitHub",
+    "area": "Cloud",
+    "url": "https://docs.github.com/en/actions",
+    "weekRecommended": 2
+  },
+  {
+    "id": 23,
+    "name": "OWASP Top 10 — Official Training",
+    "provider": "OWASP",
+    "area": "Security",
+    "url": "https://owasp.org/www-project-top-ten/",
+    "weekRecommended": 11
+  },
+  {
+    "id": 24,
+    "name": "web.dev — Security Module",
+    "provider": "Google",
+    "area": "Security",
+    "url": "https://web.dev/secure/",
+    "weekRecommended": 11
+  },
+  {
+    "id": 25,
+    "name": "Snyk Learn — Developer Security",
+    "provider": "Snyk",
+    "area": "Security",
+    "url": "https://learn.snyk.io/",
+    "weekRecommended": 12
+  },
+  {
+    "id": 26,
+    "name": "Cryptography I (Stanford)",
+    "provider": "Stanford / Coursera",
+    "area": "Security",
+    "url": "https://www.coursera.org/learn/crypto",
+    "weekRecommended": 13
+  },
+  {
+    "id": 27,
+    "name": "Developing Secure Software (LFD121)",
+    "provider": "Linux Foundation",
+    "area": "Security",
+    "url": "https://training.linuxfoundation.org/training/developing-secure-software-lfd121/",
+    "weekRecommended": 12
+  },
+  {
+    "id": 28,
+    "name": "Datadog Learning Center",
+    "provider": "Datadog",
+    "area": "Observability",
+    "url": "https://learn.datadoghq.com/",
+    "weekRecommended": 6
+  },
+  {
+    "id": 29,
+    "name": "OpenTelemetry — Official Docs",
+    "provider": "CNCF",
+    "area": "Observability",
+    "url": "https://opentelemetry.io/docs/",
+    "weekRecommended": 6
+  },
+  {
+    "id": 30,
+    "name": "Grafana & Prometheus Fundamentals",
+    "provider": "Grafana Labs",
+    "area": "Observability",
+    "url": "https://grafana.com/tutorials/",
+    "weekRecommended": 7
+  },
+  {
+    "id": 31,
+    "name": "fast.ai Practical Deep Learning (Part 1)",
+    "provider": "fast.ai",
+    "area": "ML/AI",
+    "url": "https://course.fast.ai/",
+    "weekRecommended": 14
+  },
+  {
+    "id": 32,
+    "name": "HuggingFace NLP Course",
+    "provider": "HuggingFace",
+    "area": "ML/AI",
+    "url": "https://huggingface.co/learn/nlp-course",
+    "weekRecommended": 15
+  },
+  {
+    "id": 33,
+    "name": "MLflow Quickstart & Tutorials",
+    "provider": "Databricks / MLflow",
+    "area": "ML/AI",
+    "url": "https://mlflow.org/docs/latest/quickstart.html",
+    "weekRecommended": 14
+  },
+  {
+    "id": 34,
+    "name": "Machine Learning with Python (freeCodeCamp)",
+    "provider": "freeCodeCamp",
+    "area": "ML/AI",
+    "url": "https://www.freecodecamp.org/learn/machine-learning-with-python/",
+    "weekRecommended": 13
+  },
+  {
+    "id": 35,
+    "name": "Generative AI Fundamentals",
+    "provider": "Databricks",
+    "area": "ML/AI",
+    "url": "https://www.databricks.com/resources/learn/training/generative-ai-fundamentals",
+    "weekRecommended": 15
+  },
+  {
+    "id": 36,
+    "name": "Deep RL Course",
+    "provider": "HuggingFace",
+    "area": "ML/AI",
+    "url": "https://huggingface.co/learn/deep-rl-course",
+    "weekRecommended": 16
+  },
+  {
+    "id": 37,
+    "name": "JavaScript.info — The Modern JavaScript Tutorial",
+    "provider": "javascript.info",
+    "area": "JavaScript",
+    "url": "https://javascript.info/",
+    "weekRecommended": 2
+  },
+  {
+    "id": 38,
+    "name": "Node.js Best Practices (GitHub)",
+    "provider": "goldbergyoni",
+    "area": "JavaScript",
+    "url": "https://github.com/goldbergyoni/nodebestpractices",
+    "weekRecommended": 3
+  },
+  {
+    "id": 39,
+    "name": "The Odin Project — Full Stack JavaScript",
+    "provider": "The Odin Project",
+    "area": "JavaScript",
+    "url": "https://www.theodinproject.com/paths/full-stack-javascript",
+    "weekRecommended": 3
+  },
+  {
+    "id": 40,
+    "name": "React — Official Tutorial & Docs",
+    "provider": "React",
+    "area": "Frontend",
+    "url": "https://react.dev/learn",
+    "weekRecommended": 17
+  },
+  {
+    "id": 41,
+    "name": "Next.js Learn (App Router)",
+    "provider": "Vercel",
+    "area": "Frontend",
+    "url": "https://nextjs.org/learn",
+    "weekRecommended": 17
+  },
+  {
+    "id": 42,
+    "name": "web.dev — Core Web Vitals",
+    "provider": "Google",
+    "area": "Frontend",
+    "url": "https://web.dev/learn-core-web-vitals/",
+    "weekRecommended": 18
+  },
+  {
+    "id": 43,
+    "name": "Postman API Fundamentals Student Expert",
+    "provider": "Postman",
+    "area": "API Design",
+    "url": "https://academy.postman.com/path/postman-api-fundamentals-student-expert",
+    "weekRecommended": 4
+  },
+  {
+    "id": 44,
+    "name": "Google API Design Guide",
+    "provider": "Google",
+    "area": "API Design",
+    "url": "https://cloud.google.com/apis/design",
+    "weekRecommended": 4
+  },
+  {
+    "id": 45,
+    "name": "Data Engineering Zoomcamp",
+    "provider": "DataTalks.Club",
+    "area": "Data Engineering",
+    "url": "https://github.com/DataTalks-Club/data-engineering-zoomcamp",
+    "weekRecommended": 22
+  },
+  {
+    "id": 46,
+    "name": "Apache Spark with Python — Big Data (Udemy Free)",
+    "provider": "Udemy",
+    "area": "Data Engineering",
+    "url": "https://www.udemy.com/course/apache-spark-with-python-big-data-with-pyspark-and-spark/",
+    "weekRecommended": 22
+  },
+  {
+    "id": 47,
+    "name": "Go by Example",
+    "provider": "gobyexample.com",
+    "area": "Go",
+    "url": "https://gobyexample.com/",
+    "weekRecommended": 20
+  },
+  {
+    "id": 48,
+    "name": "Tour of Go — Official",
+    "provider": "golang.org",
+    "area": "Go",
+    "url": "https://go.dev/tour/welcome/1",
+    "weekRecommended": 20
+  },
+  {
+    "id": 49,
+    "name": "Beej's Guide to Network Programming",
+    "provider": "Beej",
+    "area": "Networking",
+    "url": "https://beej.us/guide/bgnet/",
+    "weekRecommended": 5
+  },
+  {
+    "id": 50,
+    "name": "Computer Networking — Tanenbaum Lecture Notes",
     "provider": "Various",
-    "area": "Cloud/DevOps",
+    "area": "Networking",
+    "url": "https://gaia.cs.umass.edu/kurose_ross/interactive/",
+    "weekRecommended": 5
+  },
+  {
+    "id": 51,
+    "name": "Git Immersion",
+    "provider": "Neo / EdgeCase",
+    "area": "Git",
+    "url": "https://gitimmersion.com/",
+    "weekRecommended": 1
+  },
+  {
+    "id": 52,
+    "name": "GitHub Skills",
+    "provider": "GitHub",
+    "area": "Git",
+    "url": "https://skills.github.com/",
+    "weekRecommended": 1
+  },
+  {
+    "id": 53,
+    "name": "Conventional Commits Spec",
+    "provider": "conventionalcommits.org",
+    "area": "Git",
+    "url": "https://www.conventionalcommits.org/",
+    "weekRecommended": 1
+  },
+  {
+    "id": 54,
+    "name": "Science of Well-Being (Yale)",
+    "provider": "Yale / Coursera",
+    "area": "Soft Skills",
+    "url": "https://www.coursera.org/learn/the-science-of-well-being",
+    "weekRecommended": 16
+  },
+  {
+    "id": 55,
+    "name": "Negotiation Skills (Yale School of Management)",
+    "provider": "Yale / Coursera",
+    "area": "Soft Skills",
+    "url": "https://www.coursera.org/learn/negotiation",
+    "weekRecommended": 1
+  },
+  {
+    "id": 56,
+    "name": "Inspiring and Motivating Individuals (Michigan)",
+    "provider": "University of Michigan / Coursera",
+    "area": "Soft Skills",
+    "url": "https://www.coursera.org/learn/motivating-people",
+    "weekRecommended": 4
+  },
+  {
+    "id": 57,
+    "name": "Cisco Introduction to Cybersecurity",
+    "provider": "Cisco NetAcad",
+    "area": "Security",
+    "url": "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity",
+    "weekRecommended": 12
+  },
+  {
+    "id": 58,
+    "name": "IBM DevOps and Software Engineering (Coursera Audit)",
+    "provider": "IBM / Coursera",
+    "area": "Cloud",
+    "url": "https://www.coursera.org/professional-certificates/devops-and-software-engineering",
+    "weekRecommended": 8
+  },
+  {
+    "id": 59,
+    "name": "Oracle Cloud Infrastructure Foundations Associate",
+    "provider": "Oracle",
+    "area": "Cloud",
+    "url": "https://education.oracle.com/oracle-cloud-infrastructure-2023-foundations-associate/pexam_1Z0-1085-23",
+    "weekRecommended": 10
+  },
+  {
+    "id": 60,
+    "name": "Elastic Observability Fundamentals",
+    "provider": "Elastic",
+    "area": "Observability",
     "url": "https://www.elastic.co/training/free",
     "weekRecommended": 7
   },
   {
-    "name": "Course 8",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.vmware.com/Kubernetes",
-    "weekRecommended": 8
-  },
-  {
-    "name": "Course 9",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://university.cpanel.net",
-    "weekRecommended": 9
-  },
-  {
-    "name": "Course 10",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://skills.github.com",
-    "weekRecommended": 10
-  },
-  {
-    "name": "Course 11",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://explore.skillbuilder.aws/learn/public/learning_plan/view/1044Postman",
-    "weekRecommended": 11
-  },
-  {
-    "name": "Course 12",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://stepik.org/catalog",
-    "weekRecommended": 12
-  },
-  {
-    "name": "Course 13",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.oracle.com/ols/learning-path/java-explorer/79726/Programming",
-    "weekRecommended": 13
-  },
-  {
-    "name": "Course 14",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://cognitiveclass.ai/courses/natural-language-processing-with-python/Reinforcement",
-    "weekRecommended": 14
-  },
-  {
-    "name": "Course 15",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://university.zerto.com",
-    "weekRecommended": 15
-  },
-  {
-    "name": "Course 16",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.arubanetworks.com/support-services/training-services/Data",
-    "weekRecommended": 16
-  },
-  {
-    "name": "Course 17",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://academy.tigera.io",
-    "weekRecommended": 17
-  },
-  {
-    "name": "Course 18",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.databricks.com/resources/learn/training/generative-ai-fundamentals",
-    "weekRecommended": 18
-  },
-  {
-    "name": "Course 19",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://aviatrix.teachable.com/p/aviatrix-certified-engineer-ace-multicloud-networking-associate",
-    "weekRecommended": 19
-  },
-  {
-    "name": "Course 20",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://cognitiveclass.ai",
-    "weekRecommended": 20
-  },
-  {
-    "name": "Course 21",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.bitdegree.org/free-certifications-online",
-    "weekRecommended": 21
-  },
-  {
-    "name": "Course 22",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.freecodecamp.org/learn/data-visualization/AI",
-    "weekRecommended": 22
-  },
-  {
-    "name": "Course 23",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://gravitee.getlearnworlds.com/course/event-native-api-management-fundamentals",
-    "weekRecommended": 23
-  },
-  {
-    "name": "Course 24",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.microsoft.com/en-us/training/paths/get-started-ai-fundamentals/Generative",
-    "weekRecommended": 24
-  },
-  {
-    "name": "Course 25",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://standard.cbu.cloudbees.com",
-    "weekRecommended": 25
-  },
-  {
-    "name": "Course 26",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://cognitiveclass.ai/courses/python-for-data-science",
-    "weekRecommended": 26
-  },
-  {
-    "name": "Course 27",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity",
-    "weekRecommended": 1
-  },
-  {
-    "name": "Course 28",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.snyk.io",
-    "weekRecommended": 2
-  },
-  {
-    "name": "Course 29",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.microsoft.com/en-us/training/powerplatform/",
-    "weekRecommended": 3
-  },
-  {
-    "name": "Course 30",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.microsoft.com/en-us/training/paths/rust-first-steps/Data",
+    "id": 61,
+    "name": "Test Automation University",
+    "provider": "Applitools",
+    "area": "Testing",
+    "url": "https://testautomationu.applitools.com/",
     "weekRecommended": 4
   },
   {
-    "name": "Course 31",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learningportal.juniper.net/juniper/user_activity_info.aspx?id=11478Huawei",
-    "weekRecommended": 5
-  },
-  {
-    "name": "Course 32",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://training.linuxfoundation.org/training/developing-secure-software-lfd121/Cloud",
-    "weekRecommended": 6
-  },
-  {
-    "name": "Course 33",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://training.linuxfoundation.org/resources/?_sft_content_type=free-course/Monitoring",
-    "weekRecommended": 7
-  },
-  {
-    "name": "Course 34",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.redhat.com/en/services/training/do092-cloud-native-architecture/Game",
-    "weekRecommended": 8
-  },
-  {
-    "name": "Course 35",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.jetbrains.com/academy/Cloud",
-    "weekRecommended": 9
-  },
-  {
-    "name": "Course 36",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://skillsbuild.org",
-    "weekRecommended": 10
-  },
-  {
-    "name": "Course 37",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://huggingface.co/learn/deep-rl-course/Cybersecurity",
-    "weekRecommended": 11
-  },
-  {
-    "name": "Course 38",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.udacity.com",
-    "weekRecommended": 12
-  },
-  {
-    "name": "Course 39",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://university.plesk.com",
-    "weekRecommended": 13
-  },
-  {
-    "name": "Course 40",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://developers.google.com/apis/Backend",
-    "weekRecommended": 14
-  },
-  {
-    "name": "Course 41",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://training.linuxfoundation.org/resources/?_sft_content_type=free-course",
-    "weekRecommended": 15
-  },
-  {
-    "name": "Course 42",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.cloudskillsboost.google/paths/16SQLIBM",
-    "weekRecommended": 16
-  },
-  {
-    "name": "Course 43",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.netacad.com/courses/programming/javascript-essentials-1/Programming",
-    "weekRecommended": 17
-  },
-  {
-    "name": "Course 44",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.udemy.com/courses/free/c",
-    "weekRecommended": 18
-  },
-  {
-    "name": "Course 45",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.microsoft.com/en-us/training/challenges",
-    "weekRecommended": 19
-  },
-  {
-    "name": "Course 46",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.lakesidesoftware.com/learning",
-    "weekRecommended": 20
-  },
-  {
-    "name": "Course 47",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://training.linuxfoundation.org/training/introduction-to-kubernetes/Docker",
-    "weekRecommended": 21
-  },
-  {
-    "name": "Course 48",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.pluralsight.com/partners/microsoft/azure",
-    "weekRecommended": 22
-  },
-  {
-    "name": "Course 49",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://testautomationu.applitools.com",
-    "weekRecommended": 23
-  },
-  {
-    "name": "Course 50",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://analytics.google.com/analytics/academy/SD-WANSilver",
-    "weekRecommended": 24
-  },
-  {
-    "name": "Course 51",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://education.oracle.com/oracle-cloud-infrastructure",
-    "weekRecommended": 25
-  },
-  {
-    "name": "Course 52",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://education.oracle.com/oracle-cloud-data-management-2023-foundations-associate/pexam_1Z0-1105-23Azure",
-    "weekRecommended": 26
-  },
-  {
-    "name": "Course 53",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://ilearningx.huawei.com/portal/courses",
-    "weekRecommended": 1
-  },
-  {
-    "name": "Course 54",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://cognitiveclass.ai/courses/docker-essentials",
-    "weekRecommended": 2
-  },
-  {
-    "name": "Course 55",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://developer.hashicorp.com/terraform/tutorials",
-    "weekRecommended": 3
-  },
-  {
-    "name": "Course 56",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.datadoghq.com",
+    "id": 62,
+    "name": "Property-Based Testing",
+    "provider": "HypothesisWorks",
+    "area": "Testing",
+    "url": "https://hypothesis.works/articles/",
     "weekRecommended": 4
   },
   {
-    "name": "Course 57",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://learn.unity.com",
-    "weekRecommended": 5
+    "id": 63,
+    "name": "The Rust Programming Language (The Book)",
+    "provider": "rust-lang.org",
+    "area": "Rust",
+    "url": "https://doc.rust-lang.org/book/",
+    "weekRecommended": 23
   },
   {
-    "name": "Course 58",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://cognitiveclass.ai/courses/sql-data-science/Natural",
-    "weekRecommended": 6
+    "id": 64,
+    "name": "Rustlings (hands-on exercises)",
+    "provider": "rust-lang.org",
+    "area": "Rust",
+    "url": "https://github.com/rust-lang/rustlings",
+    "weekRecommended": 23
   },
   {
-    "name": "Course 59",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://explore.skillbuilder.aws/learn/course/11458AWS",
-    "weekRecommended": 7
-  },
-  {
-    "name": "Course 60",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.coursera.org/specializations/alibabacloud",
-    "weekRecommended": 8
-  },
-  {
-    "name": "Course 61",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.freecodecamp.org",
-    "weekRecommended": 9
-  },
-  {
-    "name": "Course 62",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://jumpcloud.com/university/certifications/core",
-    "weekRecommended": 10
-  },
-  {
-    "name": "Course 63",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.cloudskillsboost.google/paths/15Dev",
-    "weekRecommended": 11
-  },
-  {
-    "name": "Course 64",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.cloudskillsboost.google",
-    "weekRecommended": 12
-  },
-  {
-    "name": "Course 65",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://codefresh.io/learn/gitops/Infrastructure",
-    "weekRecommended": 13
-  },
-  {
-    "name": "Course 66",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://aws.amazon.com/education/awseducate/Cloud",
-    "weekRecommended": 14
-  },
-  {
-    "name": "Course 67",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.sumologic.com/learn/certifications/Web",
-    "weekRecommended": 15
-  },
-  {
-    "name": "Course 68",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://academy.postman.com/path/postman-api-fundamentals-student-expert",
-    "weekRecommended": 16
-  },
-  {
-    "name": "Course 69",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://go.dev/learn",
-    "weekRecommended": 17
-  },
-  {
-    "name": "Course 70",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://owasp.org/www-project-top-ten/Linux",
-    "weekRecommended": 18
-  },
-  {
-    "name": "Course 71",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://opentelemetry.io/docs/API",
+    "id": 65,
+    "name": "WebAssembly.org — Official Docs",
+    "provider": "WebAssembly",
+    "area": "Frontend",
+    "url": "https://webassembly.org/getting-started/developers-guide/",
     "weekRecommended": 19
   },
   {
-    "name": "Course 72",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.redhat.com/en/services/training/do007-ansible-automation-technical-overview/Programming",
-    "weekRecommended": 20
+    "id": 66,
+    "name": "Building a Second Brain (Summary)",
+    "provider": "Tiago Forte / YouTube",
+    "area": "Productivity",
+    "url": "https://www.youtube.com/watch?v=SjZSy8s2VEE",
+    "weekRecommended": 1
   },
   {
-    "name": "Course 73",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://education.oracle.com/oracle-cloud-infrastructure-2023-foundations-associate/pexam_1Z0-1085-23OCI",
-    "weekRecommended": 21
+    "id": 67,
+    "name": "Obsidian Community Docs",
+    "provider": "Obsidian",
+    "area": "Productivity",
+    "url": "https://help.obsidian.md/",
+    "weekRecommended": 1
   },
   {
-    "name": "Course 74",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://www.freecodecamp.org/learn/machine-learning-with-python/Data",
-    "weekRecommended": 22
+    "id": 68,
+    "name": "Neetcode.io — Roadmap & Solutions",
+    "provider": "NeetCode",
+    "area": "Interview Prep",
+    "url": "https://neetcode.io/roadmap",
+    "weekRecommended": 9
   },
   {
-    "name": "Course 75",
-    "provider": "Various",
-    "area": "Cloud/DevOps",
-    "url": "https://about.gitlab.com/learn/OCI",
-    "weekRecommended": 23
+    "id": 69,
+    "name": "Tech Interview Handbook",
+    "provider": "yangshun",
+    "area": "Interview Prep",
+    "url": "https://www.techinterviewhandbook.org/",
+    "weekRecommended": 10
+  },
+  {
+    "id": 70,
+    "name": "High Scalability Blog (Architecture case studies)",
+    "provider": "Todd Hoff",
+    "area": "System Design",
+    "url": "http://highscalability.com/",
+    "weekRecommended": 7
+  },
+  {
+    "id": 71,
+    "name": "Microsoft Azure Fundamentals (AZ-900) Free Path",
+    "provider": "Microsoft Learn",
+    "area": "Cloud",
+    "url": "https://learn.microsoft.com/en-us/training/paths/az-900-describe-cloud-concepts/",
+    "weekRecommended": 9
+  },
+  {
+    "id": 72,
+    "name": "Google IT Support Certificate (Audit Free)",
+    "provider": "Google / Coursera",
+    "area": "Cloud",
+    "url": "https://www.coursera.org/professional-certificates/google-it-support",
+    "weekRecommended": 11
+  },
+  {
+    "id": 73,
+    "name": "CloudBees Core CI/CD (Free Tier)",
+    "provider": "CloudBees",
+    "area": "Cloud",
+    "url": "https://standard.cbu.cloudbees.com/",
+    "weekRecommended": 8
+  },
+  {
+    "id": 74,
+    "name": "JetBrains Academy — Free Tracks",
+    "provider": "JetBrains",
+    "area": "Python",
+    "url": "https://www.jetbrains.com/academy/",
+    "weekRecommended": 2
+  },
+  {
+    "id": 75,
+    "name": "freeCodeCamp Data Visualization Certification",
+    "provider": "freeCodeCamp",
+    "area": "Frontend",
+    "url": "https://www.freecodecamp.org/learn/data-visualization/",
+    "weekRecommended": 18
   }
 ]

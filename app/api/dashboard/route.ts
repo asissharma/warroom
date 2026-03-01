@@ -63,11 +63,41 @@ export async function GET(request: Request) {
             }
         })
 
-        // 3. Skill Bars Map
-        const skillBars = skills.reduce((acc: any, skill: any) => {
-            acc[skill.barKey] = { value: skill.value, level: skill.level }
-            return acc
-        }, {})
+        // 3. Skill Bars Map (Dynamically calculated from completed tasks)
+        // Grouping 180 days into 5 skill bar buckets based on Phase
+        const skillBars = {
+            python_algo_oop: { value: 0, level: 1 },
+            databases_concurrency: { value: 0, level: 1 },
+            js_node_security: { value: 0, level: 1 },
+            ml_ai_mlops: { value: 0, level: 1 },
+            build_output: { value: 0, level: 1 }
+        };
+
+        dayRecords.forEach((r: any) => {
+            if (!r.isComplete) return;
+            const d = r.dayN;
+            const isBuildTask = r.completedTaskIds?.some((id: string) => id.includes('build_'));
+
+            if (isBuildTask) skillBars.build_output.value += 5;
+
+            if (d >= 1 && d <= 30) skillBars.python_algo_oop.value += 3;       // Foundation
+            else if (d >= 31 && d <= 70) skillBars.databases_concurrency.value += 3; // Dist/Cloud
+            else if (d >= 71 && d <= 90) skillBars.js_node_security.value += 4;      // Security
+            else if (d >= 91 && d <= 110) skillBars.ml_ai_mlops.value += 4;          // ML/AI
+            else if (d >= 111 && d <= 130) skillBars.js_node_security.value += 3;    // Frontend
+            else if (d >= 131 && d <= 180) { // Mastery & Capstone
+                skillBars.python_algo_oop.value += 1;
+                skillBars.build_output.value += 5;
+            }
+        });
+
+        // Convert raw values to levels (every 50 points = 1 level, max 100 on the bar)
+        Object.keys(skillBars).forEach(key => {
+            const k = key as keyof typeof skillBars;
+            const totalPoints = skillBars[k].value;
+            skillBars[k].level = Math.floor(totalPoints / 100) + 1;
+            skillBars[k].value = totalPoints % 100;
+        });
 
         // 4. Avg Tasks Per Day (last 7 complete days)
         const last7Complete = dayRecords.filter((r: any) => r.isComplete).slice(-7)
