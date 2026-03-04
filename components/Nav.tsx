@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Activity, LayoutDashboard, Database, Target, Settings } from 'lucide-react'
+import { Activity, LayoutDashboard, Database, Target, Settings, Brain } from 'lucide-react'
 import { useDay } from '@/hooks/useDay'
 
 export default function Nav() {
@@ -10,11 +10,13 @@ export default function Nav() {
 
     const links = [
         { href: '/today', label: 'TODAY', icon: Activity },
+        { href: '/brain', label: 'BRAIN', icon: Brain },
         { href: '/dashboard', label: 'DASH', icon: LayoutDashboard },
         { href: '/learn', label: 'LEARN', icon: Database },
         { href: '/log', label: 'LOG', icon: Target },
         { href: '/config', label: 'SYS', icon: Settings },
     ]
+
 
     // Calculate global progress
     let pct = 0;
