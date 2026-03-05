@@ -22,7 +22,7 @@ export default function MissionClock({ user, onUpdate }: Props) {
     const remaining = Math.max(0, 180 - currentDay + 1);
 
     return (
-        <div className="glass-panel p-6 mb-5">
+        <div className="bg-surface border border-[rgba(255,255,255,0.055)] rounded-lg p-5 mb-4">
             <div className="font-mono text-[9px] text-muted2 tracking-[3px] uppercase mb-4">Mission Clock</div>
 
             {/* Stats row */}

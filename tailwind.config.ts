@@ -9,19 +9,21 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                // ── COMMAND LAYER (Premium Dark Glassmorphism) ────────────────
-                bg: '#050505',
-                surface: 'rgba(255, 255, 255, 0.03)',
-                surface2: 'rgba(255, 255, 255, 0.06)',
-                border: 'rgba(255, 255, 255, 0.06)',
-                borderLo: 'rgba(255, 255, 255, 0.04)',
-                borderHi: 'rgba(255, 255, 255, 0.12)',
-                accent: '#38bdf8', // Neon blue
-                success: '#34d399',
-                danger: '#f87171',
-                text: '#f8fafc',
-                muted: '#94a3b8',
-                muted2: '#475569',
+                // ── COMMAND LAYER (existing) ──────────────────────────────
+                bg: '#faf9f6',
+                surface: '#ffffff',
+                surface2: '#f3f0f5',
+                border: 'rgba(74, 78, 105, 0.08)',
+                borderHi: 'rgba(74, 78, 105, 0.15)',
+                accent: '#a2d2ff',
+                acid: '#ffc8dd',
+                danger: '#ffadad',
+                success: '#caffbf',
+                warning: '#fdffb6',
+                info: '#9bf6ff',
+                text: '#4a4e69',
+                muted: '#9a8c98',
+                muted2: '#c9ada7',
 
                 // ── BRAIN LAYER ────────────────────────────────────────────
                 // The sidebar. Deep space — absorbs everything, lets color speak.

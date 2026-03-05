@@ -5,11 +5,9 @@ import { useIntel } from '@/hooks/useIntel'
 import { useDay } from '@/hooks/useDay'
 import { Target, Loader2, Plus, X, AlignLeft, Code, Clock, AlertTriangle, Send } from 'lucide-react'
 
-import OfflineState from '@/components/OfflineState'
-
 export default function IntelPage() {
     const { data: intelEntries, isLoading: intelLoading, error: intelError, createEntry } = useIntel()
-    const { data: dayData, loading: dayLoading, error: dayError } = useDay()
+    const { data: dayData, loading: dayLoading } = useDay()
     const [isFormOpen, setIsFormOpen] = useState(false)
     const [submitting, setSubmitting] = useState(false)
 
@@ -51,8 +49,6 @@ export default function IntelPage() {
         setSubmitting(false)
     }
 
-    if (dayError) return <OfflineState error={dayError} />
-
     if (intelLoading || dayLoading) {
         return (
             <div className="flex items-center justify-center min-h-[100dvh]">
@@ -85,9 +81,9 @@ export default function IntelPage() {
 
             {/* Quick Capture Overlay (Bottom Sheet on Mobile) */}
             {isFormOpen && (
-                <div className="fixed inset-0 z-50 flex flex-col justify-end sm:justify-center items-center bg-bg/90 backdrop-blur-md p-0 sm:p-6 transition-all duration-300">
-                    <div className="bg-surface/90 glass-panel w-full sm:max-w-xl max-h-[90dvh] sm:rounded-2xl rounded-t-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-8 duration-300">
-                        <div className="flex items-center justify-between p-5 border-b border-borderLo shrink-0 bg-transparent">
+                <div className="fixed inset-0 z-50 flex flex-col justify-end sm:justify-center items-center bg-bg/80 backdrop-blur-sm p-0 sm:p-6">
+                    <div className="bg-surface border border-borderHi w-full sm:max-w-xl max-h-[90dvh] sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
+                        <div className="flex items-center justify-between p-4 border-b border-borderLo shrink-0 bg-surface">
                             <h2 className="text-sm font-bold uppercase tracking-widest text-text">Log Intel • Day {dayData?.dayN} • {dayData?.topicToday}</h2>
                             <button onClick={() => setIsFormOpen(false)} className="p-2 text-muted hover:text-text rounded-full hover:bg-surface2 transition-colors">
                                 <X className="w-4 h-4" />
@@ -191,7 +187,7 @@ export default function IntelPage() {
                                 <div className="w-3 h-3 rounded-full bg-accent/20 border-[2px] border-accent ring-4 ring-bg" />
                             </div>
 
-                            <div className="flex-1 glass-panel p-5 sm:p-6 a-transition group-hover:-translate-y-1">
+                            <div className="flex-1 bg-surface border border-borderHi hover:border-accent/30 rounded-2xl p-4 sm:p-5 shadow-sm a-transition group-hover:shadow-md">
                                 <div className="flex items-start justify-between gap-4 mb-3">
                                     <div>
                                         <div className="flex items-center gap-2 mb-1">
