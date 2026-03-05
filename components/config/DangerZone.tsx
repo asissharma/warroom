@@ -31,7 +31,7 @@ export default function DangerZone({ carryForwardCount, onClearCarry, onReset }:
     };
 
     return (
-        <div className="border border-danger/40 rounded-lg p-5">
+        <div className="glass-panel border-danger/30 p-6">
             <div className="font-mono text-[9px] text-danger tracking-[3px] uppercase mb-5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-danger animate-pulse-dot" />
                 DANGER ZONE

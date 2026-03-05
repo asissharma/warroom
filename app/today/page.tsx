@@ -6,14 +6,18 @@ import { Loader2, CheckCircle2, Circle, Flame, Moon, Sun, Code, Pickaxe, Brain, 
 import { useState, useEffect } from 'react'
 import type { TaskSpec } from '@/lib/types'
 
+import OfflineState from '@/components/OfflineState'
+
 export default function TodayPage() {
-    const { data, toggleTask, markComplete, loading: isLoading } = useDay()
+    const { data, toggleTask, markComplete, loading: isLoading, error } = useDay()
     const [currentTime, setCurrentTime] = useState(new Date())
 
     useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 60000)
         return () => clearInterval(timer)
     }, [])
+
+    if (error) return <OfflineState error={error} />
 
     if (isLoading || !data) {
         return (
@@ -55,16 +59,16 @@ export default function TodayPage() {
         return (
             <div
                 onClick={() => toggleTask(spec.id, !isDone)}
-                className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer a-transition ${isDone
-                    ? 'bg-success/5 border-success/20 opacity-60'
-                    : 'bg-surface2/50 border-borderLo hover:border-accent/40'
+                className={`flex items-start gap-3 p-4 rounded-xl border cursor-pointer a-transition active:scale-[0.98] ${isDone
+                    ? 'bg-success/5 border-success/20 opacity-50'
+                    : 'bg-surface2/30 border-borderLo hover:border-accent/40 hover:shadow-[0_0_15px_rgba(56,189,248,0.15)] hover:-translate-y-0.5'
                     }`}
             >
-                <div className="mt-0.5 shrink-0">
+                <div className="mt-0.5 shrink-0 a-transition">
                     {isDone ? (
-                        <CheckCircle2 className="w-5 h-5 text-success" />
+                        <CheckCircle2 className="w-5 h-5 text-success animate-in zoom-in-50 duration-300" />
                     ) : (
-                        <Circle className="w-5 h-5 text-muted2" />
+                        <Circle className="w-5 h-5 text-muted hover:text-accent a-transition" />
                     )}
                 </div>
                 <div className={`text-sm leading-relaxed ${isDone ? 'text-muted line-through' : 'text-text'}`}>
@@ -90,10 +94,10 @@ export default function TodayPage() {
     }
 
     return (
-        <div className="content-z pb-32 max-w-2xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12 min-h-[100dvh] flex flex-col">
+        <div className={`content-z pb-32 max-w-2xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12 min-h-[100dvh] flex flex-col transition-all duration-1000 ${isFocusWindow ? 'shadow-[inset_0_0_150px_rgba(239,68,68,0.05)]' : ''}`}>
 
             {/* Header Strip */}
-            <div className="flex items-center justify-between bg-surface border border-borderHi rounded-2xl p-4 mb-8 shadow-sm">
+            <div className="flex items-center justify-between glass-panel p-5 mb-8">
                 <div className="flex items-center gap-4">
                     <div className="flex flex-col">
                         <span className="text-2xl font-black tracking-tight text-text">DAY {dayN}</span>
@@ -102,9 +106,9 @@ export default function TodayPage() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold ${isFocusWindow
-                        ? 'bg-red-500/10 text-red-500 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]'
-                        : 'bg-surface2 text-muted border border-borderLo'
+                    <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold a-transition ${isFocusWindow
+                        ? 'bg-red-500/10 text-red-400 border border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.2)] animate-pulse'
+                        : 'bg-surface2/50 text-muted border border-borderLo'
                         }`}>
                         {isFocusWindow ? <Moon className="w-3.5 h-3.5 fill-current" /> : <Sun className="w-3.5 h-3.5" />}
                         {isFocusWindow ? 'FOCUS ACTIVE' : 'SHIFT OUT'}
@@ -153,8 +157,8 @@ export default function TodayPage() {
                         ${data.dayComplete
                             ? 'bg-success/10 text-success border-success/30 border cursor-default'
                             : isAllDone
-                                ? 'bg-text text-bg hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]'
-                                : 'bg-surface2 text-muted cursor-not-allowed border border-borderLo'
+                                ? 'bg-text text-bg hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.15)] active:scale-95'
+                                : 'bg-surface2/50 text-muted cursor-not-allowed border border-borderLo opacity-50'
                         }`}
                 >
                     {data.dayComplete ? 'MISSION ACCOMPLISHED' : isAllDone ? 'CLOSE THE DAY' : 'COMPLETE ALL TASKS TO CLOSE'}

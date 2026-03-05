@@ -32,7 +32,7 @@ export default function ConfigPage() {
     return (
         <div className="content-z pb-32 max-w-2xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12 min-h-[100dvh]">
             <div className="flex items-center gap-3 mb-8 pb-6 border-b border-borderLo">
-                <div className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center border border-borderHi">
+                <div className="w-10 h-10 rounded-full glass-panel flex items-center justify-center border border-borderLo">
                     <Settings className="w-5 h-5 text-muted2" />
                 </div>
                 <div>

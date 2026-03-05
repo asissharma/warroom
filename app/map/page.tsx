@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useMap } from '@/hooks/useMap'
 import { Brain, Flame, Target, Loader2, CheckCircle2, CircleDashed, RotateCcw, Circle } from 'lucide-react'
 import spineData from '@/data/tech-spine.json'
+import OfflineState from '@/components/OfflineState'
 
 type Tab = 'TIMELINE' | 'TOPICS' | 'PROGRESS'
 type StatusType = 'done' | 'partial' | 'revisit' | 'not_started'
@@ -21,8 +22,10 @@ const STATUS_CONFIG: Record<StatusType, { icon: any, color: string, label: strin
 }
 
 export default function MapPage() {
-    const { statuses, stats, updateTopicStatus } = useMap()
+    const { statuses, stats, updateTopicStatus, error } = useMap()
     const [activeTab, setActiveTab] = useState<Tab>('TIMELINE')
+
+    if (error) return <OfflineState error={error} />
 
     if (!statuses || !stats) {
         return (
@@ -86,7 +89,7 @@ export default function MapPage() {
                 {activeTab === 'TIMELINE' && (
                     <div className="space-y-8">
                         {Object.entries(phases).map(([phaseName, blocks]: [string, any]) => (
-                            <div key={phaseName} className="bg-surface border border-borderHi rounded-2xl p-5">
+                            <div key={phaseName} className="glass-panel p-6">
                                 <h2 className="text-sm font-bold uppercase tracking-widest text-text mb-4 pb-2 border-b border-borderLo flex items-center gap-2">
                                     <Target className="w-4 h-4 text-accent" /> {phaseName}
                                 </h2>
@@ -125,10 +128,10 @@ export default function MapPage() {
                                 <div
                                     key={topic}
                                     onClick={() => cycleStatus(topic, stat)}
-                                    className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer a-transition select-none ${config.color} hover:brightness-110`}
+                                    className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer a-transition select-none active:scale-95 hover:shadow-[0_4px_15px_rgba(0,0,0,0.2)] hover:-translate-y-0.5 ${config.color}`}
                                 >
                                     <span className="text-sm font-medium leading-tight truncate px-2">{topic}</span>
-                                    <Icon className="w-4 h-4 shrink-0" />
+                                    <Icon className="w-4 h-4 shrink-0 a-transition" />
                                 </div>
                             )
                         })}
@@ -137,27 +140,27 @@ export default function MapPage() {
 
                 {activeTab === 'PROGRESS' && (
                     <div className="space-y-4">
-                        <div className="bg-surface border border-borderHi rounded-2xl p-6 flex flex-col items-center justify-center gap-2">
-                            <Flame className="w-8 h-8 text-orange-500" />
+                        <div className="glass-panel p-8 flex flex-col items-center justify-center gap-2 text-center group">
+                            <Flame className="w-10 h-10 text-orange-500 animate-pulse group-hover:scale-110 a-transition" />
                             <div className="text-4xl font-black">{stats.currentStreak}</div>
                             <div className="text-xs font-bold uppercase tracking-widest text-muted">Current Streak</div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-surface border border-borderLo rounded-2xl p-5 text-center">
-                                <div className="text-2xl font-black text-text mb-1">{stats.daysCompleted}</div>
+                            <div className="bg-surface2/30 border border-borderLo rounded-2xl p-5 text-center hover:bg-surface2/50 a-transition">
+                                <div className="text-3xl font-black text-text mb-1 drop-shadow-md">{stats.daysCompleted}</div>
                                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted">Days Executed</div>
                             </div>
-                            <div className="bg-surface border border-borderLo rounded-2xl p-5 text-center">
-                                <div className="text-2xl font-black text-text mb-1">{stats.totalTasksDone}</div>
+                            <div className="bg-surface2/30 border border-borderLo rounded-2xl p-5 text-center hover:bg-surface2/50 a-transition">
+                                <div className="text-3xl font-black text-text mb-1 drop-shadow-md">{stats.totalTasksDone}</div>
                                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted">Tasks Cleared</div>
                             </div>
-                            <div className="bg-surface border border-borderLo rounded-2xl p-5 text-center">
-                                <div className="text-2xl font-black text-text mb-1">{stats.longestStreak}</div>
+                            <div className="bg-surface2/30 border border-borderLo rounded-2xl p-5 text-center hover:bg-surface2/50 a-transition">
+                                <div className="text-3xl font-black text-text mb-1 drop-shadow-md">{stats.longestStreak}</div>
                                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted">Longest Streak</div>
                             </div>
-                            <div className="bg-surface border border-borderLo rounded-2xl p-5 text-center">
-                                <div className="text-2xl font-black text-text mb-1 text-accent">{stats.phaseProgress.phaseName}</div>
+                            <div className="bg-surface2/30 border border-borderLo rounded-2xl p-5 text-center hover:bg-surface2/50 a-transition">
+                                <div className="text-xl font-black text-accent mb-1 drop-shadow-md neon-text-glow leading-tight break-words">{stats.phaseProgress.phaseName}</div>
                                 <div className="text-[10px] font-bold uppercase tracking-widest text-muted">Current Phase</div>
                             </div>
                         </div>

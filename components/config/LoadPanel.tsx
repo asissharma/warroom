@@ -8,7 +8,7 @@ interface Props {
 
 export default function LoadPanel({ questionsPerDay, onUpdate }: Props) {
     return (
-        <div className="bg-surface border border-[rgba(255,255,255,0.055)] rounded-lg p-5 mb-4">
+        <div className="glass-panel p-6 mb-5">
             <div className="font-mono text-[9px] text-muted2 tracking-[3px] uppercase mb-1">Daily Question Load</div>
             <div className="font-body text-[12px] text-muted2 mb-4">Choose your mastery gate intensity.</div>
 
@@ -17,7 +17,7 @@ export default function LoadPanel({ questionsPerDay, onUpdate }: Props) {
                     <button
                         key={n}
                         onClick={() => onUpdate(n)}
-                        className={`flex-1 py-3 rounded-lg font-bebas text-[20px] tracking-wider transition-all ${questionsPerDay === n ? 'bg-accent text-white' : 'border border-[rgba(255,255,255,0.055)] text-muted2 hover:text-text hover:border-borderHi'}`}
+                        className={`flex-1 py-3 rounded-xl font-bebas text-[20px] tracking-wider a-transition ${questionsPerDay === n ? 'bg-accent/20 text-accent border border-accent/50 shadow-[0_0_15px_rgba(56,189,248,0.2)]' : 'border border-borderLo text-muted2 hover:text-text hover:border-borderHi'}`}
                     >
                         {n} QUESTIONS
                     </button>
