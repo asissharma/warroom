@@ -71,7 +71,7 @@ export function useDay(): UseDayReturn {
             const res = await fetch('/api/day/complete', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({}),
+                body: JSON.stringify({ dayN: prev?.dayN }),
             });
             if (!res.ok) throw new Error('Mark complete failed');
         } catch {

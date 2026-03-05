@@ -9,7 +9,7 @@ const CarryForwardSchema = new Schema<ICarryForward>({
     taskText: { type: String, required: true },
     taskType: {
         type: String,
-        enum: ['tech', 'build', 'mastery', 'human'],
+        enum: ['tech', 'build', 'mastery', 'human', 'survival'],
         required: true
     },
     resolved: { type: Boolean, default: false },

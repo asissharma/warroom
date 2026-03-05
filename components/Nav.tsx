@@ -3,36 +3,24 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Activity, LayoutDashboard, Database, Target, Settings, Brain } from 'lucide-react'
 import { useDay } from '@/hooks/useDay'
-
+import { getExpectedTaskIds } from '@/lib/dayEngine'
 export default function Nav() {
     const pathname = usePathname()
     const { data: day } = useDay()
 
     const links = [
-        { href: '/today', label: 'TODAY', icon: Activity },
-        { href: '/brain', label: 'BRAIN', icon: Brain },
-        { href: '/dashboard', label: 'DASH', icon: LayoutDashboard },
-        { href: '/learn', label: 'LEARN', icon: Database },
-        { href: '/log', label: 'LOG', icon: Target },
+        { href: '/today', label: 'COMMAND', icon: Activity },
+        { href: '/intel', label: 'INTEL', icon: Target },
+        { href: '/map', label: 'MAP', icon: Brain },
         { href: '/config', label: 'SYS', icon: Settings },
     ]
 
 
-    // Calculate global progress
+    // Global progress
     let pct = 0;
     if (day) {
-        const dayN = day.dayN;
-        let allTaskIds: string[] = [];
-        if (!day.isReviewDay) {
-            allTaskIds = [`tech_micro_0_D${dayN}`, `tech_micro_1_D${dayN}`, `tech_micro_2_D${dayN}`];
-            if (day.project) allTaskIds.push(`build_main_D${dayN}`, `build_commit_D${dayN}`, `build_reflect_D${dayN}`);
-            day.questions?.forEach((q: any) => allTaskIds.push(`mastery_Q${q.id}_D${dayN}`));
-            if (day.payable) allTaskIds.push(`human_skill_D${dayN}`, `human_payable_D${dayN}`);
-        } else {
-            allTaskIds = [`tech_review_1_D${dayN}`, `tech_review_2_D${dayN}`, `tech_review_D${dayN}`];
-        }
-        const total = allTaskIds.length;
-        const complete = day.completedTaskIds.filter((id: string) => allTaskIds.includes(id)).length;
+        const total = getExpectedTaskIds(day.dayN, day).length;
+        const complete = day.completedTaskIds.filter((id: string) => getExpectedTaskIds(day.dayN, day).includes(id)).length;
         pct = total > 0 ? Math.round((complete / total) * 100) : 0;
     }
 

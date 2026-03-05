@@ -15,6 +15,13 @@ const PHASES = [
     { name: 'Capstone', dayStart: 141, dayEnd: 180 },
 ]
 
+export function getPhaseProgress(dayN: number) {
+    const phase = PHASES.find(p => dayN >= p.dayStart && dayN <= p.dayEnd) ?? PHASES[PHASES.length - 1]
+    const dayInPhase = dayN - phase.dayStart + 1
+    const totalDays = phase.dayEnd - phase.dayStart + 1
+    return { phaseName: phase.name, dayInPhase, totalDays, phasePct: Math.round((dayInPhase / totalDays) * 100) }
+}
+
 export function getDayN(startDate: Date): number {
     const now = new Date()
     const diffTime = now.getTime() - startDate.getTime()
@@ -95,7 +102,7 @@ export function getBasicSkillForDay(dayN: number): BasicSkill {
         id: dayN,
         name: skillName.replace(/\n\s*/g, ' '),
         category: 'General',
-        microPractice: `Focus on ${skillName.replace(/\n\s*/g, ' ')} today.`
+        microPractice: `Focus on mastering ${skillName.replace(/\n\s*/g, ' ')} through deliberate practice.`
     }
 }
 
@@ -110,7 +117,7 @@ export function getPayableForDay(dayN: number): PayableSyllabus {
         description: `Study ${p.name}`,
         books: p.coreBooks ? p.coreBooks.map((t: string) => ({ title: t, author: 'Unknown', downloaded: true, coreChapter: 'Chapter 1' })) : [],
         podcasts: [],
-        weeklyExercise: 'Reflect on readings',
+        weeklyExercise: p.microPractice || 'Reflect on readings',
         capstone: 'Write summary'
     }
 }
@@ -171,4 +178,47 @@ export function buildDayPayload(
         completedTaskIds,
         dayComplete
     }
+}
+
+export function getExpectedTaskSpecs(dayN: number, payload: DayPayload): import('./types').TaskSpec[] {
+    const specs: import('./types').TaskSpec[] = []
+
+    if (!payload.isReviewDay) {
+        // 1. TechSmith tasks
+        specs.push({ id: `tech_micro_0_D${dayN}`, text: `Read & understand: ${payload.topicToday}`, type: 'tech' })
+        specs.push({ id: `tech_micro_1_D${dayN}`, text: `Implement a prototype of: ${payload.topicToday}`, type: 'tech' })
+        specs.push({ id: `tech_micro_2_D${dayN}`, text: `Review & test: ${payload.topicToday} in context of ${payload.spineArea?.area || payload.phase}`, type: 'tech' })
+
+        // 2. Mastery Questions
+        payload.questions.forEach(q => {
+            specs.push({ id: `mastery_Q${q.id}_D${dayN}`, text: `Q${q.id}: ${q.question}`, type: 'mastery' })
+        })
+
+        // 3. Build/Projects
+        if (payload.project) {
+            specs.push({ id: `build_main_D${dayN}`, text: `Build: ${payload.project.name}`, type: 'build' })
+            specs.push({ id: `build_commit_D${dayN}`, text: `git commit — explain what and why for ${payload.project.name}`, type: 'build' })
+            specs.push({ id: `build_reflect_D${dayN}`, text: `Log the hardest part of ${payload.project.name} in one sentence`, type: 'build' })
+        }
+
+        // 4. Survival Area
+        specs.push({ id: `survival_D${dayN}`, text: `Study Survival Area for this phase`, type: 'survival' })
+
+        // 5 & 6. Human: Basic & Payable Skills
+        if (payload.payable) {
+            specs.push({ id: `human_skill_D${dayN}`, text: `Basic Skill: ${payload.basicSkill.name}`, type: 'human' })
+            specs.push({ id: `human_payable_D${dayN}`, text: `Payable: ${payload.payable.name} — ${payload.payable.books?.[0]?.title || 'Read 10 pages'}`, type: 'human' })
+        }
+    } else {
+        // Review Day specs
+        specs.push({ id: `tech_review_1_D${dayN}`, text: `Review all projects built this week`, type: 'tech' })
+        specs.push({ id: `tech_review_2_D${dayN}`, text: `Fix 1 weak point in your codebase`, type: 'tech' })
+        specs.push({ id: `tech_review_D${dayN}`, text: `Answer your 3 hardest questions cold — no hints`, type: 'tech' })
+    }
+
+    return specs
+}
+
+export function getExpectedTaskIds(dayN: number, payload: DayPayload): string[] {
+    return getExpectedTaskSpecs(dayN, payload).map(t => t.id)
 }

@@ -19,60 +19,58 @@ export async function getCarriedTasksForDay(
     }))
 }
 
+import { getExpectedTaskSpecs } from './dayEngine'
+
 export async function createCarryForwardsFromDay(
     userId: string,
     dayN: number,
     payload: DayPayload,
     completedTaskIds: string[]
 ): Promise<void> {
-    const expectedTasks: { id: string, text: string, type: 'tech' | 'build' | 'mastery' | 'human' }[] = []
-
-    // Tech Tasks
-    expectedTasks.push({ id: `tech_micro_0_D${dayN}`, text: `Read: ${payload.topicToday}`, type: 'tech' })
-    expectedTasks.push({ id: `tech_micro_1_D${dayN}`, text: `Code: ${payload.microtasksToday?.[0] ?? payload.topicToday}`, type: 'tech' })
-    expectedTasks.push({ id: `tech_micro_2_D${dayN}`, text: `Document learnings`, type: 'tech' })
-    if (payload.isReviewDay) {
-        expectedTasks.push({ id: `tech_review_D${dayN}`, text: `Weekly Architecture Review`, type: 'tech' })
-    }
-
-    // Build Tasks
-    if (payload.project) {
-        expectedTasks.push({ id: `build_main_D${dayN}`, text: `Work on ${payload.project.name}`, type: 'build' })
-        expectedTasks.push({ id: `build_commit_D${dayN}`, text: `Commit progress to source logic`, type: 'build' })
-        expectedTasks.push({ id: `build_reflect_D${dayN}`, text: `Evaluate build velocity`, type: 'build' })
-    }
-
-    // Mastery Tasks
-    payload.questions.forEach(q => {
-        expectedTasks.push({ id: `mastery_Q${q.id}_D${dayN}`, text: `${q.question}`, type: 'mastery' })
-    })
-
-    // Human / Skills Tasks
-    expectedTasks.push({ id: `human_skill_D${dayN}`, text: `Practice ${payload.basicSkill.name}`, type: 'human' })
-    expectedTasks.push({ id: `human_payable_D${dayN}`, text: `Read ${payload.payable.books[0]?.title || 'Syllabus chapter'}`, type: 'human' })
+    const expectedTasks = getExpectedTaskSpecs(dayN, payload)
+    const bulkOps = []
 
     for (const task of expectedTasks) {
         if (!completedTaskIds.includes(task.id)) {
-            await CarryForward.findOneAndUpdate(
-                { userId, taskId: task.id, resolved: false },
-                {
-                    $set: {
-                        toDayN: Math.min(180, dayN + 1),
-                        taskText: task.text,
-                        taskType: task.type,
-                        fromDayN: dayN
-                    }
-                },
-                { upsert: true }
-            )
+            bulkOps.push({
+                updateOne: {
+                    filter: { userId, taskId: task.id, resolved: false },
+                    update: {
+                        $set: {
+                            toDayN: Math.min(180, dayN + 1),
+                            taskText: task.text,
+                            taskType: task.type,
+                            fromDayN: dayN
+                        }
+                    },
+                    upsert: true
+                }
+            })
         }
     }
 
-    // Mark completed carries from today as resolved
+    if (bulkOps.length > 0) {
+        await CarryForward.bulkWrite(bulkOps)
+    }
+
+    const resolveOps = []
     for (const carried of payload.carriedTasks) {
         if (completedTaskIds.includes(carried.taskId)) {
-            await resolveCarryForward(userId, carried._id)
+            resolveOps.push({
+                updateOne: {
+                    filter: { _id: carried._id },
+                    update: {
+                        $set: {
+                            resolved: true,
+                            resolvedAt: new Date()
+                        }
+                    }
+                }
+            })
         }
+    }
+    if (resolveOps.length > 0) {
+        await CarryForward.bulkWrite(resolveOps)
     }
 }
 

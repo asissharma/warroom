@@ -1,71 +1,50 @@
-// ── FILE: app/config/page.tsx ──
 'use client';
+
 import { useUser } from '@/hooks/useUser';
-import { useDashboard } from '@/hooks/useDashboard';
 import MissionClock from '@/components/config/MissionClock';
 import LoadPanel from '@/components/config/LoadPanel';
-import ProgressSnapshot from '@/components/config/ProgressSnapshot';
 import DangerZone from '@/components/config/DangerZone';
-
-function Skeleton() {
-    return (
-        <div className="max-w-[700px] mx-auto px-4 pb-24 pt-6 animate-pulse space-y-4">
-            <div className="h-12 w-48 bg-surface2 rounded mb-6" />
-            <div className="h-64 bg-surface2 rounded-lg" />
-            <div className="h-40 bg-surface2 rounded-lg" />
-            <div className="h-48 bg-surface2 rounded-lg" />
-            <div className="h-64 border border-danger/40 rounded-lg" />
-        </div>
-    );
-}
+import { Settings, Loader2 } from 'lucide-react'
 
 export default function ConfigPage() {
     const { user, loading: userLoading, error: userError, updateUser } = useUser();
-    const { data: dashboardData, loading: dashLoading } = useDashboard();
 
-    if (userLoading || dashLoading) return <Skeleton />;
-    if (userError) return (
-        <div className="max-w-[700px] mx-auto px-4 pt-10 text-center">
-            <div className="font-mono text-danger text-[12px]">API ERROR: {userError}</div>
+    if (userLoading) return (
+        <div className="flex items-center justify-center min-h-[100dvh]">
+            <Loader2 className="w-8 h-8 animate-spin text-accent" />
         </div>
-    );
-    if (!user || !dashboardData) return null;
-
-    const stats = [
-        { label: 'Total Tasks', value: dashboardData.totalTasksDone, color: 'acid' },
-        { label: 'Days Completed', value: dashboardData.totalDaysCompleted, color: 'success' },
-        { label: 'Longest Streak', value: dashboardData.longestStreak, color: 'accent' },
-    ];
+    )
+    if (userError) return <div className="p-10 text-center text-red-500">Error: {userError}</div>;
+    if (!user) return null;
 
     const handleClearCarry = async () => {
         const res = await fetch('/api/carryforward', { method: 'DELETE' });
         if (!res.ok) throw new Error('Failed to clear carry-forwards');
-        // Let SWR/refresh handle the UI update or force a reload
         window.location.reload();
     };
 
     const handleReset = async () => {
         const res = await fetch('/api/user/reset', { method: 'DELETE' });
         if (!res.ok) throw new Error('Failed to reset progress');
+        window.location.reload();
     };
 
     return (
-        <div className="h-[100dvh] overflow-y-auto scrollbar-thin content-z">
-            <div className="max-w-[700px] mx-auto px-4 pb-24 pt-6">
-                {/* ── HEADER ── */}
-                <div className="mb-8">
-                    <div className="font-bebas text-[36px] tracking-wide" style={{ background: 'linear-gradient(90deg, #4f46e5, #10b981)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                        INTEL·OS CONFIG
-                    </div>
-                    <div className="font-mono text-[11px] text-muted2 mt-1">Adjust only with intention.</div>
+        <div className="content-z pb-32 max-w-2xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12 min-h-[100dvh]">
+            <div className="flex items-center gap-3 mb-8 pb-6 border-b border-borderLo">
+                <div className="w-10 h-10 rounded-full bg-surface2 flex items-center justify-center border border-borderHi">
+                    <Settings className="w-5 h-5 text-muted2" />
                 </div>
+                <div>
+                    <h1 className="text-xl font-bold tracking-tight text-text">SYSTEM CONFIG</h1>
+                    <p className="text-xs text-muted font-mono tracking-wider uppercase">User ID: default</p>
+                </div>
+            </div>
 
-                <div className="space-y-6">
-                    <MissionClock user={user as any} onUpdate={updateUser as any} />
-                    <LoadPanel questionsPerDay={user.preferences.questionsPerDay} onUpdate={(qpd) => updateUser({ preferences: { ...user.preferences, questionsPerDay: qpd } } as any)} />
-                    <ProgressSnapshot stats={stats} />
-                    <DangerZone carryForwardCount={dashboardData.carryForwardCount} onClearCarry={handleClearCarry} onReset={handleReset} />
-                </div>
+            <div className="space-y-6">
+                <MissionClock user={user as any} onUpdate={updateUser as any} />
+                <LoadPanel questionsPerDay={user.preferences.questionsPerDay} onUpdate={(qpd) => updateUser({ preferences: { ...user.preferences, questionsPerDay: qpd } } as any)} />
+                <DangerZone carryForwardCount={0} onClearCarry={handleClearCarry} onReset={handleReset} />
             </div>
         </div>
     );

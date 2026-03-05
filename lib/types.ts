@@ -119,7 +119,7 @@ export interface ICarryForward {
     toDayN: number
     taskId: string
     taskText: string
-    taskType: 'tech' | 'build' | 'mastery' | 'human'
+    taskType: 'tech' | 'build' | 'mastery' | 'human' | 'survival'
     resolved: boolean
     resolvedAt?: Date
 }
@@ -130,7 +130,29 @@ export interface CarryForwardTask {
     fromDayN: number
     taskId: string
     taskText: string
-    taskType: 'tech' | 'build' | 'mastery' | 'human'
+    taskType: 'tech' | 'build' | 'mastery' | 'human' | 'survival'
+}
+
+export interface IntelEntry {
+    _id: string
+    userId: string
+    dayN: number
+    topicKey: string
+    phase: string
+    title: string
+    what: string
+    how: string
+    resources: { label: string; url: string }[]
+    codeSnippet?: string
+    blockers?: string
+    timeSpentMins: number
+    createdAt: string
+}
+
+export interface TaskSpec {
+    id: string
+    text: string
+    type: 'tech' | 'build' | 'mastery' | 'human' | 'survival'
 }
 
 export interface DayPayload {
