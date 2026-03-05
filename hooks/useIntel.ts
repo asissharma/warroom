@@ -1,7 +1,14 @@
 import useSWR from 'swr'
 import type { IntelEntry } from '@/lib/types'
 
-const fetcher = (url: string) => fetch(url).then(r => r.json())
+const fetcher = async (url: string) => {
+    const res = await fetch(url)
+    const json = await res.json()
+    if (!res.ok) {
+        throw new Error(json.error || 'Failed to fetch intel data')
+    }
+    return json
+}
 
 export function useIntel(topic?: string) {
     const url = topic ? `/api/intel?topic=${encodeURIComponent(topic)}` : '/api/intel'

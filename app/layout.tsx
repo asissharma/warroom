@@ -21,9 +21,9 @@ export default function RootLayout({
         <html lang="en" className={`${bebas.variable} ${outfit.variable} ${jbMono.variable}`}>
             <body className="bg-bg text-text h-[100dvh] overflow-hidden flex flex-col antialiased">
                 <Nav />
-                <main className="flex-1 overflow-hidden relative min-h-0">
-                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-surface/40 to-transparent" />
-                    <div className="relative z-10 h-full flex flex-col">
+                <main className="flex-1 overflow-y-auto overflow-x-hidden relative min-h-0 hide-scrollbar">
+                    <div className="fixed inset-0 pointer-events-none bg-gradient-to-b from-surface/80 to-transparent z-0" />
+                    <div className="relative z-10 min-h-full flex flex-col">
                         {children}
                     </div>
                 </main>

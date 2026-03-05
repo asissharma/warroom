@@ -6,7 +6,7 @@ import { useDay } from '@/hooks/useDay'
 import { Target, Loader2, Plus, X, AlignLeft, Code, Clock, AlertTriangle, Send } from 'lucide-react'
 
 export default function IntelPage() {
-    const { data: intelEntries, isLoading: intelLoading, createEntry } = useIntel()
+    const { data: intelEntries, isLoading: intelLoading, error: intelError, createEntry } = useIntel()
     const { data: dayData, loading: dayLoading } = useDay()
     const [isFormOpen, setIsFormOpen] = useState(false)
     const [submitting, setSubmitting] = useState(false)
@@ -168,7 +168,13 @@ export default function IntelPage() {
             <div className="flex flex-col gap-4 relative">
                 <div className="absolute left-6 top-4 bottom-4 w-px bg-borderLo/50 hidden sm:block pointer-events-none" />
 
-                {intelEntries?.length === 0 ? (
+                {intelError ? (
+                    <div className="py-12 px-6 text-center text-red-500 border border-red-500/20 border-dashed rounded-2xl bg-red-500/5">
+                        <AlertTriangle className="w-8 h-8 mx-auto mb-3 opacity-50" />
+                        <p className="text-sm font-bold">Failed to load intel entries</p>
+                        <p className="text-xs mt-1 text-red-500/70">{intelError.message || 'An error occurred while fetching intel.'}</p>
+                    </div>
+                ) : intelEntries?.length === 0 ? (
                     <div className="py-12 text-center text-muted border border-borderLo border-dashed rounded-2xl bg-surface2/20">
                         <Target className="w-8 h-8 mx-auto mb-3 opacity-20" />
                         <p className="text-sm">No intel recorded yet.</p>
