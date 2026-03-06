@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import type { IDayRecord } from '../types'
+import type { IDayRecord } from '@/types'
 
 const DayRecordSchema = new Schema<IDayRecord>({
     userId: { type: String, required: true },

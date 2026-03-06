@@ -3,184 +3,1035 @@
     "id": 1,
     "area": "System Design",
     "urgency": "CRITICAL",
-    "why": "AI can write a function — it cannot decide Kafka vs RabbitMQ for your throughput",
+    "why": "AI can write a function — it cannot decide Kafka vs RabbitMQ for your throughput, or tell you when CAP theorem means you must sacrifice consistency. This is the senior engineer's core skill.",
     "topics": [
-      "CAP theorem, consistency models, partitioning",
-      "Message queues: Kafka, RabbitMQ, SQS decision criteria",
-      "Database selection: SQL vs NoSQL vs time-series",
-      "Caching: write-through, write-back, cache-aside, invalidation",
-      "Load balancing, rate limiting, circuit breaker patterns"
+      {
+        "id": "sd-001",
+        "title": "CAP theorem, consistency models, and partitioning",
+        "drill": "Draw CAP triangle. Place MongoDB, PostgreSQL, Cassandra, Redis on it. Justify each placement.",
+        "connectedTopicKeys": [
+          "nosql-cassandra",
+          "sysdesign-cap-theorem",
+          "db-transactions-acid"
+        ]
+      },
+      {
+        "id": "sd-002",
+        "title": "Message queues: Kafka vs RabbitMQ vs SQS — decision criteria",
+        "drill": "For each: a payments pipeline, a chat app, a log aggregator — pick a queue. Justify in 2 sentences each.",
+        "connectedTopicKeys": [
+          "sysdesign-message-queues",
+          "dataeng-kafka-streams",
+          "patterns-saga"
+        ]
+      },
+      {
+        "id": "sd-003",
+        "title": "Database selection: SQL vs NoSQL vs time-series — when to use each",
+        "drill": "Design the DB layer for: Twitter, a bank, an IoT sensor fleet. Different DB for each? Why?",
+        "connectedTopicKeys": [
+          "db-normalization",
+          "nosql-mongodb",
+          "sysdesign-cap-theorem"
+        ]
+      },
+      {
+        "id": "sd-004",
+        "title": "Caching: write-through, write-back, cache-aside, invalidation strategies",
+        "drill": "Implement cache-aside for one endpoint. Add TTL. Handle cache stampede. Write the pseudocode.",
+        "connectedTopicKeys": [
+          "nosql-redis-caching",
+          "nosql-cache-invalidation",
+          "sysdesign-distributed-cache"
+        ]
+      },
+      {
+        "id": "sd-005",
+        "title": "Load balancing: L4 vs L7, algorithms, sticky sessions",
+        "drill": "Explain round-robin vs least-connections vs IP-hash. When does sticky session break horizontal scaling?",
+        "connectedTopicKeys": [
+          "sysdesign-load-balancing",
+          "cloud-kubernetes-basics"
+        ]
+      },
+      {
+        "id": "sd-006",
+        "title": "Rate limiting patterns: token bucket, sliding window, fixed window",
+        "drill": "Implement sliding-window rate limiter in Redis pseudocode. Handle distributed scenario (2 app servers).",
+        "connectedTopicKeys": [
+          "security-rate-limiting",
+          "sysdesign-rate-limiting",
+          "nosql-redis-structures"
+        ]
+      },
+      {
+        "id": "sd-007",
+        "title": "Circuit breaker pattern: states, thresholds, half-open logic",
+        "drill": "Draw the state machine for a circuit breaker. Write the threshold logic in pseudocode.",
+        "connectedTopicKeys": [
+          "sysdesign-rate-limiting",
+          "arch-event-driven"
+        ]
+      },
+      {
+        "id": "sd-008",
+        "title": "Design a URL shortener at 100M URLs/day scale",
+        "drill": "Full system design: API, ID generation (no collisions), redirect performance, analytics. 20 minutes, no notes.",
+        "connectedTopicKeys": [
+          "sysdesign-load-balancing",
+          "nosql-redis-caching",
+          "db-indexes-query-plans"
+        ]
+      },
+      {
+        "id": "sd-009",
+        "title": "Design a notification system (push, email, SMS) at scale",
+        "drill": "Handle 10M notifications/day. Prioritization queues, retry logic, unsubscribe compliance. Draw the architecture.",
+        "connectedTopicKeys": [
+          "sysdesign-message-queues",
+          "arch-event-driven",
+          "patterns-behavioral"
+        ]
+      },
+      {
+        "id": "sd-010",
+        "title": "Idempotency: why it matters and how to implement it",
+        "drill": "Explain idempotency key pattern for a payment API. What happens on network retry without it?",
+        "connectedTopicKeys": [
+          "sysdesign-payment-system",
+          "db-transactions-acid",
+          "security-api-key-management"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "Designing Data-Intensive Applications",
         "author": "Martin Kleppmann",
         "free": false,
-        "url": "https://dataintensive.net"
+        "url": "https://dataintensive.net",
+        "type": "book"
       },
       {
         "name": "System Design Primer",
         "author": "donnemartin",
         "free": true,
-        "url": "https://github.com/donnemartin/system-design-primer"
+        "url": "https://github.com/donnemartin/system-design-primer",
+        "type": "github"
       },
       {
         "name": "Google SRE Book",
         "author": "Google",
         "free": true,
-        "url": "https://sre.google/sre-book/table-of-contents/"
+        "url": "https://sre.google/sre-book/table-of-contents/",
+        "type": "book"
+      },
+      {
+        "name": "High Scalability Blog",
+        "author": "Todd Hoff",
+        "free": true,
+        "url": "http://highscalability.com/",
+        "type": "blog"
+      },
+      {
+        "name": "Grokking the System Design Interview",
+        "author": "Educative",
+        "free": false,
+        "url": "https://www.educative.io/courses/grokking-the-system-design-interview",
+        "type": "course"
+      },
+      {
+        "name": "ByteByteGo System Design Newsletter",
+        "author": "Alex Xu",
+        "free": true,
+        "url": "https://blog.bytebytego.com/",
+        "type": "newsletter"
       }
     ],
-    "spineConnection": "Databases & Distributed Systems (D31–D50)"
+    "rotationDays": [
+      1,
+      43,
+      85,
+      127,
+      169
+    ],
+    "spineTopicKeys": [
+      "sysdesign-cap-theorem",
+      "sysdesign-load-balancing",
+      "sysdesign-message-queues",
+      "sysdesign-api-design",
+      "sysdesign-rate-limiting",
+      "sysdesign-twitter",
+      "sysdesign-distributed-cache",
+      "sysdesign-payment-system",
+      "sysdesign-observability"
+    ]
   },
   {
     "id": 2,
     "area": "Model Training & Fine-Tuning Basics",
     "urgency": "HIGH",
-    "why": "You don't need a PhD in ML, but you must know how to adapt existing models to new data.",
+    "why": "You don't need a PhD in ML. But you must be able to: take an existing model, adapt it to a domain-specific task, evaluate it honestly, and deploy it. That's the real moat.",
     "topics": [
-      "Transfer learning",
-      "LoRA and QLoRA fine-tuning",
-      "HuggingFace basics (datasets, trainers, tokenizers)",
-      "Data preparation and quality evaluation"
+      {
+        "id": "ml-001",
+        "title": "Transfer learning: why it works and when to use it",
+        "drill": "Explain transfer learning to someone who knows linear algebra but no ML. Use one concrete image classification example.",
+        "connectedTopicKeys": [
+          "ml-transfer-learning",
+          "ml-cnn",
+          "ml-neural-networks"
+        ]
+      },
+      {
+        "id": "ml-002",
+        "title": "LoRA and QLoRA fine-tuning: the math and the workflow",
+        "drill": "Explain what LoRA does to the weight matrices in plain language. Why does it require less VRAM than full fine-tuning?",
+        "connectedTopicKeys": [
+          "ml-finetuning-lora",
+          "ml-llm-apis",
+          "ml-pytorch-basics"
+        ]
+      },
+      {
+        "id": "ml-003",
+        "title": "HuggingFace basics: datasets, tokenizers, trainers",
+        "drill": "Walk through the full HuggingFace fine-tuning pipeline from scratch in pseudocode: load dataset → tokenize → train → evaluate → push to hub.",
+        "connectedTopicKeys": [
+          "ml-finetuning-lora",
+          "ml-embeddings-vectordb",
+          "ml-langchain"
+        ]
+      },
+      {
+        "id": "ml-004",
+        "title": "Data preparation for fine-tuning: quality over quantity",
+        "drill": "For a customer support chatbot fine-tune: describe the ideal training data format, size, and quality criteria.",
+        "connectedTopicKeys": [
+          "ml-feature-engineering",
+          "ml-supervised-learning",
+          "dataeng-dbt"
+        ]
+      },
+      {
+        "id": "ml-005",
+        "title": "Evaluation metrics for LLMs: BLEU, ROUGE, human eval, LLM-as-judge",
+        "drill": "Explain why perplexity is a poor proxy for real-world quality. What would you use instead for a coding assistant?",
+        "connectedTopicKeys": [
+          "ml-model-evaluation",
+          "ml-llm-apis",
+          "ml-rag"
+        ]
+      },
+      {
+        "id": "ml-006",
+        "title": "RAG vs fine-tuning: decision framework",
+        "drill": "When do you RAG and when do you fine-tune? Write the decision tree with 5 criteria.",
+        "connectedTopicKeys": [
+          "ml-rag",
+          "ml-finetuning-lora",
+          "ml-embeddings-vectordb"
+        ]
+      },
+      {
+        "id": "ml-007",
+        "title": "Vector databases and embedding retrieval at scale",
+        "drill": "Compare ChromaDB vs Pinecone vs pgvector for: a startup with <100K docs, an enterprise with 10M docs.",
+        "connectedTopicKeys": [
+          "ml-embeddings-vectordb",
+          "ml-rag",
+          "nosql-mongodb"
+        ]
+      },
+      {
+        "id": "ml-008",
+        "title": "Prompt engineering: system prompts, few-shot, chain-of-thought",
+        "drill": "Rewrite a bad prompt for a code review assistant using: role + context + format + examples. Show the before/after.",
+        "connectedTopicKeys": [
+          "ml-llm-apis",
+          "ml-rag",
+          "ml-langchain"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "fast.ai Practical Deep Learning",
         "author": "Jeremy Howard",
         "free": true,
-        "url": "https://course.fast.ai"
+        "url": "https://course.fast.ai",
+        "type": "course"
       },
       {
         "name": "HuggingFace NLP Course",
         "author": "HuggingFace",
         "free": true,
-        "url": "https://huggingface.co/learn/nlp-course"
+        "url": "https://huggingface.co/learn/nlp-course",
+        "type": "course"
+      },
+      {
+        "name": "Andrej Karpathy — Neural Networks: Zero to Hero",
+        "author": "Andrej Karpathy",
+        "free": true,
+        "url": "https://karpathy.ai/zero-to-hero.html",
+        "type": "course"
+      },
+      {
+        "name": "QLoRA Paper (Dettmers et al.)",
+        "author": "Tim Dettmers",
+        "free": true,
+        "url": "https://arxiv.org/abs/2305.14314",
+        "type": "paper"
+      },
+      {
+        "name": "LangChain Documentation",
+        "author": "LangChain",
+        "free": true,
+        "url": "https://docs.langchain.com/",
+        "type": "docs"
       }
     ],
-    "spineConnection": "ML/AI Phase (D91–D110)"
+    "rotationDays": [
+      7,
+      49,
+      91,
+      133,
+      175
+    ],
+    "spineTopicKeys": [
+      "ml-supervised-learning",
+      "ml-model-evaluation",
+      "ml-feature-engineering",
+      "ml-overfitting-regularization",
+      "ml-sklearn-pipelines",
+      "ml-neural-networks",
+      "ml-pytorch-basics",
+      "ml-transfer-learning",
+      "ml-mlflow",
+      "ml-llm-apis",
+      "ml-rag",
+      "ml-langchain",
+      "ml-embeddings-vectordb",
+      "ml-finetuning-lora"
+    ]
   },
   {
     "id": 3,
     "area": "Distributed Tracing & Observability",
     "urgency": "HIGH",
-    "why": "When a microservice fails in production, AI can't figure out which of 50 services caused it — you have to.",
+    "why": "When a microservice fails silently in production at 2am, no LLM can diagnose it — only structured telemetry can. You need to build systems that tell you what's wrong before users do.",
     "topics": [
-      "OpenTelemetry: traces, metrics, logs",
-      "Prometheus & Grafana — metric pipelines",
-      "Log aggregation (ELK / Loki)",
-      "Distributed tracing with Jaeger / Tempo"
+      {
+        "id": "obs-001",
+        "title": "The three pillars: metrics, logs, traces — differences and when to use each",
+        "drill": "A request is slow intermittently. Walk through: what metric catches it, what log gives context, what trace shows root cause.",
+        "connectedTopicKeys": [
+          "sre-prometheus",
+          "sre-grafana",
+          "sre-distributed-tracing",
+          "sre-log-aggregation"
+        ]
+      },
+      {
+        "id": "obs-002",
+        "title": "OpenTelemetry: instrumentation, context propagation, exporters",
+        "drill": "Instrument a Python function with OTel: add a span, baggage, and an attribute. Export to Jaeger. Pseudocode is fine.",
+        "connectedTopicKeys": [
+          "sre-distributed-tracing",
+          "sre-prometheus"
+        ]
+      },
+      {
+        "id": "obs-003",
+        "title": "Prometheus: counters, gauges, histograms, summaries — when to use which",
+        "drill": "Design the metrics for an HTTP API: request rate, error rate, latency distribution. Write the Prometheus metric types for each.",
+        "connectedTopicKeys": [
+          "sre-prometheus",
+          "sre-grafana",
+          "sre-slos"
+        ]
+      },
+      {
+        "id": "obs-004",
+        "title": "Grafana dashboards: the USE method and RED method",
+        "drill": "Build a USE method dashboard for a single service: Utilization, Saturation, Errors for CPU, memory, network, disk.",
+        "connectedTopicKeys": [
+          "sre-grafana",
+          "sre-prometheus",
+          "sre-slos"
+        ]
+      },
+      {
+        "id": "obs-005",
+        "title": "Log aggregation: structured logging, ELK vs Loki, log levels",
+        "drill": "Write a structured log line for a failed payment. Include: request_id, user_id, amount, error_code, latency_ms.",
+        "connectedTopicKeys": [
+          "sre-log-aggregation",
+          "sre-distributed-tracing"
+        ]
+      },
+      {
+        "id": "obs-006",
+        "title": "SLIs, SLOs, SLAs, and error budgets",
+        "drill": "Define SLIs for an API (availability + p99 latency). Set SLO targets. Calculate the monthly error budget in minutes.",
+        "connectedTopicKeys": [
+          "sre-slos",
+          "sre-prometheus",
+          "arch-incident-response"
+        ]
+      },
+      {
+        "id": "obs-007",
+        "title": "Alerting strategy: alert on symptoms, not causes",
+        "drill": "Explain why 'CPU > 80%' is a bad alert. Write a better alert for the same system using user-facing symptoms.",
+        "connectedTopicKeys": [
+          "sre-prometheus",
+          "sre-slos",
+          "arch-incident-response"
+        ]
+      },
+      {
+        "id": "obs-008",
+        "title": "Distributed tracing: spans, trace context, sampling strategies",
+        "drill": "Trace a request through: API Gateway → Auth Service → DB. Draw the span waterfall. Where is the bottleneck?",
+        "connectedTopicKeys": [
+          "sre-distributed-tracing",
+          "sre-log-aggregation",
+          "arch-cicd"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "Datadog Learning Center",
         "author": "Datadog",
         "free": true,
-        "url": "https://learn.datadoghq.com"
+        "url": "https://learn.datadoghq.com",
+        "type": "course"
       },
       {
         "name": "OpenTelemetry Documentation",
         "author": "CNCF",
         "free": true,
-        "url": "https://opentelemetry.io/docs/"
+        "url": "https://opentelemetry.io/docs/",
+        "type": "docs"
+      },
+      {
+        "name": "Grafana & Prometheus Fundamentals",
+        "author": "Grafana Labs",
+        "free": true,
+        "url": "https://grafana.com/tutorials/",
+        "type": "tutorial"
+      },
+      {
+        "name": "Google SRE Workbook",
+        "author": "Google",
+        "free": true,
+        "url": "https://sre.google/workbook/table-of-contents/",
+        "type": "book"
+      },
+      {
+        "name": "Elastic Observability Fundamentals",
+        "author": "Elastic",
+        "free": true,
+        "url": "https://www.elastic.co/training/elastic-observability-fundamentals",
+        "type": "course"
       }
     ],
-    "spineConnection": "Observability (D36–D40)"
+    "rotationDays": [
+      13,
+      55,
+      97,
+      139
+    ],
+    "spineTopicKeys": [
+      "sre-prometheus",
+      "sre-grafana",
+      "sre-distributed-tracing",
+      "sre-log-aggregation",
+      "sre-slos"
+    ]
   },
   {
     "id": 4,
     "area": "Advanced Security & Cryptography",
     "urgency": "CRITICAL",
-    "why": "AI writes insecure code constantly. You need to verify its outputs and architect secure systems.",
+    "why": "AI writes insecure code constantly and confidently. You need to be the one who catches it, fixes it, and architects systems that are secure by default — not by accident.",
     "topics": [
-      "OAuth2 / OIDC — authorization flows",
-      "JWTs and session management",
-      "Encryption at rest and in transit",
-      "Zero-trust architecture principles"
+      {
+        "id": "sec-001",
+        "title": "OAuth2 / OIDC: authorization code flow, PKCE, implicit vs hybrid",
+        "drill": "Draw the full OAuth2 Authorization Code + PKCE flow. Label every request and token. Where is the attack surface?",
+        "connectedTopicKeys": [
+          "security-oauth2",
+          "security-jwt",
+          "security-owasp-top10"
+        ]
+      },
+      {
+        "id": "sec-002",
+        "title": "JWTs: structure, signing algorithms, validation pitfalls",
+        "drill": "Exploit: alg:none attack, weak secret brute-force, missing aud/iss validation. Fix all three.",
+        "connectedTopicKeys": [
+          "security-jwt",
+          "security-oauth2",
+          "security-hashing"
+        ]
+      },
+      {
+        "id": "sec-003",
+        "title": "Encryption at rest and in transit: symmetric vs asymmetric, when to use each",
+        "drill": "Design the encryption strategy for: user passwords, DB columns with PII, API communication, S3 objects.",
+        "connectedTopicKeys": [
+          "security-encryption",
+          "security-tls",
+          "security-hashing"
+        ]
+      },
+      {
+        "id": "sec-004",
+        "title": "Zero-trust architecture: principles and implementation patterns",
+        "drill": "Describe zero-trust for a microservices backend. What replaces the perimeter? How is every service-to-service call authenticated?",
+        "connectedTopicKeys": [
+          "security-oauth2",
+          "cloud-kubernetes-config",
+          "security-api-key-management"
+        ]
+      },
+      {
+        "id": "sec-005",
+        "title": "OWASP Top 10 (2023) deep dive: injection, broken access control, misconfigurations",
+        "drill": "For each of the top 5 OWASP items: write one attack vector, one test, one fix.",
+        "connectedTopicKeys": [
+          "security-owasp-top10",
+          "security-sql-injection",
+          "security-xss-csp"
+        ]
+      },
+      {
+        "id": "sec-006",
+        "title": "Secrets management: vault patterns, rotation, detection",
+        "drill": "Design a secrets lifecycle: how are secrets created, stored, rotated, and revoked? Use HashiCorp Vault concepts.",
+        "connectedTopicKeys": [
+          "security-secrets-vault",
+          "python-secrets-management",
+          "cloud-terraform"
+        ]
+      },
+      {
+        "id": "sec-007",
+        "title": "Supply chain security: dependency scanning, SBOMs, typosquatting",
+        "drill": "Audit one real project's dependencies with pip-audit or npm audit. Document every vulnerability and its fix.",
+        "connectedTopicKeys": [
+          "python-dependency-scanning",
+          "arch-cicd",
+          "security-secrets-vault"
+        ]
+      },
+      {
+        "id": "sec-008",
+        "title": "Penetration testing methodology: recon, scanning, exploitation, reporting",
+        "drill": "Run OWASP ZAP against a local app. Write a 1-page report: finding, severity, evidence, remediation.",
+        "connectedTopicKeys": [
+          "security-pentest-basics",
+          "security-owasp-top10",
+          "security-headers"
+        ]
+      },
+      {
+        "id": "sec-009",
+        "title": "Secure SDLC: threat modeling, security reviews, shift-left",
+        "drill": "Apply STRIDE threat modeling to one endpoint you've built: Spoofing, Tampering, Repudiation, Info disclosure, DoS, Elevation.",
+        "connectedTopicKeys": [
+          "security-owasp-top10",
+          "arch-cicd",
+          "python-secure-http"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "OWASP Top 10",
         "author": "OWASP",
         "free": true,
-        "url": "https://owasp.org/www-project-top-ten/"
+        "url": "https://owasp.org/www-project-top-ten/",
+        "type": "reference"
       },
       {
         "name": "Crypto 101",
         "author": "lvh",
         "free": true,
-        "url": "https://www.crypto101.io"
+        "url": "https://www.crypto101.io",
+        "type": "book"
+      },
+      {
+        "name": "Cryptography I (Stanford)",
+        "author": "Dan Boneh",
+        "free": true,
+        "url": "https://www.coursera.org/learn/crypto",
+        "type": "course"
+      },
+      {
+        "name": "Snyk Learn",
+        "author": "Snyk",
+        "free": true,
+        "url": "https://learn.snyk.io/",
+        "type": "course"
+      },
+      {
+        "name": "HackTricks — Web Application Security",
+        "author": "Carlos Polop",
+        "free": true,
+        "url": "https://book.hacktricks.xyz/pentesting-web",
+        "type": "reference"
+      },
+      {
+        "name": "OWASP WebSec Testing Guide",
+        "author": "OWASP",
+        "free": true,
+        "url": "https://owasp.org/www-project-web-security-testing-guide/",
+        "type": "reference"
       }
     ],
-    "spineConnection": "Security Phase (D71–D90)"
+    "rotationDays": [
+      19,
+      61,
+      103,
+      145
+    ],
+    "spineTopicKeys": [
+      "security-owasp-top10",
+      "security-sql-injection",
+      "security-xss-csp",
+      "security-csrf",
+      "security-idor",
+      "security-jwt",
+      "security-oauth2",
+      "security-hashing",
+      "security-tls",
+      "security-encryption",
+      "security-rate-limiting",
+      "security-api-key-management",
+      "security-headers",
+      "security-secrets-vault",
+      "security-pentest-basics"
+    ]
   },
   {
     "id": 5,
     "area": "Cloud Infrastructure & FinOps",
     "urgency": "HIGH",
-    "why": "AI can deploy code but will happily spin up $10,000/month of resources. You need to optimize.",
+    "why": "AI can generate Terraform but will happily spin up $10,000/month of infrastructure. You need to architect for cost, reliability, and scalability — and know when to say no to complexity.",
     "topics": [
-      "Terraform / IaC — infrastructure as code",
-      "AWS / GCP cost optimization patterns",
-      "Serverless vs Containers — decision criteria",
-      "Autoscaling policies and spot instance strategies"
+      {
+        "id": "cloud-001",
+        "title": "Terraform: state management, modules, workspaces, remote backends",
+        "drill": "Write Terraform for a VPC + EC2 + RDS. Use modules. Remote state in S3 + DynamoDB locking. Explain the state file.",
+        "connectedTopicKeys": [
+          "cloud-terraform",
+          "cloud-aws-core",
+          "arch-cicd"
+        ]
+      },
+      {
+        "id": "cloud-002",
+        "title": "AWS cost optimization: reserved instances, savings plans, spot instances",
+        "drill": "A startup is spending $5K/month on AWS. Identify the top 3 cost reduction strategies without hurting availability.",
+        "connectedTopicKeys": [
+          "cloud-aws-core",
+          "cloud-serverless",
+          "cloud-terraform"
+        ]
+      },
+      {
+        "id": "cloud-003",
+        "title": "Serverless vs Containers: decision framework and cold start mitigation",
+        "drill": "Compare Lambda vs ECS Fargate vs EC2 for: a cron job, a real-time API, a batch image processor. Pick one for each.",
+        "connectedTopicKeys": [
+          "cloud-serverless",
+          "cloud-dockerfile",
+          "cloud-kubernetes-basics"
+        ]
+      },
+      {
+        "id": "cloud-004",
+        "title": "Autoscaling: horizontal vs vertical, predictive vs reactive, cooldown periods",
+        "drill": "Design autoscaling for an API that spikes 10x every morning at 9am. Prevent cold start penalty on the spike.",
+        "connectedTopicKeys": [
+          "cloud-kubernetes-basics",
+          "cloud-serverless",
+          "sysdesign-load-balancing"
+        ]
+      },
+      {
+        "id": "cloud-005",
+        "title": "IAM: principle of least privilege, roles vs users, permission boundaries",
+        "drill": "Audit one AWS IAM policy for overpermission. Rewrite it with least privilege. Explain every permission you removed.",
+        "connectedTopicKeys": [
+          "cloud-aws-core",
+          "cloud-container-security",
+          "security-secrets-vault"
+        ]
+      },
+      {
+        "id": "cloud-006",
+        "title": "CDN and edge computing: cache-control, invalidation, edge functions",
+        "drill": "Design a CDN strategy for a global SaaS app: which assets to cache, cache-control headers, purge on deploy.",
+        "connectedTopicKeys": [
+          "frontend-nextjs-caching",
+          "frontend-edge-runtime",
+          "sysdesign-load-balancing"
+        ]
+      },
+      {
+        "id": "cloud-007",
+        "title": "Disaster recovery: RPO, RTO, backup strategies, multi-region",
+        "drill": "Define RPO and RTO for a payment system. Design the backup and failover strategy that meets both.",
+        "connectedTopicKeys": [
+          "cloud-aws-core",
+          "arch-deployment-strategies",
+          "db-transactions-acid"
+        ]
+      },
+      {
+        "id": "cloud-008",
+        "title": "FinOps: tagging strategy, cost allocation, chargeback models",
+        "drill": "Design an AWS tagging strategy for a 20-engineer company: how to attribute costs to teams, features, environments.",
+        "connectedTopicKeys": [
+          "cloud-terraform",
+          "cloud-aws-core",
+          "arch-technical-debt"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "AWS Well-Architected Framework",
         "author": "AWS",
         "free": true,
-        "url": "https://aws.amazon.com/architecture/well-architected/"
+        "url": "https://aws.amazon.com/architecture/well-architected/",
+        "type": "reference"
       },
       {
         "name": "HashiCorp Terraform Tutorials",
         "author": "HashiCorp",
         "free": true,
-        "url": "https://developer.hashicorp.com/terraform/tutorials"
+        "url": "https://developer.hashicorp.com/terraform/tutorials",
+        "type": "tutorial"
+      },
+      {
+        "name": "AWS Cloud Practitioner Essentials",
+        "author": "AWS Training",
+        "free": true,
+        "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/",
+        "type": "course"
+      },
+      {
+        "name": "FinOps Foundation — Free Training",
+        "author": "FinOps Foundation",
+        "free": true,
+        "url": "https://www.finops.org/certification/",
+        "type": "course"
+      },
+      {
+        "name": "The Good Parts of AWS",
+        "author": "Daniel Vassallo & Josh Pschorr",
+        "free": false,
+        "url": "https://gumroad.com/l/aws-good-parts",
+        "type": "book"
       }
     ],
-    "spineConnection": "Cloud Phase (D51–D70)"
+    "rotationDays": [
+      25,
+      67,
+      109,
+      151
+    ],
+    "spineTopicKeys": [
+      "cloud-dockerfile",
+      "cloud-docker-compose",
+      "cloud-kubernetes-basics",
+      "cloud-kubernetes-config",
+      "cloud-container-security",
+      "cloud-aws-core",
+      "cloud-serverless",
+      "cloud-terraform"
+    ]
   },
   {
     "id": 6,
     "area": "High-Performance Data Engineering",
     "urgency": "MEDIUM",
-    "why": "Data pipelines are the backbone of modern apps. You need to move TBs of data efficiently.",
+    "why": "Data pipelines are the backbone of modern AI products. If you can design and build a reliable data infrastructure, you're indispensable on any team building with AI.",
     "topics": [
-      "Batch vs Stream processing trade-offs",
-      "Apache Spark / Flink fundamentals",
-      "Data warehouses: Snowflake, BigQuery, Redshift",
-      "ETL / ELT pipeline design"
+      {
+        "id": "de-001",
+        "title": "Batch vs stream processing: trade-offs and when each breaks",
+        "drill": "Compare batch vs stream for: daily sales report, fraud detection, social feed. Pick the winner for each and explain why.",
+        "connectedTopicKeys": [
+          "dataeng-kafka-streams",
+          "dataeng-spark",
+          "dataeng-airflow"
+        ]
+      },
+      {
+        "id": "de-002",
+        "title": "Apache Kafka: topics, partitions, consumer groups, offset management",
+        "drill": "Design a Kafka topic for a ride-share app: partition strategy, retention policy, consumer group for pricing vs analytics.",
+        "connectedTopicKeys": [
+          "dataeng-kafka-streams",
+          "sysdesign-message-queues",
+          "patterns-cqrs-event-sourcing"
+        ]
+      },
+      {
+        "id": "de-003",
+        "title": "Apache Spark: RDDs vs DataFrames, partitioning, shuffle operations",
+        "drill": "Explain why a Spark job is slow. Debug: check for data skew, shuffle read/write, spill to disk. Write the fix.",
+        "connectedTopicKeys": [
+          "dataeng-spark",
+          "dataeng-airflow",
+          "ml-feature-engineering"
+        ]
+      },
+      {
+        "id": "de-004",
+        "title": "Airflow: DAGs, task dependencies, XComs, sensors, backfill",
+        "drill": "Design an Airflow DAG: extract 5 API sources → transform with Pandas → load to Postgres. Handle partial failures.",
+        "connectedTopicKeys": [
+          "dataeng-airflow",
+          "dataeng-dbt",
+          "dataeng-data-quality"
+        ]
+      },
+      {
+        "id": "de-005",
+        "title": "Data warehouses: Snowflake vs BigQuery vs Redshift — architecture differences",
+        "drill": "When would you choose BigQuery over Snowflake? Write 3 decision criteria with one concrete example each.",
+        "connectedTopicKeys": [
+          "dataeng-spark",
+          "dataeng-dbt",
+          "db-normalization"
+        ]
+      },
+      {
+        "id": "de-006",
+        "title": "ETL vs ELT: when each pattern is correct and its failure modes",
+        "drill": "You have 50GB of raw logs to analyze. Design: ELT into BigQuery vs ETL with Spark. Which is cheaper and faster? Why?",
+        "connectedTopicKeys": [
+          "dataeng-dbt",
+          "dataeng-spark",
+          "dataeng-airflow"
+        ]
+      },
+      {
+        "id": "de-007",
+        "title": "Data quality: Great Expectations, schema validation, data contracts",
+        "drill": "Write 5 Great Expectations tests for a user events table. Include: not_null, uniqueness, value ranges, referential integrity.",
+        "connectedTopicKeys": [
+          "dataeng-data-quality",
+          "dataeng-dbt",
+          "dataeng-airflow"
+        ]
+      },
+      {
+        "id": "de-008",
+        "title": "Change Data Capture (CDC): Debezium, log-based vs trigger-based",
+        "drill": "Design a CDC pipeline from PostgreSQL to Kafka using Debezium. What happens if the connector goes down?",
+        "connectedTopicKeys": [
+          "dataeng-kafka-streams",
+          "db-transactions-acid",
+          "patterns-cqrs-event-sourcing"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "The Data Engineering Cookbook",
         "author": "Andreas Kretz",
         "free": true,
-        "url": "https://github.com/andkret/Cookbook"
+        "url": "https://github.com/andkret/Cookbook",
+        "type": "book"
+      },
+      {
+        "name": "Data Engineering Zoomcamp",
+        "author": "DataTalks.Club",
+        "free": true,
+        "url": "https://github.com/DataTalksClub/data-engineering-zoomcamp",
+        "type": "course"
+      },
+      {
+        "name": "Fundamentals of Data Engineering",
+        "author": "Joe Reis & Matt Housley",
+        "free": false,
+        "url": "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/",
+        "type": "book"
+      },
+      {
+        "name": "dbt Documentation",
+        "author": "dbt Labs",
+        "free": true,
+        "url": "https://docs.getdbt.com/",
+        "type": "docs"
+      },
+      {
+        "name": "Apache Spark with Python — Big Data (freeCodeCamp)",
+        "author": "freeCodeCamp",
+        "free": true,
+        "url": "https://www.youtube.com/watch?v=_C8kWso4ne4",
+        "type": "course"
       }
     ],
-    "spineConnection": "Databases Phase (D51–D70)"
+    "rotationDays": [
+      31,
+      73,
+      115,
+      157
+    ],
+    "spineTopicKeys": [
+      "dataeng-kafka-streams",
+      "dataeng-spark",
+      "dataeng-airflow",
+      "dataeng-dbt",
+      "dataeng-data-quality"
+    ]
   },
   {
     "id": 7,
     "area": "Developer Productivity Automation",
     "urgency": "HIGH",
-    "why": "You must build the tools that orchestrate AI agents for your team's workflow.",
+    "why": "The engineers who 10x their team's output are the ones who automate the boring parts: CI/CD, code quality gates, developer tooling. You must build the infrastructure that makes everyone else faster.",
     "topics": [
-      "CI/CD pipelines — GitHub Actions, ArgoCD",
-      "Custom CLI tools and developer experience",
-      "Agentic orchestration patterns",
-      "Code review automation and quality gates"
+      {
+        "id": "devprod-001",
+        "title": "CI/CD: GitHub Actions full pipeline — lint, test, build, deploy",
+        "drill": "Write a GitHub Actions workflow: on PR → run tests → on merge to main → build Docker image → push → deploy to staging.",
+        "connectedTopicKeys": [
+          "arch-cicd",
+          "cloud-dockerfile",
+          "arch-deployment-strategies"
+        ]
+      },
+      {
+        "id": "devprod-002",
+        "title": "Blue-green and canary deployments: implementation and rollback",
+        "drill": "Design a canary deployment for an API: route 5% traffic to new version, monitor error rate, auto-rollback threshold.",
+        "connectedTopicKeys": [
+          "arch-deployment-strategies",
+          "arch-cicd",
+          "sre-prometheus"
+        ]
+      },
+      {
+        "id": "devprod-003",
+        "title": "Custom CLI tools: building developer experience improvements",
+        "drill": "Build a CLI tool in Python or Go that scaffolds a new microservice: creates folder structure, Dockerfile, CI config, README.",
+        "connectedTopicKeys": [
+          "go-http-server",
+          "python-functions-scope",
+          "arch-cicd"
+        ]
+      },
+      {
+        "id": "devprod-004",
+        "title": "Pre-commit hooks: code quality gates before code hits CI",
+        "drill": "Set up pre-commit with: black, ruff, mypy, bandit, detect-secrets. Configure to run on staged files only. Fast failure.",
+        "connectedTopicKeys": [
+          "arch-cicd",
+          "security-secrets-vault",
+          "python-dependency-scanning"
+        ]
+      },
+      {
+        "id": "devprod-005",
+        "title": "Agentic orchestration: LLM agents with tool use and memory",
+        "drill": "Design an AI agent that: reads a GitHub issue, searches the codebase, proposes a fix, and opens a PR. What tools does it need?",
+        "connectedTopicKeys": [
+          "ml-langchain",
+          "ml-llm-apis",
+          "arch-cicd"
+        ]
+      },
+      {
+        "id": "devprod-006",
+        "title": "Code review automation: quality gates, linting, security scanning in CI",
+        "drill": "Design a CI quality gate pipeline: unit tests (80% coverage minimum), lint score, security scan (block on Critical CVEs), dead code detection.",
+        "connectedTopicKeys": [
+          "arch-cicd",
+          "python-dependency-scanning",
+          "security-pentest-basics"
+        ]
+      },
+      {
+        "id": "devprod-007",
+        "title": "GitOps: ArgoCD, Flux — declarative infrastructure management",
+        "drill": "Explain the GitOps model: how does a git push trigger an infrastructure change? Draw the ArgoCD sync loop.",
+        "connectedTopicKeys": [
+          "arch-cicd",
+          "cloud-kubernetes-basics",
+          "cloud-terraform"
+        ]
+      },
+      {
+        "id": "devprod-008",
+        "title": "Developer environment as code: devcontainers, dotfiles, bootstrapping",
+        "drill": "Write a devcontainer.json that bootstraps a Python dev environment: VS Code extensions, port forwards, post-create commands.",
+        "connectedTopicKeys": [
+          "cloud-docker-compose",
+          "cloud-dockerfile",
+          "python-secure-http"
+        ]
+      }
     ],
     "resources": [
       {
         "name": "GitHub Actions Documentation",
         "author": "GitHub",
         "free": true,
-        "url": "https://docs.github.com/en/actions"
+        "url": "https://docs.github.com/en/actions",
+        "type": "docs"
+      },
+      {
+        "name": "The DevOps Handbook",
+        "author": "Gene Kim et al.",
+        "free": false,
+        "url": "https://itrevolution.com/product/the-devops-handbook/",
+        "type": "book"
+      },
+      {
+        "name": "ArgoCD Documentation",
+        "author": "Argo Project",
+        "free": true,
+        "url": "https://argo-cd.readthedocs.io/",
+        "type": "docs"
+      },
+      {
+        "name": "pre-commit Documentation",
+        "author": "pre-commit",
+        "free": true,
+        "url": "https://pre-commit.com/",
+        "type": "docs"
+      },
+      {
+        "name": "Accelerate: The Science of DevOps",
+        "author": "Nicole Forsgren et al.",
+        "free": false,
+        "url": "https://itrevolution.com/product/accelerate/",
+        "type": "book"
       }
     ],
-    "spineConnection": "CLI & Automation (D1–D10)"
+    "rotationDays": [
+      37,
+      79,
+      121,
+      163
+    ],
+    "spineTopicKeys": [
+      "arch-cicd",
+      "arch-deployment-strategies",
+      "arch-incident-response",
+      "arch-technical-debt",
+      "arch-event-driven"
+    ]
   }
 ]

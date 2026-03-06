@@ -1,5 +1,5 @@
 import { CarryForward } from './models/CarryForward'
-import type { CarryForwardTask, DayPayload } from './types'
+import type { CarryForwardTask, DayPayload } from '@/types'
 
 export async function getCarriedTasksForDay(
     userId: string,

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import type { ILogRecord } from '../types'
+import type { ILogRecord } from '@/types'
 
 const LogRecordSchema = new Schema<ILogRecord>({
     userId: { type: String, required: true },

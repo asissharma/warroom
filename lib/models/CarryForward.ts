@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import type { ICarryForward } from '../types'
+import type { ICarryForward } from '@/types'
 
 const CarryForwardSchema = new Schema<ICarryForward>({
     userId: { type: String, required: true },

@@ -1,6 +1,6 @@
 // ── FILE: components/config/MissionClock.tsx ──
 'use client';
-import type { IUser } from '@/lib/types';
+import type { IUser } from '@/types';
 
 interface Props {
     user: IUser;

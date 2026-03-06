@@ -68,6 +68,16 @@ export async function POST(request: Request) {
             type: 'win'
         })
 
+        // 7. Trigger weekly digest if day is a multiple of 7
+        if (dayN % 7 === 0) {
+            const weekN = Math.floor(dayN / 7)
+            fetch(`${request.headers.get('origin') || 'http://localhost:3000'}/api/shadow/weekly`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ weekN })
+            }).catch(err => console.error('Failed to trigger weekly digest', err))
+        }
+
         return NextResponse.json({ streak: newStreak, longestStreak, dayN })
     } catch (error) {
         console.error('API /day/complete POST error:', error)

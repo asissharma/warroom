@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import type { ISkillProgress } from '../types'
+import type { ISkillProgress } from '@/types'
 
 const SkillProgressSchema = new Schema<ISkillProgress>({
     userId: { type: String, required: true },

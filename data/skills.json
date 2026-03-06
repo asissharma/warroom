@@ -1,127 +1,842 @@
 {
   "basic": [
-    "Critical thinking",
-    "Analytical thinking",
-    "Decision-making",
-    "Working (short-term) memory",
-    "Long-term memory retention",
-    "Attention span & cognitive control",
-    "Executive function",
-    "Creativity & originality",
-    "Problem-solving",
-    "Metacognitive regulation",
-    "Self-regulated learning skills",
-    "Empathy & social cognition",
-    "Moral reasoning & ethical decision-making",
-    "Emotional regulation & self-esteem",
-    "Prospective memory & time management",
-    "Digital literacy & source evaluation",
-    "Cognitive flexibility",
-    "Communication",
-    "Active listening",
-    "Clear articulation",
-    "Body-language alignment",
-    "Eye contact",
-    "Assertive handshake",
-    "Leadership",
-    "Vision-setting",
-    "Delegation & empowerment",
-    "Accountability enforcement",
-    "Conflict resolution",
-    "Inspiring followership",
-    "Emotional Intelligence",
-    "Self-awareness",
-    "Self-regulation",
-    "Rapport building",
-    "Emotional resilience",
-    "Problem identification",
-    "Logical reasoning",
-    "Bias detection",
-    "Question framing",
-    "Scenario analysis",
-    "Risk assessment",
-    "Cost-benefit analysis",
-    "Decisiveness under pressure",
-    "Intuition calibration",
-    "Contingency planning",
-    "Negotiation",
-    "Persuasion techniques",
-    "Concession crafting",
-    "BATNA development",
-    "Closing & commitment",
-    "Networking",
-    "Elevator-pitch mastery",
-    "Value-first outreach",
-    "Follow-up discipline",
-    "Strategic introductions",
-    "Relationship nurturing",
-    "Time Management",
-    "Prioritization (Eisenhower Matrix)",
-    "Task batching & deep-work",
-    "Scheduling with buffers",
-    "Deadline adherence",
-    "Personal Branding",
-    "Professional attire & grooming",
-    "Confident posture",
-    "Signature introduction",
-    "Online presence",
-    "Thought-leadership content",
-    "Learning Agility",
-    "Metacognitive reflection",
-    "Rapid skill acquisition",
-    "Feedback solicitation & integration",
-    "Experimentation mindset",
-    "Unlearning bad habits",
-    "Divergent thinking",
-    "Idea synthesis",
-    "Conceptual blending",
-    "Rapid prototyping",
-    "“Yes, and…” improvisation",
-    "Resilience & Stress Management",
-    "Stress-response recognition",
-    "Recovery rituals (sleep, meditation)",
-    "Adaptability to change",
-    "Persistence through setbacks",
-    "Growth-mindset reinforcement",
-    "Influence & Persuasion",
-    "Storytelling framework",
-    "Social-proof deployment",
-    "Authority signaling",
-    "Reciprocity leverage",
-    "Scarcity & urgency cues",
-    "Public Speaking",
-    "Stage presence & poise",
-    "Vocal variety & pacing",
-    "Audience engagement",
-    "Structured messaging (opening, body, close)",
-    "Handling Q&A with confidence",
-    "Writing & Documentation",
-    "Clarity and brevity",
-    "Structured narrative (Pyramid Principle)",
-    "Tone-matching for audience",
-    "Concise email etiquette",
-    "Argument scaffolding",
-    "Analytical & Quantitative Skills",
-    "Data interpretation",
-    "Basic statistics (mean, variance)",
-    "Spreadsheet modeling",
-    "Trend-spotting",
-    "Hypothesis testing",
-    "Financial Literacy",
-    "Budget creation",
-    "Cash-flow forecasting",
-    "ROI calculation",
-    "Break-even analysis",
-    "Basic accounting principles",
-    "Cultural & Social Intelligence",
-    "Cross-cultural awareness",
-    "Language etiquette",
-    "Norm-reading in new contexts",
-    "Inclusive communication",
-    "Adaptive behavior"
+    {
+      "id": "basic-001",
+      "name": "Critical thinking",
+      "category": "Cognition",
+      "dailyDrill": "Read one argument online. Write 3 counterpoints to it in 2 minutes. No googling.",
+      "weeklyGoal": "By end of week: spot one logical fallacy in the wild and name it precisely."
+    },
+    {
+      "id": "basic-002",
+      "name": "Analytical thinking",
+      "category": "Cognition",
+      "dailyDrill": "Break one problem you have today into its smallest components. List every part.",
+      "weeklyGoal": "By end of week: produce one structured analysis with data, not just opinion."
+    },
+    {
+      "id": "basic-003",
+      "name": "Decision-making",
+      "category": "Cognition",
+      "dailyDrill": "Name one decision you've been avoiding. Write the two options and their consequences. Pick one.",
+      "weeklyGoal": "By end of week: make 5 decisions you would have previously postponed."
+    },
+    {
+      "id": "basic-004",
+      "name": "Working (short-term) memory",
+      "category": "Cognition",
+      "dailyDrill": "Memorize 10 random digits. Close eyes. Recall. Repeat twice.",
+      "weeklyGoal": "By end of week: hold a 5-step process in memory without writing it down."
+    },
+    {
+      "id": "basic-005",
+      "name": "Long-term memory retention",
+      "category": "Cognition",
+      "dailyDrill": "Recall one concept you learned 7+ days ago. Write a 3-sentence explanation from memory only.",
+      "weeklyGoal": "By end of week: teach one concept from 2 weeks ago to an imaginary student."
+    },
+    {
+      "id": "basic-006",
+      "name": "Attention span & cognitive control",
+      "category": "Cognition",
+      "dailyDrill": "Do one 25-minute Pomodoro — phone face down, no tabs. Log the exact minute you first felt the urge to switch.",
+      "weeklyGoal": "By end of week: complete 5 uninterrupted Pomodoros. Track your distraction time."
+    },
+    {
+      "id": "basic-007",
+      "name": "Executive function",
+      "category": "Cognition",
+      "dailyDrill": "Write your 3 tasks for tomorrow in priority order. Assign a specific time block to each. No vague entries.",
+      "weeklyGoal": "By end of week: complete your pre-planned tasks 4 out of 5 days."
+    },
+    {
+      "id": "basic-008",
+      "name": "Creativity & originality",
+      "category": "Cognition",
+      "dailyDrill": "Take one thing you built today. Think of 3 wildly different uses or extensions for it. No filtering.",
+      "weeklyGoal": "By end of week: generate one genuinely novel idea per day. Write them all down."
+    },
+    {
+      "id": "basic-009",
+      "name": "Problem-solving",
+      "category": "Cognition",
+      "dailyDrill": "Pick one bug or blocker. Write the problem statement in one precise sentence before touching anything.",
+      "weeklyGoal": "By end of week: solve 3 problems by writing the problem statement first, every time."
+    },
+    {
+      "id": "basic-010",
+      "name": "Metacognitive regulation",
+      "category": "Cognition",
+      "dailyDrill": "After today's study block: rate your understanding 1–10. Write what specifically makes it not a 10.",
+      "weeklyGoal": "By end of week: identify one consistent gap in how you learn. Write your fix."
+    },
+    {
+      "id": "basic-011",
+      "name": "Self-regulated learning skills",
+      "category": "Cognition",
+      "dailyDrill": "Name one study method that didn't work today. Write the replacement strategy for tomorrow.",
+      "weeklyGoal": "By end of week: run 2 intentional learning experiments. Document results."
+    },
+    {
+      "id": "basic-012",
+      "name": "Digital literacy & source evaluation",
+      "category": "Cognition",
+      "dailyDrill": "Fact-check one claim you read today. Write the primary source you used — not Wikipedia.",
+      "weeklyGoal": "By end of week: evaluate 5 sources for credibility using author + evidence + bias check."
+    },
+    {
+      "id": "basic-013",
+      "name": "Cognitive flexibility",
+      "category": "Cognition",
+      "dailyDrill": "Take one approach to a problem today. Stop. Solve it a completely different way.",
+      "weeklyGoal": "By end of week: hold two contradictory ideas simultaneously and argue both sides."
+    },
+    {
+      "id": "basic-014",
+      "name": "Communication",
+      "category": "Communication",
+      "dailyDrill": "Rewrite one technical explanation you wrote today in plain English — no jargon, no abbreviations.",
+      "weeklyGoal": "By end of week: explain one complex concept to a non-technical person. They must nod and say they get it."
+    },
+    {
+      "id": "basic-015",
+      "name": "Active listening",
+      "category": "Communication",
+      "dailyDrill": "In your next conversation: ask one clarifying question before giving your response. No interrupting.",
+      "weeklyGoal": "By end of week: summarize back what someone told you 3 times — make them say 'yes, exactly'."
+    },
+    {
+      "id": "basic-016",
+      "name": "Clear articulation",
+      "category": "Communication",
+      "dailyDrill": "Record yourself explaining today's main concept in 60 seconds. Listen back. Re-record once.",
+      "weeklyGoal": "By end of week: give 3 verbal explanations without using 'um', 'like', or 'basically'."
+    },
+    {
+      "id": "basic-017",
+      "name": "Body-language alignment",
+      "category": "Communication",
+      "dailyDrill": "In one interaction today: check your posture mid-conversation. Adjust to open, upright, relaxed.",
+      "weeklyGoal": "By end of week: notice your body language in 5 conversations. Log one adjustment each time."
+    },
+    {
+      "id": "basic-018",
+      "name": "Eye contact",
+      "category": "Communication",
+      "dailyDrill": "In your next conversation: hold eye contact for each complete sentence you speak.",
+      "weeklyGoal": "By end of week: maintain natural eye contact in 5 conversations without breaking for distraction."
+    },
+    {
+      "id": "basic-019",
+      "name": "Assertive handshake",
+      "category": "Communication",
+      "dailyDrill": "Practice your introduction — name, context, handshake — in a mirror. Once. Make it feel natural.",
+      "weeklyGoal": "By end of week: have one introduction where your name, role, and handshake land with confidence."
+    },
+    {
+      "id": "basic-020",
+      "name": "Leadership",
+      "category": "Leadership",
+      "dailyDrill": "Identify one decision someone else should own. Tell them clearly, with context, to own it.",
+      "weeklyGoal": "By end of week: delegate 3 things you were holding unnecessarily."
+    },
+    {
+      "id": "basic-021",
+      "name": "Vision-setting",
+      "category": "Leadership",
+      "dailyDrill": "Write a one-paragraph vision for where you want to be in 6 months. Be specific. Dates. Outcomes.",
+      "weeklyGoal": "By end of week: share your vision with one person. Get their honest reaction."
+    },
+    {
+      "id": "basic-022",
+      "name": "Delegation & empowerment",
+      "category": "Leadership",
+      "dailyDrill": "Write one task you're holding that someone else could do. Write their name next to it.",
+      "weeklyGoal": "By end of week: successfully hand off 2 tasks and follow up on them — not micromanage them."
+    },
+    {
+      "id": "basic-023",
+      "name": "Accountability enforcement",
+      "category": "Leadership",
+      "dailyDrill": "Name one commitment you made this week. Did you keep it? Write the honest answer.",
+      "weeklyGoal": "By end of week: keep every commitment you make. Make fewer, bigger ones."
+    },
+    {
+      "id": "basic-024",
+      "name": "Conflict resolution",
+      "category": "Leadership",
+      "dailyDrill": "Name one unresolved tension. Write the ideal outcome — not who was right or wrong.",
+      "weeklyGoal": "By end of week: address one conflict directly. Write what you said and what shifted."
+    },
+    {
+      "id": "basic-025",
+      "name": "Inspiring followership",
+      "category": "Leadership",
+      "dailyDrill": "Write one thing you did today that someone else could learn from. Would you share it?",
+      "weeklyGoal": "By end of week: share one lesson with someone who could use it. No self-promotion."
+    },
+    {
+      "id": "basic-026",
+      "name": "Emotional Intelligence",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Name three emotions you felt today. Write what triggered each one. No vague answers.",
+      "weeklyGoal": "By end of week: correctly identify your emotional state before reacting in 5 situations."
+    },
+    {
+      "id": "basic-027",
+      "name": "Self-awareness",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Write one blind spot you suspect you have. Write how you'd prove or disprove it this week.",
+      "weeklyGoal": "By end of week: get feedback from one person on one specific behavior you want to understand."
+    },
+    {
+      "id": "basic-028",
+      "name": "Self-regulation",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Name one impulse you had today — to quit, skip, snap, or react. Write how you handled it.",
+      "weeklyGoal": "By end of week: catch yourself before reacting impulsively 3 times. Log each one."
+    },
+    {
+      "id": "basic-029",
+      "name": "Rapport building",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "In one interaction today: find one genuine thing in common. Mention it — don't force it.",
+      "weeklyGoal": "By end of week: build one new genuine connection with someone in your field."
+    },
+    {
+      "id": "basic-030",
+      "name": "Emotional resilience",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Name one thing that went wrong today. Write one thing it taught you. No complaining.",
+      "weeklyGoal": "By end of week: recover from 3 setbacks without venting or spiraling."
+    },
+    {
+      "id": "basic-031",
+      "name": "Empathy & social cognition",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Reflect back what someone said before responding — in their words, not yours.",
+      "weeklyGoal": "By end of week: practice perspective-taking in 3 conversations. Write what you noticed."
+    },
+    {
+      "id": "basic-032",
+      "name": "Moral reasoning & ethical decision-making",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Name one ethical tradeoff you encountered today in tech or life. Write your position in 2 sentences.",
+      "weeklyGoal": "By end of week: identify one value you hold that shapes your technical decisions."
+    },
+    {
+      "id": "basic-033",
+      "name": "Emotional regulation & self-esteem",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Notice one moment of frustration today. Name the emotion and the exact trigger. Don't suppress it.",
+      "weeklyGoal": "By end of week: write 3 things you're genuinely good at. No false modesty."
+    },
+    {
+      "id": "basic-034",
+      "name": "Prospective memory & time management",
+      "category": "Emotional Intelligence",
+      "dailyDrill": "Set one specific reminder for a task 3+ days from now. Write why it matters when you set it.",
+      "weeklyGoal": "By end of week: complete 5 future-you commitments you set in advance."
+    },
+    {
+      "id": "basic-035",
+      "name": "Problem identification",
+      "category": "Critical Thinking",
+      "dailyDrill": "Name a recurring problem in your work. Write the root cause in one sentence — not the symptom.",
+      "weeklyGoal": "By end of week: identify the root cause of 3 recurring issues using 5-Whys."
+    },
+    {
+      "id": "basic-036",
+      "name": "Logical reasoning",
+      "category": "Critical Thinking",
+      "dailyDrill": "Make one argument today using only if/then logic. No emotional language. No filler.",
+      "weeklyGoal": "By end of week: spot one logical fallacy per day in something you read."
+    },
+    {
+      "id": "basic-037",
+      "name": "Bias detection",
+      "category": "Critical Thinking",
+      "dailyDrill": "Name one assumption you made today that you didn't verify. Write what you assumed.",
+      "weeklyGoal": "By end of week: catch yourself making 5 unverified assumptions. Write them all."
+    },
+    {
+      "id": "basic-038",
+      "name": "Question framing",
+      "category": "Critical Thinking",
+      "dailyDrill": "Reframe one problem you have as a 'How might we...' question. Notice how the solutions change.",
+      "weeklyGoal": "By end of week: reframe 5 problems into questions. Share one with someone."
+    },
+    {
+      "id": "basic-039",
+      "name": "Scenario analysis",
+      "category": "Critical Thinking",
+      "dailyDrill": "For one decision today: write best case, worst case, and most likely case. Then decide.",
+      "weeklyGoal": "By end of week: run scenario analysis on 3 decisions before making them."
+    },
+    {
+      "id": "basic-040",
+      "name": "Risk assessment",
+      "category": "Critical Thinking",
+      "dailyDrill": "Identify one risk in your current project. Rate it: likelihood (1–5) × impact (1–5). Write a mitigation.",
+      "weeklyGoal": "By end of week: identify and mitigate 3 risks before they materialize."
+    },
+    {
+      "id": "basic-041",
+      "name": "Cost-benefit analysis",
+      "category": "Critical Thinking",
+      "dailyDrill": "Pick one tradeoff you made today. Write the cost and benefit in one line each. Was it right?",
+      "weeklyGoal": "By end of week: make 3 decisions using explicit cost-benefit analysis."
+    },
+    {
+      "id": "basic-042",
+      "name": "Decisiveness under pressure",
+      "category": "Critical Thinking",
+      "dailyDrill": "Make one decision you've been postponing. Set a 5-minute timer. Decide before it rings.",
+      "weeklyGoal": "By end of week: make 5 decisions you would normally have deferred."
+    },
+    {
+      "id": "basic-043",
+      "name": "Intuition calibration",
+      "category": "Critical Thinking",
+      "dailyDrill": "Write one gut feeling you had today. Was it right? Write the data that supports or refutes it.",
+      "weeklyGoal": "By end of week: track 5 gut feelings. Measure your calibration at week end."
+    },
+    {
+      "id": "basic-044",
+      "name": "Contingency planning",
+      "category": "Critical Thinking",
+      "dailyDrill": "For your most important task this week: write what you do if it fails completely.",
+      "weeklyGoal": "By end of week: have a contingency plan for your top 3 risks."
+    },
+    {
+      "id": "basic-045",
+      "name": "Negotiation",
+      "category": "Negotiation",
+      "dailyDrill": "In one interaction today: anchor first with your preferred outcome. Then listen — don't fill the silence.",
+      "weeklyGoal": "By end of week: use anchoring in 3 real interactions. Note the result each time."
+    },
+    {
+      "id": "basic-046",
+      "name": "Persuasion techniques",
+      "category": "Negotiation",
+      "dailyDrill": "Write one thing you want someone to agree with. Frame it starting with their benefit, not yours.",
+      "weeklyGoal": "By end of week: persuade someone of something using their values, not yours."
+    },
+    {
+      "id": "basic-047",
+      "name": "Concession crafting",
+      "category": "Negotiation",
+      "dailyDrill": "Identify one thing you can offer as a concession that costs you little but matters to them.",
+      "weeklyGoal": "By end of week: make 2 strategic concessions that strengthened your position."
+    },
+    {
+      "id": "basic-048",
+      "name": "BATNA development",
+      "category": "Negotiation",
+      "dailyDrill": "In one context where you want something: write your best alternative if you don't get it.",
+      "weeklyGoal": "By end of week: define your BATNA for your top 2 ongoing negotiations."
+    },
+    {
+      "id": "basic-049",
+      "name": "Closing & commitment",
+      "category": "Negotiation",
+      "dailyDrill": "Ask for a clear yes/no on one thing today. Politely refuse to accept 'I'll think about it'.",
+      "weeklyGoal": "By end of week: close 3 open loops with a concrete commitment from another person."
+    },
+    {
+      "id": "basic-050",
+      "name": "Networking",
+      "category": "Networking",
+      "dailyDrill": "Send one genuine, value-first message to someone in your field. No ask attached.",
+      "weeklyGoal": "By end of week: make 3 new meaningful connections. One must be senior to you."
+    },
+    {
+      "id": "basic-051",
+      "name": "Elevator-pitch mastery",
+      "category": "Networking",
+      "dailyDrill": "Write a 3-sentence pitch for yourself: who you are, what you build, your unique edge. Say it out loud.",
+      "weeklyGoal": "By end of week: refine your elevator pitch until it sounds completely natural."
+    },
+    {
+      "id": "basic-052",
+      "name": "Value-first outreach",
+      "category": "Networking",
+      "dailyDrill": "Before reaching out to anyone today: write what value you will give them first.",
+      "weeklyGoal": "By end of week: get one positive response from a cold outreach that led with value."
+    },
+    {
+      "id": "basic-053",
+      "name": "Follow-up discipline",
+      "category": "Networking",
+      "dailyDrill": "Check your open threads. Send one follow-up that's been sitting for 3+ days.",
+      "weeklyGoal": "By end of week: close every open loop. No dangling threads."
+    },
+    {
+      "id": "basic-054",
+      "name": "Strategic introductions",
+      "category": "Networking",
+      "dailyDrill": "Think of two people who should know each other. Write the connection reason in one sentence.",
+      "weeklyGoal": "By end of week: make one strategic introduction. Get a thank-you from both sides."
+    },
+    {
+      "id": "basic-055",
+      "name": "Relationship nurturing",
+      "category": "Networking",
+      "dailyDrill": "Reconnect with one person you haven't spoken to in 3+ weeks. No agenda. Just check in.",
+      "weeklyGoal": "By end of week: strengthen 2 existing relationships with deliberate attention."
+    },
+    {
+      "id": "basic-056",
+      "name": "Time Management",
+      "category": "Time Management",
+      "dailyDrill": "Write your top 3 outcomes for tomorrow before you sleep. Nothing else counts.",
+      "weeklyGoal": "By end of week: achieve your top 3 outcomes 5 out of 5 days."
+    },
+    {
+      "id": "basic-057",
+      "name": "Prioritization (Eisenhower Matrix)",
+      "category": "Time Management",
+      "dailyDrill": "List today's tasks. Assign each to one quadrant: Urgent+Important, Important+Not urgent, Urgent+Not Important, Neither.",
+      "weeklyGoal": "By end of week: eliminate 3 quadrant-4 tasks permanently from your list."
+    },
+    {
+      "id": "basic-058",
+      "name": "Task batching & deep-work",
+      "category": "Time Management",
+      "dailyDrill": "Group 3 similar tasks and do them in one unbroken block. No context switching.",
+      "weeklyGoal": "By end of week: complete 3 deep-work blocks of 90+ minutes each."
+    },
+    {
+      "id": "basic-059",
+      "name": "Scheduling with buffers",
+      "category": "Time Management",
+      "dailyDrill": "Add a 20% time buffer to one task you estimate today. Track whether it was needed.",
+      "weeklyGoal": "By end of week: estimate 5 tasks with buffers. Measure actual vs estimated."
+    },
+    {
+      "id": "basic-060",
+      "name": "Deadline adherence",
+      "category": "Time Management",
+      "dailyDrill": "Name one deadline this week. Write the exact date and time. Treat it as a flight departure.",
+      "weeklyGoal": "By end of week: meet every deadline you set. Renegotiate early if needed — never miss silently."
+    },
+    {
+      "id": "basic-061",
+      "name": "Personal Branding",
+      "category": "Personal Branding",
+      "dailyDrill": "Write one sentence: what do you want to be known for in your industry in 2 years?",
+      "weeklyGoal": "By end of week: align one visible action (post, project, message) to your brand."
+    },
+    {
+      "id": "basic-062",
+      "name": "Professional attire & grooming",
+      "category": "Personal Branding",
+      "dailyDrill": "Before any important call or meeting: check mirror. Is this how you want to be seen?",
+      "weeklyGoal": "By end of week: show up intentionally dressed for every important interaction."
+    },
+    {
+      "id": "basic-063",
+      "name": "Confident posture",
+      "category": "Personal Branding",
+      "dailyDrill": "Set a timer for 5 minutes. Sit upright, shoulders back, feet flat. Hold it for the full time.",
+      "weeklyGoal": "By end of week: hold confident posture as your default for all video calls."
+    },
+    {
+      "id": "basic-064",
+      "name": "Signature introduction",
+      "category": "Personal Branding",
+      "dailyDrill": "Refine your name + role + one sentence value prop to 10 seconds. Say it out loud. Time it.",
+      "weeklyGoal": "By end of week: your introduction is smooth, natural, and memorable every time."
+    },
+    {
+      "id": "basic-065",
+      "name": "Online presence",
+      "category": "Personal Branding",
+      "dailyDrill": "Review your LinkedIn or GitHub profile. Write one specific thing to update or add this week.",
+      "weeklyGoal": "By end of week: your online presence reflects your current level. No outdated info."
+    },
+    {
+      "id": "basic-066",
+      "name": "Thought-leadership content",
+      "category": "Personal Branding",
+      "dailyDrill": "Write one insight from today's work that could genuinely help another developer.",
+      "weeklyGoal": "By end of week: publish or share one piece of technical content publicly."
+    },
+    {
+      "id": "basic-067",
+      "name": "Learning Agility",
+      "category": "Learning Agility",
+      "dailyDrill": "Name one thing you were wrong about this week. Write what changed your mind.",
+      "weeklyGoal": "By end of week: change your mind on something based on evidence. Write what it was."
+    },
+    {
+      "id": "basic-068",
+      "name": "Metacognitive reflection",
+      "category": "Learning Agility",
+      "dailyDrill": "After your study session: write what you actually learned vs what you thought you'd learn.",
+      "weeklyGoal": "By end of week: identify one systematic gap in your learning process and fix it."
+    },
+    {
+      "id": "basic-069",
+      "name": "Rapid skill acquisition",
+      "category": "Learning Agility",
+      "dailyDrill": "Pick one micro-skill. Practice it with deliberate repetition for 20 minutes. Log your improvement.",
+      "weeklyGoal": "By end of week: acquire one new micro-skill to functional level from zero."
+    },
+    {
+      "id": "basic-070",
+      "name": "Feedback solicitation & integration",
+      "category": "Learning Agility",
+      "dailyDrill": "Ask one person for specific feedback on something you produced today. Make it easy for them to be honest.",
+      "weeklyGoal": "By end of week: implement one piece of feedback you received. Tell the giver what changed."
+    },
+    {
+      "id": "basic-071",
+      "name": "Experimentation mindset",
+      "category": "Learning Agility",
+      "dailyDrill": "Run one small experiment today. Write your hypothesis before you start. Log the result.",
+      "weeklyGoal": "By end of week: run 3 micro-experiments. At least one should disprove your assumption."
+    },
+    {
+      "id": "basic-072",
+      "name": "Unlearning bad habits",
+      "category": "Learning Agility",
+      "dailyDrill": "Name one habit that's slowing you down. Write one concrete replacement behavior to try tomorrow.",
+      "weeklyGoal": "By end of week: replace one bad habit with a better one. Verify with 5 days of evidence."
+    },
+    {
+      "id": "basic-073",
+      "name": "Divergent thinking",
+      "category": "Creativity",
+      "dailyDrill": "Name one problem. Write 10 possible solutions in 5 minutes — no filtering, no judgment.",
+      "weeklyGoal": "By end of week: generate 10 ideas per day for 5 days. Pick the best one each day."
+    },
+    {
+      "id": "basic-074",
+      "name": "Idea synthesis",
+      "category": "Creativity",
+      "dailyDrill": "Combine one thing you learned today with something from a completely different field. Write the mashup.",
+      "weeklyGoal": "By end of week: create 3 cross-domain idea mashups. Share the best one."
+    },
+    {
+      "id": "basic-075",
+      "name": "Conceptual blending",
+      "category": "Creativity",
+      "dailyDrill": "Take two unrelated concepts from today's study. Write one way they secretly overlap.",
+      "weeklyGoal": "By end of week: find 5 unexpected conceptual connections across different topics."
+    },
+    {
+      "id": "basic-076",
+      "name": "Rapid prototyping",
+      "category": "Creativity",
+      "dailyDrill": "Build the simplest possible version of one idea today. 30 minutes max. Ship it or sketch it.",
+      "weeklyGoal": "By end of week: build 3 rough prototypes. Done beats perfect."
+    },
+    {
+      "id": "basic-077",
+      "name": "\"Yes, and…\" improvisation",
+      "category": "Creativity",
+      "dailyDrill": "In one conversation today: instead of 'but', say 'yes, and'. Notice how the energy shifts.",
+      "weeklyGoal": "By end of week: build on someone else's idea 5 times without shooting it down first."
+    },
+    {
+      "id": "basic-078",
+      "name": "Resilience & Stress Management",
+      "category": "Resilience",
+      "dailyDrill": "Rate your stress today 1–10. Write one cause and one concrete action to reduce it.",
+      "weeklyGoal": "By end of week: bring your average daily stress below 6 through deliberate action."
+    },
+    {
+      "id": "basic-079",
+      "name": "Stress-response recognition",
+      "category": "Resilience",
+      "dailyDrill": "The next time you feel stress: name it, locate it in your body, breathe in 4 counts, out 4 counts.",
+      "weeklyGoal": "By end of week: catch your stress response early 5 times. Log each one."
+    },
+    {
+      "id": "basic-080",
+      "name": "Recovery rituals (sleep, meditation)",
+      "category": "Resilience",
+      "dailyDrill": "Write your sleep time from last night. Was it 7+ hours? Write one thing that blocked good sleep.",
+      "weeklyGoal": "By end of week: hit 7+ hours of sleep for 5 consecutive nights."
+    },
+    {
+      "id": "basic-081",
+      "name": "Adaptability to change",
+      "category": "Resilience",
+      "dailyDrill": "Name one thing that didn't go as planned today. Write what you did differently as a result.",
+      "weeklyGoal": "By end of week: adapt your approach 3 times mid-task without complaining."
+    },
+    {
+      "id": "basic-082",
+      "name": "Persistence through setbacks",
+      "category": "Resilience",
+      "dailyDrill": "Name one thing you gave up on too quickly recently. Write the next smallest step forward.",
+      "weeklyGoal": "By end of week: keep going on one thing you'd normally quit. Log every moment of resistance."
+    },
+    {
+      "id": "basic-083",
+      "name": "Growth-mindset reinforcement",
+      "category": "Resilience",
+      "dailyDrill": "Write 'I can't do X yet' for one skill gap. Add the word 'yet' and notice how it changes the feeling.",
+      "weeklyGoal": "By end of week: catch yourself with a fixed mindset 3 times. Reframe each one."
+    },
+    {
+      "id": "basic-084",
+      "name": "Influence & Persuasion",
+      "category": "Influence",
+      "dailyDrill": "Identify one outcome you want from someone. Write the narrative that aligns with their values.",
+      "weeklyGoal": "By end of week: influence one outcome using their motivations — not yours."
+    },
+    {
+      "id": "basic-085",
+      "name": "Storytelling framework",
+      "category": "Influence",
+      "dailyDrill": "Tell one technical story today using: situation → complication → resolution. No jargon.",
+      "weeklyGoal": "By end of week: tell 5 stories using the SCR framework. Get feedback on one."
+    },
+    {
+      "id": "basic-086",
+      "name": "Social-proof deployment",
+      "category": "Influence",
+      "dailyDrill": "In one message or pitch today: reference one real person or company that succeeded with this approach.",
+      "weeklyGoal": "By end of week: build a file of 5 social proof examples you can use in pitches."
+    },
+    {
+      "id": "basic-087",
+      "name": "Authority signaling",
+      "category": "Influence",
+      "dailyDrill": "Share one insight today backed by a credible source. Cite it. Explain why it matters.",
+      "weeklyGoal": "By end of week: build credibility in 3 interactions through demonstrated expertise."
+    },
+    {
+      "id": "basic-088",
+      "name": "Reciprocity leverage",
+      "category": "Influence",
+      "dailyDrill": "Give something today — help, a resource, a referral — with zero expectation attached.",
+      "weeklyGoal": "By end of week: give 5 things without expecting anything back. Track what comes back anyway."
+    },
+    {
+      "id": "basic-089",
+      "name": "Scarcity & urgency cues",
+      "category": "Influence",
+      "dailyDrill": "In one message today: add a specific deadline or constraint. Vague urgency gets ignored.",
+      "weeklyGoal": "By end of week: add a real constraint to 3 requests. Measure response rate."
+    },
+    {
+      "id": "basic-090",
+      "name": "Public Speaking",
+      "category": "Public Speaking",
+      "dailyDrill": "Explain today's toughest concept out loud to an imaginary audience for 2 minutes. No notes.",
+      "weeklyGoal": "By end of week: give one 5-minute verbal explanation without notes to a real person."
+    },
+    {
+      "id": "basic-091",
+      "name": "Stage presence & poise",
+      "category": "Public Speaking",
+      "dailyDrill": "Before your next video call: stand for 2 minutes with good posture. Then sit. Notice the difference.",
+      "weeklyGoal": "By end of week: command attention in 3 calls or presentations through physical presence."
+    },
+    {
+      "id": "basic-092",
+      "name": "Vocal variety & pacing",
+      "category": "Public Speaking",
+      "dailyDrill": "Record yourself reading one technical paragraph. Listen for monotone. Re-record with variation.",
+      "weeklyGoal": "By end of week: vary your pace and emphasis in 5 technical explanations."
+    },
+    {
+      "id": "basic-093",
+      "name": "Audience engagement",
+      "category": "Public Speaking",
+      "dailyDrill": "In your next technical explanation: ask one question to the listener mid-way through.",
+      "weeklyGoal": "By end of week: keep 3 different listeners engaged for 5+ minutes each."
+    },
+    {
+      "id": "basic-094",
+      "name": "Structured messaging (opening, body, close)",
+      "category": "Public Speaking",
+      "dailyDrill": "Write your next email with: 1-sentence context → 2–3 sentences body → 1 clear ask. Nothing else.",
+      "weeklyGoal": "By end of week: use this structure for every email and message you send."
+    },
+    {
+      "id": "basic-095",
+      "name": "Handling Q&A with confidence",
+      "category": "Public Speaking",
+      "dailyDrill": "Practice answering one question you don't fully know: 'Great question. Here's how I'd think through it...'",
+      "weeklyGoal": "By end of week: handle 3 unexpected questions without saying 'I don't know' as a full answer."
+    },
+    {
+      "id": "basic-096",
+      "name": "Writing & Documentation",
+      "category": "Writing",
+      "dailyDrill": "Rewrite one comment, README section, or message you wrote today. Make it shorter and clearer.",
+      "weeklyGoal": "By end of week: produce one piece of documentation someone else calls 'actually useful'."
+    },
+    {
+      "id": "basic-097",
+      "name": "Clarity and brevity",
+      "category": "Writing",
+      "dailyDrill": "Cut the word count of one thing you wrote today by 30%. The meaning must survive.",
+      "weeklyGoal": "By end of week: write 5 messages that say exactly what's needed — nothing more."
+    },
+    {
+      "id": "basic-098",
+      "name": "Structured narrative (Pyramid Principle)",
+      "category": "Writing",
+      "dailyDrill": "Rewrite one explanation: lead with the conclusion, then give supporting points.",
+      "weeklyGoal": "By end of week: use bottom-line-first structure in 3 written communications."
+    },
+    {
+      "id": "basic-099",
+      "name": "Tone-matching for audience",
+      "category": "Writing",
+      "dailyDrill": "Rewrite one technical message for a non-technical stakeholder. Same information, different language.",
+      "weeklyGoal": "By end of week: adapt your writing tone to 3 different audiences correctly."
+    },
+    {
+      "id": "basic-100",
+      "name": "Concise email etiquette",
+      "category": "Writing",
+      "dailyDrill": "Write one email response in 5 sentences or fewer. Include one specific action item.",
+      "weeklyGoal": "By end of week: every email you send is under 100 words unless absolutely necessary."
+    },
+    {
+      "id": "basic-101",
+      "name": "Argument scaffolding",
+      "category": "Writing",
+      "dailyDrill": "Write one argument with: claim → evidence → implication. Three parts. Nothing else.",
+      "weeklyGoal": "By end of week: make 5 arguments using this structure. Get agreement on 3 of them."
+    },
+    {
+      "id": "basic-102",
+      "name": "Analytical & Quantitative Skills",
+      "category": "Analytical",
+      "dailyDrill": "Find one metric in your project today. Write what it means and whether it's moving the right way.",
+      "weeklyGoal": "By end of week: define 3 metrics that actually tell you if your project is healthy."
+    },
+    {
+      "id": "basic-103",
+      "name": "Data interpretation",
+      "category": "Analytical",
+      "dailyDrill": "Look at one chart or number from today. Write two things it does NOT tell you.",
+      "weeklyGoal": "By end of week: correctly interpret 5 datasets without drawing unsupported conclusions."
+    },
+    {
+      "id": "basic-104",
+      "name": "Basic statistics (mean, variance)",
+      "category": "Analytical",
+      "dailyDrill": "Calculate the mean and standard deviation of 5 numbers from your work today. Interpret the variance.",
+      "weeklyGoal": "By end of week: use basic stats to make one real decision."
+    },
+    {
+      "id": "basic-105",
+      "name": "Spreadsheet modeling",
+      "category": "Analytical",
+      "dailyDrill": "Build a 5-row spreadsheet model for one decision you're making. Use at least one formula.",
+      "weeklyGoal": "By end of week: build a model that helped you make one real decision."
+    },
+    {
+      "id": "basic-106",
+      "name": "Trend-spotting",
+      "category": "Analytical",
+      "dailyDrill": "Look at your last 7 days of progress. Write one clear trend — positive or negative.",
+      "weeklyGoal": "By end of week: identify 3 trends in your work or learning. Act on one."
+    },
+    {
+      "id": "basic-107",
+      "name": "Hypothesis testing",
+      "category": "Analytical",
+      "dailyDrill": "Write one testable hypothesis about your code or learning. Write exactly how you'd disprove it.",
+      "weeklyGoal": "By end of week: run 3 hypothesis tests. Be willing to be wrong."
+    },
+    {
+      "id": "basic-108",
+      "name": "Financial Literacy",
+      "category": "Financial Literacy",
+      "dailyDrill": "Review last week's spending in 5 minutes. Name one thing to cut and one thing worth more.",
+      "weeklyGoal": "By end of week: understand exactly where your money went last month."
+    },
+    {
+      "id": "basic-109",
+      "name": "Budget creation",
+      "category": "Financial Literacy",
+      "dailyDrill": "Write a simple 3-category budget for this month: needs / wants / savings. Assign percentages.",
+      "weeklyGoal": "By end of week: have a written budget you can actually stick to."
+    },
+    {
+      "id": "basic-110",
+      "name": "Cash-flow forecasting",
+      "category": "Financial Literacy",
+      "dailyDrill": "Write your expected income and fixed expenses for next month. What's the gap?",
+      "weeklyGoal": "By end of week: forecast your cash flow for the next 3 months."
+    },
+    {
+      "id": "basic-111",
+      "name": "ROI calculation",
+      "category": "Financial Literacy",
+      "dailyDrill": "Calculate the ROI of one tool or course you've paid for: value gained divided by money spent.",
+      "weeklyGoal": "By end of week: audit every recurring subscription for ROI. Cut one."
+    },
+    {
+      "id": "basic-112",
+      "name": "Break-even analysis",
+      "category": "Financial Literacy",
+      "dailyDrill": "For one project or side hustle idea: calculate the break-even point in units, days, or hours.",
+      "weeklyGoal": "By end of week: know the break-even for any project you're investing time or money in."
+    },
+    {
+      "id": "basic-113",
+      "name": "Basic accounting principles",
+      "category": "Financial Literacy",
+      "dailyDrill": "Write the difference between an asset and a liability using one example from your life.",
+      "weeklyGoal": "By end of week: classify your 5 largest possessions as assets or liabilities."
+    },
+    {
+      "id": "basic-114",
+      "name": "Cultural & Social Intelligence",
+      "category": "Cultural Intelligence",
+      "dailyDrill": "In one interaction today: notice one cultural assumption you made. Write it down honestly.",
+      "weeklyGoal": "By end of week: identify 5 cultural assumptions you hold. Verify 2 of them."
+    },
+    {
+      "id": "basic-115",
+      "name": "Cross-cultural awareness",
+      "category": "Cultural Intelligence",
+      "dailyDrill": "Read one 5-minute piece about communication norms in a culture different from yours.",
+      "weeklyGoal": "By end of week: adjust your communication style once based on cross-cultural awareness."
+    },
+    {
+      "id": "basic-116",
+      "name": "Language etiquette",
+      "category": "Cultural Intelligence",
+      "dailyDrill": "Review one message you sent today. Was your tone appropriate for that person's context and culture?",
+      "weeklyGoal": "By end of week: send 5 messages where you consciously adapted language to the recipient."
+    },
+    {
+      "id": "basic-117",
+      "name": "Norm-reading in new contexts",
+      "category": "Cultural Intelligence",
+      "dailyDrill": "Think of the last new environment you entered. Write 3 unspoken rules you had to figure out.",
+      "weeklyGoal": "By end of week: successfully navigate one new social or professional context."
+    },
+    {
+      "id": "basic-118",
+      "name": "Inclusive communication",
+      "category": "Cultural Intelligence",
+      "dailyDrill": "Review one thing you wrote today. Is it accessible to someone outside your field or background?",
+      "weeklyGoal": "By end of week: rewrite 3 pieces of communication to be more inclusive."
+    },
+    {
+      "id": "basic-119",
+      "name": "Adaptive behavior",
+      "category": "Cultural Intelligence",
+      "dailyDrill": "Name one situation today where you adjusted your approach mid-stream. What prompted it?",
+      "weeklyGoal": "By end of week: adapt your behavior in 3 situations based on reading the room."
+    }
   ],
   "payable": [
     {
+      "id": "payable-001",
       "name": "Sales Negotiation Mastery",
       "dayStart": 1,
       "dayEnd": 18,
@@ -129,9 +844,22 @@
         "Never Split the Difference — Chris Voss",
         "Getting to Yes — Fisher & Ury"
       ],
-      "microPractice": "Practice one negotiation tactic in today's conversation — anchor first, then listen."
+      "microPractice": "Practice one negotiation tactic in today's conversation — anchor first, then listen.",
+      "weeklyGoal": "By end of week: use one named tactic (mirroring, labeling, calibrated questions) in a real situation.",
+      "chapterMap": {
+        "1": "Never Split the Difference: Ch.1–2 — Active listening + Tactical empathy",
+        "2": "Never Split the Difference: Ch.3–4 — Mirroring + Labeling",
+        "3": "Never Split the Difference: Ch.5–6 — Mastering No + Bending Reality",
+        "4": "Getting to Yes: Part 1 — Don't bargain over positions",
+        "5": "Getting to Yes: Part 2 — The method: focus on interests",
+        "6": "Never Split the Difference: Ch.7–8 — Calibrated questions + Guarantee execution",
+        "7": "Getting to Yes: Part 3 — Alternatives + BATNA development",
+        "8": "Never Split the Difference: Ch.9–10 — Bargaining hard + Finding the Black Swan",
+        "9": "Full review: write your personal negotiation playbook from both books"
+      }
     },
     {
+      "id": "payable-002",
       "name": "Human Nature",
       "dayStart": 19,
       "dayEnd": 36,
@@ -139,9 +867,22 @@
         "The Laws of Human Nature — Robert Greene",
         "Thinking, Fast and Slow — Daniel Kahneman"
       ],
-      "microPractice": "Observe one person today and identify one cognitive bias they display."
+      "microPractice": "Observe one person today and identify one cognitive bias they display.",
+      "weeklyGoal": "By end of week: correctly predict one person's behavior based on a law of human nature.",
+      "chapterMap": {
+        "1": "Laws of Human Nature: Ch.1 — Master your emotional self",
+        "2": "Thinking Fast and Slow: Part 1 — System 1 vs System 2",
+        "3": "Laws of Human Nature: Ch.2 — Transform self-love into empathy",
+        "4": "Thinking Fast and Slow: Part 2 — Heuristics and biases",
+        "5": "Laws of Human Nature: Ch.3 — See through people's masks",
+        "6": "Thinking Fast and Slow: Part 3 — Overconfidence",
+        "7": "Laws of Human Nature: Ch.4 — Determine the strength of people's character",
+        "8": "Thinking Fast and Slow: Part 4 — Choices under uncertainty",
+        "9": "Full synthesis: map 5 biases you personally have to laws of human nature"
+      }
     },
     {
+      "id": "payable-003",
       "name": "Emotional Intelligence",
       "dayStart": 37,
       "dayEnd": 54,
@@ -149,9 +890,22 @@
         "Emotional Intelligence 2.0 — Bradberry & Greaves",
         "The Emotional Brain — Joseph LeDoux"
       ],
-      "microPractice": "Name three emotions you felt today and what triggered each."
+      "microPractice": "Name three emotions you felt today and what triggered each.",
+      "weeklyGoal": "By end of week: correctly identify your emotional state before reacting in 5 situations.",
+      "chapterMap": {
+        "1": "EQ 2.0: Introduction — What EQ is and why IQ isn't enough",
+        "2": "EQ 2.0: Self-awareness strategies 1–5",
+        "3": "EQ 2.0: Self-awareness strategies 6–15",
+        "4": "EQ 2.0: Self-management strategies 1–5",
+        "5": "EQ 2.0: Self-management strategies 6–17",
+        "6": "EQ 2.0: Social awareness strategies 1–8",
+        "7": "EQ 2.0: Relationship management strategies 1–9",
+        "8": "EQ 2.0: Relationship management strategies 10–17",
+        "9": "Full review: take the EQ self-assessment and write your improvement plan"
+      }
     },
     {
+      "id": "payable-004",
       "name": "Critical Thinking",
       "dayStart": 55,
       "dayEnd": 72,
@@ -159,9 +913,22 @@
         "Thinking in Systems — Donella Meadows",
         "The Art of Thinking Clearly — Rolf Dobelli"
       ],
-      "microPractice": "Take one assumption you hold and argue the opposite position for 3 minutes."
+      "microPractice": "Take one assumption you hold and argue the opposite position for 3 minutes.",
+      "weeklyGoal": "By end of week: spot 5 thinking errors in the wild and name them precisely.",
+      "chapterMap": {
+        "1": "Thinking in Systems: Part 1 — System structure: stocks and flows",
+        "2": "Art of Thinking Clearly: Biases 1–10 (Survivorship bias, Swimmer's body illusion...)",
+        "3": "Thinking in Systems: Part 2 — System traps and opportunities",
+        "4": "Art of Thinking Clearly: Biases 11–20 (Clustering illusion, Social proof...)",
+        "5": "Thinking in Systems: Part 3 — Creating change in systems",
+        "6": "Art of Thinking Clearly: Biases 21–35",
+        "7": "Art of Thinking Clearly: Biases 36–50",
+        "8": "Art of Thinking Clearly: Biases 51–99 (deep dive on 5 most relevant to you)",
+        "9": "Full synthesis: map 3 system traps you're currently in and your escape plan"
+      }
     },
     {
+      "id": "payable-005",
       "name": "Effective Communication",
       "dayStart": 73,
       "dayEnd": 90,
@@ -169,9 +936,22 @@
         "Crucial Conversations — Patterson, Grenny et al.",
         "Simply Said — Jay Sullivan"
       ],
-      "microPractice": "Before your next message, write one sentence on what you want the reader to DO after reading it."
+      "microPractice": "Before your next message, write one sentence on what you want the reader to DO after reading it.",
+      "weeklyGoal": "By end of week: have one crucial conversation you've been avoiding.",
+      "chapterMap": {
+        "1": "Crucial Conversations: Ch.1–2 — What makes a conversation crucial + Mastering our stories",
+        "2": "Simply Said: Part 1 — Communicating clearly: focus on the audience",
+        "3": "Crucial Conversations: Ch.3–4 — Start with heart + Learn to look",
+        "4": "Simply Said: Part 2 — Verbal communication (presentations, conversations)",
+        "5": "Crucial Conversations: Ch.5–6 — Make it safe + Master your story",
+        "6": "Simply Said: Part 3 — Written communication (email, reports)",
+        "7": "Crucial Conversations: Ch.7–8 — STATE your path + Explore others' paths",
+        "8": "Crucial Conversations: Ch.9–10 — Move to action + Putting it all together",
+        "9": "Full review: write your communication manifesto — how you'll show up in every conversation"
+      }
     },
     {
+      "id": "payable-006",
       "name": "Time Management",
       "dayStart": 91,
       "dayEnd": 108,
@@ -179,9 +959,22 @@
         "Deep Work — Cal Newport",
         "The One Thing — Gary Keller"
       ],
-      "microPractice": "Write your top 3 outcomes for tomorrow before you sleep. Nothing else counts."
+      "microPractice": "Write your top 3 outcomes for tomorrow before you sleep. Nothing else counts.",
+      "weeklyGoal": "By end of week: complete 5 deep work blocks of 90+ minutes each with zero interruptions.",
+      "chapterMap": {
+        "1": "Deep Work: Part 1 — The idea: deep work is valuable, rare, and meaningful",
+        "2": "The One Thing: Part 1 — The lies: multitasking, willpower, and a balanced life",
+        "3": "Deep Work: Part 2 — The rules: work deeply (schedule + rituals)",
+        "4": "The One Thing: Part 2 — The truth: the focusing question",
+        "5": "Deep Work: Part 2 — The rules: embrace boredom + quit social media",
+        "6": "The One Thing: Part 3 — Extraordinary results: live with purpose + priority",
+        "7": "Deep Work: Part 2 — The rules: drain the shallows (fixed schedule productivity)",
+        "8": "Synthesis: design your ideal weekly schedule using both frameworks",
+        "9": "Full review: run your new schedule for 7 days. Write what changed."
+      }
     },
     {
+      "id": "payable-007",
       "name": "Problem Solving",
       "dayStart": 109,
       "dayEnd": 126,
@@ -189,9 +982,22 @@
         "How to Solve It — George Pólya",
         "Algorithms to Live By — Brian Christian"
       ],
-      "microPractice": "Pick one open problem you have. Write the real root cause in one sentence — not the symptom."
+      "microPractice": "Pick one open problem you have. Write the real root cause in one sentence — not the symptom.",
+      "weeklyGoal": "By end of week: solve 3 real problems using Pólya's 4-step method. Document each.",
+      "chapterMap": {
+        "1": "How to Solve It: Part 1 — In the classroom: understanding the problem",
+        "2": "Algorithms to Live By: Ch.1–2 — Optimal stopping + Explore/exploit",
+        "3": "How to Solve It: Part 2 — How to solve it (the heuristics)",
+        "4": "Algorithms to Live By: Ch.3–4 — Sorting + Caching",
+        "5": "How to Solve It: Part 3 — Short dictionary of heuristics (A–H)",
+        "6": "Algorithms to Live By: Ch.5–7 — Scheduling + Bayes + Overfitting",
+        "7": "How to Solve It: Part 3 — Short dictionary of heuristics (I–Z)",
+        "8": "Algorithms to Live By: Ch.8–11 — Relaxation + Randomness + Networking + Game theory",
+        "9": "Full synthesis: write your personal problem-solving framework combining both approaches"
+      }
     },
     {
+      "id": "payable-008",
       "name": "Creativity and Innovation",
       "dayStart": 127,
       "dayEnd": 144,
@@ -199,9 +1005,22 @@
         "Steal Like an Artist — Austin Kleon",
         "A Technique for Producing Ideas — James Webb Young"
       ],
-      "microPractice": "Combine two unrelated concepts and write three ways they could intersect in your work."
+      "microPractice": "Combine two unrelated concepts and write three ways they could intersect in your work.",
+      "weeklyGoal": "By end of week: generate one genuinely novel idea that you're excited enough to prototype.",
+      "chapterMap": {
+        "1": "Steal Like an Artist: Ch.1–3 — Steal, don't wait to know who you are, write what you love",
+        "2": "A Technique for Producing Ideas: Stage 1 — Gathering raw material",
+        "3": "Steal Like an Artist: Ch.4–6 — Use your hands, side projects, secret work",
+        "4": "A Technique for Producing Ideas: Stage 2 — Mental digestion",
+        "5": "Steal Like an Artist: Ch.7–9 — Geography, be boring, be kind",
+        "6": "A Technique for Producing Ideas: Stage 3–5 — The Eureka moment + Shaping the idea",
+        "7": "Full Steal Like an Artist re-read with your current project in mind",
+        "8": "Apply the 5-stage technique to one real problem you're solving right now",
+        "9": "Build and share one thing you've been afraid to make. Publish it."
+      }
     },
     {
+      "id": "payable-009",
       "name": "Mental Resilience",
       "dayStart": 145,
       "dayEnd": 162,
@@ -209,9 +1028,22 @@
         "Can't Hurt Me — David Goggins",
         "The Obstacle Is the Way — Ryan Holiday"
       ],
-      "microPractice": "Deliberately do one uncomfortable thing today — cold exposure, a hard conversation, or a task you've been avoiding."
+      "microPractice": "Deliberately do one uncomfortable thing today — cold exposure, a hard conversation, or a task you've been avoiding.",
+      "weeklyGoal": "By end of week: do one thing every day that you wanted to avoid. Log each one.",
+      "chapterMap": {
+        "1": "Can't Hurt Me: Ch.1–2 — Darkness to light + Taking souls",
+        "2": "The Obstacle Is the Way: Part 1 — Perception: seeing clearly",
+        "3": "Can't Hurt Me: Ch.3–4 — The impossible task + Taking inventory",
+        "4": "The Obstacle Is the Way: Part 2 — Action: moving forward",
+        "5": "Can't Hurt Me: Ch.5–6 — Armored mind + Cookie jar",
+        "6": "The Obstacle Is the Way: Part 3 — Will: preparing for adversity",
+        "7": "Can't Hurt Me: Ch.7–8 — The 40% rule + Talent not required",
+        "8": "Can't Hurt Me: Ch.9–10 — Uncommon amongst uncommon + The empowerment of failure",
+        "9": "Full synthesis: write your personal resilience manifesto. What breaks you. What builds you."
+      }
     },
     {
+      "id": "payable-010",
       "name": "Money Management",
       "dayStart": 163,
       "dayEnd": 180,
@@ -219,7 +1051,19 @@
         "The Psychology of Money — Morgan Housel",
         "I Will Teach You to Be Rich — Ramit Sethi"
       ],
-      "microPractice": "Review last week's spending in 5 minutes. Identify one thing to cut and one to increase."
+      "microPractice": "Review last week's spending in 5 minutes. Identify one thing to cut and one to increase.",
+      "weeklyGoal": "By end of week: automate one financial process (savings, bill, investment).",
+      "chapterMap": {
+        "1": "Psychology of Money: Ch.1–3 — No one's crazy + Luck and risk + Never enough",
+        "2": "I Will Teach You to Be Rich: Ch.1–2 — Credit cards + Banks",
+        "3": "Psychology of Money: Ch.4–6 — Confounding compounding + Getting wealthy vs staying wealthy",
+        "4": "I Will Teach You to Be Rich: Ch.3–4 — Investing + Conscious spending",
+        "5": "Psychology of Money: Ch.7–9 — Freedom + Man in the car paradox + Wealth is what you don't see",
+        "6": "I Will Teach You to Be Rich: Ch.5–6 — Saving + The I Will Teach You to Be Rich system",
+        "7": "Psychology of Money: Ch.10–13 — Save money + Reasonable over rational + Surprise",
+        "8": "Psychology of Money: Ch.14–20 — Room for error to Confessions",
+        "9": "Full action: set up your automated financial system. Document it. Run it."
+      }
     }
   ]
 }

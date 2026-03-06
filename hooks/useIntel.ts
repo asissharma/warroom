@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import type { IntelEntry } from '@/lib/types'
+import type { IntelEntry } from '@/types'
 
 const fetcher = async (url: string) => {
     const res = await fetch(url)

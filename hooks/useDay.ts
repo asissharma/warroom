@@ -1,7 +1,7 @@
 // ── FILE: hooks/useDay.ts ──
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import type { DayPayload } from '@/lib/types';
+import type { DayPayload } from '@/types';
 
 interface UseDayReturn {
     data: DayPayload | null;

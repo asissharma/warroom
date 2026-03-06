@@ -1,7 +1,7 @@
 // ── FILE: hooks/useUser.ts ──
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import type { IUser } from '@/lib/types';
+import type { IUser } from '@/types';
 
 interface UseUserReturn {
     user: IUser | null;

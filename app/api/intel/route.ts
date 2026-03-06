@@ -33,6 +33,13 @@ export async function POST(request: Request) {
             userId
         })
 
+        // Fire and forget synthesis
+        fetch(`${request.headers.get('origin') || 'http://localhost:3000'}/api/shadow/synthesize`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ topicKey: body.topicKey, intelRecord: record })
+        }).catch(err => console.error('Failed to trigger synthesis', err))
+
         return NextResponse.json(record)
     } catch (e: any) {
         return NextResponse.json({ error: e.message }, { status: 500 })

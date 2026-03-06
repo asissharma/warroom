@@ -2,7 +2,8 @@ import projects from '@/data/projects.json'
 import spineData from '@/data/tech-spine.json'
 import skillsData from '@/data/skills.json'
 import questionsData from '@/data/questions.json'
-import type { Project, SpineArea, Question, BasicSkill, PayableSyllabus, DayPayload, CarryForwardTask } from './types'
+import survivalData from '@/data/survival-areas.json'
+import type { Project, SpineArea, Question, BasicSkill, PayableSyllabus, DayPayload, CarryForwardTask, TaskSpec, SurvivalArea } from '@/types'
 
 const PHASES = [
     { name: 'Foundation', dayStart: 1, dayEnd: 30 },
@@ -47,8 +48,10 @@ export function getSpineForDay(dayN: number): SpineArea {
         dayEnd: rawSpine.weekEnd * 7,
         questionTheme: rawSpine.area === 'nan' ? 'General' : rawSpine.area,
         topics: rawSpine.topics || [],
+        topicKeys: rawSpine.topicKeys || [],
         microtasks: rawSpine.microtasks || [],
-        resource: rawSpine.resource
+        resource: rawSpine.resource,
+        resourceUrl: rawSpine.resourceUrl
     }
 }
 
@@ -96,13 +99,13 @@ export function getQuestionsForDay(
 }
 
 export function getBasicSkillForDay(dayN: number): BasicSkill {
-    const basics = skillsData.basic as string[]
-    const skillName = basics[(dayN - 1) % basics.length]
+    const basics = skillsData.basic as { name: string, dailyDrill: string }[]
+    const skill = basics[(dayN - 1) % basics.length]
     return {
         id: dayN,
-        name: skillName.replace(/\n\s*/g, ' '),
+        name: skill.name.replace(/\n\s*/g, ' '),
         category: 'General',
-        microPractice: `Focus on mastering ${skillName.replace(/\n\s*/g, ' ')} through deliberate practice.`
+        microPractice: skill.dailyDrill
     }
 }
 
@@ -118,7 +121,26 @@ export function getPayableForDay(dayN: number): PayableSyllabus {
         books: p.coreBooks ? p.coreBooks.map((t: string) => ({ title: t, author: 'Unknown', downloaded: true, coreChapter: 'Chapter 1' })) : [],
         podcasts: [],
         weeklyExercise: p.microPractice || 'Reflect on readings',
-        capstone: 'Write summary'
+        capstone: 'Write summary',
+        chapterMap: p.chapterMap
+    }
+}
+
+export function getSurvivalForDay(dayN: number) {
+    const areas = survivalData as unknown as SurvivalArea[]
+    const daysPerArea = 180 / areas.length
+    const areaIndex = Math.min(areas.length - 1, Math.floor((dayN - 1) / daysPerArea))
+    const area = areas[areaIndex]
+
+    const topicIndex = (dayN - 1) % area.topics.length
+    const topic = area.topics[topicIndex]
+
+    return {
+        areaId: area.id,
+        area: area.area,
+        urgency: area.urgency,
+        topic: topic.title,
+        drill: topic.drill
     }
 }
 
@@ -130,11 +152,14 @@ export function isCheckpointDay(dayN: number): boolean {
     return [30, 60, 90, 120, 150, 180].includes(dayN)
 }
 
-export function getTopicForDay(spine: SpineArea, dayN: number): string {
-    if (!spine.topics || spine.topics.length === 0) return "General Review"
+export function getTopicForDay(spine: SpineArea, dayN: number): { topic: string, key: string } {
+    if (!spine.topics || spine.topics.length === 0) return { topic: "General Review", key: "general-review" }
     const dayWithinArea = Math.max(0, dayN - spine.dayStart)
     const topicIndex = dayWithinArea % spine.topics.length
-    return spine.topics[topicIndex]
+    return {
+        topic: spine.topics[topicIndex],
+        key: spine.topicKeys?.[topicIndex] || `topic-${topicIndex}`
+    }
 }
 
 export function getMicrotasksForDay(spine: SpineArea, dayN: number): string[] {
@@ -161,6 +186,16 @@ export function buildDayPayload(
 ): DayPayload {
     const phase = getPhaseForDay(dayN)
     const spine = getSpineForDay(dayN)
+    const topicData = getTopicForDay(spine, dayN)
+
+    // Calculate payable chapter
+    const payable = getPayableForDay(dayN)
+    const dayInBand = Math.max(1, dayN - payable.dayStart + 1)
+    const totalDays = payable.dayEnd - payable.dayStart + 1
+    const totalChapters = payable.chapterMap ? Object.keys(payable.chapterMap).length : 1
+    const daysPerChapter = Math.ceil(totalDays / Math.max(1, totalChapters))
+    const chapterIndex = Math.min(totalChapters, Math.ceil(dayInBand / daysPerChapter))
+    const payableChapterToday = payable.chapterMap ? payable.chapterMap[chapterIndex.toString()] : 'Read 10 pages'
 
     return {
         dayN,
@@ -169,25 +204,29 @@ export function buildDayPayload(
         isCheckpointDay: isCheckpointDay(dayN),
         project: getProjectForDay(dayN),
         spineArea: spine,
-        topicToday: getTopicForDay(spine, dayN),
+        topicToday: topicData.topic,
+        topicKeyToday: topicData.key,
         microtasksToday: getMicrotasksForDay(spine, dayN),
         questions: getQuestionsForDay(dayN, questionsPerDay, completedDaysCount),
         basicSkill: getBasicSkillForDay(dayN),
-        payable: getPayableForDay(dayN),
+        payable,
+        payableChapterToday,
+        survivalToday: getSurvivalForDay(dayN),
         carriedTasks,
         completedTaskIds,
         dayComplete
     }
 }
 
-export function getExpectedTaskSpecs(dayN: number, payload: DayPayload): import('./types').TaskSpec[] {
-    const specs: import('./types').TaskSpec[] = []
+export function getExpectedTaskSpecs(dayN: number, payload: DayPayload): TaskSpec[] {
+    const specs: TaskSpec[] = []
 
     if (!payload.isReviewDay) {
         // 1. TechSmith tasks
-        specs.push({ id: `tech_micro_0_D${dayN}`, text: `Read & understand: ${payload.topicToday}`, type: 'tech' })
-        specs.push({ id: `tech_micro_1_D${dayN}`, text: `Implement a prototype of: ${payload.topicToday}`, type: 'tech' })
-        specs.push({ id: `tech_micro_2_D${dayN}`, text: `Review & test: ${payload.topicToday} in context of ${payload.spineArea?.area || payload.phase}`, type: 'tech' })
+        const tKey = payload.topicKeyToday || 'general'
+        specs.push({ id: `tech_micro_0_${tKey}_D${dayN}`, text: `Read & understand: ${payload.topicToday}`, type: 'tech', url: payload.spineArea?.resourceUrl })
+        specs.push({ id: `tech_micro_1_${tKey}_D${dayN}`, text: `Implement a prototype of: ${payload.topicToday}`, type: 'tech' })
+        specs.push({ id: `tech_micro_2_${tKey}_D${dayN}`, text: `Review & test: ${payload.topicToday} in context of ${payload.spineArea?.area || payload.phase}`, type: 'tech' })
 
         // 2. Mastery Questions
         payload.questions.forEach(q => {
@@ -202,12 +241,20 @@ export function getExpectedTaskSpecs(dayN: number, payload: DayPayload): import(
         }
 
         // 4. Survival Area
-        specs.push({ id: `survival_D${dayN}`, text: `Study Survival Area for this phase`, type: 'survival' })
+        if (payload.survivalToday) {
+            specs.push({
+                id: `survival_${payload.survivalToday.areaId}_D${dayN}`,
+                text: `[${payload.survivalToday.urgency}] ${payload.survivalToday.area} — ${payload.survivalToday.topic}: ${payload.survivalToday.drill}`,
+                type: 'survival'
+            })
+        } else {
+            specs.push({ id: `survival_D${dayN}`, text: `Study Survival Area for this phase`, type: 'survival' })
+        }
 
         // 5 & 6. Human: Basic & Payable Skills
         if (payload.payable) {
-            specs.push({ id: `human_skill_D${dayN}`, text: `Basic Skill: ${payload.basicSkill.name}`, type: 'human' })
-            specs.push({ id: `human_payable_D${dayN}`, text: `Payable: ${payload.payable.name} — ${payload.payable.books?.[0]?.title || 'Read 10 pages'}`, type: 'human' })
+            specs.push({ id: `human_skill_D${dayN}`, text: `Basic Skill: ${payload.basicSkill.name} — ${payload.basicSkill.microPractice}`, type: 'human' })
+            specs.push({ id: `human_payable_D${dayN}`, text: `${payload.payableChapterToday} — ${payload.payable.weeklyExercise}`, type: 'human' })
         }
     } else {
         // Review Day specs

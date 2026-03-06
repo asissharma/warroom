@@ -1,6 +1,6 @@
-// Core data types (matching your JSON files exactly)
 import type { Types } from 'mongoose'
 
+// Core data types (matching your JSON files exactly)
 export interface Project {
     day: number
     phase: string
@@ -17,8 +17,10 @@ export interface SpineArea {
     dayEnd: number
     questionTheme: string
     topics: string[]
+    topicKeys?: string[]
     microtasks: string[]
     resource: string
+    resourceUrl?: string
 }
 
 export interface Question {
@@ -52,6 +54,14 @@ export interface PayableSyllabus {
     podcasts: string[]
     weeklyExercise: string
     capstone: string
+    chapterMap?: Record<string, string>
+}
+
+export interface SurvivalTopic {
+    id: string
+    title: string
+    drill: string
+    connectedTopicKeys: string[]
 }
 
 export interface SurvivalArea {
@@ -59,9 +69,9 @@ export interface SurvivalArea {
     area: string
     urgency: 'CRITICAL' | 'HIGH' | 'MEDIUM'
     why: string
-    topics: string[]
-    resources: { name: string; author: string; free: boolean; url: string | null }[]
-    spineConnection: string
+    topics: SurvivalTopic[]
+    resources?: { name: string; author: string; free: boolean; url: string | null }[]
+    spineConnection?: string
 }
 
 export interface Course {
@@ -112,6 +122,14 @@ export interface ILogRecord {
     createdAt: Date
 }
 
+export interface ITopicStatus {
+    userId: string
+    topicKey: string
+    status: 'done' | 'partial' | 'revisit' | 'not_started'
+    createdAt: Date
+    updatedAt: Date
+}
+
 export interface ICarryForward {
     _id: Types.ObjectId
     userId: string
@@ -122,6 +140,18 @@ export interface ICarryForward {
     taskType: 'tech' | 'build' | 'mastery' | 'human' | 'survival'
     resolved: boolean
     resolvedAt?: Date
+}
+
+export interface IShadowInsight {
+    userId: string
+    topicKey: string
+    keyConcepts: string[]
+    weakSpots: string[]
+    relatedTopics: string[]
+    suggestRevisitIn: number
+    rawSummary: string
+    createdAt: Date
+    updatedAt: Date
 }
 
 // API response shapes
@@ -153,6 +183,7 @@ export interface TaskSpec {
     id: string
     text: string
     type: 'tech' | 'build' | 'mastery' | 'human' | 'survival'
+    url?: string
 }
 
 export interface DayPayload {
@@ -163,10 +194,13 @@ export interface DayPayload {
     project: Project | null
     spineArea: SpineArea
     topicToday: string
+    topicKeyToday: string
     microtasksToday: string[]
     questions: Question[]
     basicSkill: BasicSkill
     payable: PayableSyllabus
+    payableChapterToday?: string
+    survivalToday?: { areaId: number, area: string, urgency: string, topic: string, drill: string }
     carriedTasks: CarryForwardTask[]
     completedTaskIds: string[]
     dayComplete: boolean

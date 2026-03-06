@@ -1,7 +1,7 @@
 // ── FILE: hooks/useDashboard.ts ──
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import type { DashboardData } from '@/lib/types';
+import type { DashboardData } from '@/types';
 
 interface UseDashboardReturn {
     data: DashboardData | null;

@@ -1,12 +1,26 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Activity, LayoutDashboard, Database, Target, Settings, Brain } from 'lucide-react'
+import { Activity, LayoutDashboard, Database, Target, Settings, Brain, Moon } from 'lucide-react'
 import { useDay } from '@/hooks/useDay'
 import { getExpectedTaskIds } from '@/lib/dayEngine'
+import { useState, useEffect } from 'react'
+
 export default function Nav() {
     const pathname = usePathname()
     const { data: day } = useDay()
+    const [isFocusTime, setIsFocusTime] = useState(false)
+
+    useEffect(() => {
+        const checkTime = () => {
+            const hour = new Date().getHours()
+            // 9 PM (21) to 1 AM (1)
+            setIsFocusTime(hour >= 21 || hour < 1)
+        }
+        checkTime()
+        const interval = setInterval(checkTime, 60000) // check every minute
+        return () => clearInterval(interval)
+    }, [])
 
     const links = [
         { href: '/today', label: 'COMMAND', icon: Activity },
@@ -44,6 +58,11 @@ export default function Nav() {
 
                 {/* Global Progress Indicator */}
                 <div className="flex items-center gap-2 px-3 py-1.5 ml-2 border-l border-borderHi">
+                    {isFocusTime && (
+                        <div className="flex items-center justify-center w-5 h-5 rounded-full bg-accent/20 animate-pulse" title="Focus Block Active">
+                            <Moon size={12} className="text-accent" />
+                        </div>
+                    )}
                     <div className="relative w-5 h-5 flex items-center justify-center">
                         <svg className="w-full h-full transform -rotate-90">
                             <circle cx="10" cy="10" r="8" fill="none" className="stroke-surface2" strokeWidth="2" />

@@ -2,9 +2,9 @@
 
 import { useDay } from '@/hooks/useDay'
 import { getPhaseProgress, getExpectedTaskSpecs } from '@/lib/dayEngine'
-import { Loader2, CheckCircle2, Circle, Flame, Moon, Sun, Code, Pickaxe, Brain, HardHat, BookOpen, User } from 'lucide-react'
+import { Loader2, CheckCircle2, Circle, Flame, Moon, Sun, Code, Pickaxe, Brain, HardHat, BookOpen, User, ExternalLink } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import type { TaskSpec } from '@/lib/types'
+import type { TaskSpec } from '@/types'
 
 export default function TodayPage() {
     const { data, toggleTask, markComplete, loading: isLoading } = useDay()
@@ -69,6 +69,11 @@ export default function TodayPage() {
                 </div>
                 <div className={`text-sm leading-relaxed ${isDone ? 'text-muted line-through' : 'text-text'}`}>
                     {spec.text}
+                    {spec.url && !isDone && (
+                        <a href={spec.url} target="_blank" rel="noopener noreferrer" className="ml-2 inline-flex items-center text-accent hover:underline opacity-80 hover:opacity-100" onClick={e => e.stopPropagation()}>
+                            <ExternalLink className="w-3 h-3 inline" />
+                        </a>
+                    )}
                 </div>
             </div>
         )
@@ -93,11 +98,20 @@ export default function TodayPage() {
         <div className="content-z pb-32 max-w-2xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12 min-h-[100dvh] flex flex-col">
 
             {/* Header Strip */}
-            <div className="flex items-center justify-between bg-surface border border-borderHi rounded-2xl p-4 mb-8 shadow-sm">
+            <div className={`flex items-center justify-between border rounded-2xl p-4 mb-8 shadow-sm transition-colors ${data.isCheckpointDay
+                    ? 'bg-accent/10 border-accent/30 shadow-[0_0_20px_rgba(74,222,128,0.1)]'
+                    : data.isReviewDay
+                        ? 'bg-orange-500/10 border-orange-500/30'
+                        : 'bg-surface border-borderHi'
+                }`}>
                 <div className="flex items-center gap-4">
                     <div className="flex flex-col">
-                        <span className="text-2xl font-black tracking-tight text-text">DAY {dayN}</span>
-                        <span className="text-xs font-mono text-muted2 uppercase">{phaseData.phaseName} • {phaseData.dayInPhase}/{phaseData.totalDays}</span>
+                        <span className={`text-2xl font-black tracking-tight ${data.isCheckpointDay ? 'text-accent' : data.isReviewDay ? 'text-orange-400' : 'text-text'}`}>
+                            {data.isCheckpointDay ? `CHECKPOINT ${dayN}` : data.isReviewDay ? `REVIEW ${dayN}` : `DAY ${dayN}`}
+                        </span>
+                        <span className={`text-xs font-mono uppercase ${data.isCheckpointDay || data.isReviewDay ? 'opacity-80' : 'text-muted2'}`}>
+                            {phaseData.phaseName} • {phaseData.dayInPhase}/{phaseData.totalDays}
+                        </span>
                     </div>
                 </div>
 
