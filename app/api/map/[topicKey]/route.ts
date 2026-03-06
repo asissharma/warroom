@@ -8,11 +8,11 @@ import { QuestionModel } from '@/lib/models/Question'
 import { CourseModel } from '@/lib/models/Course'
 import { SurvivalAreaModel } from '@/lib/models/SurvivalArea'
 
-export async function GET(request: Request, { params }: { params: { topicKey: string } }) {
+export async function GET(request: Request, context: { params: Promise<{ topicKey: string }> }) {
     try {
         await connectDB()
         const userId = 'default'
-        const { topicKey } = params
+        const { topicKey } = await context.params
 
         const decodedTopicKey = decodeURIComponent(topicKey)
 
