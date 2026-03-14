@@ -60,6 +60,44 @@ export async function POST(request: Request) {
         // 5. Generate uncompleted carry forwards for tomorrow
         await createCarryForwardsFromDay(userId, dayN, payload, currentDay.completedTaskIds)
 
+        // 5.5 Emit IntelNodes for all completed tasks today
+        if (currentDay.completedTaskIds && currentDay.completedTaskIds.length > 0) {
+            import('@/lib/dayEngine').then(de => {
+                const specs = de.getExpectedTaskSpecs(dayN, payload)
+                import('@/lib/intelEmitter').then(emitter => {
+                    for (const taskId of currentDay.completedTaskIds) {
+                        const spec = specs.find(s => s.id === taskId)
+                        let domain = 'general'
+                        if (spec) {
+                            domain = spec.type === 'tech' ? 'engineering' :
+                                spec.type === 'build' ? 'projects' :
+                                    spec.type === 'mastery' ? 'mastery' :
+                                        spec.type === 'survival' ? 'survival' : 'human'
+                        }
+                        const phaseNum = payload.phase === 'Foundation' ? 1 :
+                            payload.phase === 'Distributed' ? 2 :
+                                payload.phase === 'Cloud' ? 3 :
+                                    payload.phase === 'Security' ? 4 :
+                                        payload.phase === 'ML/AI' ? 5 :
+                                            payload.phase === 'Frontend' ? 6 :
+                                                payload.phase === 'Mastery' ? 7 : 8
+
+                        emitter.emitToIntel({
+                            userId,
+                            type: 'task',
+                            source: 'system',
+                            title: spec?.text || `Completed Task ${taskId}`,
+                            domain,
+                            phase: phaseNum,
+                            dayN,
+                            status: 'completed',
+                            sourceRefId: taskId
+                        }).catch(err => console.error('Silent Intel emit batch error:', err))
+                    }
+                }).catch(err => console.error('Silent Intel emitter import error:', err))
+            }).catch(err => console.error('Silent dayEngine import error:', err))
+        }
+
         // 6. Log completion
         await LogRecord.create({
             userId,

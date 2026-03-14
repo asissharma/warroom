@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { BrainCanvasHost } from '@/components/brain/BrainCanvasHost'
 
 export default function RootPage() {
-    redirect('/today')
+    return <BrainCanvasHost />
 }

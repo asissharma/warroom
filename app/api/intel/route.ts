@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
-import { IntelRecord } from '@/lib/models/IntelRecord'
+import { IntelNode } from '@/lib/models/IntelNode'
+import { emitToIntel } from '@/lib/intelEmitter'
 
 export async function GET(request: Request) {
     try {
@@ -8,15 +9,36 @@ export async function GET(request: Request) {
         const { searchParams } = new URL(request.url)
         const userId = 'default' // TODO: implement real auth later
 
-        const topic = searchParams.get('topic')
-        const limitParam = searchParams.get('limit')
-        const limit = limitParam ? parseInt(limitParam) : 50
+        const type = searchParams.get('type')
+        const source = searchParams.get('source')
+        const tags = searchParams.get('tags') // comma-separated
+        const domain = searchParams.get('domain')
+        const status = searchParams.get('status')
+        const dayN = searchParams.get('dayN')
+        const page = parseInt(searchParams.get('page') || '1')
+        const limit = parseInt(searchParams.get('limit') || '50')
 
+        // Build query
         const query: any = { userId }
-        if (topic) query.topicKey = topic
+        if (type) query.type = type
+        if (source) query.source = source
+        if (domain) query.domain = domain
+        if (status) query.status = status
+        if (dayN) query.dayN = parseInt(dayN)
+        
+        if (tags) {
+            const tagArray = tags.split(',').map(t => t.trim().toLowerCase())
+            query.tags = { $all: tagArray }
+        }
 
-        const records = await IntelRecord.find(query).sort({ createdAt: -1 }).limit(limit)
-        return NextResponse.json(records)
+        const skip = (page - 1) * limit
+        const total = await IntelNode.countDocuments(query)
+        const records = await IntelNode.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit)
+
+        return NextResponse.json({
+            data: records,
+            meta: { total, page, limit, pages: Math.ceil(total / limit) }
+        })
     } catch (e: any) {
         return NextResponse.json({ error: e.message }, { status: 500 })
     }
@@ -28,17 +50,13 @@ export async function POST(request: Request) {
         const body = await request.json()
         const userId = 'default'
 
-        const record = await IntelRecord.create({
+        // Direct manual input creation - uses emitter logic to handle tags and connections
+        const record = await emitToIntel({
             ...body,
-            userId
+            userId,
+            source: 'manual',
+            status: body.status || 'completed'
         })
-
-        // Fire and forget synthesis
-        fetch(`${request.headers.get('origin') || 'http://localhost:3000'}/api/shadow/synthesize`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ topicKey: body.topicKey, intelRecord: record })
-        }).catch(err => console.error('Failed to trigger synthesis', err))
 
         return NextResponse.json(record)
     } catch (e: any) {

@@ -6,7 +6,7 @@ import { Brain, Loader2 } from 'lucide-react'
 import MapTabs from '@/components/map/MapTabs'
 import TimelineView from '@/components/map/timeline/TimelineView'
 import ProgressView from '@/components/map/progress/ProgressView'
-import CanvasView from '@/components/map/canvas/CanvasView'
+import { BrainCanvas } from '@/components/map/canvas/BrainCanvas'
 import BrainOverlay from '@/components/map/brain/BrainOverlay'
 import { CheckCircle2, CircleDashed, RotateCcw, Circle } from 'lucide-react'
 
@@ -51,7 +51,9 @@ export default function MapPage() {
                 {activeTab === 'TIMELINE' && <TimelineView getTopicStatus={getTopicStatus} />}
 
                 {activeTab === 'CANVAS' && (
-                    <CanvasView getTopicStatus={getTopicStatus} />
+                    <div className="absolute inset-0 top-[140px] border-t border-borderLo">
+                        <BrainCanvas />
+                    </div>
                 )}
 
                 {activeTab === 'PROGRESS' && <ProgressView stats={stats} />}
