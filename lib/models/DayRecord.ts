@@ -7,7 +7,8 @@ const DayRecordSchema = new Schema<IDayRecord>({
     date: { type: Date, required: true },
     completedTaskIds: { type: [String], default: [] },
     isComplete: { type: Boolean, default: false },
-    completedAt: { type: Date }
+    completedAt: { type: Date },
+    enrichedTasks: { type: [{ taskId: String, enrichedText: String }], default: [] }
 }, { timestamps: true })
 
 DayRecordSchema.index({ userId: 1, dayN: 1 }, { unique: true })

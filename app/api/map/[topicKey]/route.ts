@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
-import { IntelRecord } from '@/lib/models/IntelRecord'
+import { IntelNode } from '@/lib/models/IntelNode'
 import { TopicStatus } from '@/lib/models/TopicStatus'
 import { ShadowInsight } from '@/lib/models/ShadowInsight'
 import { SpineEntryModel } from '@/lib/models/SpineEntry'
@@ -17,7 +17,7 @@ export async function GET(request: Request, context: { params: Promise<{ topicKe
         const decodedTopicKey = decodeURIComponent(topicKey)
 
         // 1. Get INTEL logs for this topic
-        const intelFeed = await IntelRecord.find({ userId, topicKey: decodedTopicKey }).sort({ createdAt: -1 }).lean()
+        const intelFeed = await IntelNode.find({ userId, tags: decodedTopicKey }).sort({ createdAt: -1 }).lean()
 
         // 2. Get status for this topic
         const statusRecord = await TopicStatus.findOne({ userId, topicKey: decodedTopicKey }).lean() as any

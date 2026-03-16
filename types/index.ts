@@ -104,6 +104,7 @@ export interface IDayRecord {
     completedTaskIds: string[]
     isComplete: boolean
     completedAt?: Date
+    enrichedTasks?: { taskId: string; enrichedText: string }[]
 }
 
 export interface ISkillProgress {
@@ -140,6 +141,20 @@ export interface ICarryForward {
     taskType: 'tech' | 'build' | 'mastery' | 'human' | 'survival'
     resolved: boolean
     resolvedAt?: Date
+    timesCarried: number
+    timesSkipped: number
+}
+
+export interface IWeeklyDigest {
+    weekNumber: number
+    dayN: number
+    generatedAt: Date
+    mastered: string[]
+    fragile: string[]
+    skipRisk: string[]
+    nextWeekFocus: string
+    honestAssessment: string
+    rawText?: string
 }
 
 export interface IShadowInsight {

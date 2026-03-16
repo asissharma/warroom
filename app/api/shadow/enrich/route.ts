@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
 import { ShadowInsight } from '@/lib/models/ShadowInsight'
-import { IntelRecord } from '@/lib/models/IntelRecord'
+import { IntelNode } from '@/lib/models/IntelNode'
 import { enrichTask } from '@/lib/shadowEngine'
 
 export async function POST(request: Request) {
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         }
 
         // Gather context
-        const lastIntel = await IntelRecord.findOne({ userId, topicKey: topicToday }).sort({ createdAt: -1 }).lean() as any
+        const lastIntel = await IntelNode.findOne({ userId, tags: topicToday }).sort({ createdAt: -1 }).lean() as any
         const shadow = await ShadowInsight.findOne({ userId, topicKey: topicToday }).lean() as any
 
         let blockers = ''

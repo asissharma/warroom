@@ -40,7 +40,11 @@ export async function createCarryForwardsFromDay(
                             toDayN: Math.min(180, dayN + 1),
                             taskText: task.text,
                             taskType: task.type,
-                            fromDayN: dayN
+                        },
+                        $inc: { timesCarried: 1 },
+                        $setOnInsert: {
+                            fromDayN: dayN,
+                            timesSkipped: 0
                         }
                     },
                     upsert: true

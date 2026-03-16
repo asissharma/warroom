@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         const record = await emitToIntel({
             ...body,
             userId,
-            source: 'manual',
+            source: body.source || 'manual',
             status: body.status || 'completed'
         })
 

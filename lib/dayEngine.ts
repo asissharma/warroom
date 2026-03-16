@@ -86,9 +86,9 @@ export function getQuestionsForDay(
         pool = allQuestions.sort((a, b) => a.id - b.id)
     }
 
-    // Rotate through the pool using completedDaysCount so questions
-    // advance each day and never repeat on the same day
-    const offset = (completedDaysCount * questionsPerDay) % pool.length
+    // Rotate through the pool using dayN so questions
+    // advance each day even if previous days aren't 'closed'
+    const offset = ((dayN - 1) * questionsPerDay) % pool.length
     const slice = pool.slice(offset, offset + questionsPerDay)
 
     if (slice.length < questionsPerDay) {
@@ -230,7 +230,7 @@ export function getExpectedTaskSpecs(dayN: number, payload: DayPayload): TaskSpe
 
         // 2. Mastery Questions
         payload.questions.forEach(q => {
-            specs.push({ id: `mastery_Q${q.id}_D${dayN}`, text: `Q${q.id}: ${q.question}`, type: 'mastery' })
+            specs.push({ id: `mastery_Q${q.id}`, text: `Q${q.id}: ${q.question}`, type: 'mastery' })
         })
 
         // 3. Build/Projects

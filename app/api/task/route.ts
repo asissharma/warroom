@@ -32,9 +32,10 @@ export async function POST(request: Request) {
 
         // 3. Increment/Decrement aggregate user task count
         const incValue = completed ? 1 : -1
-        await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
             { userId },
-            { $inc: { totalTasksDone: incValue } }
+            { $inc: { totalTasksDone: incValue } },
+            { new: true }
         )
 
         // 4. Emit to IntelOS Level (Fire-and-continue for task completion)
@@ -43,6 +44,11 @@ export async function POST(request: Request) {
             // Lightly reconstruct the day payload to get task details
             const userDoc = await User.findOne({ userId }).lean() as any
             const completedDaysCount = await DayRecord.countDocuments({ userId, isComplete: true })
+
+            const shouldTriggerShadow = (completedCount: number, task: string) => {
+                const isTechSmith = task.startsWith('tech_micro')
+                return completedCount === 5 || completedCount === 10 || completedCount === 17 || isTechSmith
+            }
 
             import('@/lib/carryEngine').then(ce => {
                 ce.getCarriedTasksForDay(userId, dayN).then(carriedTasks => {
@@ -88,14 +94,35 @@ export async function POST(request: Request) {
                                 sourceRefId: taskId
                             }).catch(err => console.error('Silent Intel emit task error:', err))
                         })
+
+                        // 4b. Trigger Shadow Engine synthesize if milestone reached
+                        if (shouldTriggerShadow(dayRecord.completedTaskIds.length, taskId)) {
+                            const topicKey = payload?.topicKeyToday || 'general'
+                            const intelRecord = {
+                                taskId,
+                                completedAt: now,
+                                dayN
+                            }
+
+                            // Fire-and-forget synthesize
+                            fetch(`${request.headers.get('origin') || 'http://localhost:3000'}/api/shadow/synthesize`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ topicKey, intelRecord })
+                            }).catch(err => console.error('Failed to trigger shadow synthesize:', err))
+                        }
                     })
                 })
             })
         }
 
+        // Get total tasks done from user document
+        const userDoc = await User.findOne({ userId }).lean() as any
+        const totalTasksDone = userDoc?.totalTasksDone || 0
+
         return NextResponse.json({
             completedTaskIds: dayRecord.completedTaskIds,
-            totalTasksDone: incValue // Simplified for front-end reaction, not total absolute count
+            totalTasksDone
         })
     } catch (error) {
         console.error('API /task POST error:', error)

@@ -6,8 +6,8 @@ const CourseSchema = new Schema({
     provider: { type: String, required: true },
     area: { type: String, required: true },
     url: { type: String, required: true },
-    spineWeek: { type: Number, required: true },
-    estimatedHours: { type: Number, required: true }
+    weekRecommended: { type: Number, required: true },
+    estimatedHours: { type: Number, default: 0 }
 })
 
 export const CourseModel = mongoose.models.Course || mongoose.model('Course', CourseSchema)

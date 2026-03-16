@@ -17,11 +17,19 @@ export function LayerToggles() {
                 case 'b':
                     setRenderMode(renderMode === 'work' ? 'command' : 'work');
                     break;
-                case 'd':
-                    setRenderMode(renderMode === 'depth' ? 'work' : 'depth');
+                case 'p':
+                    setRenderMode(renderMode === 'phases' ? 'work' : 'phases');
                     break;
                 case 'i':
                     toggleLayer('intel');
+                    break;
+                // Number keys 1-8 to jump to phases
+                default:
+                    const num = parseInt(e.key);
+                    if (num >= 1 && num <= 8) {
+                        setRenderMode('phases');
+                        // Could also set selected phase in PhaseNavigator via store
+                    }
                     break;
             }
         };

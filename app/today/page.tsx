@@ -3,12 +3,16 @@
 import { useDay } from '@/hooks/useDay'
 import { getPhaseProgress, getExpectedTaskSpecs } from '@/lib/dayEngine'
 import { Loader2, CheckCircle2, Circle, Flame, Moon, Sun, Code, Pickaxe, Brain, HardHat, BookOpen, User, ExternalLink } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import type { TaskSpec } from '@/types'
 
 export default function TodayPage() {
-    const { data, toggleTask, markComplete, loading: isLoading } = useDay()
+    const { data, toggleTask, markComplete, loading: isLoading, error: apiError, refetch } = useDay()
     const [currentTime, setCurrentTime] = useState(new Date())
+    const [localError, setLocalError] = useState<string | null>(null)
+    const [showForceConfirm, setShowForceConfirm] = useState(false)
+
+    const displayError = localError || apiError
 
     useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 60000)
@@ -50,11 +54,11 @@ export default function TodayPage() {
     const payable = specs.filter(s => s.id.startsWith('human_payable'))
     const basic = specs.filter(s => s.id.startsWith('human_skill'))
 
-    const TaskItem = ({ spec }: { spec: TaskSpec }) => {
+    const TaskItem = ({ spec, carryId }: { spec: TaskSpec; carryId?: string }) => {
         const isDone = completedSet.has(spec.id)
         return (
             <div
-                onClick={() => toggleTask(spec.id, !isDone)}
+                onClick={() => toggleTask(spec.id, !isDone, carryId)}
                 className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer a-transition ${isDone
                     ? 'bg-success/5 border-success/20 opacity-60'
                     : 'bg-surface2/50 border-borderLo hover:border-accent/40'
@@ -79,7 +83,7 @@ export default function TodayPage() {
         )
     }
 
-    const CategoryGroup = ({ title, icon: Icon, tasks, colorClass }: { title: string, icon: any, tasks: TaskSpec[], colorClass: string }) => {
+    const CategoryGroup = ({ title, icon: Icon, tasks, colorClass }: { title: string, icon: any, tasks: (TaskSpec & { carryId?: string })[], colorClass: string }) => {
         if (!tasks.length) return null
         return (
             <div className="mb-8">
@@ -88,7 +92,7 @@ export default function TodayPage() {
                     {title}
                 </div>
                 <div className="flex flex-col gap-2">
-                    {tasks.map(t => <TaskItem key={t.id} spec={t} />)}
+                    {tasks.map(t => <TaskItem key={t.id} spec={t} carryId={t.carryId} />)}
                 </div>
             </div>
         )
@@ -96,6 +100,14 @@ export default function TodayPage() {
 
     return (
         <div className="content-z pb-32 max-w-2xl mx-auto px-4 sm:px-6 pt-6 sm:pt-12 min-h-[100dvh] flex flex-col">
+
+            {/* Error Toast */}
+            {displayError && (
+                <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-red-500/90 text-white px-4 py-2 rounded-lg shadow-lg text-sm flex items-center gap-2">
+                    <span>{displayError}</span>
+                    <button onClick={() => setLocalError(null)} className="hover:bg-white/20 px-1 rounded">×</button>
+                </div>
+            )}
 
             {/* Header Strip */}
             <div className={`flex items-center justify-between border rounded-2xl p-4 mb-8 shadow-sm transition-colors ${data.isCheckpointDay
@@ -124,9 +136,18 @@ export default function TodayPage() {
                         {isFocusWindow ? 'FOCUS ACTIVE' : 'SHIFT OUT'}
                     </div>
 
-                    <div className="text-sm font-mono text-muted">
-                        <span className={isAllDone ? 'text-success font-bold' : 'text-text'}>{doneCount}</span>
-                        <span className="opacity-50">/{totalCount}</span>
+                    {/* Progress Bar */}
+                    <div className="flex items-center gap-3">
+                        <div className="w-24 h-2 bg-surface2 rounded-full overflow-hidden border border-borderLo">
+                            <div
+                                className={`h-full transition-all duration-300 ${isAllDone ? 'bg-success' : 'bg-accent'}`}
+                                style={{ width: `${totalCount > 0 ? (doneCount / totalCount) * 100 : 0}%` }}
+                            />
+                        </div>
+                        <div className="text-sm font-mono text-muted">
+                            <span className={isAllDone ? 'text-success font-bold' : 'text-text'}>{doneCount}</span>
+                            <span className="opacity-50">/{totalCount}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,19 +171,29 @@ export default function TodayPage() {
                     <CategoryGroup
                         title="Debt from Past"
                         icon={Flame}
-                        tasks={data.carriedTasks.map((t: any) => ({ id: t.taskId, text: t.taskText, type: t.taskType as any }))}
+                        tasks={data.carriedTasks.map((t: any) => ({
+                            id: t.taskId,
+                            text: `[Day ${t.fromDayN}] ${t.taskText}`,
+                            type: t.taskType as any,
+                            carryId: t._id
+                        }))}
                         colorClass="text-red-500"
                     />
                 )}
             </div>
 
             {/* Footer */}
-            <div className="mt-8 pt-6 border-t border-borderLo flex justify-center pb-8">
+            <div className="mt-8 pt-6 border-t border-borderLo flex flex-col items-center gap-3 pb-8">
                 <button
                     onClick={() => {
-                        if (isAllDone && !data.dayComplete) markComplete()
+                        if (data.dayComplete) return
+                        if (isAllDone) {
+                            markComplete()
+                        } else {
+                            setShowForceConfirm(true)
+                        }
                     }}
-                    disabled={!isAllDone || data.dayComplete}
+                    disabled={data.dayComplete && !showForceConfirm}
                     className={`px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm a-transition w-full sm:w-auto
                         ${data.dayComplete
                             ? 'bg-success/10 text-success border-success/30 border cursor-default'
@@ -173,6 +204,45 @@ export default function TodayPage() {
                 >
                     {data.dayComplete ? 'MISSION ACCOMPLISHED' : isAllDone ? 'CLOSE THE DAY' : 'COMPLETE ALL TASKS TO CLOSE'}
                 </button>
+
+                {/* Force Complete Option */}
+                {!isAllDone && !data.dayComplete && (
+                    <button
+                        onClick={() => {
+                            setShowForceConfirm(true)
+                        }}
+                        className="text-xs text-muted2 hover:text-accent underline"
+                    >
+                        Skip remaining tasks
+                    </button>
+                )}
+
+                {/* Force Confirm Modal */}
+                {showForceConfirm && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                        <div className="bg-surface border border-borderHi p-6 rounded-xl max-w-sm mx-4">
+                            <h3 className="font-bold text-text mb-2">Skip remaining tasks?</h3>
+                            <p className="text-sm text-muted mb-4">Uncompleted tasks will be carried forward to tomorrow.</p>
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setShowForceConfirm(false)}
+                                    className="flex-1 px-4 py-2 rounded-lg border border-borderLo text-muted hover:bg-surface2"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setShowForceConfirm(false)
+                                        markComplete(true)
+                                    }}
+                                    className="flex-1 px-4 py-2 rounded-lg bg-accent text-bg font-bold"
+                                >
+                                    Skip & Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
-import { IntelRecord } from '@/lib/models/IntelRecord'
+import { IntelNode } from '@/lib/models/IntelNode'
 import { ShadowInsight } from '@/lib/models/ShadowInsight'
 import { mapTopicConnections } from '@/lib/shadowEngine'
 import { SpineEntryModel } from '@/lib/models/SpineEntry'
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing topic' }, { status: 400 })
         }
 
-        const allIntelForTopic = await IntelRecord.find({ userId, topicKey }).lean()
+        const allIntelForTopic = await IntelNode.find({ userId, tags: topicKey }).lean()
         if (allIntelForTopic.length < 2) {
             return NextResponse.json({ skipped: true, reason: 'Not enough intel to map connections' })
         }

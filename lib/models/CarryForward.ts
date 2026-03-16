@@ -13,7 +13,9 @@ const CarryForwardSchema = new Schema<ICarryForward>({
         required: true
     },
     resolved: { type: Boolean, default: false },
-    resolvedAt: { type: Date }
+    resolvedAt: { type: Date },
+    timesCarried: { type: Number, default: 1 },
+    timesSkipped: { type: Number, default: 0 }
 }, { timestamps: true })
 
 CarryForwardSchema.index({ userId: 1, toDayN: 1, resolved: 1 })

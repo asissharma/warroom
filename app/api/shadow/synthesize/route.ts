@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
 import { ShadowInsight } from '@/lib/models/ShadowInsight'
-import { IntelRecord } from '@/lib/models/IntelRecord'
+import { IntelNode } from '@/lib/models/IntelNode'
 import { synthesizeIntel } from '@/lib/shadowEngine'
 
 export async function POST(request: Request) {
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         }
 
         // Get last 3 records (excluding the current one)
-        const last3IntelRecords = await IntelRecord.find({ userId, topicKey })
+        const last3IntelRecords = await IntelNode.find({ userId, tags: topicKey })
             .sort({ createdAt: -1 })
             .limit(3)
             .lean()

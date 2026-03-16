@@ -2,16 +2,22 @@
 
 import { useState, useMemo } from 'react';
 import { useBrainStore } from '@/store/brainStore';
+import { useDay } from '@/hooks/useDay';
+import { getSurvivalForDay } from '@/lib/dayEngine';
 import projectsData from '@/data/projects.json';
 import techSpineData from '@/data/tech-spine.json';
 import skillsData from '@/data/skills.json';
 import survivalData from '@/data/survival-areas.json';
 import questionsData from '@/data/questions.json';
 import {
-    ChevronDown, ChevronRight, Layers, Compass, BookOpen,
+    ChevronDown, ChevronRight, Layers, Compass, Book, BookOpen,
     AlertTriangle, User, GraduationCap, ExternalLink, Zap,
-    Target, CheckCircle, HelpCircle, DollarSign, FolderKanban
+    Target, CheckCircle, HelpCircle, DollarSign, FolderKanban,
+    Loader2
 } from 'lucide-react';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 /* ── Phase definitions ──────────────────────────────────── */
 const PHASES = [
@@ -211,7 +217,32 @@ function ProjectsGrid({ projects }: { projects: Project[] }) {
 
 function SurvivalSection() {
     const [open, setOpen] = useState(false);
+    const { data: dayData } = useDay();
     const areas = getSurvivalAreas();
+
+    const weekFocus = useMemo(() => {
+        if (!dayData?.dayN) return null;
+        const dayN = dayData.dayN;
+        const weekStart = Math.max(1, dayN - ((dayN - 1) % 7));
+        const weekEnd = weekStart + 6;
+        
+        const counts: Record<string, { count: number, area: string, urgency: string }> = {};
+        for (let d = weekStart; d <= weekEnd; d++) {
+            const survival = getSurvivalForDay(d);
+            if (!counts[survival.area]) {
+                counts[survival.area] = { count: 0, area: survival.area, urgency: survival.urgency };
+            }
+            counts[survival.area].count++;
+        }
+
+        return Object.values(counts)
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 2);
+    }, [dayData?.dayN]);
+
+    const phaseName = dayData?.phase || 'Unknown';
+    const weekStart = dayData?.dayN ? Math.max(1, dayData.dayN - ((dayData.dayN - 1) % 7)) : 0;
+    const weekEnd = weekStart + 6;
 
     return (
         <div className="border border-red-500/20 rounded-xl overflow-hidden bg-red-500/5">
@@ -228,19 +259,39 @@ function SurvivalSection() {
             </button>
 
             {open && (
-                <div className="border-t border-red-500/20 p-3 space-y-2">
-                    {areas.map((area: any) => (
-                        <div key={area.id} className="p-2 border border-borderLo rounded-lg bg-bg/50">
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className={`px-1.5 py-0.5 text-[8px] font-bold uppercase rounded ${
-                                    area.urgency === 'CRITICAL' ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'
-                                }`}>{area.urgency}</span>
-                                <span className="font-bold text-xs text-text">{area.area}</span>
+                <div className="border-t border-red-500/20 p-3 space-y-4">
+                    {/* This Week's Focus Callout */}
+                    {weekFocus && (
+                        <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl space-y-2">
+                            <div className="flex items-center justify-between">
+                                <span className="text-[10px] font-black uppercase tracking-widest text-red-400">This Week's Focus</span>
+                                <span className="text-[9px] text-muted/60 font-mono">Days {weekStart}–{weekEnd} · {phaseName}</span>
                             </div>
-                            <p className="text-[10px] text-muted line-clamp-2">{area.why}</p>
-                            <div className="mt-1.5 text-[9px] text-muted/60">{area.topics?.length || 0} topics · {area.resources?.length || 0} resources</div>
+                            <div className="space-y-1.5">
+                                {weekFocus.map((f, i) => (
+                                    <div key={i} className="flex items-center gap-2">
+                                        <ChevronRight className="w-3 h-3 text-red-500/50" />
+                                        <span className="text-xs font-bold text-text">{f.area}</span>
+                                        <span className="text-[10px] text-muted/50">— {f.count} drills in rotation</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    ))}
+                    )}
+
+                    <div className="grid grid-cols-1 gap-2">
+                        {areas.map((area: any) => (
+                            <div key={area.id} className="p-2.5 border border-borderLo/50 rounded-xl bg-bg/50 hover:border-borderLo transition-colors">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <span className={`px-1.5 py-0.5 text-[8px] font-black uppercase rounded ${
+                                        area.urgency === 'CRITICAL' ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'
+                                    }`}>{area.urgency}</span>
+                                    <span className="font-bold text-xs text-text">{area.area}</span>
+                                </div>
+                                <p className="text-[10px] text-muted/70 leading-relaxed line-clamp-2">{area.why}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
@@ -249,8 +300,16 @@ function SurvivalSection() {
 
 function SkillsSection() {
     const [open, setOpen] = useState(false);
-    const categories = getBasicSkillCategories();
+    const categories = useMemo(() => getBasicSkillCategories(), []);
     const totalSkills = Object.values(categories).reduce((sum, arr) => sum + arr.length, 0);
+    const [expandedCats, setExpandedCats] = useState<Set<string>>(new Set([Object.keys(categories)[0]]));
+
+    const toggleCat = (cat: string) => {
+        const next = new Set(expandedCats);
+        if (next.has(cat)) next.delete(cat);
+        else next.add(cat);
+        setExpandedCats(next);
+    };
 
     return (
         <div className="border border-amber-500/20 rounded-xl overflow-hidden bg-amber-500/5">
@@ -269,19 +328,55 @@ function SkillsSection() {
             </button>
 
             {open && (
-                <div className="border-t border-amber-500/20 p-3 space-y-2 max-h-[400px] overflow-y-auto">
-                    {Object.entries(categories).map(([cat, skills]) => (
-                        <div key={cat}>
-                            <div className="text-[9px] text-amber-400/70 uppercase tracking-[0.2em] mb-1 font-bold">{cat}</div>
-                            <div className="grid grid-cols-2 gap-1">
-                                {skills.map((s: any) => (
-                                    <div key={s.id} className="text-[10px] text-text/70 p-1.5 rounded-md bg-bg/50 hover:bg-surface2/50 transition-colors truncate">
-                                        {s.name}
-                                    </div>
-                                ))}
-                            </div>
+                <div className="border-t border-amber-500/20 p-3 space-y-4 max-h-[500px] overflow-y-auto custom-scrollbar">
+                    {/* Hero Stats */}
+                    <div className="grid grid-cols-2 gap-2 mb-2">
+                        <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2 text-center">
+                            <div className="text-[10px] text-amber-400 font-black uppercase tracking-widest">Total Mastered</div>
+                            <div className="text-xl font-black text-text">0</div>
                         </div>
-                    ))}
+                        <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-2 text-center">
+                            <div className="text-[10px] text-amber-400 font-black uppercase tracking-widest">In Rotation</div>
+                            <div className="text-xl font-black text-text">{totalSkills}</div>
+                        </div>
+                    </div>
+
+                    {Object.entries(categories).map(([cat, skills]) => {
+                        const isExpanded = expandedCats.has(cat);
+                        return (
+                            <div key={cat} className="space-y-1 group/cat">
+                                <button 
+                                    onClick={() => toggleCat(cat)}
+                                    className="w-full flex items-center justify-between py-1.5 px-1 rounded hover:bg-amber-500/5 transition-colors"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <div className={`w-1 h-3 rounded-full transition-all ${isExpanded ? 'bg-amber-400' : 'bg-muted/20'}`} />
+                                        <span className={`text-[10px] font-bold uppercase tracking-[0.15em] transition-colors ${isExpanded ? 'text-amber-400' : 'text-text/40 group-hover/cat:text-text/60'}`}>
+                                            {cat}
+                                        </span>
+                                        <span className="text-[9px] text-muted/30 font-mono">[{skills.length}]</span>
+                                    </div>
+                                    {isExpanded ? <ChevronDown className="w-3 h-3 text-muted/50" /> : <ChevronRight className="w-3 h-3 text-muted/50" />}
+                                </button>
+                                
+                                {isExpanded && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 pt-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                                        {skills.map((s: any) => (
+                                            <div key={s.id} className="group/item flex flex-col gap-1 text-[11px] text-text/70 p-2.5 rounded-lg bg-bg/50 border border-amber-500/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all leading-tight relative overflow-hidden">
+                                                <div className="font-bold text-text/90 group-hover/item:text-amber-400 transition-colors">{s.name}</div>
+                                                <div className="text-[9px] text-muted/60 opacity-0 group-hover/item:opacity-100 transition-opacity">
+                                                    {s.dailyDrill ? `Drill: ${s.dailyDrill.slice(0, 40)}...` : 'Mastery required'}
+                                                </div>
+                                                <div className="absolute top-0 right-0 p-1 opacity-10 group-hover/item:opacity-30">
+                                                    <Zap className="w-3 h-3 text-amber-400" />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
             )}
         </div>
@@ -483,6 +578,99 @@ function GlobalProjectsSection() {
 }
 
 /* ── Phase Card ─────────────────────────────────────────── */
+function CoursesSection() {
+    const [open, setOpen] = useState(false);
+    const { data: courses, isLoading } = useSWR('/api/courses', fetcher);
+
+    const grouped = useMemo(() => {
+        if (!courses) return {};
+        // If courses is an object with an error or something, handle it
+        const coursesArray = Array.isArray(courses) ? courses : [];
+        return coursesArray.reduce((acc: any, course: any) => {
+            const provider = course.provider || 'Other';
+            if (!acc[provider]) acc[provider] = [];
+            acc[provider].push(course);
+            return acc;
+        }, {});
+    }, [courses]);
+
+    const providersCount = Object.keys(grouped).length;
+
+    return (
+        <div className="border border-amber-500/20 rounded-xl overflow-hidden bg-amber-500/5">
+            <button
+                onClick={() => setOpen(!open)}
+                className="w-full flex items-center gap-3 p-3 text-left hover:bg-amber-500/10 transition-colors"
+            >
+                <Book className="w-4 h-4 text-amber-400 shrink-0" />
+                <div className="flex-1 min-w-0">
+                    <div className="font-bold text-sm text-text uppercase tracking-tight">Recommended Courses</div>
+                    <div className="text-[10px] text-amber-400/70 uppercase tracking-widest">
+                        {Array.isArray(courses) ? courses.length : 0} courses · {providersCount} providers
+                    </div>
+                </div>
+                {open ? <ChevronDown className="w-4 h-4 text-muted shrink-0" /> : <ChevronRight className="w-4 h-4 text-muted shrink-0" />}
+            </button>
+
+            {open && (
+                <div className="border-t border-amber-500/20 p-4 space-y-5 max-h-[500px] overflow-y-auto custom-scrollbar">
+                    {isLoading ? (
+                        <div className="flex items-center gap-2 text-xs text-muted/50 p-2 justify-center">
+                            <Loader2 className="w-4 h-4 animate-spin text-amber-400" />
+                            Synthesizing curriculum...
+                        </div>
+                    ) : Object.entries(grouped).map(([provider, items]: [string, any]) => (
+                        <div key={provider} className="space-y-2.5">
+                            <div className="flex items-center gap-2">
+                                <span className="h-px flex-1 bg-amber-500/10" />
+                                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-400/80 leading-none">{provider}</div>
+                                <span className="h-px flex-1 bg-amber-500/10" />
+                            </div>
+                            <div className="grid grid-cols-1 gap-2">
+                                {items.map((course: any) => (
+                                    <a
+                                        key={course.id}
+                                        href={course.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block group p-3 rounded-xl bg-bg/60 border border-amber-500/10 hover:border-amber-400/40 hover:bg-amber-500/[0.02] transition-all relative overflow-hidden shadow-sm"
+                                    >
+                                        <div className="flex items-start justify-between gap-4">
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex items-center gap-2 mb-1">
+                                                    <BookOpen className="w-3 h-3 text-amber-400/60" />
+                                                    <div className="text-xs font-bold text-text/90 group-hover:text-text transition-colors truncate">
+                                                        {course.name}
+                                                    </div>
+                                                </div>
+                                                <div className="text-[10px] text-muted/60 flex items-center gap-3 font-mono">
+                                                    <span className="flex items-center gap-1">
+                                                        <Compass className="w-2.5 h-2.5" />
+                                                        Week {course.weekRecommended}
+                                                    </span>
+                                                    {course.estimatedHours > 0 && (
+                                                        <span className="flex items-center gap-1">
+                                                            <Target className="w-2.5 h-2.5" />
+                                                            {course.estimatedHours}h effort
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="bg-surface border border-borderLo p-1.5 rounded-lg group-hover:border-amber-400/30 transition-all">
+                                                <ExternalLink className="w-3 h-3 text-muted/50 group-hover:text-amber-400" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
+
 function PhaseCard({ phase, index }: { phase: typeof PHASES[number]; index: number }) {
     const [expanded, setExpanded] = useState(false);
     const spines = useMemo(() => getSpinesForPhase(phase.name), [phase.name]);
@@ -575,6 +763,7 @@ export function WorkCanvas({ active }: { active: boolean }) {
                     <SkillsSection />
                     <QuestionsSection />
                     <PayableSkillsSection />
+                    <CoursesSection />
                 </div>
 
                 {/* Global Projects overview */}
