@@ -20,6 +20,9 @@ export function LayerToggles() {
                 case 'p':
                     setRenderMode(renderMode === 'phases' ? 'work' : 'phases');
                     break;
+                case 's':
+                    setRenderMode(renderMode === 'syllabus' ? 'work' : 'syllabus');
+                    break;
                 case 'i':
                     toggleLayer('intel');
                     break;
@@ -45,6 +48,14 @@ export function LayerToggles() {
             <div className="flex bg-surface/80 border border-borderLo rounded-xl shadow-lg p-1.5 backdrop-blur-md text-xs font-mono text-muted uppercase tracking-widest">
                 <span>[ESC] Home</span>
             </div>
+            <button
+                onClick={() => setRenderMode(renderMode === 'syllabus' ? 'work' : 'syllabus')}
+                className={`flex bg-surface/80 border rounded-xl shadow-lg px-3 py-1.5 backdrop-blur-md text-xs font-bold uppercase tracking-widest transition-all ${
+                    renderMode === 'syllabus' ? 'bg-accent/20 text-accent border-accent/30' : 'text-muted hover:text-text border-borderLo'
+                }`}
+            >
+                [S] Syllabus
+            </button>
             <button
                 onClick={() => toggleLayer('intel')}
                 className={`flex bg-surface/80 border rounded-xl shadow-lg px-3 py-1.5 backdrop-blur-md text-xs font-bold uppercase tracking-widest transition-all ${

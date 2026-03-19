@@ -5,7 +5,7 @@ import { WorkCanvas } from './WorkCanvas';
 import { LayerToggles } from './LayerToggles';
 import { MapLayer } from './MapLayer';
 import { LogLayer } from './LogLayer';
-import { PhaseNavigator } from './PhaseNavigator';
+import { SyllabusExplorer } from './SyllabusExplorer';
 
 export function BrainCanvasHost() {
     const { renderMode } = useBrainStore();
@@ -16,8 +16,8 @@ export function BrainCanvasHost() {
         <div className="absolute inset-0 z-0 bg-bg overflow-hidden">
             <WorkCanvas active={renderMode === 'work'} />
 
-            {/* 2D Phase Navigator - replaces 3D DepthCanvas */}
-            <PhaseNavigator />
+            {/* Syllabus Explorer - Full skill network & syllabus */}
+            <SyllabusExplorer />
 
             <MapLayer />
             <LogLayer />

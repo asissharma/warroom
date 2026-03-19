@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(cd /d/codes/personal\\\\ projects/warRoom && npx tsc --noEmit 2>&1 | head -50)",
-      "Bash(cd /d/codes/personal\\\\ projects/warRoom && npx tsc --noEmit 2>&1 | head -30)"
+      "Bash(cd /d/codes/personal\\\\ projects/warRoom && npx tsc --noEmit 2>&1 | head -30)",
+      "Bash(cd:*)"
     ]
   }
 }

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type RenderMode = 'command' | 'work' | 'phases';
+export type RenderMode = 'command' | 'work' | 'phases' | 'syllabus';
 
 export interface LayerToggles {
     nodes: boolean;
