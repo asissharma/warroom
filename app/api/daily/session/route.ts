@@ -15,7 +15,10 @@ export async function GET() {
   const today = new Date().toISOString().split('T')[0];
 
   try {
-    let session = await Session.findOne({ date: today }).populate('gapsFlagged captures');
+    let session = await Session.findOne({ date: today }).populate([
+      { path: 'gapsFlagged', model: GapTracker },
+      { path: 'captures', model: Capture }
+    ]);
     
     if (!session) {
       // Find latest session to get the day number
