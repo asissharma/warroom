@@ -53,14 +53,30 @@ export async function PUT(request: Request) {
     }
 
     if (blockType === 'questions' && syncQuestion?.id) {
+        // Find the question in the session's items array
+        const questionInSession = session.blocks.questions.items.find((q: any) => q.id === syncQuestion.id);
+        
+        if (questionInSession && questionInSession.status === 'Pending') {
+            // Update counts
+            if (syncQuestion.status === 'Correct') {
+                session.blocks.questions.correct = (session.blocks.questions.correct || 0) + 1;
+            } else if (syncQuestion.status === 'Struggled') {
+                session.blocks.questions.struggled = (session.blocks.questions.struggled || 0) + 1;
+            }
+            
+            // Update status in session array
+            questionInSession.status = syncQuestion.status;
+            session.markModified('blocks');
+            await session.save();
+        }
+
         const questionDoc = await Question.findById(syncQuestion.id);
         if (questionDoc) {
-            // Simplified SM-2 Update Logic
+            // SM-2 Update Logic (unchanged but ensured it runs)
             if (syncQuestion.status === 'Undo') {
                 questionDoc.status = 'learning';
                 questionDoc.repetitions = 0;
                 questionDoc.interval = 1;
-                // easeFactor is left as is since we can't perfectly un-math it without history
             } else if (syncQuestion.status === 'Correct') {
                 if (questionDoc.status === 'unseen') {
                     questionDoc.status = 'learning';
@@ -69,7 +85,6 @@ export async function PUT(request: Request) {
                     questionDoc.repetitions += 1;
                     if (questionDoc.repetitions >= 2) {
                         questionDoc.status = 'review';
-                        // SM-2 calculation
                         questionDoc.interval = Math.round(questionDoc.interval * questionDoc.easeFactor);
                         questionDoc.easeFactor = Math.min(2.5, questionDoc.easeFactor + 0.1);
                     }
@@ -84,7 +99,6 @@ export async function PUT(request: Request) {
                 questionDoc.easeFactor = Math.max(1.3, questionDoc.easeFactor - 0.2);
             }
             
-            // Set Next Review Date
             const nextReview = new Date();
             nextReview.setDate(nextReview.getDate() + questionDoc.interval);
             questionDoc.nextReviewDate = nextReview;

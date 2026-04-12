@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SessionCloseProps {
   onCloseSession: (note: string) => Promise<any>;
@@ -10,9 +10,20 @@ export default function SessionClose({ onCloseSession }: SessionCloseProps) {
   const [note, setNote] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [showEnabledAnim, setShowEnabledAnim] = useState(false);
+
+  const isValid = note.length >= 20;
+
+  useEffect(() => {
+    if (isValid && !showEnabledAnim) {
+        setShowEnabledAnim(true);
+    } else if (!isValid) {
+        setShowEnabledAnim(false);
+    }
+  }, [isValid]);
 
   const handleClone = async () => {
-    if (note.length < 20) return;
+    if (!isValid) return;
     setSubmitting(true);
     const res = await onCloseSession(note);
     if (res && res.success) {
@@ -25,45 +36,58 @@ export default function SessionClose({ onCloseSession }: SessionCloseProps) {
 
   if (result) {
     return (
-      <div className="mt-8 p-6 bg-zinc-900 border border-zinc-700 text-center font-mono space-y-4">
-        <h2 className="text-xl text-zinc-100 font-bold uppercase tracking-widest">Session Closed</h2>
-        <div className="text-4xl text-emerald-500 font-bold">+{result.momentumScore.toFixed(1)}</div>
-        <div className="text-zinc-500 text-sm uppercase tracking-widest">Momentum Score Added</div>
-        
-        <div className="mt-6 pt-6 border-t border-zinc-800 text-left">
-          <h3 className="text-amber-500 text-xs uppercase tracking-widest mb-2">Tomorrow's Focus</h3>
-          <p className="text-zinc-300">{result.tomorrowFocus}</p>
+      <div className="w-full px-12 py-16 bg-white border-t border-[#EBEBEB] animate-hud-fade">
+        <div className="max-w-xl mx-auto text-center">
+            <div className="font-mono text-[10px] text-[#A1A1AA] uppercase tracking-[0.4em] mb-4">Neural_Compilation_Success</div>
+            <div className="text-[48px] font-bold text-[#111111] tracking-tighter mb-2">
+                +{result.momentumScore.toFixed(1)}
+            </div>
+            <div className="text-[12px] font-mono text-[#A1A1AA] uppercase tracking-widest mb-10">Momentum Units Logged</div>
+            
+            <div className="text-left bg-[#FAFAFA] border border-[#EBEBEB] p-8 rounded-2xl">
+                <h3 className="text-[10px] font-mono font-bold text-[#111111] uppercase tracking-widest mb-4">Tomorrow's Core Intent</h3>
+                <p className="text-[15px] text-[#71717A] leading-relaxed italic">"{result.tomorrowFocus || 'No focus captured'}"</p>
+            </div>
         </div>
       </div>
     );
   }
 
-  const isValid = note.length >= 20;
-
   return (
-    <div className="mt-8 pt-8 border-t border-zinc-800 font-mono">
-      <h3 className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-2">Honest Note</h3>
-      <p className="text-xs text-zinc-500 mb-4">Required: Min 20 characters. Reflect honestly.</p>
+    <div className="w-full px-12 py-16 bg-white border-t border-[#EBEBEB]">
+      <div className="flex justify-between items-end mb-4">
+        <div>
+            <div className="font-mono text-[10px] text-[#A1A1AA] uppercase tracking-[0.2em] mb-1">HONEST_REFLECTION</div>
+            <div className="text-[14px] text-[#71717A]">Capture the drift. What felt fragile today?</div>
+        </div>
+        <div className={`text-[12px] font-medium ${isValid ? 'text-[#22C55E]' : 'text-[#A1A1AA]'}`}>
+            {note.length} / 20 MIN
+        </div>
+      </div>
       
-      <textarea 
-        value={note}
-        onChange={e => setNote(e.target.value)}
-        className="w-full h-32 bg-black border border-zinc-700 p-4 text-zinc-300 text-sm focus:outline-none focus:border-amber-500 transition-colors mb-2 resize-none"
-        placeholder="What felt fragile? Did you actually master it? Any specific blockers?"
-      />
-      {!isValid && <div className="text-amber-500 text-xs text-right mb-4">{Math.max(0, 20 - note.length)} more characters required</div>}
-      {isValid && <div className="text-emerald-500 text-xs text-right mb-4 tracking-widest uppercase">Valid Ready</div>}
+      <div className="relative">
+        <textarea 
+            value={note}
+            onChange={e => setNote(e.target.value)}
+            className="w-full min-h-[160px] bg-[#F8F8F8] border border-[#EBEBEB] rounded-xl p-6 text-[14px] text-[#111111] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#A1A1AA] focus:ring-4 focus:ring-black/5 transition-all resize-none leading-relaxed"
+            placeholder="What felt fragile? Did you actually master it? Any specific blockers?"
+        />
+        <div className="absolute bottom-4 right-4 font-mono text-[10px] text-[#A1A1AA] uppercase tracking-wider">
+            {note.length} CHARS
+        </div>
+      </div>
 
       <button 
         onClick={handleClone}
         disabled={!isValid || submitting}
-        className={`w-full py-4 font-bold tracking-widest uppercase transition-all shadow-lg ${
-          isValid 
-            ? 'bg-zinc-100 text-black hover:bg-white shadow-zinc-100/20' 
-            : 'bg-zinc-800 text-zinc-600 cursor-not-allowed shadow-none'
-        }`}
+        className={`mt-6 w-full h-[52px] rounded-xl font-semibold text-[14px] tracking-tight transition-all duration-200 
+          ${isValid 
+            ? 'bg-[#111111] text-white hover:bg-[#333333] cursor-pointer' 
+            : 'bg-[#F4F4F5] text-[#A1A1AA] cursor-not-allowed'}
+          ${showEnabledAnim ? 'animate-[scaleUp_0.2s_ease-out]' : ''}
+        `}
       >
-        {submitting ? 'CLOSING ENGINE...' : 'CLONE SESSION'}
+        {submitting ? 'COMPILING...' : 'CLONE SESSION'}
       </button>
     </div>
   );
