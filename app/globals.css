@@ -4,14 +4,15 @@
 
 @layer base {
     body {
-        background-color: theme('colors.bg');
-        color: theme('colors.text');
+        background-color: #f8fafc;
+        color: #64748b;
         font-family: var(--font-outfit), sans-serif;
+        background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #f1f5f9 100%);
+        min-height: 100vh;
     }
 
     html {
-        overflow: hidden;
-        /* prevent outer page scroll — panels self-manage */
+        overflow-x: hidden;
     }
 }
 
@@ -53,4 +54,66 @@
 .scrollbar-thin::-webkit-scrollbar-thumb {
     background: rgba(74, 78, 105, 0.15);
     border-radius: 99px;
+}
+
+/* --- Animated Bento Cloud Custom Styles --- */
+@layer utilities {
+    .animate-float {
+        animation: float 7s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+        animation: float 9s ease-in-out infinite 1.5s;
+    }
+    .animate-float-fast {
+        animation: float 5.5s ease-in-out infinite 0.5s;
+    }
+    
+    .animate-fly-in {
+        animation: flyIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    .stagger-6 { animation-delay: 0.6s; }
+    
+    .shape-blob { border-radius: 60px 20px 60px 20px; }
+    .shape-leaf { border-radius: 20px 60px 20px 60px; }
+    .shape-cloud { border-radius: 40px 60px 30px 60px; }
+    
+    .liquid-fill {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .liquid-fill::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, var(--liquid-color, rgba(16, 185, 129, 0.1)), transparent);
+        transform-origin: bottom;
+        animation: riseUp 1.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        z-index: 0;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(0.8deg); }
+}
+
+@keyframes flyIn {
+    0% { transform: translateY(30px) scale(0.95); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes riseUp {
+    0% { transform: scaleY(0); opacity: 0; }
+    100% { transform: scaleY(1); opacity: 1; }
 }

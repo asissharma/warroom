@@ -1,5 +1,5 @@
-import { BrainCanvasHost } from '@/components/brain/BrainCanvasHost'
+import DailyScreen from './dailyScreen';
 
 export default function RootPage() {
-    return <BrainCanvasHost />
+    return <DailyScreen />
 }
