@@ -12,6 +12,7 @@ interface BlockCardProps {
 
 export default function BlockCard({ type, data, onUpdate, onOpenChat, isMorphic }: BlockCardProps) {
   const [expanded, setExpanded] = useState(false);
+  if (!data) return null;
   const isDone = data.status === 'Done' || data.isDone;
   const isInProgress = data.status === 'Partial' || data.status === 'InProgress';
 

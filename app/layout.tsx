@@ -18,8 +18,8 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${instrument.variable} ${inter.variable} ${jbMono.variable}`}>
-            <body className="bg-[#FAFAFA] text-[#111111] h-[100dvh] overflow-hidden flex flex-col antialiased selection:bg-black selection:text-white">
-                <main className="flex-1 overflow-hidden relative min-h-0">
+            <body className="bg-[#FAFAFA] text-[#111111] antialiased selection:bg-black selection:text-white">
+                <main className="relative">
                     {children}
                 </main>
             </body>

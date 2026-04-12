@@ -102,7 +102,7 @@ export default function DailyScreen() {
     }));
 
   return (
-    <div className="min-h-screen w-full tactical-grid p-6 relative overflow-x-hidden">
+    <div className="min-h-screen w-full tactical-grid p-6 pb-20 relative overflow-x-hidden">
       
       {/* SCANLINE EFFECT */}
       <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden opacity-5">
@@ -154,57 +154,69 @@ export default function DailyScreen() {
         </div>
 
         {/* TECH SPINE (SPAN 4) */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-            <BlockCard 
-                type="spine" 
-                data={session.blocks.spine} 
-                onUpdate={(up) => handleUpdateBlock('spine', up)} 
-                onOpenChat={() => {setActiveContext('TECH_SPINE'); setChatOpen(true);}}
-                isMorphic
-            />
-        </div>
+        {session.blocks.spine && (
+          <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              <BlockCard 
+                  type="spine" 
+                  data={session.blocks.spine} 
+                  onUpdate={(up) => handleUpdateBlock('spine', up)} 
+                  onOpenChat={() => {setActiveContext('TECH_SPINE'); setChatOpen(true);}}
+                  isMorphic
+              />
+          </div>
+        )}
 
         {/* PROJECT (SPAN 4) */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-            <BlockCard 
-                type="project" 
-                data={session.blocks.project} 
-                onUpdate={(up) => handleUpdateBlock('project', up)} 
-                onOpenChat={() => {setActiveContext('PROJECT'); setChatOpen(true);}}
-                isMorphic
-            />
-        </div>
+        {session.blocks.project && (
+          <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              <BlockCard 
+                  type="project" 
+                  data={session.blocks.project} 
+                  onUpdate={(up) => handleUpdateBlock('project', up)} 
+                  onOpenChat={() => {setActiveContext('PROJECT'); setChatOpen(true);}}
+                  isMorphic
+              />
+          </div>
+        )}
 
         {/* SKILLS STACK (SPAN 4) */}
-        <div className="col-span-12 md:col-span-6 lg:col-span-4">
-            <div className="flex flex-col gap-5 h-full">
-                <BlockCard 
-                    type="softSkill" 
-                    data={session.blocks.softSkill} 
-                    onUpdate={(up) => handleUpdateBlock('softSkill', up)} 
-                    onOpenChat={() => {setActiveContext('SOFT_SKILLS'); setChatOpen(true);}}
-                    isMorphic
-                />
-                <BlockCard 
-                    type="payableSkill" 
-                    data={session.blocks.payableSkill} 
-                    onUpdate={(up) => handleUpdateBlock('payableSkill', up)} 
-                    onOpenChat={() => {setActiveContext('PAYABLE_SKILLS'); setChatOpen(true);}}
-                    isMorphic
-                />
-            </div>
-        </div>
+        {(session.blocks.softSkill || session.blocks.payableSkill) && (
+          <div className="col-span-12 md:col-span-6 lg:col-span-4">
+              <div className="flex flex-col gap-5 h-full">
+                  {session.blocks.softSkill && (
+                    <BlockCard 
+                        type="softSkill" 
+                        data={session.blocks.softSkill} 
+                        onUpdate={(up) => handleUpdateBlock('softSkill', up)} 
+                        onOpenChat={() => {setActiveContext('SOFT_SKILLS'); setChatOpen(true);}}
+                        isMorphic
+                    />
+                  )}
+                  {session.blocks.payableSkill && (
+                    <BlockCard 
+                        type="payableSkill" 
+                        data={session.blocks.payableSkill} 
+                        onUpdate={(up) => handleUpdateBlock('payableSkill', up)} 
+                        onOpenChat={() => {setActiveContext('PAYABLE_SKILLS'); setChatOpen(true);}}
+                        isMorphic
+                    />
+                  )}
+              </div>
+          </div>
+        )}
 
         {/* SURVIVAL / GAP MODULE (SPAN 4) */}
-        <div className="col-span-12 lg:col-span-4">
-            <BlockCard 
-                type="survival" 
-                data={session.blocks.survival} 
-                onUpdate={(up) => handleUpdateBlock('survival', up)} 
-                onOpenChat={() => {setActiveContext('SURVIVAL'); setChatOpen(true);}}
-                isMorphic
-            />
-        </div>
+        {session.blocks.survival && (
+          <div className="col-span-12 lg:col-span-4">
+              <BlockCard 
+                  type="survival" 
+                  data={session.blocks.survival} 
+                  onUpdate={(up) => handleUpdateBlock('survival', up)} 
+                  onOpenChat={() => {setActiveContext('SURVIVAL'); setChatOpen(true);}}
+                  isMorphic
+              />
+          </div>
+        )}
 
         {/* NEURAL LOG (INTEL FEED) (SPAN 4) */}
         <div className="col-span-12 lg:col-span-4 row-span-1 min-h-[400px]">
