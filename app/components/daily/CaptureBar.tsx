@@ -89,16 +89,20 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess, isHudM
     <div className={`w-full relative ${isHudMode ? '' : 'fixed bottom-8 left-1/2 -translate-x-1/2 max-w-xl px-4 z-[100]'}`}>
       {/* Topic Selection Menu */}
       {isMenuOpen && (
-        <div className="absolute bottom-full mb-2 left-0 w-full glass-card rounded-xl overflow-hidden animate-hud-fade border border-[#EBEBEB] z-[110]">
-           <div className="p-3 border-b border-[#EBEBEB] bg-[#FAFAFA]">
-              <span className="text-[10px] font-mono text-[#A1A1AA] uppercase tracking-widest">Select Context</span>
+        <div className="absolute bottom-full mb-4 left-0 w-full glass-card rounded-2xl overflow-hidden animate-hud-fade border border-white/20 shadow-2xl z-[110]">
+           <div className="p-4 border-b border-black/5 flex justify-between items-center bg-white/40">
+              <span className="text-[10px] font-mono text-[#111111] uppercase tracking-[0.2em] font-bold">Select Intelligence Context</span>
+              <div className="flex gap-2">
+                 <span className="text-[9px] font-mono bg-black/5 px-2 py-0.5 rounded text-[#A1A1AA]">↑↓ Navigate</span>
+                 <span className="text-[9px] font-mono bg-black/5 px-2 py-0.5 rounded text-[#A1A1AA]">↵ Select</span>
+              </div>
            </div>
-           <div className="max-h-48 overflow-y-auto">
+           <div className="max-h-[320px] overflow-y-auto pt-2 pb-2">
              {menuItems.map((item, i) => (
                <div
                  key={item.id}
-                 className={`px-4 py-3 flex items-center justify-between cursor-pointer transition-colors ${
-                   i === selectedIndex ? 'bg-black text-white' : 'hover:bg-[#FAFAFA] text-[#111111]'
+                 className={`mx-2 px-4 py-3.5 flex items-center justify-between cursor-pointer transition-all rounded-xl ${
+                   i === selectedIndex ? 'bg-[#111111] text-white translate-x-1 shadow-lg' : 'hover:bg-black/5 text-[#71717A]'
                  }`}
                  onClick={() => {
                     if (item.id !== 'general') setSelectedTopic({ id: item.id, name: item.name });
@@ -108,9 +112,12 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess, isHudM
                     inputRef.current?.focus();
                  }}
                >
-                 <span className="text-[13px] font-medium tracking-tight">{item.name}</span>
-                 <span className={`text-[9px] font-mono px-1.5 py-0.5 rounded border ${
-                   i === selectedIndex ? 'border-white/30 text-white/60' : 'border-[#EBEBEB] text-[#A1A1AA]'
+                 <div className="flex items-center gap-3">
+                    <div className={`w-1.5 h-1.5 rounded-full ${i === selectedIndex ? 'bg-white animate-pulse' : 'bg-black/20'}`}></div>
+                    <span className="text-[14px] font-medium tracking-tight uppercase tracking-widest">{item.name}</span>
+                 </div>
+                 <span className={`text-[9px] font-mono px-2 py-1 rounded-md border ${
+                   i === selectedIndex ? 'border-white/20 text-white/60 bg-white/10' : 'border-black/10 text-[#A1A1AA]'
                  }`}>
                    {item.type}
                  </span>
@@ -139,8 +146,8 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess, isHudM
           onChange={e => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           disabled={status === 'syncing'}
-          placeholder={selectedTopic ? "Capture insight for this topic..." : "Capture Node [ / to select ]"}
-          className="w-full h-12 bg-white border border-[#EBEBEB] rounded-full pl-12 pr-24 text-[13px] font-mono focus:outline-none focus:border-[#111111] focus:shadow-[0_0_0_4px_rgba(0,0,0,0.03)] transition-all"
+          placeholder={selectedTopic ? `LOGGING_INTEL: ${selectedTopic.name.toUpperCase()}...` : "Neural_Input_v1 [ / for command ]"}
+          className="w-full h-11 bg-transparent pl-12 pr-24 text-[13px] font-mono focus:outline-none placeholder:text-[#A1A1AA]/50 text-[#111111] transition-all"
         />
 
         {/* Status Indicator / Sync Trigger */}

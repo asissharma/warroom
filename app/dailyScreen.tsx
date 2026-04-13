@@ -139,7 +139,9 @@ export default function DailyScreen() {
         {/* QUESTIONS: MAIN HUB (SPAN 8) */}
         <div className="col-span-12 lg:col-span-8 row-span-2">
             <div className="glass-card h-full flex flex-col p-2 border-rose-500/10">
-                <div className="px-10 pt-8">
+                <div className="px-10 pt-8 relative">
+                    <div className="data-decal top-4 left-4">SEC_01 // HUB</div>
+                    <div className="data-decal top-4 right-4">COORD_42.9N</div>
                     <div className="font-mono text-[10px] text-rose-500 uppercase tracking-[0.3em] mb-1">Tactical_Retrieval</div>
                     <div className="text-[11px] text-[#A1A1AA]">Memory consolidation logic active.</div>
                 </div>
@@ -155,7 +157,8 @@ export default function DailyScreen() {
 
         {/* TECH SPINE (SPAN 4) */}
         {session.blocks.spine && (
-          <div className="col-span-12 md:col-span-6 lg:col-span-4">
+          <div className="col-span-12 md:col-span-6 lg:col-span-4 relative">
+              <div className="data-decal top-2 right-4 z-10">TECH_SPINE</div>
               <BlockCard 
                   type="spine" 
                   data={session.blocks.spine} 
@@ -241,16 +244,8 @@ export default function DailyScreen() {
                     )}
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-black/5">
-                    <CaptureBar 
-                        sessionDay={session.dayNumber} 
-                        activeTopics={activeTopics}
-                        isHudMode={true}
-                        onSuccess={(msg) => {
-                            setAiFeedback(msg);
-                            setTimeout(() => setAiFeedback(null), 5000);
-                        }}
-                    />
+                <div className="mt-6 pt-6 border-t border-black/5 opacity-40 grayscale pointer-events-none">
+                    <div className="text-[9px] font-mono text-center">HUD_CONSOLE_MIRROR // ACTIVE_AT_BASE</div>
                 </div>
             </div>
         </div>
@@ -268,6 +263,23 @@ export default function DailyScreen() {
             </div>
         </div>
       </div>
+
+      {/* FIXED COMMAND CONSOLE (CRAFTSMANSHIP RELOCATION) */}
+      {!session.isClosed && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 z-[200]">
+            <div className="glass-card rounded-full p-1.5 shadow-2xl border-black/5">
+                <CaptureBar 
+                    sessionDay={session.dayNumber} 
+                    activeTopics={activeTopics}
+                    isHudMode={true}
+                    onSuccess={(msg) => {
+                        setAiFeedback(msg);
+                        setTimeout(() => setAiFeedback(null), 5000);
+                    }}
+                />
+            </div>
+        </div>
+      )}
 
       {/* GLOBAL HUD FEEDBACK */}
       {aiFeedback && (

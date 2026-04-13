@@ -6,6 +6,7 @@ export interface ISkill extends Document {
   name: string;
   prompt: string;
   chapter?: string;
+  completionPercent?: number;
   status: 'pending' | 'in-progress' | 'completed';
 }
 
@@ -16,6 +17,7 @@ const SkillSchema = new Schema<ISkill>(
     name: { type: String, required: true },
     prompt: { type: String },
     chapter: { type: String },
+    completionPercent: { type: Number, default: 0 },
     status: { type: String, enum: ['pending', 'in-progress', 'completed'], default: 'pending' },
   },
   { timestamps: true }

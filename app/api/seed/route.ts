@@ -210,16 +210,18 @@ export async function POST() {
         }
       }
 
-      // Payable skills
+      // Payable skills - ensure unique by name
       if (day.payable) {
-        payableSkillDocs.push({
-          order: day.day,
-          type: 'payable',
-          name: day.payable.name,
-          chapter: day.payable.chapter ? day.payable.chapter.toString() : undefined,
-          prompt: day.payable.dailyTask,
-          status: 'pending',
-        });
+        if (!payableSkillDocs.find(s => s.name === day.payable.name)) {
+          payableSkillDocs.push({
+            order: day.day,
+            type: 'payable',
+            name: day.payable.name,
+            chapter: day.payable.chapter ? day.payable.chapter.toString() : undefined,
+            prompt: day.payable.dailyTask,
+            status: 'pending',
+          });
+        }
       }
     }
 

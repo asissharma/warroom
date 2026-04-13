@@ -158,25 +158,25 @@ export default function BlockCard({ type, data, onUpdate, onOpenChat, isMorphic 
           <span className={`pill-badge ${style.bg} ${style.text}`}>
             {type.replace(/([A-Z])/g, ' $1')}
           </span>
-          
-          <div className="flex items-center gap-1.5 ml-2">
-            {isDone && (
-              <div className="flex items-center gap-1.5">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none" className="text-[#22C55E]">
-                  <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" />
-                  <path d="M6 10L9 13L14 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="text-[11px] font-medium text-[#22C55E]">Done</span>
-              </div>
-            )}
-            {isInProgress && (
-              <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></div>
-                <span className="text-[11px] font-medium text-[#F59E0B]">In progress</span>
-              </div>
-            )}
-          </div>
         </div>
+        
+        {/* LED STATUS INDICATOR */}
+        <div className="absolute top-8 right-8 flex items-center gap-2">
+            {isDone ? (
+                <div className="flex items-center gap-1.5 bg-[#F0FDF4] px-2 py-0.5 rounded-full border border-[#22C55E]/20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#22C55E] shadow-[0_0_8px_#22C55E]"></div>
+                    <span className="text-[9px] font-mono text-[#166534] uppercase font-bold">STABLE</span>
+                </div>
+            ) : isInProgress ? (
+                <div className="flex items-center gap-1.5 bg-[#FFFBEB] px-2 py-0.5 rounded-full border border-[#F59E0B]/20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] animate-pulse shadow-[0_0_8px_#F59E0B]"></div>
+                    <span className="text-[9px] font-mono text-[#92400E] uppercase font-bold">ACTIVE</span>
+                </div>
+            ) : (
+                <div className="w-1.5 h-1.5 rounded-full bg-[#EBEBEB]"></div>
+            )}
+        </div>
+
         <div className="text-[12px] text-[#A1A1AA] font-mono">{getEstTime()}</div>
       </div>
 
