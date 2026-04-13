@@ -10,7 +10,7 @@ export default function RootPage() {
     const [activeScreen, setActiveScreen] = useState<'DAILY' | 'SYLLABUS' | 'SETTINGS'>('DAILY');
 
     return (
-        <div className="h-screen w-full relative bg-[#FAFAFA]">
+        <div style={{ height: '100vh', width: '100%', position: 'relative', background: '#FFFFFF' }}>
             {activeScreen === 'DAILY' && <DailyScreen />}
             {activeScreen === 'SYLLABUS' && <SyllabusPitt />}
             {activeScreen === 'SETTINGS' && <SettingsScreen />}

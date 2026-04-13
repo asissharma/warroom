@@ -6,9 +6,12 @@ interface TechSpineTabProps {
   onSelectItem: (item: any) => void;
 }
 
+type FilterType = 'all' | 'foundation' | 'intermediate' | 'advanced';
+
 export default function TechSpineTab({ onSelectItem }: TechSpineTabProps) {
   const [topics, setTopics] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState<FilterType>('all');
 
   useEffect(() => {
     async function fetchData() {
@@ -29,58 +32,55 @@ export default function TechSpineTab({ onSelectItem }: TechSpineTabProps) {
 
   if (loading) {
     return (
-      <div className="py-20 flex flex-col items-center justify-center opacity-50">
-        <div className="w-8 h-8 border-2 border-[#111111] border-t-transparent rounded-full animate-spin mb-4" />
-        <div className="font-mono text-[10px] uppercase tracking-widest text-[#A1A1AA]">Syncing_Tech_Spine...</div>
+      <div style={{ padding: '80px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
+        <div style={{ width: 28, height: 28, border: '2px solid #111111', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', marginBottom: 16 }} />
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Loading...</div>
       </div>
     );
   }
 
+  const filters: { id: FilterType; label: string }[] = [
+    { id: 'all', label: 'All' },
+    { id: 'foundation', label: 'Foundation' },
+    { id: 'intermediate', label: 'Intermediate' },
+    { id: 'advanced', label: 'Advanced' },
+  ];
+
+  const filtered = filter === 'all'
+    ? topics
+    : topics.filter(t => (t.phase || '').toLowerCase() === filter);
+
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-      <div className="flex items-center justify-between mb-12">
-          <div>
-            <h2 className="text-[28px] serif font-bold tracking-tight mb-1">Knowledge Repository</h2>
-            <p className="text-[13px] text-[#A1A1AA]">Index of core technical nodes and architectural concepts.</p>
-          </div>
-          <div className="flex gap-4">
-              <div className="px-4 py-2 border border-[#EBEBEB] rounded-xl text-[12px] font-mono">Total_Nodes: {topics.length}</div>
-          </div>
+    <div className="animate-fade-slide">
+      {/* Filter pills */}
+      <div className="syll-filter-row">
+        {filters.map((f) => (
+          <button
+            key={f.id}
+            onClick={() => setFilter(f.id)}
+            className={`syll-filter-pill ${filter === f.id ? 'syll-filter-pill--active' : ''}`}
+          >
+            {f.label}
+          </button>
+        ))}
       </div>
 
-      <div className="space-y-[1px] bg-[#EBEBEB] border border-[#EBEBEB] rounded-2xl overflow-hidden">
-        {topics.map((item, idx) => (
-          <div 
-            key={item._id} 
-            onClick={() => onSelectItem({...item, source: 'spine'})}
-            className="group flex items-center gap-8 bg-white p-6 hover:bg-[#FAFAFA] transition-all cursor-pointer relative"
+      {/* Topic list */}
+      <div className="syll-list">
+        {filtered.map((item) => (
+          <div
+            key={item._id}
+            onClick={() => onSelectItem({ ...item, source: 'spine' })}
+            className="syll-row-card"
           >
-            <div className="w-12 font-mono text-[11px] text-[#A1A1AA] leading-none">
-                {(idx + 1).toString().padStart(2, '0')}
+            <div className="syll-row-card__left">
+              <div className="syll-row-card__name">{item.topic}</div>
+              <div className="syll-row-card__meta">
+                Day {item.dayStart || 1}–{item.dayEnd || item.week * 7 || 6}
+              </div>
             </div>
-
-            <div className="flex-1">
-                <div className="flex items-center gap-4 mb-1">
-                    <h3 className="text-[16px] font-bold tracking-tight text-[#111111]">
-                        {item.topic}
-                    </h3>
-                    <StatusBadge status={item.status} />
-                </div>
-                <div className="text-[13px] text-[#A1A1AA] line-clamp-1">{item.microtask || 'Primary technical object.'}</div>
-            </div>
-
-            <div className="flex items-center gap-12 text-right shrink-0">
-                <div>
-                    <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-0.5 tracking-widest">Phase</div>
-                    <div className="text-[12px] font-bold">{item.phase?.toUpperCase() || 'PHASE_ALPHA'}</div>
-                </div>
-                <div>
-                    <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-0.5 tracking-widest">Schedule</div>
-                    <div className="text-[12px] font-bold">W{item.week}</div>
-                </div>
-                <div className="w-8 h-8 rounded-full border border-[#EBEBEB] flex items-center justify-center text-[14px] group-hover:bg-[#111111] group-hover:text-white transition-all">
-                    →
-                </div>
+            <div className="syll-row-card__right">
+              <SpineStatusBadge status={item.status} />
             </div>
           </div>
         ))}
@@ -89,16 +89,31 @@ export default function TechSpineTab({ onSelectItem }: TechSpineTabProps) {
   );
 }
 
-function StatusBadge({ status }: { status: string }) {
-    const styles: any = {
-        'completed': 'text-[#166534] bg-[#F0FDF4]',
-        'in-progress': 'text-[#0369A1] bg-[#E0F2FE]',
-        'pending': 'text-[#A1A1AA] bg-[#FAFAFA]',
-    };
+function SpineStatusBadge({ status }: { status: string }) {
+  const s = (status || '').toLowerCase();
+  let bg = '#F4F4F5', color = '#71717A', label = 'Not Started';
 
-    return (
-        <span className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-widest ${styles[status] || styles['pending']}`}>
-            {status || 'pending'}
-        </span>
-    );
+  if (s === 'completed' || s === 'mastered') {
+    bg = '#F0FDF4'; color = '#166534'; label = 'Mastered';
+  } else if (s === 'in-progress' || s === 'solid') {
+    bg = '#DBEAFE'; color = '#1D4ED8'; label = 'Solid';
+  } else if (s === 'surface' || s === 'started') {
+    bg = '#E0F2FE'; color = '#0369A1'; label = 'Surface';
+  }
+
+  return (
+    <span style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      padding: '4px 12px',
+      borderRadius: 100,
+      fontSize: 12,
+      fontFamily: "'Inter', sans-serif",
+      fontWeight: 500,
+      background: bg,
+      color: color,
+    }}>
+      {label}
+    </span>
+  );
 }

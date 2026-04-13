@@ -6,13 +6,21 @@ import ChatPanel from './components/daily/ChatPanel';
 import SessionClose from './components/daily/SessionClose';
 import CaptureBar from './components/daily/CaptureBar';
 
+const BLOCK_LABELS: Record<string, string> = {
+  spine: 'SPINE',
+  softSkill: 'SOFT SKILL',
+  payableSkill: 'PAYABLE SKILL',
+  project: 'PROJECT',
+  questions: 'QUESTIONS',
+  survival: 'SURVIVAL',
+};
+
 export default function DailyScreen() {
   const [session, setSession] = useState<any>(null);
   const [carryForward, setCarryForward] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
   const [activeContext, setActiveContext] = useState<string>('');
-  const [aiFeedback, setAiFeedback] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadData() {
@@ -36,22 +44,22 @@ export default function DailyScreen() {
     const { syncQuestion, ...pureUpdateData } = updateData;
 
     setSession((prev: any) => {
-        const next = { ...prev };
-        const block = { ...next.blocks[blockType] };
+      const next = { ...prev };
+      const block = { ...next.blocks[blockType] };
 
-        if (syncQuestion) {
-            const items = [...block.items];
-            const idx = items.findIndex(q => q.id === syncQuestion.id);
-            if (idx !== -1 && items[idx].status === 'Pending') {
-                items[idx].status = syncQuestion.status;
-                if (syncQuestion.status === 'Correct') block.correct++;
-                else if (syncQuestion.status === 'Struggled') block.struggled++;
-                block.items = items;
-            }
-        } 
-        
-        next.blocks[blockType] = { ...block, ...pureUpdateData };
-        return next;
+      if (syncQuestion) {
+        const items = [...block.items];
+        const idx = items.findIndex(q => q.id === syncQuestion.id);
+        if (idx !== -1 && items[idx].status === 'Pending') {
+          items[idx].status = syncQuestion.status;
+          if (syncQuestion.status === 'Correct') block.correct++;
+          else if (syncQuestion.status === 'Struggled') block.struggled++;
+          block.items = items;
+        }
+      }
+
+      next.blocks[blockType] = { ...block, ...pureUpdateData };
+      return next;
     });
 
     try {
@@ -81,223 +89,201 @@ export default function DailyScreen() {
 
   if (loading) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-[#FAFAFA]">
-        <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#A1A1AA] animate-pulse">
-            Booting_Neural_OS...
+      <div style={{ height: '100vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF' }}>
+        <div style={{ fontFamily: 'var(--font-body), Inter, sans-serif', fontSize: 13, color: '#A1A1AA' }}>
+          Loading...
         </div>
       </div>
     );
   }
 
   if (!session) {
-    return <div className="h-screen w-full flex items-center justify-center font-mono text-rose-500 bg-[#FAFAFA]">DIRECTIVE_STALLED // DATABASE_OFFLINE</div>;
+    return (
+      <div style={{ height: '100vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-body), Inter, sans-serif', fontSize: 14, color: '#BE123C' }}>
+        Unable to load session. Check database connection.
+      </div>
+    );
   }
 
-  const activeTopics = Object.entries(session.blocks)
-    .filter(([k, v]: any) => v && k !== 'questions')
-    .map(([k, v]: any) => ({
-        id: k,
-        name: v.topicToday || v.projectName || v.skillName || v.topicName || k,
-        type: k
-    }));
+  // Count completed blocks
+  const blockKeys = ['spine', 'softSkill', 'payableSkill', 'project', 'survival', 'questions'];
+  const existingBlocks = blockKeys.filter(k => session.blocks[k]);
+  const doneBlocks = existingBlocks.filter(k => {
+    const b = session.blocks[k];
+    return b.status === 'Done' || b.isDone;
+  });
+
+  // Build feed items from carryForward
+  const feedItems = carryForward.map((item, i) => ({
+    id: i,
+    name: item.name,
+    type: item.type || 'general',
+    text: `Yesterday's ${item.name} carried forward`,
+    time: 'Yesterday'
+  }));
+
+  // Block type colors for feed dots
+  const blockDotColors: Record<string, string> = {
+    spine: '#0369A1',
+    softSkill: '#166534',
+    payableSkill: '#9A3412',
+    project: '#7E22CE',
+    questions: '#BE123C',
+    survival: '#92400E',
+    general: '#A1A1AA',
+  };
+
+  const handleOpenChat = (contextType: string) => {
+    setActiveContext(contextType);
+    setChatOpen(true);
+  };
 
   return (
-    <div className="min-h-screen w-full tactical-grid p-6 pb-20 relative overflow-x-hidden">
-      
-      {/* SCANLINE EFFECT */}
-      <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden opacity-5">
-        <div className="scanline"></div>
-      </div>
+    <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', background: '#FFFFFF' }}>
 
-      {/* TOP HEADER MODULES */}
-      <div className="grid grid-cols-12 gap-5 mb-5 overflow-visible">
-        <div className="col-span-12 md:col-span-3 glass-card p-6 flex flex-col justify-center border-orange-500/20">
-            <div className="text-[10px] font-mono text-[#A1A1AA] uppercase tracking-[0.2em] mb-1">Neural_Phase</div>
-            <div className="text-[28px] font-bold text-[#111111] tracking-tighter">{session.phase}</div>
-        </div>
-        
-        <div className="col-span-12 md:col-span-6 glass-card p-6 flex flex-col justify-center text-center relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="text-[10px] font-mono text-[#A1A1AA] uppercase tracking-[0.4em] mb-1">Current_Directive</div>
-            <h1 className="text-[32px] serif text-[#111111] leading-tight tracking-tight">
-                DIRECTIVE_{session.dayNumber}
-            </h1>
+      {/* ── TOP BAR ─────────────────────────────────── */}
+      <div className="top-bar">
+        <div className="top-bar__directive">
+          DIRECTIVE_{session.dayNumber}
         </div>
 
-        <div className="col-span-12 md:col-span-3 glass-card p-6 flex flex-col justify-center border-green-500/20">
-            <div className="text-[10px] font-mono text-[#A1A1AA] uppercase tracking-[0.2em] mb-1">Momentum_Yield</div>
-            <div className="flex items-end gap-3">
-                <div className="text-[28px] font-bold text-[#111111] tracking-tighter">{session.momentumScore?.toFixed(1) || '0.0'}</div>
-                <div className="text-[10px] font-mono text-green-500 mb-2">▲ LVL_STATIC</div>
-            </div>
+        <div className="top-bar__pills">
+          <span className="top-bar__pill">{session.phase}</span>
+          <span className="top-bar__pill">{session.momentumScore?.toFixed(1) || '0.0'} momentum</span>
+          <span className="top-bar__pill">Day {session.dayNumber}</span>
+        </div>
+
+        <div className="top-bar__progress">
+          {doneBlocks.length} / {existingBlocks.length} blocks complete
         </div>
       </div>
 
-      {/* MASONRY NEURAL GRID */}
-      <div className="grid grid-cols-12 gap-5 auto-rows-auto">
-        
-        {/* QUESTIONS: MAIN HUB (SPAN 8) */}
-        <div className="col-span-12 lg:col-span-8 row-span-2">
-            <div className="glass-card h-full flex flex-col p-2 border-rose-500/10">
-                <div className="px-10 pt-8 relative">
-                    <div className="data-decal top-4 left-4">SEC_01 // HUB</div>
-                    <div className="data-decal top-4 right-4">COORD_42.9N</div>
-                    <div className="font-mono text-[10px] text-rose-500 uppercase tracking-[0.3em] mb-1">Tactical_Retrieval</div>
-                    <div className="text-[11px] text-[#A1A1AA]">Memory consolidation logic active.</div>
-                </div>
-                <BlockCard 
-                    type="questions" 
-                    data={session.blocks.questions} 
-                    onUpdate={(up) => handleUpdateBlock('questions', up)} 
-                    onOpenChat={() => {setActiveContext('QUESTIONS_SM2'); setChatOpen(true);}}
-                    isMorphic
-                />
-            </div>
-        </div>
+      {/* ── MAIN AREA ───────────────────────────────── */}
+      <div className="main-layout">
 
-        {/* TECH SPINE (SPAN 4) */}
-        {session.blocks.spine && (
-          <div className="col-span-12 md:col-span-6 lg:col-span-4 relative">
-              <div className="data-decal top-2 right-4 z-10">TECH_SPINE</div>
-              <BlockCard 
-                  type="spine" 
-                  data={session.blocks.spine} 
-                  onUpdate={(up) => handleUpdateBlock('spine', up)} 
-                  onOpenChat={() => {setActiveContext('TECH_SPINE'); setChatOpen(true);}}
-                  isMorphic
-              />
-          </div>
-        )}
+        {/* LEFT PANEL — Block cards stacked */}
+        <div className="left-panel hide-scrollbar">
 
-        {/* PROJECT (SPAN 4) */}
-        {session.blocks.project && (
-          <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              <BlockCard 
-                  type="project" 
-                  data={session.blocks.project} 
-                  onUpdate={(up) => handleUpdateBlock('project', up)} 
-                  onOpenChat={() => {setActiveContext('PROJECT'); setChatOpen(true);}}
-                  isMorphic
-              />
-          </div>
-        )}
+          {/* Questions block */}
+          {session.blocks.questions && (
+            <BlockCard
+              type="questions"
+              data={session.blocks.questions}
+              onUpdate={(up) => handleUpdateBlock('questions', up)}
+              onOpenChat={() => handleOpenChat('QUESTIONS_SM2')}
+            />
+          )}
 
-        {/* SKILLS STACK (SPAN 4) */}
-        {(session.blocks.softSkill || session.blocks.payableSkill) && (
-          <div className="col-span-12 md:col-span-6 lg:col-span-4">
-              <div className="flex flex-col gap-5 h-full">
-                  {session.blocks.softSkill && (
-                    <BlockCard 
-                        type="softSkill" 
-                        data={session.blocks.softSkill} 
-                        onUpdate={(up) => handleUpdateBlock('softSkill', up)} 
-                        onOpenChat={() => {setActiveContext('SOFT_SKILLS'); setChatOpen(true);}}
-                        isMorphic
-                    />
-                  )}
-                  {session.blocks.payableSkill && (
-                    <BlockCard 
-                        type="payableSkill" 
-                        data={session.blocks.payableSkill} 
-                        onUpdate={(up) => handleUpdateBlock('payableSkill', up)} 
-                        onOpenChat={() => {setActiveContext('PAYABLE_SKILLS'); setChatOpen(true);}}
-                        isMorphic
-                    />
-                  )}
+          {/* Tech Spine */}
+          {session.blocks.spine && (
+            <BlockCard
+              type="spine"
+              data={session.blocks.spine}
+              onUpdate={(up) => handleUpdateBlock('spine', up)}
+              onOpenChat={() => handleOpenChat('TECH_SPINE')}
+            />
+          )}
+
+          {/* Project */}
+          {session.blocks.project && (
+            <BlockCard
+              type="project"
+              data={session.blocks.project}
+              onUpdate={(up) => handleUpdateBlock('project', up)}
+              onOpenChat={() => handleOpenChat('PROJECT')}
+            />
+          )}
+
+          {/* Soft Skill */}
+          {session.blocks.softSkill && (
+            <BlockCard
+              type="softSkill"
+              data={session.blocks.softSkill}
+              onUpdate={(up) => handleUpdateBlock('softSkill', up)}
+              onOpenChat={() => handleOpenChat('SOFT_SKILLS')}
+            />
+          )}
+
+          {/* Payable Skill */}
+          {session.blocks.payableSkill && (
+            <BlockCard
+              type="payableSkill"
+              data={session.blocks.payableSkill}
+              onUpdate={(up) => handleUpdateBlock('payableSkill', up)}
+              onOpenChat={() => handleOpenChat('PAYABLE_SKILLS')}
+            />
+          )}
+
+          {/* Survival */}
+          {session.blocks.survival && (
+            <BlockCard
+              type="survival"
+              data={session.blocks.survival}
+              onUpdate={(up) => handleUpdateBlock('survival', up)}
+              onOpenChat={() => handleOpenChat('SURVIVAL')}
+            />
+          )}
+
+          {/* Close Day Section */}
+          {!session.isClosed && (
+            <SessionClose onCloseSession={handleCloseSession} />
+          )}
+
+          {session.isClosed && (
+            <div className="session-closed">
+              <div style={{ fontSize: 12, color: '#A1A1AA', marginBottom: 8 }}>Session Complete</div>
+              <div style={{ fontSize: 16, color: '#111111', fontWeight: 500 }}>
+                Day {session.dayNumber} is closed. No further changes.
               </div>
-          </div>
-        )}
-
-        {/* SURVIVAL / GAP MODULE (SPAN 4) */}
-        {session.blocks.survival && (
-          <div className="col-span-12 lg:col-span-4">
-              <BlockCard 
-                  type="survival" 
-                  data={session.blocks.survival} 
-                  onUpdate={(up) => handleUpdateBlock('survival', up)} 
-                  onOpenChat={() => {setActiveContext('SURVIVAL'); setChatOpen(true);}}
-                  isMorphic
-              />
-          </div>
-        )}
-
-        {/* NEURAL LOG (INTEL FEED) (SPAN 4) */}
-        <div className="col-span-12 lg:col-span-4 row-span-1 min-h-[400px]">
-            <div className="glass-card h-full p-8 flex flex-col relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 font-mono text-[8px] text-[#A1A1AA]">LOG_v4.2</div>
-                <div className="text-[10px] font-mono text-[#A1A1AA] uppercase tracking-[0.2em] mb-6">Neural_Log // Intel</div>
-                
-                <div className="flex-1 overflow-y-auto hide-scrollbar space-y-4">
-                    {carryForward.length > 0 ? carryForward.map((item, i) => (
-                        <div key={i} className="flex flex-col p-4 bg-black/5 rounded-xl border border-black/5 group-hover:bg-white transition-all">
-                            <div className="flex justify-between items-center mb-2">
-                                <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest">{item.name}</span>
-                                <span className="text-[9px] font-mono text-[#A1A1AA]">ROLLOVER</span>
-                            </div>
-                            <div className="text-[13px] text-[#71717A] leading-relaxed">Yesterday's intent persisted into current session substrate.</div>
-                        </div>
-                    )) : (
-                        <div className="h-full flex flex-col items-center justify-center opacity-30">
-                            <div className="w-8 h-[1px] bg-[#111111] mb-2"></div>
-                            <span className="text-[11px] font-mono">NOMINAL</span>
-                        </div>
-                    )}
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-black/5 opacity-40 grayscale pointer-events-none">
-                    <div className="text-[9px] font-mono text-center">HUD_CONSOLE_MIRROR // ACTIVE_AT_BASE</div>
-                </div>
             </div>
+          )}
         </div>
 
-        {/* SESSION CLOSE (SPAN 8) */}
-        <div className="col-span-12 lg:col-span-8">
-            <div className="glass-card overflow-hidden">
-                {!session.isClosed && <SessionClose onCloseSession={handleCloseSession} />}
-                {session.isClosed && (
-                    <div className="p-16 text-center bg-white/50 backdrop-blur-md">
-                        <div className="font-mono text-[10px] text-[#A1A1AA] uppercase tracking-[0.3em] mb-3">Neural_Protocol_Complete</div>
-                        <div className="text-[#111111] font-medium tracking-tight">Offline. No further intent captured for Day {session.dayNumber}.</div>
-                    </div>
+        {/* RIGHT PANEL — Feed or Chat */}
+        <div className="right-panel hide-scrollbar">
+          {chatOpen ? (
+            <ChatPanel
+              isOpen={chatOpen}
+              onClose={() => setChatOpen(false)}
+              contextType={activeContext}
+              onDrift={() => { }}
+              onCapture={() => { }}
+            />
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div className="feed-title">Today&apos;s Feed</div>
+
+              <div style={{ flex: 1, overflowY: 'auto' }} className="hide-scrollbar">
+                {feedItems.length > 0 ? (
+                  <div>
+                    {feedItems.map((item) => (
+                      <div key={item.id} className="feed-item">
+                        <div
+                          className="feed-item__dot"
+                          style={{ background: blockDotColors[item.type] || '#A1A1AA' }}
+                        />
+                        <div className="feed-item__text">{item.text}</div>
+                        <div className="feed-item__time">{item.time}</div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="feed-empty">
+                    No alerts today
+                  </div>
                 )}
+              </div>
+
+              {/* CAPTURE FEATURE — Bottom of right panel */}
+              <CaptureBar
+                sessionDay={session.dayNumber}
+                activeTopics={existingBlocks.map(k => ({ id: k, name: BLOCK_LABELS[k] || k, type: k }))}
+              />
             </div>
+          )}
         </div>
+
       </div>
-
-      {/* FIXED COMMAND CONSOLE (CRAFTSMANSHIP RELOCATION) */}
-      {!session.isClosed && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 z-[200]">
-            <div className="glass-card rounded-full p-1.5 shadow-2xl border-black/5">
-                <CaptureBar 
-                    sessionDay={session.dayNumber} 
-                    activeTopics={activeTopics}
-                    isHudMode={true}
-                    onSuccess={(msg) => {
-                        setAiFeedback(msg);
-                        setTimeout(() => setAiFeedback(null), 5000);
-                    }}
-                />
-            </div>
-        </div>
-      )}
-
-      {/* GLOBAL HUD FEEDBACK */}
-      {aiFeedback && (
-        <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[200] animate-hud-fade">
-            <div className="bg-[#111111] text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-white/10 inner-glow">
-                <div className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse shadow-[0_0_10px_#22C55E]"></div>
-                <span className="text-[11px] font-mono uppercase tracking-widest">{aiFeedback}</span>
-            </div>
-        </div>
-      )}
-
-      <ChatPanel 
-        isOpen={chatOpen} 
-        onClose={() => setChatOpen(false)} 
-        contextType={activeContext}
-        onDrift={() => {}}
-        onCapture={() => {}}
-      />
     </div>
   );
 }

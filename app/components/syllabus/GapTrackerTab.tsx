@@ -29,95 +29,160 @@ export default function GapTrackerTab({ onSelectItem }: GapTrackerTabProps) {
 
   if (loading) {
     return (
-      <div className="py-20 flex flex-col items-center justify-center opacity-50">
-        <div className="w-8 h-8 border-2 border-[#111111] border-t-transparent rounded-full animate-spin mb-4" />
-        <div className="font-mono text-[10px] uppercase tracking-widest text-[#A1A1AA]">Scanning_Architecture_Gaps...</div>
+      <div style={{ padding: '80px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
+        <div style={{ width: 28, height: 28, border: '2px solid #111111', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', marginBottom: 16 }} />
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Loading...</div>
       </div>
     );
   }
 
   const criticalCount = gaps.filter(g => g.severity === 'critical').length;
 
+  const depthLabels = ['Introduced', 'Explained', 'Drilled'];
+
+  const getSeverityStyle = (severity: string) => {
+    const s = (severity || '').toLowerCase();
+    if (s === 'critical') return { bg: '#FEF2F2', color: '#DC2626', border: '#FECACA' };
+    if (s === 'medium') return { bg: '#FFFBEB', color: '#D97706', border: '#FDE68A' };
+    return { bg: '#F4F4F5', color: '#71717A', border: '#EBEBEB' };
+  };
+
+  const getSourceBadge = (sourceType: string) => {
+    const s = (sourceType || '').toLowerCase();
+    if (s === 'spine' || s === 'tech') return { bg: '#E0F2FE', color: '#0369A1', label: 'Tech Spine' };
+    if (s === 'soft' || s === 'softskill') return { bg: '#F0FDF4', color: '#166534', label: 'Soft Skills' };
+    if (s === 'payable') return { bg: '#FFF7ED', color: '#9A3412', label: 'Payable' };
+    if (s === 'project') return { bg: '#FAF5FF', color: '#7E22CE', label: 'Project' };
+    if (s === 'questions' || s === 'question') return { bg: '#FFF1F2', color: '#BE123C', label: 'Questions' };
+    if (s === 'survival') return { bg: '#FFFBEB', color: '#92400E', label: 'Survival' };
+    return { bg: '#F4F4F5', color: '#71717A', label: sourceType || 'System' };
+  };
+
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-      <div className="flex items-center justify-between mb-12 border-l-4 border-rose-500 pl-6">
-          <div>
-            <h2 className="text-[28px] serif font-bold tracking-tight mb-1">Intelligence Recovery Feed</h2>
-            <p className="text-[13px] text-[#A1A1AA]">Identified drifts in curriculum depth requiring immediate survival focus.</p>
-          </div>
-          <div className="flex gap-6 items-center">
-              <div className="text-right">
-                <div className="text-[9px] font-mono text-[#71717A] uppercase mb-0.5">Critical_Drifts</div>
-                <div className="text-[20px] font-bold text-rose-500">{criticalCount.toString().padStart(2, '0')}</div>
-              </div>
-              <button className="px-5 py-2.5 bg-rose-500 text-white text-[11px] font-bold uppercase tracking-widest rounded-xl hover:bg-rose-600 transition-all shadow-lg shadow-rose-200">New_Capture</button>
-          </div>
-      </div>
-
-      <div className="space-y-4">
-        {gaps.length === 0 ? (
-          <div className="py-24 flex flex-col items-center justify-center text-center bg-white border border-[#EBEBEB] rounded-[32px] border-dashed">
-            <div className="w-16 h-16 rounded-full bg-green-50 text-green-500 flex items-center justify-center text-2xl mb-6">🛡</div>
-            <h3 className="text-xl font-bold mb-2">Systems Nominal</h3>
-            <p className="text-[14px] text-[#A1A1AA] max-w-sm">No critical data drifts detected in current intelligence phase.</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {gaps.map((gap) => (
-              <div 
-                key={gap._id} 
-                onClick={() => onSelectItem({...gap, source: 'gaps'})}
-                className={`
-                    group flex items-center gap-8 p-8 border rounded-[32px] transition-all cursor-pointer relative overflow-hidden
-                    ${gap.severity === 'critical' ? 'bg-white border-rose-200 hover:border-rose-500 border-l-[12px] border-l-rose-500' : 'bg-white border-[#EBEBEB] hover:border-[#111111]'}
-                `}
-              >
-                <div className="flex-1">
-                    <div className="flex items-center gap-4 mb-3">
-                        <div className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-widest ${gap.severity === 'critical' ? 'bg-rose-100 text-rose-500' : 'bg-orange-100 text-orange-600'}`}>
-                            DRFT_{gap.severity.toUpperCase()}
-                        </div>
-                        <h3 className="text-[18px] font-bold text-[#111111] tracking-tight">{gap.concept}</h3>
-                    </div>
-                    <p className="text-[14px] text-[#71717A] italic leading-relaxed line-clamp-1 border-l border-[#EBEBEB] pl-4">
-                        {gap.notes || 'Recovery strategy pending.'}
-                    </p>
-                </div>
-
-                <div className="flex items-center gap-12 text-right shrink-0">
-                    <div>
-                        <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-0.5">Flags</div>
-                        <div className="text-[16px] font-bold">x{(gap.flagCount || 1).toString().padStart(2, '0')}</div>
-                    </div>
-                    <div>
-                        <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-0.5">Source</div>
-                        <div className="text-[11px] font-bold uppercase tracking-widest">{gap.sourceType || 'SYSTEM'}</div>
-                    </div>
-                    <div className="w-10 h-10 rounded-full bg-[#111111] text-white flex items-center justify-center text-[18px]">→</div>
-                </div>
-
-                {gap.severity === 'critical' && (
-                    <div className="absolute top-4 right-8">
-                        <div className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-                    </div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
-        
-        {/* MANUAL CAPTURE FOOTER */}
-        <div className="p-10 border-2 border-dashed border-[#EBEBEB] rounded-[32px] flex items-center justify-between group hover:border-[#111111] transition-all cursor-pointer">
-            <div className="flex items-center gap-6">
-                <div className="w-10 h-10 rounded-full bg-[#FAFAFA] flex items-center justify-center text-xl">+</div>
-                <div>
-                     <h4 className="font-bold text-[15px]">Manual Intelligence Capture</h4>
-                     <p className="text-[12px] text-[#A1A1AA]">Identify and archive a concept for survival recovery.</p>
-                </div>
-            </div>
-            <span className="font-mono text-[10px] text-[#A1A1AA] group-hover:text-[#111111]">PROTOCOL_ALPHA_09</span>
+    <div className="animate-fade-slide">
+      {/* Gap debt bar */}
+      {criticalCount > 0 && (
+        <div style={{
+          background: '#FFF7ED',
+          border: '1px solid #FED7AA',
+          borderRadius: 10,
+          padding: '14px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: 20,
+        }}>
+          <span style={{ fontSize: 13, fontFamily: "'Inter', sans-serif", color: '#92400E' }}>
+            ⚠ {criticalCount} critical gap{criticalCount !== 1 ? 's' : ''} need attention
+          </span>
+          <button style={{
+            background: 'none',
+            border: 'none',
+            fontSize: 13,
+            fontFamily: "'Inter', sans-serif",
+            color: '#F59E0B',
+            cursor: 'pointer',
+            fontWeight: 500,
+          }}>
+            View all
+          </button>
         </div>
-      </div>
+      )}
+
+      {/* Gap list */}
+      {gaps.length === 0 ? (
+        <div style={{
+          padding: '80px 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          background: '#FFFFFF',
+          border: '1px dashed #EBEBEB',
+          borderRadius: 12,
+        }}>
+          <div style={{ fontSize: 32, marginBottom: 12 }}>🛡</div>
+          <div style={{ fontSize: 16, fontWeight: 600, color: '#111111', marginBottom: 6 }}>No Open Gaps</div>
+          <div style={{ fontSize: 13, color: '#A1A1AA' }}>All tracked concepts are on track.</div>
+        </div>
+      ) : (
+        <div className="syll-list" style={{ gap: 10 }}>
+          {gaps.map((gap) => {
+            const sevStyle = getSeverityStyle(gap.severity);
+            const sourceBadge = getSourceBadge(gap.sourceType);
+            const depthReached = gap.depthReached || 0;
+
+            return (
+              <div
+                key={gap._id}
+                onClick={() => onSelectItem({ ...gap, source: 'gaps' })}
+                className="syll-row-card"
+                style={{ padding: '20px 24px', flexDirection: 'column', alignItems: 'stretch', cursor: 'pointer' }}
+              >
+                {/* Row 1: concept + severity badge */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ fontSize: 15, fontFamily: "'Inter', sans-serif", fontWeight: 600, color: '#111111' }}>
+                    {gap.concept}
+                  </div>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '3px 10px',
+                    borderRadius: 100,
+                    fontSize: 11,
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 600,
+                    background: sevStyle.bg,
+                    color: sevStyle.color,
+                    border: `1px solid ${sevStyle.border}`,
+                  }}>
+                    {gap.severity || 'low'}
+                  </span>
+                </div>
+
+                {/* Row 2: source badge + flagged + last addressed */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 8 }}>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '2px 8px',
+                    borderRadius: 100,
+                    fontSize: 11,
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 500,
+                    background: sourceBadge.bg,
+                    color: sourceBadge.color,
+                  }}>
+                    {sourceBadge.label}
+                  </span>
+                  <span style={{ fontSize: 12, fontFamily: "'Inter', sans-serif", color: '#A1A1AA' }}>
+                    Flagged {gap.flagCount || 1} time{(gap.flagCount || 1) !== 1 ? 's' : ''}
+                  </span>
+                  <span style={{ fontSize: 12, fontFamily: "'Inter', sans-serif", color: '#A1A1AA' }}>
+                    Last addressed: Day {gap.lastAddressed || '—'}
+                  </span>
+                </div>
+
+                {/* Row 3: depth progress bar */}
+                <div style={{ marginTop: 12 }}>
+                  <div style={{ width: '100%', height: 3, background: '#F4F4F5', borderRadius: 100, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', width: `${(depthReached / 3) * 100}%`, background: '#111111', borderRadius: 100, transition: 'width 0.4s ease' }} />
+                  </div>
+                  <div style={{
+                    marginTop: 6,
+                    fontSize: 10,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    color: '#A1A1AA',
+                  }}>
+                    Depth: {depthLabels.slice(0, depthReached).join(' / ') || 'None'}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

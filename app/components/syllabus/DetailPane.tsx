@@ -10,102 +10,138 @@ interface DetailPaneProps {
 export default function DetailPane({ item, onClose }: DetailPaneProps) {
   if (!item) return null;
 
+  const sourceLabels: Record<string, string> = {
+    spine: 'Tech Spine',
+    questions: 'Questions',
+    projects: 'Projects',
+    soft_skills: 'Soft Skills',
+    payable_skills: 'Payable Skills',
+    gaps: 'Gap Tracker',
+    survival: 'Gap Tracker',
+  };
+
   return (
-    <div className="flex-1 flex flex-col h-full bg-[#FAFAFA] relative overflow-y-auto">
-      {/* HEADER */}
-      <div className="p-8 border-b border-[#EBEBEB] bg-white">
-        <div className="flex justify-between items-start mb-10">
-            <div className={`px-2 py-0.5 rounded text-[9px] font-mono font-bold uppercase tracking-widest ${getStatusStyle(item.status)}`}>
-              {item.source || 'OBJECT'}: {item.status || 'Active'}
-            </div>
-            <button 
-              onClick={onClose}
-              className="w-10 h-10 rounded-full border border-[#EBEBEB] flex items-center justify-center text-[20px] hover:bg-[#FAFAFA] transition-all"
-            >
-              ×
-            </button>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#FAFAFA', overflowY: 'auto' }}>
+      {/* Header */}
+      <div style={{ padding: '24px 28px', borderBottom: '1px solid #EBEBEB', background: '#FFFFFF' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: '3px 10px',
+            borderRadius: 100,
+            fontSize: 11,
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 500,
+            ...getStatusColors(item.status),
+          }}>
+            {item.status || 'Active'}
+          </span>
+          <button
+            onClick={onClose}
+            style={{
+              width: 32,
+              height: 32,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #EBEBEB',
+              background: '#FFFFFF',
+              borderRadius: 8,
+              cursor: 'pointer',
+              fontSize: 16,
+              color: '#71717A',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            ×
+          </button>
         </div>
 
-        <h2 className="text-4xl serif text-[#111111] leading-[1] mb-6 tracking-tight">
+        <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>
+          {sourceLabels[item.source] || item.source || 'Detail'}
+        </div>
+
+        <h2 style={{
+          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontSize: 28,
+          color: '#111111',
+          lineHeight: 1.2,
+          marginBottom: 16,
+          letterSpacing: '-0.02em',
+        }}>
           {item.topic || item.name || item.text || item.concept}
         </h2>
-        
-        <div className="flex gap-4">
-            <div className="flex-1 p-4 bg-[#FAFAFA] rounded-2xl border border-[#EBEBEB]">
-                <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-1">Depth_Index</div>
-                <div className="text-[18px] font-bold tracking-tighter">LVL_0{item.difficulty || item.depthReached || 1}</div>
+
+        <div style={{ display: 'flex', gap: 12 }}>
+          <div style={{ flex: 1, padding: '12px 16px', background: '#FAFAFA', borderRadius: 10, border: '1px solid #EBEBEB' }}>
+            <div style={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 4 }}>Depth</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#111111', letterSpacing: '-0.02em' }}>
+              {item.difficulty || item.depthReached || 1}
             </div>
-            <div className="flex-1 p-4 bg-[#FAFAFA] rounded-2xl border border-[#EBEBEB]">
-                <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-1">Retention</div>
-                <div className="text-[18px] font-bold tracking-tighter">{item.completionPercent || 0}%</div>
+          </div>
+          <div style={{ flex: 1, padding: '12px 16px', background: '#FAFAFA', borderRadius: 10, border: '1px solid #EBEBEB' }}>
+            <div style={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 4 }}>Completion</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#111111', letterSpacing: '-0.02em' }}>
+              {item.completionPercent || 0}%
             </div>
+          </div>
         </div>
       </div>
 
-      {/* CONTENT */}
-      <div className="p-10 space-y-12">
-        {/* FIELD NOTES */}
-        <section>
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-[11px] font-mono text-[#A1A1AA] uppercase tracking-[0.2em]">Intel_Manifest</h3>
-            <button className="text-[11px] font-mono text-[#111111] underline">EDIT_DATA</button>
-          </div>
-          <div className="serif text-[18px] text-[#444444] leading-relaxed italic border-l-2 border-[#111111] pl-8 py-2">
-            "{item.description || item.microtask || item.notes || 'Secondary investigation pending. No field notes currently archived for this intelligence object.'}"
-          </div>
-        </section>
-
-        {/* METADATA GRID */}
-        <section className="grid grid-cols-2 gap-6">
-            <div className="p-6 bg-white border border-[#EBEBEB] rounded-[24px]">
-                <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-4">Frequency_Stats</div>
-                <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                        <span className="text-[12px] text-[#71717A]">STRUGGLES</span>
-                        <span className="font-bold">x{(item.timesStruggled || item.flagCount || 0).toString().padStart(2, 'x')}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <span className="text-[12px] text-[#71717A]">LAST_SYNC</span>
-                        <span className="font-bold">{item.lastReview || item.lastAddressed || 'DAY_01'}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div className="p-6 bg-white border border-[#EBEBEB] rounded-[24px]">
-                <div className="text-[9px] font-mono text-[#A1A1AA] uppercase mb-4">Object_ID</div>
-                <div className="font-mono text-[13px] break-all opacity-50">
-                    {item._id || 'SYS_NULL_00'}
-                </div>
-            </div>
-        </section>
-
-        {/* ACTIONS */}
-        <div className="pt-10 flex gap-4">
-            <button className="flex-1 py-4 bg-[#111111] text-white text-[11px] font-bold uppercase tracking-widest rounded-2xl hover:bg-[#333333] transition-all">
-                Drill_Down_Session
-            </button>
-            <button className="flex-1 py-4 bg-white border border-[#EBEBEB] text-[#111111] text-[11px] font-bold uppercase tracking-widest rounded-2xl hover:bg-[#FAFAFA] transition-all">
-                Flag_For_Recovery
-            </button>
+      {/* Content */}
+      <div style={{ padding: '28px', flex: 1 }}>
+        {/* Description */}
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>Notes</div>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 14,
+            color: '#71717A',
+            lineHeight: 1.7,
+            borderLeft: '2px solid #EBEBEB',
+            paddingLeft: 16,
+            margin: 0,
+          }}>
+            {item.description || item.microtask || item.notes || item.prompt || 'No notes available for this item.'}
+          </p>
         </div>
-      </div>
-      
-      {/* DECORATIVE TERMINAL PULSE */}
-      <div className="p-10 mt-auto border-t border-[#EBEBEB] flex items-center justify-between">
-         <div className="flex gap-1">
-            {[1,2,3,4,5,6].map(i => <div key={i} className="h-4 w-1 bg-[#111111]/10 rounded-full" />)}
-         </div>
-         <div className="font-mono text-[9px] text-[#A1A1AA]">CORE_SYNC_ACTIVE</div>
+
+        {/* Metadata */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <div style={{ padding: '16px', background: '#FFFFFF', border: '1px solid #EBEBEB', borderRadius: 10 }}>
+            <div style={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 6 }}>Struggles</div>
+            <div style={{ fontSize: 16, fontWeight: 600, color: '#111111' }}>
+              {item.timesStruggled || item.flagCount || 0}
+            </div>
+          </div>
+          <div style={{ padding: '16px', background: '#FFFFFF', border: '1px solid #EBEBEB', borderRadius: 10 }}>
+            <div style={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 6 }}>Last Reviewed</div>
+            <div style={{ fontSize: 14, fontWeight: 500, color: '#111111' }}>
+              {item.lastReview || item.lastAddressed || '—'}
+            </div>
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div style={{ display: 'flex', gap: 10, marginTop: 28 }}>
+          <button className="btn-primary" style={{ flex: 1, height: 40, borderRadius: 10 }}>
+            Drill Down
+          </button>
+          <button className="btn-secondary" style={{ flex: 1, height: 40, borderRadius: 10 }}>
+            Flag
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
-function getStatusStyle(status: string) {
-    if (!status) return 'bg-gray-100 text-gray-500';
-    const s = status.toLowerCase();
-    if (s === 'completed' || s === 'done' || s === 'retired') return 'bg-green-50 text-green-600 border border-green-100';
-    if (s === 'in-progress' || s === 'active') return 'bg-blue-50 text-blue-600 border border-blue-100';
-    if (s === 'overdue' || s === 'critical') return 'bg-rose-50 text-rose-500 border border-rose-100';
-    return 'bg-gray-50 text-gray-500 border border-gray-100';
+function getStatusColors(status: string): { background: string; color: string } {
+  if (!status) return { background: '#F4F4F5', color: '#71717A' };
+  const s = status.toLowerCase();
+  if (s === 'completed' || s === 'done' || s === 'retired' || s === 'mastered') return { background: '#F0FDF4', color: '#166534' };
+  if (s === 'in-progress' || s === 'active' || s === 'surface' || s === 'solid') return { background: '#E0F2FE', color: '#0369A1' };
+  if (s === 'overdue' || s === 'critical') return { background: '#FEF2F2', color: '#DC2626' };
+  return { background: '#F4F4F5', color: '#71717A' };
 }
