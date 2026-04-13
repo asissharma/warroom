@@ -6,6 +6,7 @@ import QuestionsTab from './components/syllabus/QuestionsTab';
 import ProjectsTab from './components/syllabus/ProjectsTab';
 import SkillsTab from './components/syllabus/SkillsTab';
 import GapTrackerTab from './components/syllabus/GapTrackerTab';
+import DetailPanel from './components/syllabus/DetailPanel';
 
 type TabType = 'ALL' | 'SPINE' | 'QUESTIONS' | 'PROJECTS' | 'SKILLS' | 'GAPS';
 
