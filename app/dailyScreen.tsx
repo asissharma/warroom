@@ -21,6 +21,7 @@ export default function DailyScreen() {
   const [loading, setLoading] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
   const [activeContext, setActiveContext] = useState<string>('');
+  const [rightPanelOpen, setRightPanelOpen] = useState(true);
 
   useEffect(() => {
     async function loadData() {
@@ -41,7 +42,7 @@ export default function DailyScreen() {
   }, []);
 
   const handleUpdateBlock = async (blockType: string, updateData: any) => {
-    const { syncQuestion, ...pureUpdateData } = updateData;
+    const { syncQuestion, questionNote, ...pureUpdateData } = updateData;
 
     setSession((prev: any) => {
       const next = { ...prev };
@@ -50,10 +51,19 @@ export default function DailyScreen() {
       if (syncQuestion) {
         const items = [...block.items];
         const idx = items.findIndex(q => q.id === syncQuestion.id);
-        if (idx !== -1 && items[idx].status === 'Pending') {
+        if (idx !== -1 && items[idx].status !== 'Correct' && items[idx].status !== 'Struggled') {
           items[idx].status = syncQuestion.status;
           if (syncQuestion.status === 'Correct') block.correct++;
           else if (syncQuestion.status === 'Struggled') block.struggled++;
+          block.items = items;
+        }
+      }
+
+      if (questionNote) {
+        const items = block.items ? [...block.items] : [];
+        const idx = items.findIndex((q: any) => q.id === questionNote.id);
+        if (idx !== -1) {
+          items[idx] = { ...items[idx], note: questionNote.note };
           block.items = items;
         }
       }
@@ -113,6 +123,26 @@ export default function DailyScreen() {
     return b.status === 'Done' || b.isDone;
   });
 
+  // Build rich topic list for CaptureBar (with real refIds + human names)
+  const richTopics = existingBlocks.map(k => {
+    const b = session.blocks[k];
+    let displayName = BLOCK_LABELS[k] || k;
+    // Use the actual task name from the session data
+    if (k === 'spine' && b.topicToday) displayName = b.topicToday;
+    else if (k === 'softSkill' && b.skillName) displayName = b.skillName;
+    else if (k === 'payableSkill' && b.topicName) displayName = b.topicName;
+    else if (k === 'project' && b.projectName) displayName = b.projectName;
+    else if (k === 'survival' && b.gapName) displayName = b.gapName;
+    else if (k === 'questions') displayName = 'Memory Check';
+    return {
+      id: k,
+      name: displayName,
+      type: k,
+      refId: b.refId || null,              // actual MongoDB ObjectId
+      blockLabel: BLOCK_LABELS[k] || k,    // block category label
+    };
+  });
+
   // Build feed items from carryForward
   const feedItems = carryForward.map((item, i) => ({
     id: i,
@@ -136,6 +166,8 @@ export default function DailyScreen() {
   const handleOpenChat = (contextType: string) => {
     setActiveContext(contextType);
     setChatOpen(true);
+    // Auto-open right panel if collapsed
+    if (!rightPanelOpen) setRightPanelOpen(true);
   };
 
   return (
@@ -162,7 +194,8 @@ export default function DailyScreen() {
       <div className="main-layout">
 
         {/* LEFT PANEL — Block cards stacked */}
-        <div className="left-panel hide-scrollbar">
+        <div className={`left-panel hide-scrollbar ${!rightPanelOpen ? 'left-panel--expanded' : ''}`} 
+             style={{ transition: 'width 0.3s ease' }}>
 
           {/* Questions block */}
           {session.blocks.questions && (
@@ -239,49 +272,76 @@ export default function DailyScreen() {
           )}
         </div>
 
-        {/* RIGHT PANEL — Feed or Chat */}
-        <div className="right-panel hide-scrollbar">
-          {chatOpen ? (
-            <ChatPanel
-              isOpen={chatOpen}
-              onClose={() => setChatOpen(false)}
-              contextType={activeContext}
-              onDrift={() => { }}
-              onCapture={() => { }}
-            />
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div className="feed-title">Today&apos;s Feed</div>
+        {/* RIGHT PANEL — Feed or Chat (Collapsible) */}
+        <div 
+          className={`right-panel hide-scrollbar ${!rightPanelOpen ? 'right-panel--collapsed' : ''}`}
+          style={{ position: 'relative', transition: 'width 0.3s ease' }}
+        >
+          {rightPanelOpen && (
+            <>
+              {/* Collapse toggle button */}
+              <button 
+                className="right-panel-toggle" 
+                onClick={() => { setChatOpen(false); setRightPanelOpen(false); }}
+                title="Collapse panel"
+              >
+                ›
+              </button>
 
-              <div style={{ flex: 1, overflowY: 'auto' }} className="hide-scrollbar">
-                {feedItems.length > 0 ? (
-                  <div>
-                    {feedItems.map((item) => (
-                      <div key={item.id} className="feed-item">
-                        <div
-                          className="feed-item__dot"
-                          style={{ background: blockDotColors[item.type] || '#A1A1AA' }}
-                        />
-                        <div className="feed-item__text">{item.text}</div>
-                        <div className="feed-item__time">{item.time}</div>
+              {chatOpen ? (
+                <ChatPanel
+                  isOpen={chatOpen}
+                  onClose={() => setChatOpen(false)}
+                  contextType={activeContext}
+                  onDrift={() => { }}
+                  onCapture={() => { }}
+                />
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <div className="feed-title">Today&apos;s Feed</div>
+
+                  <div style={{ flex: 1, overflowY: 'auto' }} className="hide-scrollbar">
+                    {feedItems.length > 0 ? (
+                      <div>
+                        {feedItems.map((item) => (
+                          <div key={item.id} className="feed-item">
+                            <div
+                              className="feed-item__dot"
+                              style={{ background: blockDotColors[item.type] || '#A1A1AA' }}
+                            />
+                            <div className="feed-item__text">{item.text}</div>
+                            <div className="feed-item__time">{item.time}</div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    ) : (
+                      <div className="feed-empty">
+                        No alerts today
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div className="feed-empty">
-                    No alerts today
-                  </div>
-                )}
-              </div>
 
-              {/* CAPTURE FEATURE — Bottom of right panel */}
-              <CaptureBar
-                sessionDay={session.dayNumber}
-                activeTopics={existingBlocks.map(k => ({ id: k, name: BLOCK_LABELS[k] || k, type: k }))}
-              />
-            </div>
+                  {/* CAPTURE FEATURE — Bottom of right panel */}
+                  <CaptureBar
+                    sessionDay={session.dayNumber}
+                    activeTopics={richTopics}
+                  />
+                </div>
+              )}
+            </>
           )}
         </div>
+
+        {/* Expand tab (visible when panel is collapsed) */}
+        {!rightPanelOpen && (
+          <button 
+            className="expand-tab" 
+            onClick={() => setRightPanelOpen(true)}
+            title="Expand panel"
+          >
+            ‹
+          </button>
+        )}
 
       </div>
     </div>

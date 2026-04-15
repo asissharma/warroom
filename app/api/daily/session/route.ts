@@ -55,7 +55,8 @@ export async function GET() {
       const formattedQuestions = dueQuestions.map(q => ({
           id: q._id.toString(),
           text: q.text,
-          theme: q.theme
+          theme: q.theme,
+          status: 'Pending'
       }));
 
       // Find DB Tracks (In-Progress roll over first, else get Next Pending)
@@ -114,6 +115,39 @@ export async function GET() {
         honestNote: '',
         tomorrowFocus: ''
       });
+    }
+
+    // Reconcile question statuses — fix items stuck on 'Pending' due to pre-fix save bug
+    if (session.blocks?.questions?.items?.length > 0) {
+      let needsSave = false;
+      const items = session.blocks.questions.items;
+      let correctCount = session.blocks.questions.correct || 0;
+      let struggledCount = session.blocks.questions.struggled || 0;
+
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].status === 'Pending') {
+          const qDoc = await Question.findById(items[i].id);
+          if (qDoc && qDoc.updatedAt > session.createdAt) {
+            // SM-2 was updated but session item wasn't — infer answer from easeFactor
+            if (qDoc.easeFactor < 2.5) {
+              items[i].status = 'Struggled';
+              struggledCount++;
+            } else {
+              items[i].status = 'Correct';
+              correctCount++;
+            }
+            needsSave = true;
+          }
+        }
+      }
+
+      if (needsSave) {
+        session.blocks.questions.items = items;
+        session.blocks.questions.correct = correctCount;
+        session.blocks.questions.struggled = struggledCount;
+        session.markModified('blocks');
+        await session.save();
+      }
     }
 
     // Determine Carry Forward items (From past sessions)

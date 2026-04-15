@@ -22,21 +22,45 @@ export async function PUT(request: Request) {
     }
 
     const currentBlockData = session.blocks[blockType];
-    const { syncStatus, syncQuestion, ...pureUpdateData } = updateData;
+    const { syncStatus, syncQuestion, questionNote, ...pureUpdateData } = updateData;
 
-    // 1. Session Optimistic Update
-    const updatedBlocks = {
-      ...session.blocks,
-      [blockType]: {
-        ...currentBlockData,
-        ...pureUpdateData
-      }
-    };
-    session.blocks = updatedBlocks;
+    // 1. Build the updated block — merge pure field updates first
+    const updatedBlock: any = { ...currentBlockData, ...pureUpdateData };
+
+    // 2. If this is a question update, apply status + note BEFORE the save
+    if (blockType === 'questions' && (syncQuestion?.id || questionNote?.id)) {
+        const qItems: any[] = [...(updatedBlock.items || [])];
+
+        // Apply answer status
+        if (syncQuestion?.id) {
+            const idx = qItems.findIndex((q: any) => q.id === syncQuestion.id);
+            if (idx !== -1 && qItems[idx].status !== 'Correct' && qItems[idx].status !== 'Struggled') {
+                qItems[idx] = { ...qItems[idx], status: syncQuestion.status };
+                if (syncQuestion.status === 'Correct') {
+                    updatedBlock.correct = (updatedBlock.correct || 0) + 1;
+                } else if (syncQuestion.status === 'Struggled') {
+                    updatedBlock.struggled = (updatedBlock.struggled || 0) + 1;
+                }
+            }
+        }
+
+        // Apply per-question note
+        if (questionNote?.id) {
+            const idx = qItems.findIndex((q: any) => q.id === questionNote.id);
+            if (idx !== -1) {
+                qItems[idx] = { ...qItems[idx], note: questionNote.note };
+            }
+        }
+
+        updatedBlock.items = qItems;
+    }
+
+    // 3. Write back to session — single save
+    session.blocks = { ...session.blocks, [blockType]: updatedBlock };
     session.markModified('blocks');
     await session.save();
 
-    // 2. Synchronization Subroutines (Dual-Write)
+    // 4. Synchronization Subroutines (Dual-Write to source collections — separate from session save)
     if (syncStatus && currentBlockData?.refId) {
         const standardStatus = syncStatus === 'Done' ? 'completed' 
                              : syncStatus === 'Partial' ? 'in-progress' 
@@ -53,23 +77,6 @@ export async function PUT(request: Request) {
     }
 
     if (blockType === 'questions' && syncQuestion?.id) {
-        // Find the question in the session's items array
-        const questionInSession = session.blocks.questions.items.find((q: any) => q.id === syncQuestion.id);
-        
-        if (questionInSession && questionInSession.status === 'Pending') {
-            // Update counts
-            if (syncQuestion.status === 'Correct') {
-                session.blocks.questions.correct = (session.blocks.questions.correct || 0) + 1;
-            } else if (syncQuestion.status === 'Struggled') {
-                session.blocks.questions.struggled = (session.blocks.questions.struggled || 0) + 1;
-            }
-            
-            // Update status in session array
-            questionInSession.status = syncQuestion.status;
-            session.markModified('blocks');
-            await session.save();
-        }
-
         const questionDoc = await Question.findById(syncQuestion.id);
         if (questionDoc) {
             // SM-2 Update Logic (unchanged but ensured it runs)

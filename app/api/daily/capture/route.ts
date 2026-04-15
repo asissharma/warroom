@@ -7,7 +7,7 @@ export async function POST(request: Request) {
     await connectDB();
     
     try {
-        const { type, note, topicId, sessionDay } = await request.json();
+        const { type, note, topicId, sessionDay, blockType, refId, refName } = await request.json();
 
         if (!note || note.trim().length === 0) {
             return NextResponse.json({ error: 'Note content required' }, { status: 400 });
@@ -24,25 +24,31 @@ export async function POST(request: Request) {
         const aiTags = await generateAiTags(cleanNote);
 
         // 4. Combine all tags
-        // unique set of manual + AI tags + session day tag
+        // unique set of manual + AI tags + session day tag + blockType tag
         const combinedTags = Array.from(new Set([
             ...manualTags,
             ...aiTags,
-            `day-${sessionDay}`
+            `day-${sessionDay}`,
+            ...(blockType ? [blockType] : []),
         ]));
 
         const newCapture = await Capture.create({
             type: type || 'note',
             note: cleanNote,
             tags: combinedTags,
-            topicId: topicId || null,
+            blockType: blockType || null,
+            refId: refId || null,
+            refName: refName || null,
+            topicId: topicId || refId || null,  // backward compat
             sessionDay: sessionDay
         });
 
         return NextResponse.json({ 
             success: true, 
             capture: newCapture,
-            aiSummary: `Node Compiled. Tags: ${aiTags.join(', ')}` 
+            manualTags: manualTags,
+            aiTags: aiTags,
+            aiSummary: `Node Compiled. Tags: ${[...manualTags, ...aiTags].join(', ')}` 
         });
 
     } catch (error: any) {

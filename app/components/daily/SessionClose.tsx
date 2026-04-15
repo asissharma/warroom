@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import SmartTextarea from '../shared/SmartTextarea';
 
 interface SessionCloseProps {
   onCloseSession: (note: string) => Promise<any>;
@@ -69,17 +70,16 @@ export default function SessionClose({ onCloseSession }: SessionCloseProps) {
         What felt fragile? What did you actually learn?
       </div>
       
-      <div style={{ position: 'relative' }}>
-        <textarea 
-            value={note}
-            onChange={e => setNote(e.target.value)}
-            className="close-day__textarea"
-            placeholder="What felt fragile? Did you actually master it? Any specific blockers?"
-        />
-        <div className="close-day__counter">
-            {note.length} / 20
-        </div>
-      </div>
+      <SmartTextarea
+        value={note}
+        onChange={setNote}
+        placeholder="What felt fragile? Did you actually master it? Any specific blockers?"
+        rows={{ min: 4, max: 8 }}
+        minLength={20}
+        showCounter={true}
+        maxLength={1000}
+        variant="close"
+      />
 
       <button 
         onClick={handleClose}

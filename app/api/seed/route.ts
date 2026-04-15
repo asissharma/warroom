@@ -77,15 +77,23 @@ interface BasicSkillData {
   weeklyGoal: string;
 }
 
-interface SkillsData {
+interface CognitiveSkillsData {
   basic: BasicSkillData[];
-  payable: Array<{
-    id: string;
-    name: string;
-    category: string;
-    book: string;
-    totalChapters: number;
-  }>;
+}
+
+interface PayableSkillData {
+  id: string;
+  name: string;
+  dayStart: number;
+  dayEnd: number;
+  coreBooks: string[];
+  microPractice: string;
+  weeklyGoal: string;
+  chapterMap: Record<string, string>;
+}
+
+interface PayableSkillsData {
+  payable: PayableSkillData[];
 }
 
 interface SurvivalTopicData {
@@ -225,15 +233,28 @@ export async function POST() {
       }
     }
 
-    // Load full skills data for soft skills
-    const skillsPath = path.join(process.cwd(), 'data', 'skills.json');
-    const skillsData: SkillsData = JSON.parse(await fs.readFile(skillsPath, 'utf8'));
+    // Load cognitive skills data (soft skills)
+    const cognitivePath = path.join(process.cwd(), 'data', 'cognitiveSkills.json');
+    const cognitiveData: CognitiveSkillsData = JSON.parse(await fs.readFile(cognitivePath, 'utf8'));
 
-    const softSkillDocs = skillsData.basic.map((skill, idx) => ({
+    const softSkillDocs = cognitiveData.basic.map((skill, idx) => ({
       order: idx + 1,
       type: 'soft' as const,
       name: skill.name,
       prompt: skill.dailyDrill,
+      status: 'pending',
+    }));
+
+    // Load payable skills data
+    const payableSkillsPath = path.join(process.cwd(), 'data', 'payableSkills.json');
+    const payableSkillsData: PayableSkillsData = JSON.parse(await fs.readFile(payableSkillsPath, 'utf8'));
+
+    const payableSkillDocsFromJson = payableSkillsData.payable.map((skill, idx) => ({
+      order: skill.dayStart,
+      type: 'payable' as const,
+      name: skill.name,
+      prompt: skill.microPractice,
+      chapter: `${skill.dayStart}-${skill.dayEnd}`,
       status: 'pending',
     }));
 
@@ -242,7 +263,7 @@ export async function POST() {
       TechSpine.insertMany(spineDocs, { ordered: false }),
       Project.insertMany(projectDocs, { ordered: false }),
       Skill.insertMany(softSkillDocs, { ordered: false }),
-      Skill.insertMany(payableSkillDocs, { ordered: false }),
+      Skill.insertMany(payableSkillDocsFromJson, { ordered: false }),
     ]);
 
     console.log(`✅ Seeded ${spineResult.length} tech spine entries`);

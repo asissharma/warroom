@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import SmartTextarea from '../shared/SmartTextarea';
 
 interface BlockCardProps {
   type: string;
@@ -96,6 +97,23 @@ export default function BlockCard({ type, data, onUpdate, onOpenChat }: BlockCar
     onUpdate({ status: 'Done', syncStatus: 'Done', note: blockNote.trim() });
   };
 
+  // Footer for the block note SmartTextarea
+  const noteFooter = (
+    <>
+      {!isDone && blockNote.trim().length >= 5 && !noteSaved && (
+        <button className="block-note-save" onClick={handleSaveNote}>
+          Save
+        </button>
+      )}
+      {noteSaved && (
+        <span className="block-note-saved">
+          <span className="block-note-saved__dot" />
+          Saved
+        </span>
+      )}
+    </>
+  );
+
   return (
     <div className={cardClass}>
       {/* ROW 1: Badge + time + status dot */}
@@ -131,30 +149,21 @@ export default function BlockCard({ type, data, onUpdate, onOpenChat }: BlockCar
 
       {/* ── COMPULSORY NOTE ───────────────────────────── */}
       {type !== 'questions' && (
-        <div className="block-note" style={{ marginTop: 16 }}>
+        <div style={{ marginTop: 16 }}>
           <div className="block-note__label">
             {isDone ? 'Your note' : 'Note'} 
             <span className="block-note__required">required</span>
           </div>
-          <textarea
+          <SmartTextarea
             value={blockNote}
-            onChange={e => { setBlockNote(e.target.value); setNoteSaved(false); }}
+            onChange={(val) => { setBlockNote(val); setNoteSaved(false); }}
             placeholder="What did you learn? What felt difficult?"
-            className="block-note__textarea"
             disabled={isDone}
-            rows={2}
+            rows={{ min: 2, max: 5 }}
+            minLength={5}
+            showCounter={true}
+            footer={noteFooter}
           />
-          <div className="block-note__footer">
-            <span className="block-note__counter">{blockNote.trim().length} chars</span>
-            {!isDone && blockNote.trim().length >= 5 && !noteSaved && (
-              <button className="block-note__save" onClick={handleSaveNote}>
-                Save
-              </button>
-            )}
-            {noteSaved && (
-              <span className="block-note__saved">✓ Saved</span>
-            )}
-          </div>
         </div>
       )}
 
@@ -203,17 +212,27 @@ export default function BlockCard({ type, data, onUpdate, onOpenChat }: BlockCar
 }
 
 
-/* ── QUESTIONS SUB-COMPONENT ─────────────────────── */
+/* ── QUESTIONS CAROUSEL SUB-COMPONENT ────────────── */
 
 function QuestionsView({ data, onUpdate }: { data: any; onUpdate: (d: any) => void }) {
+  const { items, correct, struggled, total } = data;
+
   const [qIndex, setQIndex] = useState(0);
   const [fadeKey, setFadeKey] = useState(0);
+  const [slideDir, setSlideDir] = useState<'left' | 'right'>('right');
   // Per-question notes: { [questionId]: string }
-  const [qNotes, setQNotes] = useState<Record<string, string>>({});
+  const [qNotes, setQNotes] = useState<Record<string, string>>(() => {
+    const notes: Record<string, string> = {};
+    items?.forEach((q: any) => { if (q.note) notes[q.id] = q.note; });
+    return notes;
+  });
   // Track which notes are saved
-  const [qNotesSaved, setQNotesSaved] = useState<Record<string, boolean>>({});
-  
-  const { items, correct, struggled, total } = data;
+  const [qNotesSaved, setQNotesSaved] = useState<Record<string, boolean>>(() => {
+    const saved: Record<string, boolean> = {};
+    items?.forEach((q: any) => { if (q.note) saved[q.id] = true; });
+    return saved;
+  });
+
   if (!items || items.length === 0) return null;
 
   const answered = items.filter((q: any) => q.status === 'Correct' || q.status === 'Struggled').length;
@@ -222,7 +241,17 @@ function QuestionsView({ data, onUpdate }: { data: any; onUpdate: (d: any) => vo
   const currentQ = items[qIndex];
   const isAnswered = currentQ?.status === 'Correct' || currentQ?.status === 'Struggled';
   const currentNote = qNotes[currentQ?.id] || '';
-  const currentNoteSaved = qNotesSaved[currentQ?.id] || false;
+
+  // Carousel navigation
+  const goTo = (idx: number) => {
+    if (idx < 0 || idx >= items.length || idx === qIndex) return;
+    setSlideDir(idx > qIndex ? 'right' : 'left');
+    setQIndex(idx);
+    setFadeKey(prev => prev + 1);
+  };
+
+  const goPrev = () => goTo(qIndex - 1);
+  const goNext = () => goTo(qIndex + 1);
 
   const handleMark = (status: 'Correct' | 'Struggled') => {
     // Must have a note before marking
@@ -237,10 +266,24 @@ function QuestionsView({ data, onUpdate }: { data: any; onUpdate: (d: any) => vo
     // Auto-advance with fade
     setTimeout(() => {
       if (qIndex < items.length - 1) {
+        setSlideDir('right');
         setQIndex(qIndex + 1);
         setFadeKey(prev => prev + 1);
       }
     }, 300);
+  };
+
+  // Keyboard nav
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') goPrev();
+    else if (e.key === 'ArrowRight') goNext();
+  };
+
+  // Get dot color for a question's status
+  const getDotColor = (q: any) => {
+    if (q.status === 'Correct') return '#22C55E';
+    if (q.status === 'Struggled') return '#EF4444';
+    return '#D4D4D8';
   };
 
   // All answered → show stats
@@ -264,40 +307,97 @@ function QuestionsView({ data, onUpdate }: { data: any; onUpdate: (d: any) => vo
             <div className="question-stats__value" style={{ color: '#EF4444' }}>{struggled}</div>
           </div>
         </div>
+
+        {/* Dot indicators — still visible in stats view for review */}
+        <div className="q-carousel__dots" style={{ marginTop: 16 }}>
+          {items.map((q: any, i: number) => (
+            <button
+              key={q.id}
+              className={`q-carousel__dot ${i === qIndex ? 'q-carousel__dot--current' : ''}`}
+              style={{ background: getDotColor(q) }}
+              onClick={() => goTo(i)}
+              title={`Q${i + 1}: ${q.status}`}
+            />
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="question-view">
-      {/* Counter */}
-      <div className="question-counter">
-        {qIndex + 1} of {total}
+    <div className="question-view" tabIndex={0} onKeyDown={handleKeyDown}>
+
+      {/* ── CAROUSEL HEADER: arrows + counter ── */}
+      <div className="q-carousel__header">
+        <button
+          className="q-carousel__arrow"
+          onClick={goPrev}
+          disabled={qIndex === 0}
+          title="Previous question"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 12L6 8l4-4" />
+          </svg>
+        </button>
+
+        <div className="question-counter">
+          {qIndex + 1} / {total}
+        </div>
+
+        <button
+          className="q-carousel__arrow"
+          onClick={goNext}
+          disabled={qIndex === items.length - 1}
+          title="Next question"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 4l4 4-4 4" />
+          </svg>
+        </button>
       </div>
 
-      {/* Question text with fade */}
-      <div key={fadeKey} className="animate-fade-slide">
+      {/* ── DOT INDICATORS ── */}
+      <div className="q-carousel__dots">
+        {items.map((q: any, i: number) => (
+          <button
+            key={q.id}
+            className={`q-carousel__dot ${i === qIndex ? 'q-carousel__dot--current' : ''}`}
+            style={{ background: getDotColor(q) }}
+            onClick={() => goTo(i)}
+            title={`Q${i + 1}${q.theme ? ` · ${q.theme}` : ''}`}
+          />
+        ))}
+      </div>
+
+      {/* ── QUESTION CARD with slide animation ── */}
+      <div key={fadeKey} className={`animate-fade-slide q-carousel__slide q-carousel__slide--${slideDir}`}>
+        {/* Theme badge if available */}
+        {currentQ.theme && (
+          <div className="q-carousel__theme">{currentQ.theme}</div>
+        )}
+
         <div className="question-text">
           {currentQ.text}
         </div>
       </div>
 
       {/* Per-question note — COMPULSORY */}
-      <div className="block-note" style={{ marginBottom: 16 }}>
+      <div style={{ marginBottom: 16 }}>
         <div className="block-note__label">
           Your reflection 
           <span className="block-note__required">required</span>
         </div>
-        <input
-          type="text"
+        <SmartTextarea
           value={currentNote}
-          onChange={e => {
-            setQNotes(prev => ({ ...prev, [currentQ.id]: e.target.value }));
+          onChange={(val) => {
+            setQNotes(prev => ({ ...prev, [currentQ.id]: val }));
             setQNotesSaved(prev => ({ ...prev, [currentQ.id]: false }));
           }}
           placeholder={isAnswered ? 'Noted' : 'Why do you know this? Or why not?'}
-          className="block-note__input"
           disabled={isAnswered}
+          rows={{ min: 1, max: 3 }}
+          minLength={3}
+          showCounter={false}
         />
       </div>
 

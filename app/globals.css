@@ -388,6 +388,80 @@
     transition: width 0.4s ease;
 }
 
+/* ── QUESTIONS CAROUSEL ────────────────────────────────  */
+.q-carousel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.q-carousel__arrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid #EBEBEB;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #71717A;
+    transition: all 0.15s ease;
+}
+.q-carousel__arrow:hover:not(:disabled) {
+    background: #F4F4F5;
+    border-color: #D4D4D8;
+    color: #111111;
+}
+.q-carousel__arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.q-carousel__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.q-carousel__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+.q-carousel__dot:hover {
+    transform: scale(1.3);
+}
+.q-carousel__dot--current {
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 3.5px currentColor;
+}
+
+.q-carousel__theme {
+    display: inline-block;
+    font-family: var(--font-mono), 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #A1A1AA;
+    background: #F4F4F5;
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+}
+
+.q-carousel__slide {
+    min-height: 60px;
+}
+
 /* ── COMPULSORY NOTE FIELD ──────────────────────────── */
 .block-note {
     width: 100%;
@@ -1203,6 +1277,371 @@
 /* ── SPIN KEYFRAME (for loading) ───────────────────────  */
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+/* ── SMART TEXTAREA SYSTEM ─────────────────────────────  */
+.smart-textarea {
+    width: 100%;
+    position: relative;
+}
+
+.smart-textarea__input {
+    width: 100%;
+    background: #F8F8F8;
+    border: 1.5px solid #EBEBEB;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 14px;
+    color: #111111;
+    resize: none;
+    outline: none;
+    line-height: 22px;
+    overflow-y: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.2s ease;
+}
+.smart-textarea__input::placeholder {
+    color: #B0B0B8;
+    transition: opacity 0.2s ease;
+}
+.smart-textarea__input:focus {
+    border-color: #A1A1AA;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.04);
+}
+.smart-textarea__input:focus::placeholder {
+    opacity: 0.6;
+}
+.smart-textarea__input:disabled {
+    opacity: 0.5;
+    cursor: default;
+    background: #F4F4F5;
+}
+
+/* Scrollbar inside textarea when content overflows */
+.smart-textarea__input::-webkit-scrollbar {
+    width: 4px;
+}
+.smart-textarea__input::-webkit-scrollbar-track {
+    background: transparent;
+}
+.smart-textarea__input::-webkit-scrollbar-thumb {
+    background: #D4D4D8;
+    border-radius: 4px;
+}
+
+.smart-textarea__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+    padding: 0 4px;
+    min-height: 20px;
+}
+
+.smart-textarea__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.smart-textarea__counter {
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 11px;
+    color: #A1A1AA;
+    transition: color 0.2s ease;
+    font-variant-numeric: tabular-nums;
+}
+.smart-textarea__counter--warn {
+    color: #EF4444;
+}
+
+.smart-textarea__hint {
+    font-family: var(--font-mono), 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #C4C4CC;
+    letter-spacing: 0.02em;
+}
+
+.smart-textarea__actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ── SMART TEXTAREA VARIANTS ──────────────────────────  */
+
+/* Capture variant — used in CaptureBar */
+.smart-textarea--capture .smart-textarea__input {
+    background: #F4F4F5;
+    border-color: transparent;
+    border-radius: 14px;
+    padding: 12px 48px 12px 16px;
+}
+.smart-textarea--capture .smart-textarea__input:focus {
+    background: #FFFFFF;
+    border-color: #D4D4D8;
+    box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.03);
+}
+
+/* Close variant — used in SessionClose */
+.smart-textarea--close .smart-textarea__input {
+    min-height: 100px;
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Disabled (done) state */
+.smart-textarea--disabled .smart-textarea__input {
+    background: #FAFAFA;
+    border-color: #F0F0F0;
+}
+
+/* ── CAPTURE BAR ──────────────────────────────────────  */
+.capture-bar {
+    width: 100%;
+    position: relative;
+    border-top: 1px solid #EBEBEB;
+    background: #FFFFFF;
+    padding: 16px 20px;
+}
+
+.capture-bar__type-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.capture-type-pill {
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1px solid #EBEBEB;
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 11px;
+    color: #A1A1AA;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+.capture-type-pill:hover {
+    border-color: #A1A1AA;
+    color: #71717A;
+}
+.capture-type-pill--active {
+    background: #111111;
+    border-color: #111111;
+    color: #FFFFFF;
+}
+.capture-type-pill--active:hover {
+    background: #333333;
+    border-color: #333333;
+    color: #FFFFFF;
+}
+
+.capture-bar__topic-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: #E0F2FE;
+    color: #0369A1;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: var(--font-body), 'Inter', sans-serif;
+}
+
+.capture-bar__topic-chip-x {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 11px;
+    padding: 0;
+    line-height: 1;
+}
+.capture-bar__topic-chip-x:hover {
+    opacity: 1;
+}
+
+.capture-bar__input-wrap {
+    position: relative;
+}
+
+.capture-bar__send {
+    position: absolute;
+    right: 8px;
+    bottom: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #111111;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+.capture-bar__send--visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+.capture-bar__send:hover {
+    background: #333333;
+    transform: scale(1.05);
+}
+.capture-bar__send:active {
+    transform: scale(0.95);
+}
+.capture-bar__send--success {
+    background: #22C55E !important;
+}
+.capture-bar__send svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* ── TAG PILLS (after save) ───────────────────────────  */
+.capture-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    animation: fadeSlideIn 0.3s ease-out forwards;
+}
+.capture-tags--fading {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.capture-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.capture-tag--manual {
+    background: transparent;
+    border: 1px solid #D4D4D8;
+    color: #71717A;
+}
+
+.capture-tag--ai {
+    background: #F0F4FF;
+    border: 1px solid #DBEAFE;
+    color: #3B82F6;
+}
+
+.capture-tag--day {
+    background: #F4F4F5;
+    border: 1px solid #E4E4E7;
+    color: #A1A1AA;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-4px); }
+}
+
+/* ── BLOCK NOTE INLINE SAVE ───────────────────────────  */
+.block-note-save {
+    background: none;
+    border: 1px solid #EBEBEB;
+    padding: 3px 14px;
+    border-radius: 6px;
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #111111;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+.block-note-save:hover {
+    background: #F4F4F5;
+    border-color: #D4D4D8;
+}
+
+.block-note-saved {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 11px;
+    color: #22C55E;
+    font-weight: 500;
+    animation: fadeSlideIn 0.25s ease-out forwards;
+}
+.block-note-saved__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #22C55E;
+}
+
+/* ── COMMAND PALETTE (/ menu) ─────────────────────────  */
+.capture-palette {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    margin-bottom: 6px;
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+    z-index: 110;
+    overflow: hidden;
+    animation: fadeSlideIn 0.15s ease-out forwards;
+}
+
+.capture-palette__list {
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.capture-palette__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+.capture-palette__item:hover,
+.capture-palette__item--active {
+    background: #F4F4F5;
+}
+
+.capture-palette__item-name {
+    font-family: var(--font-body), 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111111;
+}
+
+.capture-palette__item-type {
+    font-family: var(--font-mono), 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #A1A1AA;
 }
 
 /* ── RESPONSIVE — SYLLABUS MOBILE ──────────────────────  */

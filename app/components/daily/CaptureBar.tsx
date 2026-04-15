@@ -1,26 +1,46 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import SmartTextarea from '../shared/SmartTextarea';
 
 interface CaptureBarProps {
   sessionDay: number;
-  activeTopics: { id: string, name: string, type: string }[];
+  activeTopics: { id: string, name: string, type: string, refId?: string | null, blockLabel?: string }[];
   onSuccess?: (msg: string) => void;
+}
+
+type CaptureType = 'note' | 'insight' | 'bookmark' | 'connection';
+
+const CAPTURE_TYPES: { id: CaptureType; label: string }[] = [
+  { id: 'note', label: 'Note' },
+  { id: 'insight', label: 'Insight' },
+  { id: 'bookmark', label: 'Bookmark' },
+  { id: 'connection', label: 'Connection' },
+];
+
+interface TagResult {
+  manualTags: string[];
+  aiTags: string[];
+  dayTag: string;
 }
 
 export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: CaptureBarProps) {
   const [input, setInput] = useState('');
+  const [captureType, setCaptureType] = useState<CaptureType>('note');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [status, setStatus] = useState<'idle' | 'syncing' | 'success'>('idle');
-  const [selectedTopic, setSelectedTopic] = useState<{ id: string, name: string } | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [selectedTopic, setSelectedTopic] = useState<{ id: string, name: string, refId?: string | null, blockLabel?: string } | null>(null);
+  const [savedTags, setSavedTags] = useState<TagResult | null>(null);
+  const [tagsFading, setTagsFading] = useState(false);
+  const inputWrapRef = useRef<HTMLDivElement>(null);
 
   const menuItems = [
-    { id: 'general', name: 'General Note', type: 'NODE' },
-    ...activeTopics.map(t => ({ ...t, type: t.type.toUpperCase() }))
+    { id: 'general', name: 'General Note', type: 'NODE', refId: null as string | null, blockLabel: '' },
+    ...activeTopics.map(t => ({ ...t, type: (t.blockLabel || t.type).toUpperCase(), refId: t.refId || null, blockLabel: t.blockLabel || t.type }))
   ];
 
+  // Handle / command palette trigger
   useEffect(() => {
     if (input === '/') {
       setIsMenuOpen(true);
@@ -29,6 +49,15 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: Capt
       setIsMenuOpen(false);
     }
   }, [input]);
+
+  // Auto-dismiss tags after 4s
+  useEffect(() => {
+    if (savedTags) {
+      const fadeTimer = setTimeout(() => setTagsFading(true), 3500);
+      const clearTimer = setTimeout(() => { setSavedTags(null); setTagsFading(false); }, 4000);
+      return () => { clearTimeout(fadeTimer); clearTimeout(clearTimer); };
+    }
+  }, [savedTags]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (isMenuOpen) {
@@ -41,9 +70,9 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: Capt
       } else if (e.key === 'Enter') {
         const selected = menuItems[selectedIndex];
         if (selected.id !== 'general') {
-            setSelectedTopic({ id: selected.id, name: selected.name });
+          setSelectedTopic({ id: selected.id, name: selected.name, refId: selected.refId, blockLabel: selected.blockLabel });
         } else {
-            setSelectedTopic(null);
+          setSelectedTopic(null);
         }
         setInput('');
         setIsMenuOpen(false);
@@ -52,21 +81,23 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: Capt
         setIsMenuOpen(false);
         setInput('');
       }
-    } else if (e.key === 'Enter' && input.trim()) {
-      handleSync();
     }
   };
 
   const handleSync = async () => {
+    if (!input.trim() || status === 'syncing') return;
     setStatus('syncing');
     try {
       const res = await fetch('/api/daily/capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          type: selectedTopic ? 'insight' : 'note',
+          type: captureType,
           note: input,
-          topicId: selectedTopic?.id,
+          blockType: selectedTopic?.id || null,
+          refId: selectedTopic?.refId || null,
+          refName: selectedTopic?.name || null,
+          topicId: selectedTopic?.refId || selectedTopic?.id || null,
           sessionDay
         })
       });
@@ -75,8 +106,20 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: Capt
         setStatus('success');
         setInput('');
         setSelectedTopic(null);
+
+        // Show returned tags
+        if (data.manualTags || data.aiTags) {
+          setSavedTags({
+            manualTags: data.manualTags || [],
+            aiTags: data.aiTags || [],
+            dayTag: `day-${sessionDay}`,
+          });
+        }
+
         if (onSuccess) onSuccess(data.aiSummary);
-        setTimeout(() => setStatus('idle'), 3000);
+        setTimeout(() => setStatus('idle'), 2000);
+      } else {
+        setStatus('idle');
       }
     } catch (err) {
       console.error('Failed to capture note:', err);
@@ -84,71 +127,107 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: Capt
     }
   };
 
-  return (
-    <div className="w-full relative border-t border-[#EBEBEB] bg-white p-4">
-      {/* Topic Selection Menu */}
-      {isMenuOpen && (
-        <div className="absolute bottom-full mb-2 left-4 right-4 bg-white border border-[#EBEBEB] rounded-xl shadow-xl z-[110] overflow-hidden">
-           <div className="max-h-[200px] overflow-y-auto py-1">
-             {menuItems.map((item, i) => (
-               <div
-                 key={item.id}
-                 className={`px-4 py-2.5 flex items-center justify-between cursor-pointer transition-colors ${
-                   i === selectedIndex ? 'bg-[#F4F4F5] text-[#111111]' : 'text-[#71717A] hover:bg-[#FAFAFA]'
-                 }`}
-                 onClick={() => {
-                    if (item.id !== 'general') setSelectedTopic({ id: item.id, name: item.name });
-                    else setSelectedTopic(null);
-                    setInput('');
-                    setIsMenuOpen(false);
-                    inputRef.current?.focus();
-                 }}
-               >
-                 <span className="text-[13px] font-medium">{item.name}</span>
-                 <span className="text-[10px] text-[#A1A1AA] font-mono">{item.type}</span>
-               </div>
-             ))}
-           </div>
-        </div>
-      )}
+  const showSend = input.trim().length > 0 && status !== 'syncing';
 
-      {/* Main Input Area */}
-      <div className="flex gap-2 items-center">
-        <div className="flex-1 relative">
-          <input
-            ref={inputRef}
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={status === 'syncing'}
-            placeholder={selectedTopic ? `Capturing for ${selectedTopic.name}...` : "Add a note or capture..."}
-            className="w-full h-10 bg-[#F4F4F5] border-none rounded-lg px-4 text-[13px] text-[#111111] focus:ring-1 focus:ring-[#111111]/10 outline-none placeholder:text-[#A1A1AA]"
-          />
-          {selectedTopic && (
-            <button 
+  return (
+    <div className="capture-bar">
+      {/* Type selector row */}
+      <div className="capture-bar__type-row">
+        {CAPTURE_TYPES.map(ct => (
+          <button
+            key={ct.id}
+            className={`capture-type-pill ${captureType === ct.id ? 'capture-type-pill--active' : ''}`}
+            onClick={() => setCaptureType(ct.id)}
+          >
+            {ct.label}
+          </button>
+        ))}
+
+        {/* Topic chip */}
+        {selectedTopic && (
+          <span className="capture-bar__topic-chip">
+            {selectedTopic.name}
+            <button
+              className="capture-bar__topic-chip-x"
               onClick={() => setSelectedTopic(null)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-[#A1A1AA] hover:text-[#111111]"
             >
               ✕
             </button>
-          )}
-        </div>
-        
+          </span>
+        )}
+      </div>
+
+      {/* Input area with command palette */}
+      <div className="capture-bar__input-wrap" ref={inputWrapRef} onKeyDown={handleKeyDown}>
+        {/* Command palette popup */}
+        {isMenuOpen && (
+          <div className="capture-palette">
+            <div className="capture-palette__list">
+              {menuItems.map((item, i) => (
+                <div
+                  key={item.id}
+                  className={`capture-palette__item ${i === selectedIndex ? 'capture-palette__item--active' : ''}`}
+                  onClick={() => {
+                    if (item.id !== 'general') setSelectedTopic({ id: item.id, name: item.name, refId: item.refId, blockLabel: item.blockLabel });
+                    else setSelectedTopic(null);
+                    setInput('');
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  <span className="capture-palette__item-name">{item.name}</span>
+                  <span className="capture-palette__item-type">{item.type}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <SmartTextarea
+          value={input}
+          onChange={setInput}
+          onSubmit={handleSync}
+          placeholder={selectedTopic ? `Capturing for ${selectedTopic.name}...` : 'Capture a thought... type / for topics'}
+          disabled={status === 'syncing'}
+          submitOnEnter={true}
+          showCounter={false}
+          rows={{ min: 1, max: 4 }}
+          variant="capture"
+        />
+
+        {/* Send button (arrow-up icon) */}
         <button
-           onClick={handleSync}
-           disabled={!input.trim() || status === 'syncing'}
-           className={`h-10 px-4 rounded-lg text-[13px] font-semibold transition-all ${
-             status === 'success' 
-               ? 'bg-[#22C55E] text-white' 
-               : 'bg-[#111111] text-white hover:bg-[#333333] disabled:bg-[#F4F4F5] disabled:text-[#A1A1AA]'
-           }`}
+          className={`capture-bar__send ${showSend ? 'capture-bar__send--visible' : ''} ${status === 'success' ? 'capture-bar__send--success' : ''}`}
+          onClick={handleSync}
+          disabled={!showSend}
         >
-           {status === 'idle' && 'Save Note'}
-           {status === 'syncing' && '...'}
-           {status === 'success' && '✓'}
+          {status === 'success' ? (
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M3 8.5L6.5 12L13 4" />
+            </svg>
+          ) : status === 'syncing' ? (
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" style={{ animation: 'spin 0.8s linear infinite' }}>
+              <path d="M8 2a6 6 0 105.28 3.14" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 12V4M4 7l4-4 4 4" />
+            </svg>
+          )}
         </button>
       </div>
+
+      {/* Tag pills — shown after save, auto-dismiss */}
+      {savedTags && (
+        <div className={`capture-tags ${tagsFading ? 'capture-tags--fading' : ''}`}>
+          {savedTags.manualTags.map(tag => (
+            <span key={`m-${tag}`} className="capture-tag capture-tag--manual">#{tag}</span>
+          ))}
+          {savedTags.aiTags.map(tag => (
+            <span key={`a-${tag}`} className="capture-tag capture-tag--ai">{tag}</span>
+          ))}
+          <span className="capture-tag capture-tag--day">{savedTags.dayTag}</span>
+        </div>
+      )}
     </div>
   );
 }
