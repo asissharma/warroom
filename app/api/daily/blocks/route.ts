@@ -16,74 +16,52 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const session = await Session.findById(sessionId);
-    if (!session) {
-      return NextResponse.json({ error: 'Session not found' }, { status: 404 });
-    }
+    const { syncStatus, syncQuestion, questionNote, refId, ...pureUpdateData } = updateData;
 
-    const currentBlockData = session.blocks[blockType];
-    const { syncStatus, syncQuestion, questionNote, ...pureUpdateData } = updateData;
+    // THIN LOG: We no longer save entire blocks redundantly into the session doc.
+    // We only update the underlying specific target item exactly.
 
-    // 1. Build the updated block — merge pure field updates first
-    const updatedBlock: any = { ...currentBlockData, ...pureUpdateData };
+    const standardStatus = syncStatus === 'Done' ? 'completed' 
+                         : syncStatus === 'Partial' ? 'in-progress' 
+                         : syncStatus === 'Skipped' ? 'pending' 
+                         : undefined;
 
-    // 2. If this is a question update, apply status + note BEFORE the save
-    if (blockType === 'questions' && (syncQuestion?.id || questionNote?.id)) {
-        const qItems: any[] = [...(updatedBlock.items || [])];
-
-        // Apply answer status
-        if (syncQuestion?.id) {
-            const idx = qItems.findIndex((q: any) => q.id === syncQuestion.id);
-            if (idx !== -1 && qItems[idx].status !== 'Correct' && qItems[idx].status !== 'Struggled') {
-                qItems[idx] = { ...qItems[idx], status: syncQuestion.status };
-                if (syncQuestion.status === 'Correct') {
-                    updatedBlock.correct = (updatedBlock.correct || 0) + 1;
-                } else if (syncQuestion.status === 'Struggled') {
-                    updatedBlock.struggled = (updatedBlock.struggled || 0) + 1;
-                }
-            }
-        }
-
-        // Apply per-question note
-        if (questionNote?.id) {
-            const idx = qItems.findIndex((q: any) => q.id === questionNote.id);
-            if (idx !== -1) {
-                qItems[idx] = { ...qItems[idx], note: questionNote.note };
-            }
-        }
-
-        updatedBlock.items = qItems;
-    }
-
-    // 3. Write back to session — single save
-    session.blocks = { ...session.blocks, [blockType]: updatedBlock };
-    session.markModified('blocks');
-    await session.save();
-
-    // 4. Synchronization Subroutines (Dual-Write to source collections — separate from session save)
-    if (syncStatus && currentBlockData?.refId) {
-        const standardStatus = syncStatus === 'Done' ? 'completed' 
-                             : syncStatus === 'Partial' ? 'in-progress' 
-                             : syncStatus === 'Skipped' ? 'pending' 
-                             : 'pending';
-
+    if (refId) {
         if (blockType === 'project') {
-            await Project.findByIdAndUpdate(currentBlockData.refId, { status: standardStatus });
+            const updateObj = standardStatus ? { status: standardStatus, ...pureUpdateData } : pureUpdateData;
+            if (Object.keys(updateObj).length > 0) {
+                 await Project.findByIdAndUpdate(refId, updateObj);
+            }
         } else if (blockType === 'spine') {
-            await TechSpine.findByIdAndUpdate(currentBlockData.refId, { status: standardStatus });
+            const updateObj = standardStatus ? { status: standardStatus, ...pureUpdateData } : pureUpdateData;
+            // Map simple fields from ui "topicToday" (legacy) -> topic if needed, but normally frontend sends exact updates, wait actually frontend sends 'microtaskToday'. We should map it back to `microtask` if provided!
+            if (updateObj.microtaskToday !== undefined) updateObj.microtask = updateObj.microtaskToday;
+            if (Object.keys(updateObj).length > 0) {
+                 await TechSpine.findByIdAndUpdate(refId, updateObj);
+            }
         } else if (blockType === 'softSkill' || blockType === 'payableSkill') {
-            await Skill.findByIdAndUpdate(currentBlockData.refId, { status: standardStatus });
+            const updateObj = standardStatus ? { status: standardStatus, ...pureUpdateData } : pureUpdateData;
+            if (Object.keys(updateObj).length > 0) {
+                 await Skill.findByIdAndUpdate(refId, updateObj);
+            }
         }
     }
 
     if (blockType === 'questions' && syncQuestion?.id) {
         const questionDoc = await Question.findById(syncQuestion.id);
         if (questionDoc) {
-            // SM-2 Update Logic (unchanged but ensured it runs)
+            // Include daily result tracking dynamically
+            questionDoc.lastReviewedDate = new Date();
+            if (syncQuestion.status === 'Correct' || syncQuestion.status === 'Struggled') {
+                questionDoc.lastReviewResult = syncQuestion.status;
+            }
+
+            // SM-2 Update Logic
             if (syncQuestion.status === 'Undo') {
                 questionDoc.status = 'learning';
                 questionDoc.repetitions = 0;
                 questionDoc.interval = 1;
+                questionDoc.lastReviewResult = 'Undo'; // Or clear it
             } else if (syncQuestion.status === 'Correct') {
                 if (questionDoc.status === 'unseen') {
                     questionDoc.status = 'learning';
@@ -113,6 +91,9 @@ export async function PUT(request: Request) {
             await questionDoc.save();
         }
     }
+
+    // Still touch session merely to bump updatedAt to keep it hot, though optional
+    await Session.updateOne({ _id: sessionId }, { $set: { updatedAt: new Date() } });
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

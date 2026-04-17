@@ -76,7 +76,11 @@ export default function DailyScreen() {
       await fetch('/api/daily/blocks', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId: session._id, blockType, updateData })
+        body: JSON.stringify({ 
+          sessionId: session._id, 
+          blockType, 
+          updateData: { ...updateData, refId: session.blocks[blockType]?.refId } 
+        })
       });
     } catch (e) {
       console.error('Failed to update block in db:', e);

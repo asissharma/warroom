@@ -8,11 +8,33 @@ import TechSpine from '@/app/lib/models/TechSpine';
 import Project from '@/app/lib/models/Project';
 import Skill from '@/app/lib/models/Skill';
 
+async function getDailyBlock(Model: any, queryExtras = {}) {
+    // Determine the active item according to Thin-Log logic
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    // 1. If one was completed today, show it as Done today
+    let doc = await Model.findOne({ ...queryExtras, status: 'completed', updatedAt: { $gte: startOfToday } });
+    if (doc) return { doc, dailyStatus: 'Done' };
+
+    // 2. Otherwise get the currently active item
+    doc = await Model.findOne({ ...queryExtras, status: 'in-progress' });
+    if (doc) return { doc, dailyStatus: 'Partial' };
+
+    // 3. Otherwise get the next pending item
+    doc = await Model.findOne({ ...queryExtras, status: 'pending' }).sort({ order: 1 });
+    if (doc) return { doc, dailyStatus: 'NotStarted' };
+
+    return null;
+}
+
 export async function GET() {
   await connectDB();
   
   // Use local timezone date string
   const today = new Date().toISOString().split('T')[0];
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
 
   try {
     let session = await Session.findOne({ date: today }).populate([
@@ -21,94 +43,14 @@ export async function GET() {
     ]);
     
     if (!session) {
-      // Find latest session to get the day number
       const lastSession = await Session.findOne().sort({ dayNumber: -1 });
       const nextDay = lastSession ? lastSession.dayNumber + 1 : 1;
-      
-      // Load highest severity open gap
-      const criticalGap = await GapTracker.findOne({ status: 'open', severity: 'critical' }).sort({ flagCount: -1 });
-      const mediumGap = await GapTracker.findOne({ status: 'open', severity: 'medium' }).sort({ flagCount: -1 });
-      const highestGap = criticalGap || mediumGap;
 
-      let survivalBlock = undefined;
-      if (highestGap) {
-        survivalBlock = {
-          status: 'NotStarted',
-          gapName: highestGap.concept,
-          severity: highestGap.severity,
-          flagCount: highestGap.flagCount,
-          daysSinceOpen: Math.floor((new Date().getTime() - highestGap.createdAt.getTime()) / (1000 * 3600 * 24))
-        };
-      }
-
-      // Load DB Questions natively via SM-2 bounds
-      let dueQuestions = await Question.find({ 
-          status: { $in: ['learning', 'review'] }, 
-          nextReviewDate: { $lte: new Date() } 
-      }).limit(9);
-      
-      if (dueQuestions.length < 9) {
-          const extra = await Question.find({ status: 'unseen' }).limit(9 - dueQuestions.length);
-          dueQuestions = dueQuestions.concat(extra);
-      }
-
-      const formattedQuestions = dueQuestions.map(q => ({
-          id: q._id.toString(),
-          text: q.text,
-          theme: q.theme,
-          status: 'Pending'
-      }));
-
-      // Find DB Tracks (In-Progress roll over first, else get Next Pending)
-      let spine = await TechSpine.findOne({ status: 'in-progress' });
-      if (!spine) spine = await TechSpine.findOne({ status: 'pending' }).sort({ order: 1 });
-
-      let softSkill = await Skill.findOne({ type: 'soft', status: 'in-progress' });
-      if (!softSkill) softSkill = await Skill.findOne({ type: 'soft', status: 'pending' }).sort({ order: 1 });
-      
-      let payableSkill = await Skill.findOne({ type: 'payable', status: 'in-progress' });
-      if (!payableSkill) payableSkill = await Skill.findOne({ type: 'payable', status: 'pending' }).sort({ order: 1 });
-
-      let project = await Project.findOne({ status: 'in-progress' });
-      if (!project) project = await Project.findOne({ status: 'pending' }).sort({ order: 1 });
-
+      // Create session as a thin wrapper without storing blocks
       session = await Session.create({
         dayNumber: nextDay,
-        phase: spine?.phase || 'Foundation',
+        phase: 'Foundation',
         date: today,
-        blocks: {
-          spine: spine ? {
-            status: spine.status === 'in-progress' ? 'Partial' : 'NotStarted',
-            refId: spine._id,
-            area: spine.area,
-            topicToday: spine.topic,
-            microtaskToday: spine.microtask,
-            resource: spine.resource
-          } : undefined,
-          softSkill: softSkill ? {
-            status: softSkill.status === 'in-progress' ? 'Partial' : 'NotStarted',
-            refId: softSkill._id,
-            skillName: softSkill.name,
-            prompt: softSkill.prompt,
-            isDone: false
-          } : undefined,
-          payableSkill: payableSkill ? {
-            status: payableSkill.status === 'in-progress' ? 'Partial' : 'NotStarted',
-            refId: payableSkill._id,
-            topicName: payableSkill.name,
-            chapter: payableSkill.chapter,
-            prompt: payableSkill.prompt,
-            isDone: false
-          } : undefined,
-          survival: survivalBlock,
-          questions: { status: 'NotStarted', total: formattedQuestions.length, correct: 0, struggled: 0, items: formattedQuestions },
-          project: project ? {
-            status: project.status === 'in-progress' ? 'Partial' : 'NotStarted',
-            refId: project._id,
-            projectName: project.name,
-            description: project.description
-          } : undefined
-        },
         momentumScore: 0,
         gapsFlagged: [],
         captures: [],
@@ -117,46 +59,136 @@ export async function GET() {
       });
     }
 
-    // Reconcile question statuses — fix items stuck on 'Pending' due to pre-fix save bug
-    if (session.blocks?.questions?.items?.length > 0) {
-      let needsSave = false;
-      const items = session.blocks.questions.items;
-      let correctCount = session.blocks.questions.correct || 0;
-      let struggledCount = session.blocks.questions.struggled || 0;
+    // ==========================================
+    // THIN-LOG: Dynamically construct daily blocks
+    // ==========================================
+    const dynamicBlocks: any = {};
 
-      for (let i = 0; i < items.length; i++) {
-        if (items[i].status === 'Pending') {
-          const qDoc = await Question.findById(items[i].id);
-          if (qDoc && qDoc.updatedAt > session.createdAt) {
-            // SM-2 was updated but session item wasn't — infer answer from easeFactor
-            if (qDoc.easeFactor < 2.5) {
-              items[i].status = 'Struggled';
-              struggledCount++;
-            } else {
-              items[i].status = 'Correct';
-              correctCount++;
-            }
-            needsSave = true;
-          }
-        }
-      }
-
-      if (needsSave) {
-        session.blocks.questions.items = items;
-        session.blocks.questions.correct = correctCount;
-        session.blocks.questions.struggled = struggledCount;
-        session.markModified('blocks');
-        await session.save();
+    // 1. TechSpine
+    const spineObj = await getDailyBlock(TechSpine);
+    if (spineObj) {
+      dynamicBlocks.spine = {
+        status: spineObj.dailyStatus,
+        refId: spineObj.doc._id,
+        area: spineObj.doc.area,
+        topicToday: spineObj.doc.topic,
+        microtaskToday: spineObj.doc.microtask,
+        resource: spineObj.doc.resource
+      };
+      if (session.phase !== spineObj.doc.phase) {
+          session.phase = spineObj.doc.phase || 'Foundation';
+          await session.save();
       }
     }
 
-    // Determine Carry Forward items (From past sessions)
+    // 2. SoftSkill
+    const softSkillObj = await getDailyBlock(Skill, { type: 'soft' });
+    if (softSkillObj) {
+      dynamicBlocks.softSkill = {
+        status: softSkillObj.dailyStatus,
+        refId: softSkillObj.doc._id,
+        skillName: softSkillObj.doc.name,
+        prompt: softSkillObj.doc.prompt,
+        isDone: softSkillObj.dailyStatus === 'Done'
+      };
+    }
+
+    // 3. PayableSkill
+    const payableSkillObj = await getDailyBlock(Skill, { type: 'payable' });
+    if (payableSkillObj) {
+      dynamicBlocks.payableSkill = {
+        status: payableSkillObj.dailyStatus,
+        refId: payableSkillObj.doc._id,
+        topicName: payableSkillObj.doc.name,
+        chapter: payableSkillObj.doc.chapter,
+        prompt: payableSkillObj.doc.prompt,
+        isDone: payableSkillObj.dailyStatus === 'Done'
+      };
+    }
+
+    // 4. Project
+    const projectObj = await getDailyBlock(Project);
+    if (projectObj) {
+      dynamicBlocks.project = {
+        status: projectObj.dailyStatus,
+        refId: projectObj.doc._id,
+        projectName: projectObj.doc.name,
+        description: projectObj.doc.description
+      };
+    }
+
+    // 5. Survival Block (Highest Open Gap)
+    const criticalGap = await GapTracker.findOne({ status: 'open', severity: 'critical' }).sort({ flagCount: -1 });
+    const mediumGap = await GapTracker.findOne({ status: 'open', severity: 'medium' }).sort({ flagCount: -1 });
+    const highestGap = criticalGap || mediumGap;
+    if (highestGap) {
+      dynamicBlocks.survival = {
+        status: 'NotStarted', // Or dynamically track Gap resolution today if needed
+        gapName: highestGap.concept,
+        severity: highestGap.severity,
+        flagCount: highestGap.flagCount,
+        daysSinceOpen: Math.floor((new Date().getTime() - highestGap.createdAt.getTime()) / (1000 * 3600 * 24))
+      };
+    }
+
+    // 6. Memory Check (Questions)
+    let questionsToday = await Question.find({ lastReviewedDate: { $gte: startOfToday } });
+    let unreviewedDueQuestions = await Question.find({ 
+        status: { $in: ['learning', 'review'] }, 
+        nextReviewDate: { $lte: new Date() },
+        _id: { $nin: questionsToday.map(q => q._id) }
+    }).limit(9 - questionsToday.length);
+    
+    let combinedQuestions = [...questionsToday, ...unreviewedDueQuestions];
+
+    if (combinedQuestions.length < 9) {
+        const extra = await Question.find({ 
+            status: 'unseen',
+            _id: { $nin: combinedQuestions.map(q => q._id) }
+        }).limit(9 - combinedQuestions.length);
+        combinedQuestions = combinedQuestions.concat(extra);
+    }
+
+    let correct = 0;
+    let struggled = 0;
+
+    const formattedQuestions = combinedQuestions.map(q => {
+        let qStatus = 'Pending';
+        if (q.lastReviewedDate && q.lastReviewedDate >= startOfToday) {
+            if (q.lastReviewResult === 'Correct') { qStatus = 'Correct'; correct++; }
+            else if (q.lastReviewResult === 'Struggled') { qStatus = 'Struggled'; struggled++; }
+        }
+
+        return {
+            id: q._id.toString(),
+            text: q.text,
+            theme: q.theme,
+            status: qStatus
+        };
+    });
+
+    dynamicBlocks.questions = {
+        status: (correct + struggled === formattedQuestions.length && formattedQuestions.length > 0) ? 'Done' : (correct + struggled > 0 ? 'Partial' : 'NotStarted'),
+        total: formattedQuestions.length,
+        correct,
+        struggled,
+        items: formattedQuestions
+    };
+
+    // Construct the response session
+    const responseSession = {
+      ...session.toObject(),
+      blocks: dynamicBlocks
+    };
+
+    // Determine Carry Forward items
     const pastSessions = await Session.find({ dayNumber: { $lt: session.dayNumber } })
       .sort({ dayNumber: -1 })
       .limit(3);
 
     const carryForwardItems: any[] = [];
     pastSessions.forEach(ps => {
+      // Because we used to save blocks in Session, legacy items might still be read
       if (ps.blocks?.project?.status === 'Partial' || ps.blocks?.project?.status === 'Skipped') {
         carryForwardItems.push({ 
           type: 'project', 
@@ -167,7 +199,7 @@ export async function GET() {
       }
     });
 
-    return NextResponse.json({ session, carryForwardItems });
+    return NextResponse.json({ session: responseSession, carryForwardItems });
   } catch (error: any) {
     console.error('Session Error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });

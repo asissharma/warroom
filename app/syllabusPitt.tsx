@@ -90,7 +90,7 @@ export default function SyllabusPitt() {
 
 /* ── OVERVIEW TAB — STAT CARDS ───────────────────── */
 function OverviewCards({ stats }: { stats: any }) {
-  const progress = stats ? Math.round((stats.spine / 150) * 100) : 0;
+  const progress = stats ? Math.min(100, Math.round((stats.spine / 150) * 100)) : 0;
   const openGaps = stats?.openGaps || 0;
   const questions = stats?.questions || 0;
   const softSkills = stats?.softSkills || 35;
@@ -100,7 +100,7 @@ function OverviewCards({ stats }: { stats: any }) {
     <div className="syll-overview animate-fade-slide">
       {/* Top row — 3 stat cards */}
       <div className="syll-overview__row">
-        <div className="syll-stat-card">
+        <div className="syll-stat-card syll-stat-card--accent-sky">
           <div className="syll-stat-card__label">PROGRESS</div>
           <div className="syll-stat-card__value" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             {stats ? `${progress}%` : '--'}
@@ -108,7 +108,7 @@ function OverviewCards({ stats }: { stats: any }) {
           <div className="syll-stat-card__subtitle">Topics with Surface+ depth</div>
         </div>
 
-        <div className="syll-stat-card">
+        <div className={`syll-stat-card ${openGaps > 0 ? 'syll-stat-card--accent-amber' : 'syll-stat-card--accent-green'}`}>
           <div className="syll-stat-card__label">OPEN GAPS</div>
           <div
             className="syll-stat-card__value"
@@ -122,7 +122,7 @@ function OverviewCards({ stats }: { stats: any }) {
           <div className="syll-stat-card__subtitle">Flagged concepts needing work</div>
         </div>
 
-        <div className="syll-stat-card">
+        <div className="syll-stat-card syll-stat-card--accent-rose">
           <div className="syll-stat-card__label">QUESTIONS</div>
           <div className="syll-stat-card__value" style={{ fontFamily: "'Instrument Serif', Georgia, serif" }}>
             {questions}

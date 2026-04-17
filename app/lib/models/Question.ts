@@ -9,6 +9,8 @@ export interface IQuestion extends Document {
   interval: number;
   easeFactor: number;
   repetitions: number;
+  lastReviewedDate?: Date;
+  lastReviewResult?: 'Correct' | 'Struggled' | 'Undo';
 }
 
 const QuestionSchema = new Schema<IQuestion>(
@@ -21,6 +23,8 @@ const QuestionSchema = new Schema<IQuestion>(
     interval: { type: Number, default: 0 },
     easeFactor: { type: Number, default: 2.5 },
     repetitions: { type: Number, default: 0 },
+    lastReviewedDate: { type: Date },
+    lastReviewResult: { type: String, enum: ['Correct', 'Struggled', 'Undo'] },
   },
   { timestamps: true }
 );

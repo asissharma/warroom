@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import SyllabusSkeleton from '@/app/components/shared/SyllabusSkeleton';
 
 interface QuestionsTabProps {
   onSelectItem: (item: any) => void;
@@ -33,12 +34,7 @@ export default function QuestionsTab({ onSelectItem }: QuestionsTabProps) {
   }, []);
 
   if (loading) {
-    return (
-      <div style={{ padding: '80px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
-        <div style={{ width: 28, height: 28, border: '2px solid #111111', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite', marginBottom: 16 }} />
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Loading...</div>
-      </div>
-    );
+    return <SyllabusSkeleton />;
   }
 
   const filters: { id: QFilter; label: string }[] = [
@@ -116,16 +112,16 @@ export default function QuestionsTab({ onSelectItem }: QuestionsTabProps) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: 24,
-                  height: 24,
+                  padding: '2px 8px', /* Adjust padding slightly */
                   borderRadius: 100,
                   background: '#F4F4F5',
                   fontSize: 11,
                   fontFamily: "'Inter', sans-serif",
                   color: '#71717A',
                   fontWeight: 500,
+                  whiteSpace: 'nowrap',
                 }}>
-                  {q.difficulty || 1}
+                  LVL {q.difficulty || 1}
                 </span>
 
                 {/* Correct rate */}

@@ -898,6 +898,7 @@
 .global-nav__item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     padding: 6px 14px;
     border-radius: 8px;
@@ -919,6 +920,9 @@
     color: #111111;
     background: #F4F4F5;
     font-weight: 600;
+}
+.global-nav__icon {
+    display: none; /* Hide emoji on desktop by default */
 }
 
 /* ── QUESTION STATS (after all answered) ────────────── */
@@ -1014,7 +1018,39 @@
     }
 
     .global-nav {
-        display: none;
+        display: flex;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        background: #FFFFFF;
+        border-top: 1px solid #EBEBEB;
+        padding: 0;
+        justify-content: space-around;
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    }
+    .global-nav__item {
+        flex: 1;
+        flex-direction: column;
+        border-radius: 0;
+        height: 100%;
+        padding: 8px 0;
+        gap: 4px;
+    }
+    .global-nav__item:hover {
+        background: transparent;
+    }
+    .global-nav__item--active {
+        background: transparent;
+        color: #111111;
+    }
+    .global-nav__icon {
+        display: block;
+        font-size: 18px;
+    }
+    .global-nav__label {
+        font-size: 9px;
     }
 }
 
@@ -1031,7 +1067,7 @@
     height: 56px;
     background: #FFFFFF;
     border-bottom: 1px solid #EBEBEB;
-    padding: 0 32px;
+    padding: 0 260px 0 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1148,6 +1184,8 @@
 }
 .syll-overview__row--2col {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 66.666%; /* 2/3 of the width so they match the top row width instead of stretching */
+    margin: 0 auto; /* Center it if wanted, or leave it left-aligned. Left aligned is fine too, but wait: `max-width: 66.66%` with `margin: 0 left` aligns perfectly with the first 2 columns. Centering may look weird if the third column is missing. Let me just leave `grid-template-columns: repeat(2, 1fr); max-width: 66.666%` */
 }
 
 .syll-stat-card {
@@ -1166,6 +1204,18 @@
 }
 .syll-stat-card--accent-peach {
     border-left: 3px solid #FDBA74;
+}
+.syll-stat-card--accent-sky {
+    border-left: 3px solid #7DD3FC;
+}
+.syll-stat-card--accent-amber {
+    border-left: 3px solid #FCD34D;
+}
+.syll-stat-card--accent-green {
+    border-left: 3px solid #86EFAC;
+}
+.syll-stat-card--accent-rose {
+    border-left: 3px solid #FDA4AF;
 }
 
 .syll-stat-card__label {
@@ -1676,10 +1726,11 @@
 
     .syll-content-wrapper {
         flex-direction: column;
+        height: calc(100vh - 52px - 64px); /* Account for top bar and bottom nav */
     }
 
     .syll-content {
-        padding: 20px 16px;
+        padding: 20px 16px 80px 16px; /* Extra bottom padding for scroll clearance */
         max-width: 100% !important;
     }
 
@@ -1695,6 +1746,7 @@
     }
     .syll-overview__row--2col {
         grid-template-columns: 1fr;
+        max-width: 100%;
     }
 
     .syll-row-card {
