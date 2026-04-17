@@ -8,13 +8,16 @@ import SoftSkillsTab from '@/app/components/syllabus/SoftSkillsTab';
 import PayableSkillsTab from '@/app/components/syllabus/PayableSkillsTab';
 import GapTrackerTab from '@/app/components/syllabus/GapTrackerTab';
 import DetailPane from '@/app/components/syllabus/DetailPane';
+import ChatPanel from '@/app/components/daily/ChatPanel';
 
 type TabType = 'OVERVIEW' | 'SPINE' | 'QUESTIONS' | 'PROJECTS' | 'SOFT_SKILLS' | 'PAYABLE_SKILLS' | 'GAP_TRACKER';
 
 export default function SyllabusPitt() {
   const [activeTab, setActiveTab] = useState<TabType>('OVERVIEW');
   const [stats, setStats] = useState<any>(null);
+  const [highlights, setHighlights] = useState<any>(null);
   const [selectedItem, setSelectedItem] = useState<any>(null);
+  const [isAiPanelOpen, setIsAiPanelOpen] = useState(false);
 
   useEffect(() => {
     async function fetchStats() {
@@ -23,6 +26,7 @@ export default function SyllabusPitt() {
         const data = await res.json();
         if (data.success) {
           setStats(data.stats);
+          setHighlights(data.highlights);
         }
       } catch (e) {
         console.error('Failed to fetch syllabus stats', e);
@@ -60,13 +64,19 @@ export default function SyllabusPitt() {
           ))}
         </div>
 
-        <button className="syll-topbar__ai-btn">AI Analysis</button>
+        <button 
+          className="syll-topbar__ai-btn"
+          onClick={() => setIsAiPanelOpen(!isAiPanelOpen)}
+          style={{ background: isAiPanelOpen ? '#111111' : 'transparent', color: isAiPanelOpen ? '#FFFFFF' : '#71717A' }}
+        >
+          {isAiPanelOpen ? 'Close Analysis' : 'AI Analysis'}
+        </button>
       </div>
 
       {/* ── CONTENT AREA ────────────────────────────── */}
       <div className="syll-content-wrapper">
         <div className={`syll-content ${selectedItem ? 'syll-content--with-detail' : ''}`}>
-          {activeTab === 'OVERVIEW' && <OverviewCards stats={stats} />}
+          {activeTab === 'OVERVIEW' && <OverviewCards stats={stats} highlights={highlights} onSelectItem={setSelectedItem} />}
           {activeTab === 'SPINE' && <TechSpineTab onSelectItem={setSelectedItem} />}
           {activeTab === 'QUESTIONS' && <QuestionsTab onSelectItem={setSelectedItem} />}
           {activeTab === 'PROJECTS' && <ProjectsTab onSelectItem={setSelectedItem} />}
@@ -83,13 +93,26 @@ export default function SyllabusPitt() {
             />
           </div>
         )}
+
+        {/* AI ANALYSIS PANEL */}
+        {isAiPanelOpen && (
+          <div className="syll-ai-pane" style={{ width: '40%', borderLeft: '1px solid #EBEBEB', background: '#FAFAFA', overflowY: 'auto' }}>
+            <ChatPanel
+              isOpen={isAiPanelOpen}
+              onClose={() => setIsAiPanelOpen(false)}
+              contextType="SYLLABUS_OVERVIEW"
+              onDrift={() => {}}
+              onCapture={() => {}}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-/* ── OVERVIEW TAB — STAT CARDS ───────────────────── */
-function OverviewCards({ stats }: { stats: any }) {
+/* ── OVERVIEW TAB — STAT CARDS & DASHBOARD ───────── */
+function OverviewCards({ stats, highlights, onSelectItem }: { stats: any; highlights: any; onSelectItem?: (item: any) => void }) {
   const progress = stats ? Math.min(100, Math.round((stats.spine / 150) * 100)) : 0;
   const openGaps = stats?.openGaps || 0;
   const questions = stats?.questions || 0;
@@ -149,6 +172,62 @@ function OverviewCards({ stats }: { stats: any }) {
           <div className="syll-stat-card__subtitle">Skills tracked</div>
         </div>
       </div>
+
+      {/* Third section — Active Curriculum Dashboard */}
+      {highlights && (
+        <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {highlights.spine?.length > 0 && (
+            <div>
+              <div style={{ fontSize: 13, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 12 }}>Active Tech Spine Topics</div>
+              <div className="syll-list">
+                {highlights.spine.map((s: any) => (
+                  <div key={s._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...s, source: 'spine' })}>
+                    <div className="syll-row-card__left">
+                      <div className="syll-row-card__name">{s.topic}</div>
+                      <div className="syll-row-card__meta">Depth: {s.difficulty} • Progress: {s.completionPercent || 0}%</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {highlights.projects?.length > 0 && (
+            <div>
+              <div style={{ fontSize: 13, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 12 }}>Active Projects</div>
+              <div className="syll-list">
+                {highlights.projects.map((p: any) => (
+                  <div key={p._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...p, source: 'projects' })}>
+                    <div className="syll-row-card__left">
+                      <div className="syll-row-card__name">{p.name}</div>
+                      <div className="syll-row-card__meta" style={{ display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{p.description}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {highlights.gaps?.length > 0 && (
+            <div>
+              <div style={{ fontSize: 13, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 12 }}>Critical Gaps</div>
+              <div className="syll-list">
+                {highlights.gaps.map((g: any) => (
+                  <div key={g._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...g, source: 'gaps' })}>
+                    <div className="syll-row-card__left">
+                      <div className="syll-row-card__name">{g.concept}</div>
+                      <div className="syll-row-card__meta">Origin: {g.originTracker}</div>
+                    </div>
+                    <div className="syll-row-card__right">
+                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 100, background: '#FEF2F2', color: '#DC2626' }}>{g.severity}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

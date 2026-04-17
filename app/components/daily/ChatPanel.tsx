@@ -6,11 +6,12 @@ interface ChatPanelProps {
   isOpen: boolean;
   onClose: () => void;
   contextType?: string;
+  contextData?: any; // Pumping full tuple to context builder
   onCapture: (type: string, content: string) => void;
   onDrift: () => void;
 }
 
-export default function ChatPanel({ isOpen, onClose, contextType, onCapture, onDrift }: ChatPanelProps) {
+export default function ChatPanel({ isOpen, onClose, contextType, contextData, onCapture, onDrift }: ChatPanelProps) {
   const [inputStr, setInputStr] = useState('');
   const [messages, setMessages] = useState<{role: string, content: string}[]>([]);
   const [turnCount, setTurnCount] = useState(0);
@@ -54,7 +55,7 @@ export default function ChatPanel({ isOpen, onClose, contextType, onCapture, onD
       setTurnCount(0);
     } else {
       setTimeout(() => {
-        setMessages(prev => [...prev, { role: 'ai', content: `[AI response for ${contextLabel}]` }]);
+        setMessages(prev => [...prev, { role: 'ai', content: `[AI response for ${contextLabel}. Full tuple context length: ${JSON.stringify(contextData || {}).length} bytes]` }]);
       }, 500);
     }
   };

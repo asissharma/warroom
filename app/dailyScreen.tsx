@@ -19,7 +19,7 @@ export default function DailyScreen() {
   const [session, setSession] = useState<any>(null);
   const [carryForward, setCarryForward] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [chatOpen, setChatOpen] = useState(false);
+  const [rightTab, setRightTab] = useState<'ACTIVITY' | 'ASSISTANT'>('ACTIVITY');
   const [activeContext, setActiveContext] = useState<string>('');
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
 
@@ -169,7 +169,7 @@ export default function DailyScreen() {
 
   const handleOpenChat = (contextType: string) => {
     setActiveContext(contextType);
-    setChatOpen(true);
+    setRightTab('ASSISTANT');
     // Auto-open right panel if collapsed
     if (!rightPanelOpen) setRightPanelOpen(true);
   };
@@ -189,8 +189,18 @@ export default function DailyScreen() {
           <span className="top-bar__pill">Day {session.dayNumber}</span>
         </div>
 
-        <div className="top-bar__progress">
-          {doneBlocks.length} / {existingBlocks.length} blocks complete
+        <div className="top-bar__progress" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ fontSize: 13, color: '#A1A1AA', fontFamily: "'JetBrains Mono', monospace", textTransform: 'uppercase' }}>
+            {doneBlocks.length} / {existingBlocks.length}
+          </div>
+          <div style={{ width: 100, height: 6, background: '#F4F4F5', borderRadius: 100, overflow: 'hidden' }}>
+            <div style={{ 
+              height: '100%', 
+              background: '#111111', 
+              width: `${existingBlocks.length > 0 ? (doneBlocks.length / existingBlocks.length) * 100 : 0}%`,
+              transition: 'width 0.4s ease'
+            }} />
+          </div>
         </div>
       </div>
 
@@ -207,7 +217,7 @@ export default function DailyScreen() {
               type="questions"
               data={session.blocks.questions}
               onUpdate={(up) => handleUpdateBlock('questions', up)}
-              onOpenChat={() => handleOpenChat('QUESTIONS_SM2')}
+              onOpenChat={() => handleOpenChat('QUESTIONS_SM2', session.blocks.questions)}
             />
           )}
 
@@ -217,7 +227,7 @@ export default function DailyScreen() {
               type="spine"
               data={session.blocks.spine}
               onUpdate={(up) => handleUpdateBlock('spine', up)}
-              onOpenChat={() => handleOpenChat('TECH_SPINE')}
+              onOpenChat={() => handleOpenChat('TECH_SPINE', session.blocks.spine)}
             />
           )}
 
@@ -227,7 +237,7 @@ export default function DailyScreen() {
               type="project"
               data={session.blocks.project}
               onUpdate={(up) => handleUpdateBlock('project', up)}
-              onOpenChat={() => handleOpenChat('PROJECT')}
+              onOpenChat={() => handleOpenChat('PROJECT', session.blocks.project)}
             />
           )}
 
@@ -237,7 +247,7 @@ export default function DailyScreen() {
               type="softSkill"
               data={session.blocks.softSkill}
               onUpdate={(up) => handleUpdateBlock('softSkill', up)}
-              onOpenChat={() => handleOpenChat('SOFT_SKILLS')}
+              onOpenChat={() => handleOpenChat('SOFT_SKILLS', session.blocks.softSkill)}
             />
           )}
 
@@ -247,7 +257,7 @@ export default function DailyScreen() {
               type="payableSkill"
               data={session.blocks.payableSkill}
               onUpdate={(up) => handleUpdateBlock('payableSkill', up)}
-              onOpenChat={() => handleOpenChat('PAYABLE_SKILLS')}
+              onOpenChat={() => handleOpenChat('PAYABLE_SKILLS', session.blocks.payableSkill)}
             />
           )}
 
@@ -257,7 +267,7 @@ export default function DailyScreen() {
               type="survival"
               data={session.blocks.survival}
               onUpdate={(up) => handleUpdateBlock('survival', up)}
-              onOpenChat={() => handleOpenChat('SURVIVAL')}
+              onOpenChat={() => handleOpenChat('SURVIVAL', session.blocks.survival)}
             />
           )}
 
@@ -286,50 +296,98 @@ export default function DailyScreen() {
               {/* Collapse toggle button */}
               <button 
                 className="right-panel-toggle" 
-                onClick={() => { setChatOpen(false); setRightPanelOpen(false); }}
+                onClick={() => { setRightPanelOpen(false); }}
                 title="Collapse panel"
               >
                 ›
               </button>
 
-              {chatOpen ? (
+              {/* Tab Switcher */}
+              <div style={{ display: 'flex', borderBottom: '1px solid #EBEBEB', padding: '16px 24px 0 24px' }}>
+                <button 
+                  onClick={() => setRightTab('ACTIVITY')}
+                  style={{
+                    padding: '8px 16px', fontSize: 13, fontWeight: 500,
+                    color: rightTab === 'ACTIVITY' ? '#111111' : '#A1A1AA',
+                    borderBottom: rightTab === 'ACTIVITY' ? '2px solid #111111' : '2px solid transparent'
+                  }}
+                >
+                  Activity Logging
+                </button>
+                <button 
+                  onClick={() => setRightTab('ASSISTANT')}
+                  style={{
+                    padding: '8px 16px', fontSize: 13, fontWeight: 500,
+                    color: rightTab === 'ASSISTANT' ? '#111111' : '#A1A1AA',
+                    borderBottom: rightTab === 'ASSISTANT' ? '2px solid #111111' : '2px solid transparent'
+                  }}
+                >
+                  AI Assistant
+                </button>
+              </div>
+
+              {rightTab === 'ASSISTANT' ? (
                 <ChatPanel
-                  isOpen={chatOpen}
-                  onClose={() => setChatOpen(false)}
+                  isOpen={true}
+                  onClose={() => setRightTab('ACTIVITY')}
                   contextType={activeContext}
                   onDrift={() => { }}
                   onCapture={() => { }}
                 />
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  <div className="feed-title">Today&apos;s Feed</div>
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px 0', background: '#FAFAFA' }}>
+                  
+                  {/* SESSION MOMENTUM DASHBOARD */}
+                  <div style={{ margin: '0 24px 24px 24px', padding: 20, background: '#FFFFFF', borderRadius: 12, border: '1px solid #EBEBEB', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}>
+                    <div style={{ fontSize: 11, color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>Session Momentum</div>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+                      <span style={{ fontSize: 32, fontWeight: 300, fontFamily: "'Instrument Serif', Georgia, serif", color: '#111111' }}>
+                        {session.momentumScore?.toFixed(1) || '0.0'}
+                      </span>
+                      <span style={{ fontSize: 13, color: '#71717A' }}>/ 10</span>
+                    </div>
+                    <div style={{ fontSize: 12, color: '#71717A', marginTop: 8 }}>
+                      {doneBlocks.length} blocks completed gracefully today.
+                    </div>
+                  </div>
+
+                  <div className="feed-title" style={{ paddingLeft: 24 }}>Today&apos;s Carry Forward</div>
 
                   <div style={{ flex: 1, overflowY: 'auto' }} className="hide-scrollbar">
                     {feedItems.length > 0 ? (
-                      <div>
+                      <div style={{ padding: '0 24px' }}>
                         {feedItems.map((item) => (
-                          <div key={item.id} className="feed-item">
-                            <div
-                              className="feed-item__dot"
-                              style={{ background: blockDotColors[item.type] || '#A1A1AA' }}
-                            />
-                            <div className="feed-item__text">{item.text}</div>
-                            <div className="feed-item__time">{item.time}</div>
+                          <div key={item.id} className="feed-item" style={{ background: '#FFFFFF', padding: 16, borderRadius: 8, marginBottom: 8, border: '1px solid #F4F4F5' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                              <div
+                                className="feed-item__dot"
+                                style={{ background: blockDotColors[item.type] || '#A1A1AA', width: 8, height: 8, borderRadius: '50%' }}
+                              />
+                              <div style={{ fontSize: 13, fontWeight: 500, color: '#111111' }}>{item.name}</div>
+                            </div>
+                            <div className="feed-item__text" style={{ fontSize: 12, color: '#71717A', marginLeft: 16 }}>{item.text}</div>
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div className="feed-empty">
-                        No alerts today
+                      <div className="feed-empty" style={{ textAlign: 'center', marginTop: 40, color: '#A1A1AA' }}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ margin: '0 auto 12px auto' }}>
+                          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                        No active carry-forwards today
                       </div>
                     )}
                   </div>
 
-                  {/* CAPTURE FEATURE — Bottom of right panel */}
-                  <CaptureBar
-                    sessionDay={session.dayNumber}
-                    activeTopics={richTopics}
-                  />
+                  {/* FLOATING CAPTURE FEATURE */}
+                  <div style={{ padding: '16px 24px' }}>
+                    <div style={{ background: '#FFFFFF', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.06)', border: '1px solid #EBEBEB', overflow: 'hidden' }}>
+                      <CaptureBar
+                        sessionDay={session.dayNumber}
+                        activeTopics={richTopics}
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
             </>

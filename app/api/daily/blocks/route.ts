@@ -5,6 +5,7 @@ import Project from '@/app/lib/models/Project';
 import TechSpine from '@/app/lib/models/TechSpine';
 import Skill from '@/app/lib/models/Skill';
 import Question from '@/app/lib/models/Question';
+import { recordStruggle } from '@/app/lib/engine/gapEngine';
 
 export async function PUT(request: Request) {
   await connectDB();
@@ -45,6 +46,12 @@ export async function PUT(request: Request) {
                  await Skill.findByIdAndUpdate(refId, updateObj);
             }
         }
+        
+        // Gap Generation Trigger for Skips
+        if (syncStatus === 'Skipped') {
+            const concept = (pureUpdateData as any).topicToday || (pureUpdateData as any).projectName || 'Unspecified ' + blockType;
+            await recordStruggle(blockType, refId, concept);
+        }
     }
 
     if (blockType === 'questions' && syncQuestion?.id) {
@@ -82,6 +89,8 @@ export async function PUT(request: Request) {
                 questionDoc.repetitions = 0;
                 questionDoc.interval = 1;
                 questionDoc.easeFactor = Math.max(1.3, questionDoc.easeFactor - 0.2);
+                
+                await recordStruggle('questions', questionDoc._id.toString(), questionDoc.text || 'Question Concept');
             }
             
             const nextReview = new Date();

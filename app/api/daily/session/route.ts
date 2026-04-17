@@ -68,12 +68,11 @@ export async function GET() {
     const spineObj = await getDailyBlock(TechSpine);
     if (spineObj) {
       dynamicBlocks.spine = {
+        ...spineObj.doc.toObject(),
         status: spineObj.dailyStatus,
         refId: spineObj.doc._id,
-        area: spineObj.doc.area,
         topicToday: spineObj.doc.topic,
-        microtaskToday: spineObj.doc.microtask,
-        resource: spineObj.doc.resource
+        microtaskToday: spineObj.doc.microtask
       };
       if (session.phase !== spineObj.doc.phase) {
           session.phase = spineObj.doc.phase || 'Foundation';
@@ -85,10 +84,10 @@ export async function GET() {
     const softSkillObj = await getDailyBlock(Skill, { type: 'soft' });
     if (softSkillObj) {
       dynamicBlocks.softSkill = {
+        ...softSkillObj.doc.toObject(),
         status: softSkillObj.dailyStatus,
         refId: softSkillObj.doc._id,
         skillName: softSkillObj.doc.name,
-        prompt: softSkillObj.doc.prompt,
         isDone: softSkillObj.dailyStatus === 'Done'
       };
     }
@@ -97,11 +96,10 @@ export async function GET() {
     const payableSkillObj = await getDailyBlock(Skill, { type: 'payable' });
     if (payableSkillObj) {
       dynamicBlocks.payableSkill = {
+        ...payableSkillObj.doc.toObject(),
         status: payableSkillObj.dailyStatus,
         refId: payableSkillObj.doc._id,
         topicName: payableSkillObj.doc.name,
-        chapter: payableSkillObj.doc.chapter,
-        prompt: payableSkillObj.doc.prompt,
         isDone: payableSkillObj.dailyStatus === 'Done'
       };
     }
@@ -110,10 +108,10 @@ export async function GET() {
     const projectObj = await getDailyBlock(Project);
     if (projectObj) {
       dynamicBlocks.project = {
+        ...projectObj.doc.toObject(),
         status: projectObj.dailyStatus,
         refId: projectObj.doc._id,
-        projectName: projectObj.doc.name,
-        description: projectObj.doc.description
+        projectName: projectObj.doc.name
       };
     }
 
@@ -123,10 +121,10 @@ export async function GET() {
     const highestGap = criticalGap || mediumGap;
     if (highestGap) {
       dynamicBlocks.survival = {
-        status: 'NotStarted', // Or dynamically track Gap resolution today if needed
+        ...highestGap.toObject(),
+        status: 'NotStarted',
+        refId: highestGap._id,
         gapName: highestGap.concept,
-        severity: highestGap.severity,
-        flagCount: highestGap.flagCount,
         daysSinceOpen: Math.floor((new Date().getTime() - highestGap.createdAt.getTime()) / (1000 * 3600 * 24))
       };
     }
@@ -181,22 +179,35 @@ export async function GET() {
       blocks: dynamicBlocks
     };
 
-    // Determine Carry Forward items
-    const pastSessions = await Session.find({ dayNumber: { $lt: session.dayNumber } })
-      .sort({ dayNumber: -1 })
-      .limit(3);
-
+    // Determine Carry Forward items (stale checks)
     const carryForwardItems: any[] = [];
-    pastSessions.forEach(ps => {
-      // Because we used to save blocks in Session, legacy items might still be read
-      if (ps.blocks?.project?.status === 'Partial' || ps.blocks?.project?.status === 'Skipped') {
+    const twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+
+    const staleProjects = await Project.find({ status: 'in-progress', updatedAt: { $lt: twoDaysAgo } });
+    staleProjects.forEach(p => {
+        const days = Math.floor((new Date().getTime() - new Date(p.updatedAt).getTime()) / (1000 * 3600 * 24));
         carryForwardItems.push({ 
-          type: 'project', 
-          name: ps.blocks.project.projectName, 
-          status: ps.blocks.project.status,
-          date: ps.date
+            type: 'project', 
+            name: p.name, 
+            status: p.status,
+            date: p.updatedAt,
+            daysSinceLastAttempt: days,
+            text: `Project untouched for ${days} days`
         });
-      }
+    });
+
+    const staleSkills = await Skill.find({ status: 'in-progress', updatedAt: { $lt: twoDaysAgo } });
+    staleSkills.forEach(s => {
+        const days = Math.floor((new Date().getTime() - new Date(s.updatedAt).getTime()) / (1000 * 3600 * 24));
+        carryForwardItems.push({ 
+            type: 'skill', 
+            name: s.name, 
+            status: s.status,
+            date: s.updatedAt,
+            daysSinceLastAttempt: days,
+            text: `Skill untouched for ${days} days`
+        });
     });
 
     return NextResponse.json({ session: responseSession, carryForwardItems });

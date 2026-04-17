@@ -14,6 +14,12 @@ export async function GET() {
             GapTracker.countDocuments({ status: 'open' })
         ]);
 
+        const [activeSpine, activeProjects, openGapsRef] = await Promise.all([
+            TechSpine.find({}).sort({ lastAddressed: -1 }).limit(3).exec(),
+            Project.find({ status: 'active' }).limit(3).exec(),
+            GapTracker.find({ status: 'open' }).sort({ severity: 1 }).limit(3).exec() // critical severity first
+        ]);
+
         return NextResponse.json({
             success: true,
             stats: {
@@ -22,6 +28,11 @@ export async function GET() {
                 projects: projectCount,
                 skills: skillCount,
                 openGaps: gapCount
+            },
+            highlights: {
+                spine: activeSpine,
+                projects: activeProjects,
+                gaps: openGapsRef
             }
         });
     } catch (error: any) {
