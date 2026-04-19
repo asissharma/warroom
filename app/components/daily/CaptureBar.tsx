@@ -88,7 +88,7 @@ export default function CaptureBar({ sessionDay, activeTopics, onSuccess }: Capt
     if (!input.trim() || status === 'syncing') return;
     setStatus('syncing');
     try {
-      const res = await fetch('/api/daily/capture', {
+      const res = await fetch('/api/session/capture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

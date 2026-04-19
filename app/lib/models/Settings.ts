@@ -1,54 +1,95 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document, Model } from 'mongoose';
 
-export interface IAIProviders {
-  teaching?: string;
-  analysis?: string;
-  chat?: string;
-  deepDive?: string;
-  fallback?: string;
+export interface ISettings extends Omit<Document, '_id'> {
+  _id: string; // explicitly string for singleton
+  startDate: Date;
+  defaultSessionMinutes: 15 | 30 | 60 | 90;
+  syllabusConfig: {
+    slug: string;
+    enabled: boolean;
+    weight: number;
+    maxPerSession: number;
+  }[];
+  sm2: {
+    mediumThreshold: number;
+    criticalThreshold: number;
+  };
+  ai: {
+    enabled: boolean;
+    teachModel: string;
+    analyseModel: string;
+    practiceModel: string;
+    summaryModel: string;
+    fallbackModel: string;
+  };
 }
 
-export interface IGapThresholds {
-  mediumTrigger: number;
-  criticalTrigger: number;
-  maxCritical: number;
-}
-
-export interface ISettings extends Document {
-  programStartDate: Date;
-  programLength: number;
-  currentPhase: 'Foundation' | 'Intermediate' | 'Advanced';
-  questionsPerDay: number;
-  gapThresholds: IGapThresholds;
-  aiProviders: IAIProviders;
-  carryForwardEnabled: boolean;
-  sm2Enabled: boolean;
-  sessionOverride?: number;
+export interface ISettingsModel extends Model<ISettings> {
+  getSingleton(): Promise<ISettings>;
 }
 
 const SettingsSchema = new Schema<ISettings>(
   {
-    programStartDate: { type: Date, default: () => new Date() },
-    programLength: { type: Number, default: 150 },
-    currentPhase: { type: String, enum: ['Foundation', 'Intermediate', 'Advanced'], default: 'Foundation' },
-    questionsPerDay: { type: Number, default: 9 },
-    gapThresholds: {
-      mediumTrigger: { type: Number, default: 2 },
-      criticalTrigger: { type: Number, default: 3 },
-      maxCritical: { type: Number, default: 5 },
+    _id: { type: String, default: 'singleton' },
+    startDate: { type: Date, default: Date.now },
+    defaultSessionMinutes: { type: Number, enum: [15, 30, 60, 90], default: 30 },
+    syllabusConfig: {
+      type: [
+        {
+          slug: { type: String, required: true },
+          enabled: { type: Boolean, required: true },
+          weight: { type: Number, required: true },
+          maxPerSession: { type: Number, required: true }
+        }
+      ],
+      default: []
     },
-    aiProviders: {
-      teaching: { type: String, default: 'groq' },
-      analysis: { type: String, default: 'gemini' },
-      chat: { type: String, default: 'claude' },
-      deepDive: { type: String, default: 'claude' },
-      fallback: { type: String, default: 'openrouter' },
+    sm2: {
+      mediumThreshold: { type: Number, default: 3 },
+      criticalThreshold: { type: Number, default: 5 }
     },
-    carryForwardEnabled: { type: Boolean, default: true },
-    sm2Enabled: { type: Boolean, default: true },
-    sessionOverride: { type: Number },
+    ai: {
+      enabled: { type: Boolean, default: false },
+      teachModel: { type: String, default: 'gemini-3-flash-preview' },
+      analyseModel: { type: String, default: 'deepseek-v3.1:671b' },
+      practiceModel: { type: String, default: 'gpt-oss:120b' },
+      summaryModel: { type: String, default: 'gpt-oss:120b' },
+      fallbackModel: { type: String, default: 'gpt-oss:120b' }
+    }
   },
   { timestamps: true, collection: 'settings' }
 );
 
-export default mongoose.models.Settings || mongoose.model<ISettings>('Settings', SettingsSchema);
+SettingsSchema.statics.getSingleton = async function () {
+  const defaultSettings = {
+    _id: 'singleton',
+    startDate: new Date(),
+    defaultSessionMinutes: 60,
+    syllabusConfig: [
+      { slug: 'tech-spine', enabled: true, weight: 1, maxPerSession: 5 },
+      { slug: 'questions', enabled: true, weight: 1, maxPerSession: 9 },
+      { slug: 'projects', enabled: true, weight: 1, maxPerSession: 1 },
+      { slug: 'soft-skills', enabled: true, weight: 1, maxPerSession: 1 },
+      { slug: 'payable-skills', enabled: true, weight: 1, maxPerSession: 1 },
+      { slug: 'survival-gaps', enabled: true, weight: 1, maxPerSession: 1 }
+    ],
+    sm2: { mediumThreshold: 3, criticalThreshold: 5 },
+    ai: {
+      enabled: false,
+      teachModel: 'gemini-3-flash-preview',
+      analyseModel: 'deepseek-v3.1:671b',
+      practiceModel: 'gpt-oss:120b',
+      summaryModel: 'gpt-oss:120b',
+      fallbackModel: 'gpt-oss:120b'
+    }
+  };
+
+  return this.findOneAndUpdate(
+    { _id: 'singleton' },
+    { $setOnInsert: defaultSettings },
+    { upsert: true, new: true, setDefaultsOnInsert: true }
+  );
+};
+
+export const SettingsModel = (mongoose.models.Settings as unknown as ISettingsModel) ||
+  mongoose.model<ISettings, ISettingsModel>('Settings', SettingsSchema);

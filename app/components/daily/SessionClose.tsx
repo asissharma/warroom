@@ -18,8 +18,8 @@ export default function SessionClose({ onCloseSession }: SessionCloseProps) {
     if (!isValid) return;
     setSubmitting(true);
     const res = await onCloseSession(note);
-    if (res && res.success) {
-      setResult(res);
+    if (res && res.session) {
+      setResult(res.session);
     } else {
         alert(res?.error || 'Failed to close session');
     }
@@ -33,10 +33,10 @@ export default function SessionClose({ onCloseSession }: SessionCloseProps) {
           Day Complete
         </div>
         <div className="session-closed__score">
-            +{result.momentumScore.toFixed(1)}
+            {result.score}
         </div>
         <div className="session-closed__label">
-            Momentum earned
+            Daily Score
         </div>
         
         {result.tomorrowFocus && (
@@ -53,8 +53,13 @@ export default function SessionClose({ onCloseSession }: SessionCloseProps) {
               Tomorrow&apos;s Focus
             </div>
             <p style={{ fontSize: 14, color: '#71717A', lineHeight: 1.6, fontStyle: 'italic', margin: 0 }}>
-              &quot;{result.tomorrowFocus}&quot;
+              &quot;Next focus: {result.tomorrowFocus?.nextTopic || 'Keep reviewing.'}&quot;
             </p>
+            {result.tomorrowFocus?.topGap && (
+                <div style={{ marginTop: 8, fontSize: 12, color: '#BE123C' }}>
+                    Addressing: {result.tomorrowFocus.topGap}
+                </div>
+            )}
           </div>
         )}
       </div>

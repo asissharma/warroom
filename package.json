@@ -1,5 +1,5 @@
 {
-  "name": "intel-os",
+  "name": "warroom",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",

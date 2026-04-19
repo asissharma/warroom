@@ -39,8 +39,8 @@ const EST_TIMES: Record<string, string> = {
 };
 
 export default function BlockCard({ type, data, onUpdate, onOpenChat }: BlockCardProps) {
-  const [blockNote, setBlockNote] = useState(data.note || '');
-  const [noteSaved, setNoteSaved] = useState(!!data.note);
+  const [blockNote, setBlockNote] = useState(data.meta?.note || '');
+  const [noteSaved, setNoteSaved] = useState(!!data.meta?.note);
 
   if (!data) return null;
 
@@ -59,24 +59,17 @@ export default function BlockCard({ type, data, onUpdate, onOpenChat }: BlockCar
   else if (isInProgress) dotClass = 'block-card__status-dot block-card__status-dot--amber';
 
   const getTitle = () => {
-    switch (type) {
-      case 'spine': return data.topicToday;
-      case 'softSkill': return data.skillName;
-      case 'payableSkill': return data.topicName;
-      case 'project': return data.projectName;
-      case 'survival': return data.gapName;
-      case 'questions': return 'Memory Check';
-      default: return type;
-    }
+    if (type === 'questions') return 'Memory Check';
+    return data.title || type;
   };
 
   const getDesc = () => {
     switch (type) {
-      case 'spine': return data.microtaskToday;
-      case 'softSkill': return data.prompt;
-      case 'payableSkill': return data.prompt;
-      case 'project': return data.description;
-      case 'survival': return `Critical gap detected ${data.daysSinceOpen} days ago. Review and close.`;
+      case 'spine': return data.meta?.microtask;
+      case 'softSkill': return data.meta?.dailyDrill;
+      case 'payableSkill': return data.meta?.microPractice;
+      case 'project': return data.meta?.doneMeans;
+      case 'survival': return data.meta?.drill || `Critical gap detected. Review and close.`;
       case 'questions': return 'Spaced repetition check — answer from memory.';
       default: return '';
     }

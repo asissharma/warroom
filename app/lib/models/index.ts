@@ -1,10 +1,6 @@
-// Export all models from a central location
-export { default as Question } from './Question';
-export { default as TechSpine } from './TechSpine';
-export { default as Project } from './Project';
-export { default as Skill } from './Skill';
-export { default as SurvivalArea } from './SurvivalArea';
-export { default as Settings } from './Settings';
-export { default as Session } from './Session';
-export { default as GapTracker } from './GapTracker';
+// Export new Thin-Log architecture models
+export { SyllabusModel } from './Syllabus';
+export { SyllabusItemModel } from './SyllabusItem';
+export { SessionModel } from './Session';
+export { SettingsModel } from './Settings';
 export { default as Capture } from './Capture';

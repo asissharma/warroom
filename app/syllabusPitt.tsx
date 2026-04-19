@@ -1,49 +1,48 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import TechSpineTab from '@/app/components/syllabus/TechSpineTab';
-import QuestionsTab from '@/app/components/syllabus/QuestionsTab';
-import ProjectsTab from '@/app/components/syllabus/ProjectsTab';
-import SoftSkillsTab from '@/app/components/syllabus/SoftSkillsTab';
-import PayableSkillsTab from '@/app/components/syllabus/PayableSkillsTab';
+import SyllabusListView from '@/app/components/syllabus/SyllabusListView';
 import GapTrackerTab from '@/app/components/syllabus/GapTrackerTab';
 import DetailPane from '@/app/components/syllabus/DetailPane';
 import ChatPanel from '@/app/components/daily/ChatPanel';
 
-type TabType = 'OVERVIEW' | 'SPINE' | 'QUESTIONS' | 'PROJECTS' | 'SOFT_SKILLS' | 'PAYABLE_SKILLS' | 'GAP_TRACKER';
+type TabType = 'OVERVIEW' | 'GAP_TRACKER' | string;
 
 export default function SyllabusPitt() {
   const [activeTab, setActiveTab] = useState<TabType>('OVERVIEW');
+  const [registry, setRegistry] = useState<any[]>([]);
   const [stats, setStats] = useState<any>(null);
   const [highlights, setHighlights] = useState<any>(null);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isAiPanelOpen, setIsAiPanelOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchStats() {
+    async function fetchRegistryAndStats() {
       try {
         const res = await fetch('/api/syllabus');
         const data = await res.json();
         if (data.success) {
+          setRegistry(data.registry || []);
           setStats(data.stats);
           setHighlights(data.highlights);
         }
       } catch (e) {
-        console.error('Failed to fetch syllabus stats', e);
+        console.error('Failed to fetch syllabus data', e);
+      } finally {
+        setLoading(false);
       }
     }
-    fetchStats();
+    fetchRegistryAndStats();
   }, []);
 
-  const tabs: { id: TabType; label: string }[] = [
+  const tabs = [
     { id: 'OVERVIEW', label: 'Overview' },
-    { id: 'SPINE', label: 'Tech Spine' },
-    { id: 'QUESTIONS', label: 'Questions' },
-    { id: 'PROJECTS', label: 'Projects' },
-    { id: 'SOFT_SKILLS', label: 'Soft Skills' },
-    { id: 'PAYABLE_SKILLS', label: 'Payable' },
+    ...registry.map(s => ({ id: s.slug, label: s.name })),
     { id: 'GAP_TRACKER', label: 'Gap Tracker' },
   ];
+
+  const activeSyllabus = registry.find(s => s.slug === activeTab);
 
   return (
     <div className="syll" style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', background: '#FAFAFA' }}>
@@ -77,12 +76,16 @@ export default function SyllabusPitt() {
       <div className="syll-content-wrapper">
         <div className={`syll-content ${selectedItem ? 'syll-content--with-detail' : ''}`}>
           {activeTab === 'OVERVIEW' && <OverviewCards stats={stats} highlights={highlights} onSelectItem={setSelectedItem} />}
-          {activeTab === 'SPINE' && <TechSpineTab onSelectItem={setSelectedItem} />}
-          {activeTab === 'QUESTIONS' && <QuestionsTab onSelectItem={setSelectedItem} />}
-          {activeTab === 'PROJECTS' && <ProjectsTab onSelectItem={setSelectedItem} />}
-          {activeTab === 'SOFT_SKILLS' && <SoftSkillsTab onSelectItem={setSelectedItem} />}
-          {activeTab === 'PAYABLE_SKILLS' && <PayableSkillsTab onSelectItem={setSelectedItem} />}
           {activeTab === 'GAP_TRACKER' && <GapTrackerTab onSelectItem={setSelectedItem} />}
+          
+          {/* Dynamic Syllabus Rendering */}
+          {activeSyllabus && (
+            <SyllabusListView 
+              slug={activeSyllabus.slug} 
+              itemType={activeSyllabus.itemType} 
+              onSelectItem={setSelectedItem} 
+            />
+          )}
         </div>
 
         {selectedItem && (
@@ -116,8 +119,8 @@ function OverviewCards({ stats, highlights, onSelectItem }: { stats: any; highli
   const progress = stats ? Math.min(100, Math.round((stats.spine / 150) * 100)) : 0;
   const openGaps = stats?.openGaps || 0;
   const questions = stats?.questions || 0;
-  const softSkills = stats?.softSkills || 35;
-  const payableSkills = stats?.payableSkills || 12;
+  const softSkills = stats?.softSkills || 0;
+  const payableSkills = stats?.payableSkills || 0;
 
   return (
     <div className="syll-overview animate-fade-slide">
@@ -181,10 +184,10 @@ function OverviewCards({ stats, highlights, onSelectItem }: { stats: any; highli
               <div style={{ fontSize: 13, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 12 }}>Active Tech Spine Topics</div>
               <div className="syll-list">
                 {highlights.spine.map((s: any) => (
-                  <div key={s._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...s, source: 'spine' })}>
+                  <div key={s._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...s, source: 'tech-spine' })}>
                     <div className="syll-row-card__left">
-                      <div className="syll-row-card__name">{s.topic}</div>
-                      <div className="syll-row-card__meta">Depth: {s.difficulty} • Progress: {s.completionPercent || 0}%</div>
+                      <div className="syll-row-card__name">{s.title}</div>
+                      <div className="syll-row-card__meta">Progress: {s.completedCount > 0 ? 'Mastered' : s.status}</div>
                     </div>
                   </div>
                 ))}
@@ -199,8 +202,8 @@ function OverviewCards({ stats, highlights, onSelectItem }: { stats: any; highli
                 {highlights.projects.map((p: any) => (
                   <div key={p._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...p, source: 'projects' })}>
                     <div className="syll-row-card__left">
-                      <div className="syll-row-card__name">{p.name}</div>
-                      <div className="syll-row-card__meta" style={{ display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{p.description}</div>
+                      <div className="syll-row-card__name">{p.title}</div>
+                      <div className="syll-row-card__meta" style={{ display: '-webkit-box', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{p.meta?.description}</div>
                     </div>
                   </div>
                 ))}
@@ -213,13 +216,13 @@ function OverviewCards({ stats, highlights, onSelectItem }: { stats: any; highli
               <div style={{ fontSize: 13, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', marginBottom: 12 }}>Critical Gaps</div>
               <div className="syll-list">
                 {highlights.gaps.map((g: any) => (
-                  <div key={g._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...g, source: 'gaps' })}>
+                  <div key={g._id} className="syll-row-card" onClick={() => onSelectItem && onSelectItem({ ...g, source: g.syllabusSlug })}>
                     <div className="syll-row-card__left">
-                      <div className="syll-row-card__name">{g.concept}</div>
-                      <div className="syll-row-card__meta">Origin: {g.originTracker}</div>
+                      <div className="syll-row-card__name">{g.title}</div>
+                      <div className="syll-row-card__meta">Flag Count: {g.gap?.flagCount}</div>
                     </div>
                     <div className="syll-row-card__right">
-                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 100, background: '#FEF2F2', color: '#DC2626' }}>{g.severity}</span>
+                      <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 100, background: '#FEF2F2', color: '#DC2626' }}>{g.gap?.severity}</span>
                     </div>
                   </div>
                 ))}
