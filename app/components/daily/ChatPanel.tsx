@@ -29,7 +29,7 @@ export default function ChatPanel({ isOpen, onClose, contextType, contextData, o
     .replace(/SM2/i, '')
     .trim() || 'General';
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!inputStr.trim()) return;
 
     if (inputStr.startsWith('/')) {
@@ -45,18 +45,36 @@ export default function ChatPanel({ isOpen, onClose, contextType, contextData, o
       }
     }
 
-    setMessages([...messages, { role: 'user', content: inputStr }]);
+    const nextMessages = [...messages, { role: 'user', content: inputStr }];
+    setMessages(nextMessages);
     setInputStr('');
-    setTurnCount(prev => prev + 1);
-
-    if (turnCount > 4) {
+    
+    // Check for drift on the JS side for now
+    if (turnCount >= 4) {
       onDrift();
       setMessages(prev => [...prev, { role: 'system', content: 'Drift detected — refocus on your block.' }]);
       setTurnCount(0);
-    } else {
-      setTimeout(() => {
-        setMessages(prev => [...prev, { role: 'ai', content: `[AI response for ${contextLabel}. Full tuple context length: ${JSON.stringify(contextData || {}).length} bytes]` }]);
-      }, 500);
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/ai/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            itemId: contextData?._id,
+            messages: nextMessages
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessages(prev => [...prev, { role: 'ai', content: data.response }]);
+        setTurnCount(prev => prev + 1);
+      } else {
+        setMessages(prev => [...prev, { role: 'system', content: `AI Error: ${data.error}` }]);
+      }
+    } catch (e) {
+      setMessages(prev => [...prev, { role: 'system', content: 'Connection failed.' }]);
     }
   };
 

@@ -12,6 +12,9 @@ export default function DetailPane({ item: initialItem, onClose }: DetailPanePro
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [showMetadata, setShowMetadata] = useState(false);
+  const [aiLoading, setAiLoading] = useState<string | null>(null);
+  const [aiResult, setAiResult] = useState<string | null>(null);
+
 
   // Edit states
   const [editStatus, setEditStatus] = useState(initialItem?.status || '');
@@ -62,6 +65,30 @@ export default function DetailPane({ item: initialItem, onClose }: DetailPanePro
       setIsSaving(false);
     }
   };
+
+  const handleAiAction = async (action: string) => {
+    setAiLoading(action);
+    setAiResult(null);
+    try {
+      const res = await fetch(`/api/ai/${action}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemId: item._id })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAiResult(data.response);
+      } else {
+        setAiResult(`Error: ${data.error}`);
+      }
+    } catch (e) {
+      console.error('AI Action failed', e);
+      setAiResult('Connection failed.');
+    } finally {
+      setAiLoading(null);
+    }
+  };
+
 
   // Compute remaining keys for Metadata area (filter out standard UI fields & react internals)
   const excludeKeys = ['_id', '__v', 'source', 'status', 'difficulty', 'depthReached', 'description', 'microtask', 'notes', 'prompt', 'topic', 'name', 'text', 'concept', 'completionPercent', 'timesStruggled', 'flagCount', 'lastReview', 'lastAddressed'];
@@ -194,7 +221,7 @@ export default function DetailPane({ item: initialItem, onClose }: DetailPanePro
         </div>
 
         {/* Technical Metadata Collapsible */}
-        <div style={{ borderTop: '1px solid #EBEBEB', paddingTop: 16 }}>
+        <div style={{ borderTop: '1px solid #EBEBEB', paddingTop: 16, marginBottom: 20 }}>
           <button 
             onClick={() => setShowMetadata(!showMetadata)}
             style={{ background: 'transparent', border: 'none', display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: '#71717A', cursor: 'pointer', padding: 0 }}
@@ -220,9 +247,97 @@ export default function DetailPane({ item: initialItem, onClose }: DetailPanePro
             </div>
           )}
         </div>
+
+        {/* AI ACTION PANEL */}
+        <div style={{ borderTop: '1px solid #EBEBEB', paddingTop: 24 }}>
+             <div style={{ fontSize: 11, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>Agentic Assistance</div>
+             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                 <AiActionButton 
+                    label="Teach Me" 
+                    icon="🧠" 
+                    onClick={() => handleAiAction('teach')}
+                    loading={aiLoading === 'teach'}
+                 />
+                 <AiActionButton 
+                    label="Analyse Gap" 
+                    icon="🔍" 
+                    onClick={() => handleAiAction('analyze')}
+                    loading={aiLoading === 'analyze'}
+                 />
+                 <AiActionButton 
+                    label="Practice Drill" 
+                    icon="⚔️" 
+                    onClick={() => handleAiAction('practice')}
+                    loading={aiLoading === 'practice'}
+                 />
+                 <AiActionButton 
+                    label="Summarize" 
+                    icon="📝" 
+                    onClick={() => handleAiAction('summarize')}
+                    loading={aiLoading === 'summarize'}
+                 />
+             </div>
+
+             {aiResult && (
+                 <div className="animate-fade-slide" style={{ 
+                    marginTop: 20, 
+                    padding: 16, 
+                    background: '#FFFFFF', 
+                    borderRadius: 12, 
+                    border: '1px solid #111111',
+                    fontSize: 14,
+                    lineHeight: 1.6,
+                    color: '#111111',
+                    whiteSpace: 'pre-wrap',
+                    position: 'relative'
+                 }}>
+                     <button 
+                        onClick={() => setAiResult('')}
+                        style={{ position: 'absolute', top: 8, right: 12, background: 'none', border: 'none', color: '#A1A1AA', cursor: 'pointer' }}
+                     >✕</button>
+                     <div style={{ fontSize: 10, fontFamily: "'JetBrains Mono', monospace", color: '#A1A1AA', marginBottom: 10, textTransform: 'uppercase' }}>
+                        AI_{aiLoading?.toUpperCase() || 'RESULT'} // DONE
+                     </div>
+                     {aiResult}
+                 </div>
+             )}
+        </div>
       </div>
     </div>
   );
+}
+
+function AiActionButton({ label, icon, onClick, loading }: any) {
+    return (
+        <button 
+            onClick={onClick}
+            disabled={loading}
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                height: 42,
+                borderRadius: 10,
+                border: '1px solid #EBEBEB',
+                background: '#FFFFFF',
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#111111',
+                cursor: loading ? 'wait' : 'pointer',
+                transition: 'all 0.2s'
+            }}
+            onMouseOver={e => e.currentTarget.style.borderColor = '#111111'}
+            onMouseOut={e => e.currentTarget.style.borderColor = '#EBEBEB'}
+        >
+            {loading ? '...' : (
+                <>
+                    <span style={{ fontSize: 16 }}>{icon}</span>
+                    {label}
+                </>
+            )}
+        </button>
+    );
 }
 
 function getStatusColors(status: string): { background: string; color: string } {

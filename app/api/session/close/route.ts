@@ -4,6 +4,8 @@ import { SessionModel } from '@/app/lib/models/Session';
 import { SyllabusItemModel } from '@/app/lib/models/SyllabusItem';
 import { calcScore } from '@/app/lib/engine/score';
 import { calcTomorrowFocus } from '@/app/lib/engine/tomorrowFocus';
+import { aiProvider } from '@/app/lib/ai/provider';
+import { SettingsModel } from '@/app/lib/models/Settings';
 
 export async function POST(request: Request) {
   await connectDB();
@@ -49,9 +51,29 @@ export async function POST(request: Request) {
     session.status = 'completed';
     session.completedAt = new Date();
 
+    // AI Insight (Optional but recommended)
+    let aiInsight = '';
+    const settings = await SettingsModel.getSingleton();
+    if (settings.ai.enabled) {
+        try {
+            const system = `You are the WarRoom AI. The user just finished a session. 
+            Based on their honest reflection and their performance (Done: ${session.itemsDone}, Struggled: ${session.itemsStruggled}), provide a 1-sentence "Tactical Recommendation" for tomorrow. 
+            Be brief, objective, and directive.`;
+            
+            aiInsight = await aiProvider.runAI({
+                model: settings.ai.summaryModel,
+                system,
+                prompt: `Reflection: "${honestNote}"`,
+                temperature: 0.6
+            });
+        } catch (e) {
+            console.error('AI Insight failed', e);
+        }
+    }
+
     await session.save();
 
-    return NextResponse.json({ session });
+    return NextResponse.json({ session, aiInsight });
   } catch (error: any) {
     console.error('Close session error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
