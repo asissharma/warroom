@@ -6,6 +6,8 @@ import { calcScore } from '@/app/lib/engine/score';
 import { calcTomorrowFocus } from '@/app/lib/engine/tomorrowFocus';
 import { aiProvider } from '@/app/lib/ai/provider';
 import { SettingsModel } from '@/app/lib/models/Settings';
+import { updateSM2 } from '@/app/lib/engine/sm2';
+import { escalateGap } from '@/app/lib/engine/gapEngine';
 
 export async function POST(request: Request) {
   await connectDB();
@@ -47,13 +49,39 @@ export async function POST(request: Request) {
 
     session.tomorrowFocus = calcTomorrowFocus(lastSessions, allItems);
     
+    const settings = await SettingsModel.getSingleton();
+
+    // Iterate over session results and apply SM-2 and GapEngine progression to DB items
+    for (const r of session.results) {
+        const item = allItems.find(i => i._id.toString() === r.itemId.toString());
+        if (item) {
+            // Apply SM2
+            if (item.sm2) {
+                item.sm2 = updateSM2(item.sm2, r.result);
+            } else {
+                // Initialize SM2 if item doesn't have it yet
+                item.sm2 = updateSM2({
+                    easeFactor: 2.5, interval: 0, repetition: 0,
+                    nextReviewDate: new Date(), timesStruggled: 0
+                }, r.result);
+            }
+            
+            // Apply Gap Engine
+            const gapUpdate = escalateGap(item as any, r.result, settings);
+            if (gapUpdate.gap) {
+                item.gap = gapUpdate.gap;
+            }
+
+            await item.save();
+        }
+    }
+    
     session.honestNote = honestNote;
     session.status = 'completed';
     session.completedAt = new Date();
 
     // AI Insight (Optional but recommended)
     let aiInsight = '';
-    const settings = await SettingsModel.getSingleton();
     if (settings.ai.enabled) {
         try {
             const system = `You are the WarRoom AI. The user just finished a session. 

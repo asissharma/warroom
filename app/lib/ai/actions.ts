@@ -62,8 +62,12 @@ export function buildUserPrompt(context: AIActionContext): string {
         return history.map(m => `${m.role.toUpperCase()}: ${m.content}`).join('\n\n') + '\n\nAI: ';
     }
 
+    const metaString = item?.meta && Object.keys(item.meta).length > 0
+        ? `\nMeta Context:\n${JSON.stringify(item.meta, null, 2)}` 
+        : '';
+
     return `Title: ${item?.title || item?.name || item?.text || item?.concept || 'Generic Topic'}
-Description/Notes: ${item?.description || item?.notes || item?.prompt || 'No additional notes.'}
+Description/Notes: ${item?.description || item?.notes || item?.prompt || 'No additional notes.'}${metaString}
 
 Please perform the requested action based on this specific item.`;
 }

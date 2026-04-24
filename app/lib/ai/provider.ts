@@ -15,7 +15,7 @@ interface AIRequest {
 
 class AIProvider {
   private static instance: AIProvider;
-  
+
   private geminiClient: GoogleGenerativeAI | null = null;
   private groqClient: Groq | null = null;
   private openRouterClient: OpenAI | null = null;
@@ -50,10 +50,9 @@ class AIProvider {
       });
     }
     if (process.env.OLLAMA_CLOUD_API_KEY) {
-      // Assuming Ollama Cloud follows OpenAI format or standard endpoint
       this.ollamaClient = new OpenAI({
         apiKey: process.env.OLLAMA_CLOUD_API_KEY,
-        baseURL: process.env.OLLAMA_CLOUD_URL || 'https://api.ollama.com/v1',
+        baseURL: process.env.OLLAMA_CLOUD_BASE_URL || 'https://api.ollama.com/v1',
       });
     }
   }
@@ -61,45 +60,71 @@ class AIProvider {
   public async runAI({ model, system, prompt, provider, temperature = 0.7 }: AIRequest): Promise<string> {
     const resolvedProvider = provider || this.inferProvider(model);
 
-    try {
-      switch (resolvedProvider) {
-        case 'gemini':
-          return await this.callGemini(model, system, prompt, temperature);
-        case 'groq':
-          return await this.callGroq(model, system, prompt, temperature);
-        case 'openrouter':
-          return await this.callOpenRouter(model, system, prompt, temperature);
-        case 'ollama_cloud':
-          return await this.callOllama(model, system, prompt, temperature);
-        default:
-          throw new Error(`Unsupported provider or model: ${model}`);
+    // Build a fallback chain: try the resolved provider first, then others
+    const providerChain = this.buildFallbackChain(resolvedProvider);
+
+    for (const p of providerChain) {
+      try {
+        switch (p.provider) {
+          case 'gemini':
+            return await this.callGemini(p.model || model, system, prompt, temperature);
+          case 'groq':
+            return await this.callGroq(p.model || model, system, prompt, temperature);
+          case 'openrouter':
+            return await this.callOpenRouter(p.model || model, system, prompt, temperature);
+          case 'ollama_cloud':
+            return await this.callOllama(p.model || model, system, prompt, temperature);
+        }
+      } catch (error: any) {
+        console.warn(`AI_PROVIDER_FALLBACK [${p.provider}]: ${error.message?.slice(0, 120)}. Trying next...`);
+        continue; // Try next provider in chain
       }
-    } catch (error: any) {
-      console.error(`AI_PROVIDER_ERROR [${resolvedProvider}]:`, error);
-      throw error;
     }
+
+    throw new Error(`All AI providers failed for model: ${model}`);
+  }
+
+  private buildFallbackChain(primary: AIProviderName): { provider: AIProviderName; model?: string }[] {
+    const chain: { provider: AIProviderName; model?: string }[] = [{ provider: primary }];
+    
+    // Add fallbacks based on what clients are initialized
+    if (primary !== 'groq' && this.groqClient) {
+      chain.push({ provider: 'groq', model: 'llama-3.3-70b-versatile' });
+    }
+    if (primary !== 'gemini' && this.geminiClient) {
+      chain.push({ provider: 'gemini', model: 'gemini-2.0-flash' });
+    }
+    if (primary !== 'openrouter' && this.openRouterClient) {
+      chain.push({ provider: 'openrouter', model: 'openai/gpt-4o-mini' });
+    }
+    if (primary !== 'ollama_cloud' && this.ollamaClient) {
+      chain.push({ provider: 'ollama_cloud' });
+    }
+
+    return chain;
   }
 
   private inferProvider(model: string): AIProviderName {
     const m = model.toLowerCase();
     if (m.includes('gemini')) return 'gemini';
-    if (m.includes('llama') || m.includes('mixtral') || m.includes('gemma')) {
-        // Default to Groq if key exists, else OpenRouter
-        return process.env.GROQ_API_KEY ? 'groq' : 'openrouter';
+    if (m.includes('llama') || m.includes('mixtral') || m.includes('gemma') || m.includes('deepseek')) {
+      // Groq hosts Llama, Mixtral, Gemma, and DeepSeek models
+      return this.groqClient ? 'groq' : 'openrouter';
     }
     if (m.includes('gpt') || m.includes('claude')) return 'openrouter';
-    return 'openrouter'; // Default fallback
+    // Default: try Groq first (free tier), fallback to OpenRouter
+    return this.groqClient ? 'groq' : 'openrouter';
   }
 
   private async callGemini(model: string, system: string = '', prompt: string, temp: number): Promise<string> {
     if (!this.geminiClient) throw new Error('Gemini client not initialized.');
-    const geminiModel = this.geminiClient.getGenerativeModel({ 
-        model: model || 'gemini-1.5-flash',
-        systemInstruction: system
+    const geminiModel = this.geminiClient.getGenerativeModel({
+      model: model || 'gemini-1.5-flash',
+      systemInstruction: system
     });
     const result = await geminiModel.generateContent({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: { temperature: temp }
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: { temperature: temp }
     });
     return result.response.text();
   }

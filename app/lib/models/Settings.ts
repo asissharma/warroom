@@ -49,12 +49,12 @@ const SettingsSchema = new Schema<ISettings>(
       criticalThreshold: { type: Number, default: 5 }
     },
     ai: {
-      enabled: { type: Boolean, default: false },
-      teachModel: { type: String, default: 'gemini-3-flash-preview' },
-      analyseModel: { type: String, default: 'deepseek-v3.1:671b' },
-      practiceModel: { type: String, default: 'gpt-oss:120b' },
-      summaryModel: { type: String, default: 'gpt-oss:120b' },
-      fallbackModel: { type: String, default: 'gpt-oss:120b' }
+      enabled: { type: Boolean, default: true },
+      teachModel: { type: String, default: 'llama-3.3-70b-versatile' },
+      analyseModel: { type: String, default: 'llama-3.3-70b-versatile' },
+      practiceModel: { type: String, default: 'llama-3.3-70b-versatile' },
+      summaryModel: { type: String, default: 'llama-3.3-70b-versatile' },
+      fallbackModel: { type: String, default: 'llama-3.3-70b-versatile' }
     }
   },
   { timestamps: true, collection: 'settings' }
@@ -75,12 +75,12 @@ SettingsSchema.statics.getSingleton = async function () {
     ],
     sm2: { mediumThreshold: 3, criticalThreshold: 5 },
     ai: {
-      enabled: false,
-      teachModel: 'gemini-3-flash-preview',
-      analyseModel: 'deepseek-v3.1:671b',
-      practiceModel: 'gpt-oss:120b',
-      summaryModel: 'gpt-oss:120b',
-      fallbackModel: 'gpt-oss:120b'
+      enabled: true,
+      teachModel: 'llama-3.3-70b-versatile',
+      analyseModel: 'llama-3.3-70b-versatile',
+      practiceModel: 'llama-3.3-70b-versatile',
+      summaryModel: 'llama-3.3-70b-versatile',
+      fallbackModel: 'llama-3.3-70b-versatile'
     }
   };
 

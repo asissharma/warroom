@@ -1007,6 +1007,7 @@
         flex-direction: column;
         height: auto;
         min-height: calc(100vh - 52px);
+        overflow: visible;
     }
 
     .left-panel {
@@ -1014,7 +1015,7 @@
         overflow: visible;
         display: flex;
         flex-direction: column;
-        padding: 16px;
+        padding: 16px 16px 80px 16px;
         gap: 16px;
     }
 
@@ -1742,6 +1743,7 @@
 
     .syll-content-wrapper {
         flex-direction: column;
+        overflow-y: auto;
         height: calc(100vh - 52px - 64px); /* Account for top bar and bottom nav */
     }
 

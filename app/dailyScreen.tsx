@@ -31,6 +31,7 @@ export default function DailyScreen() {
   const [rightTab, setRightTab] = useState<'ACTIVITY' | 'ASSISTANT'>('ACTIVITY');
   const [activeContext, setActiveContext] = useState<string>('');
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   const loadData = async () => {
     try {
@@ -183,8 +184,41 @@ export default function DailyScreen() {
   const doneCount = Object.keys(uiBlocks).filter(k => uiBlocks[k].status === 'Done').length;
   const totalCount = Object.keys(uiBlocks).length;
 
+
+
+  const handleCopyTasks = () => {
+    const items = session.populatedItems || [];
+    const lines: string[] = [`📋 WARROOM — Day ${session.dayNumber} | ${new Date(session.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}`, ''];
+
+    // Group by syllabus slug 
+    const grouped: Record<string, any[]> = {};
+    items.forEach((item: any) => {
+      const slug = item.syllabusSlug;
+      if (!grouped[slug]) grouped[slug] = [];
+      grouped[slug].push(item);
+    });
+
+    Object.entries(grouped).forEach(([slug, groupItems]) => {
+      const uiKey = SLUG_TO_KEY[slug] || slug;
+      const label = BLOCK_LABELS[uiKey] || slug.toUpperCase();
+      lines.push(`── ${label} ──`);
+      groupItems.forEach((item: any) => {
+        const result = session.results?.find((r: any) => r.itemId === item._id);
+        const icon = result ? (result.result === 'done' ? '✅' : result.result === 'struggled' ? '❌' : '⬜') : '⬜';
+        lines.push(`${icon} ${item.title}`);
+      });
+      lines.push('');
+    });
+
+    lines.push(`Score: ${session.score ?? '—'} | Blocks Done: ${doneCount}/${totalCount}`);
+
+    navigator.clipboard.writeText(lines.join('\n'));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', background: '#FFFFFF' }}>
+    <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#FFFFFF' }}>
 
       {/* ── TOP BAR ─────────────────────────────────── */}
       <div className="top-bar">
@@ -219,7 +253,35 @@ export default function DailyScreen() {
         <div className={`left-panel hide-scrollbar ${!rightPanelOpen ? 'left-panel--expanded' : ''}`} 
              style={{ transition: 'width 0.3s ease' }}>
 
-          {/* Render Blocks */}
+          {/* ── COPY TASKS CARD ── */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '14px 20px', background: '#FFFFFF', borderRadius: 12,
+            border: '1px solid #EBEBEB',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 14 }}>📋</span>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#111' }}>Today&apos;s Tasks</div>
+                <div style={{ fontSize: 11, color: '#A1A1AA' }}>{(session.populatedItems || []).length} items across {totalCount} blocks</div>
+              </div>
+            </div>
+            <button
+              onClick={handleCopyTasks}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 6,
+                padding: '8px 16px', borderRadius: 8,
+                border: copied ? '1px solid #111' : '1px solid #EBEBEB',
+                background: copied ? '#111' : '#FFF',
+                color: copied ? '#FFF' : '#111',
+                fontSize: 12, fontWeight: 600, cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {copied ? '✓ Copied!' : '⎘ Copy All'}
+            </button>
+          </div>
           {uiBlocks.questions && uiBlocks.questions.items.length > 0 && (
             <BlockCard
               type="questions"
